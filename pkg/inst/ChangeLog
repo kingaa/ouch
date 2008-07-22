@@ -1,0 +1,22 @@
+2008-07-22  kingaa
+
+	* DESCRIPTION, NAMESPACE, R/aaa.R, R/ape2ouch.R, R/brown.R,
+	  R/deprecated.R, R/glssoln.R, R/hansen.R, R/methods.R,
+	  R/ouchtree.R, R/paint.R, R/plot.R, R/rmvnorm.R, data,
+	  data/anolis.ssd.csv, data/bimac.csv, inst, inst/CITATION,
+	  inst/COPYING, inst/ChangeLog, inst/GPL, man/anolis.ssd.Rd,
+	  man/ape2ouch.Rd, man/bimac.Rd, man/brown.Rd,
+	  man/browntree-class.Rd, man/hansen.Rd, man/hansentree-class.Rd,
+	  man/hansentree-methods.Rd, man/ouch-deprecated.Rd,
+	  man/ouch-package.Rd, man/ouchtree-class.Rd, man/paint.Rd, src,
+	  src/covar-matrix.c, src/ouch.h, src/weight-matrix.c, tests,
+	  tests/boot.R, tests/boot.Rout.save, tests/exacttree.R,
+	  tests/exacttree.Rout.save, tests/simtree.R,
+	  tests/simtree.Rout.save, tests/snizard.R,
+	  tests/snizard.Rout.save, tests/snizard_tree.ape,
+	  tests/squamates.csv: initial transfer to rforge
+
+2007-06-25  stefan7th
+
+	* README, ., R, man, www, www/index.php: Email in Readme changed
+
