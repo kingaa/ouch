@@ -1,0 +1,76 @@
+
+R version 2.6.1 (2007-11-26)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(ouch)
+Loading required package: subplex
+> data(bimac)
+> tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+> h1 <- brown(
++              data=log(bimac['size']),
++              tree=tree
++             )
+> h5 <- hansen(
++              data=log(bimac['size']),
++              tree=tree,
++              regimes=bimac['OU.LP'],
++              alpha=1,
++              sigma=1,
++              reltol=1e-11,
++              parscale=c(0.1,0.1),
++              hessian=TRUE
++              )
+> 
+> simdat <- simulate(h1,nsim=100,seed=92759587)
+> b1 <- sapply(simdat,function(x)summary(update(h1,data=x))$aic.c)
+> tic <- Sys.time()
+> b5 <- sapply(simdat,function(x)summary(update(h5,data=x))$aic.c)
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 20.09153 secs
+> cat("approximate 95% AIC.c cutoff",signif(quantile(b1-b5,0.95),digits=3),"\n")
+approximate 95% AIC.c cutoff 2.58 
+> 
+> boots.h1 <- bootstrap(h1,nboot=200,seed=92759587)
+> cat("bootstrap 95% confidence intervals for h1:\n")
+bootstrap 95% confidence intervals for h1:
+> print(t(sapply(boots.h1,quantile,probs=c(0.025,0.975))),digits=3)
+                  2.5%    97.5%
+sigma.squared   0.0221   0.0635
+theta.size      2.7171   3.1416
+loglik         12.8795  25.0098
+aic           -46.0197 -21.7589
+aic.c         -45.4197 -21.1589
+sic           -43.7487 -19.4879
+dof             2.0000   2.0000
+> 
+> boots.h5 <- bootstrap(h5,nboot=200,seed=92759587)
+> cat("bootstrap 95% confidence intervals for h5:\n")
+bootstrap 95% confidence intervals for h5:
+> print(t(sapply(boots.h5,quantile,probs=c(0.025,0.975))),digits=3)
+                       2.5%   97.5%
+alpha                1.7843  17.228
+sigma.squared        0.0243   0.219
+optima.size.large    3.2162   3.508
+optima.size.medium   2.9404   3.125
+optima.size.small    2.4450   2.778
+loglik              21.7175  35.419
+aic                -60.8385 -33.435
+aic.c              -57.3091 -29.906
+sic                -55.1610 -27.757
+dof                  5.0000   5.000
+> 
+> 

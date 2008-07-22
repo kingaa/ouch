@@ -1,0 +1,87 @@
+
+R version 2.6.1 (2007-11-26)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(ouch)
+Loading required package: subplex
+> require(ape)
+Loading required package: ape
+> tree <- read.tree("snizard_tree.ape")
+> squam.data <- read.csv("squamates.csv")
+> tic <- Sys.time()
+> tree.1 <- ape2ouch(tree)
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 1.754936 secs
+> tree.data <- merge(
++                    as(tree.1,"data.frame"),
++                    squam.data,
++                    by.x="labels",
++                    by.y="Species",
++                    all.x=T
++                    )
+> ### have a look at the times for this ostensibly ultrametric tree:
+> # print(tree.data$times)
+> # ### round these off to the nearest 0.001 to make it truly ultrametric:
+> tree.data$times <- round(tree.data$times,3)
+> # print(tree.data$times)
+> ### reconstruct the ouchtree object
+> tree.2 <- with(tree.data,ouchtree(nodes,ancestors,times,labels))
+> tree.data$OU2 <- as.character(tree.data$Burrow)
+> tree.data$OU2[is.na(tree.data$OU2)] <- "ancestral"
+> tree.data$OU2 <- as.factor(tree.data$OU2)
+> ## plot(tree.1, regimes = tree.data["OU2"])
+> tree.data$log.SVL.SE <- with(tree.data,log(SVL)-log(SE))
+> h1 <- brown(data=tree.data['log.SVL.SE'],tree.1)
+> h2 <- brown(data=tree.data['log.SVL.SE'],tree.2)
+> tic <- Sys.time()
+> h3 <- hansen(data=tree.data['log.SVL.SE'],tree.1,tree.data['OU2'],alpha=0.5,sigma=1,fit=F)
+> h4 <- hansen(data=tree.data['log.SVL.SE'],tree.2,tree.data['OU2'],alpha=0.5,sigma=1,fit=F)
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 5.148415 secs
+> model.fits <- c(h1,h2,h3,h4)
+> names(model.fits) <- c("BM.1","BM.2","OU2.1","OU2.2")
+> sapply(model.fits,function(x)c(unlist(coef(x)),summary(x)$aic.c))
+$BM.1
+           sigma theta.log.SVL.SE  sigma.sq.matrix                  
+        1.306906         2.528162         1.708003       437.546555 
+
+$BM.2
+           sigma theta.log.SVL.SE  sigma.sq.matrix                  
+        1.307367         2.528369         1.709209       437.757814 
+
+$OU2.1
+                     alpha                      sigma 
+                  0.500000                   1.000000 
+        theta.log.SVL.SE.0         theta.log.SVL.SE.1 
+                 -3.423894                  11.926117 
+theta.log.SVL.SE.ancestral               alpha.matrix 
+                  2.461822                   0.250000 
+           sigma.sq.matrix                            
+                  1.000000                 413.211228 
+
+$OU2.2
+                     alpha                      sigma 
+                  0.500000                   1.000000 
+        theta.log.SVL.SE.0         theta.log.SVL.SE.1 
+                 -3.425582                  11.914523 
+theta.log.SVL.SE.ancestral               alpha.matrix 
+                  2.462214                   0.250000 
+           sigma.sq.matrix                            
+                  1.000000                 413.599123 
+
+> 

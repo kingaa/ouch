@@ -1,0 +1,334 @@
+
+R version 2.6.1 (2007-11-26)
+Copyright (C) 2007 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(ouch)
+Loading required package: subplex
+> 
+> oubranch <- function (x0, t0, t1, alpha, sigma, theta, nstep = 10) {
++   x <- x0
++   t <- t0
++   sigma <- t(chol(sigma))
++   dt <- (t1-t0)/nstep
++   for (k in 1:nstep) {
++     x <- x+alpha%*%(theta-x)*dt+sigma%*%rnorm(n=ncol(sigma),sd=sqrt(dt))
++   }
++   x
++ }
+> 
+> ex <- function(x) {
++   y <- t(chol(x))
++   y[lower.tri(y,diag=T)]
++ }
+> 
+> ox <- function(x) {
++   y <- matrix(0,nchar,nchar)
++   y[lower.tri(y,diag=T)] <- x
++   y%*%t(y)
++ }
+> 
+> nnodes <- 501
+> nchar <- 2
+> 
+> a <- c(0.1,0.01,0.2)
+> alpha <- ox(a)
+> s <- c(0.1,0,0.1)
+> sigma <- ox(s)
+> 
+> theta <- list(
++               ns=c(0,0),
++               big=c(5,3),
++               small=c(-2,-1)
++               )
+> 
+> set.seed(2954189)
+> 
+> x <- matrix(nrow=nnodes,ncol=5,dimnames=list(NULL,c("node","ancestor","time","A","B")))
+> x[,1] <- 1:nnodes
+> node <- 1
+> time <- 0
+> x[1,'time'] <- time
+> while (node < nnodes) {
++   x[node+1,'node'] <- node+1
++   x[node+1,'time'] <- time+1
++   x[node+1,'ancestor'] <- node
++   x[node+2,'node'] <- node+2
++   x[node+2,'time'] <- time+1
++   x[node+2,'ancestor'] <- node
++   node <- node+2
++   time <- time+1
++ }
+> x <- as.data.frame(x)
+> 
+> x$reg <- as.factor(sample('ns',size=nnodes,replace=T))
+> 
+> x$A <- NA
+> x$B <- NA
+> x[1,c("A","B")] <- 0
+> for (node in 2:nnodes) {
++   anc <- x[node,'ancestor']
++   t0 <- x[anc,'time']
++   t1 <- x[node,'time']
++   r <- x[node,'reg']
++   x[node,c("A","B")] <- oubranch(as.numeric(x[anc,c("A","B")]),t0,t1,alpha,sigma,theta[[r]])
++ }
+> 
+> tic <- Sys.time()
+> tree <- with(x,ouchtree(node,ancestor,time))
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 13.97928 secs
+> 
+> bfit <- brown(data=x[c("A","B")],tree)
+> print(summary(bfit))
+$call
+brown(data = x[c("A", "B")], tree = tree)
+
+$sigma.squared
+              [,1]          [,2]
+[1,]  0.0083545396 -0.0005297714
+[2,] -0.0005297714  0.0100517161
+
+$theta
+$theta$A
+[1] -0.0426114
+
+$theta$B
+[1] 0.02719583
+
+
+$loglik
+[1] 226.1245
+
+$deviance
+[1] -452.2491
+
+$aic
+[1] -442.2491
+
+$aic.c
+[1] -442.1281
+
+$sic
+[1] -421.1561
+
+$dof
+[1] 5
+
+> 
+> tic <- Sys.time()
+> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],alpha=a,sigma=s,fit=F)
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 0.8676858 secs
+> print(summary(hfit))
+$call
+hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
+    alpha = a, sigma = s, fit = F)
+
+$conv.code
+NULL
+
+$optimizer.message
+NULL
+
+$alpha
+      [,1]   [,2]
+[1,] 0.010 0.0010
+[2,] 0.001 0.0401
+
+$sigma.squared
+     [,1] [,2]
+[1,] 0.01 0.00
+[2,] 0.00 0.01
+
+$optima
+$optima$A
+         ns 
+-0.06150747 
+
+$optima$B
+        ns 
+-0.0677411 
+
+
+$loglik
+[1] 222.7395
+
+$deviance
+[1] -445.479
+
+$aic
+[1] -429.479
+
+$aic.c
+[1] -429.1869
+
+$sic
+[1] -395.7302
+
+$dof
+[1] 8
+
+> 
+> x$reg <- as.factor(sample(c('big','small'),size=nnodes,replace=T))
+> 
+> x$A <- NA
+> x$B <- NA
+> x[1,c("A","B")] <- 0
+> for (node in 2:nnodes) {
++   anc <- x[node,'ancestor']
++   t0 <- x[anc,'time']
++   t1 <- x[node,'time']
++   r <- x[node,'reg']
++   x[node,c("A","B")] <- oubranch(as.numeric(x[anc,c("A","B")]),t0,t1,alpha,sigma,theta[[r]])
++ }
+> 
+> tic <- Sys.time()
+> tree <- with(x,ouchtree(node,ancestor,time))
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 14.32059 secs
+> 
+> bfit <- brown(data=x[c("A","B")],tree)
+> print(summary(bfit))
+$call
+brown(data = x[c("A", "B")], tree = tree)
+
+$sigma.squared
+            [,1]        [,2]
+[1,] 0.009197280 0.001424883
+[2,] 0.001424883 0.012807071
+
+$theta
+$theta$A
+[1] -0.005977056
+
+$theta$B
+[1] 0.2825566
+
+
+$loglik
+[1] 185.4227
+
+$deviance
+[1] -370.8453
+
+$aic
+[1] -360.8453
+
+$aic.c
+[1] -360.7244
+
+$sic
+[1] -339.7523
+
+$dof
+[1] 5
+
+> 
+> bfit <- update(bfit,data=x[c("B","A")])
+> print(summary(bfit))
+$call
+brown(data = data, tree = object)
+
+$sigma.squared
+            [,1]        [,2]
+[1,] 0.012807071 0.001424883
+[2,] 0.001424883 0.009197280
+
+$theta
+$theta$B
+[1] 0.2825566
+
+$theta$A
+[1] -0.005977056
+
+
+$loglik
+[1] 185.4227
+
+$deviance
+[1] -370.8453
+
+$aic
+[1] -360.8453
+
+$aic.c
+[1] -360.7244
+
+$sic
+[1] -339.7523
+
+$dof
+[1] 5
+
+> 
+> tic <- Sys.time()
+> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],alpha=a,sigma=s,fit=F)
+> toc <- Sys.time()
+> print(toc-tic)
+Time difference of 1.103265 secs
+> print(summary(hfit))
+$call
+hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
+    alpha = a, sigma = s, fit = F)
+
+$conv.code
+NULL
+
+$optimizer.message
+NULL
+
+$alpha
+      [,1]   [,2]
+[1,] 0.010 0.0010
+[2,] 0.001 0.0401
+
+$sigma.squared
+     [,1] [,2]
+[1,] 0.01 0.00
+[2,] 0.00 0.01
+
+$optima
+$optima$A
+       big      small 
+-0.3812335  4.3240903 
+
+$optima$B
+       big      small 
+0.08638197 3.07276801 
+
+
+$loglik
+[1] 237.8615
+
+$deviance
+[1] -475.723
+
+$aic
+[1] -455.723
+
+$aic.c
+[1] -455.2749
+
+$sic
+[1] -413.537
+
+$dof
+[1] 10
+
+> 

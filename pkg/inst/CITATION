@@ -1,0 +1,38 @@
+citHeader("To cite the ouch package in publications use:")
+
+citEntry(
+         entry="Manual",
+         title="ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses",
+         author=personList(
+	   as.person("Aaron A. King"),
+	   as.person("Marguerite A. Butler")
+	   ),	   
+	 year=2005,
+	 url="http://tsuga.biology.lsa.umich.edu/ouch/",
+	 textVersion=paste(
+	   "Aaron A. King and Marguerite A. Butler,",
+	   "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses,",
+	   "http://tsuga.biology.lsa.umich.edu/ouch/"
+	   )	   
+         )
+
+citEntry(
+         entry="Article",
+         author=personList(
+           as.person("Marguerite A. Butler"),
+           as.person("Aaron A. King")
+           ),
+         title="Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
+         journal="American Naturalist",
+         year=2004,
+         volume=164,
+         pages="683--695",
+         url="http://www.journals.uchicago.edu/AN/journal/issues/v164n6/40201/40201.html",
+         textVersion=paste(
+           "Butler, M. A. and King, A. A. (2004)",
+           "Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
+           "Am. Nat. 164:683--695"
+           )
+         )
+
+citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'help(package=ouch)'.")

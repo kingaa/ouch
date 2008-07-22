@@ -1,0 +1,45 @@
+paint <- function (tree, subtree, branch) {
+  if (!is(tree,'ouchtree'))
+    stop("'tree' must be of class 'ouchtree'")
+  if (!missing(subtree)) {
+    st.nm <- names(subtree)
+    if (is.null(st.nm))
+      stop("'subtree' must be a named vector")
+    if (!all(st.nm%in%tree@nodes))
+      stop("all names of 'subtree' must be names of nodes of 'tree'")
+    subtree <- as.character(subtree)
+  } else {
+    subtree <- character(0)
+    st.nm <- character(0)
+  }
+  if (!missing(branch)) {
+    br.nm <- names(branch)
+    if (length(br.nm)>0) {
+      if(is.null(br.nm))
+        stop("'branch' must be a named vector")
+      if (!all(br.nm%in%tree@nodes))
+        stop("all names of 'branch' must be names of nodes of 'tree'")
+      branch <- as.character(branch)
+    }
+  } else {
+    branch <- character(0)
+    br.nm <- character(0)
+  }
+  tog <- as.factor(c(as.character(subtree),as.character(branch)))
+  subtree <- head(tog,length(subtree))
+  branch <- tail(tog,length(branch))
+  names(subtree) <- st.nm
+  names(branch) <- br.nm
+  regimes <- rep('unspec',length(tree@nodes))
+  names(regimes) <- tree@nodes
+  for (k in seq(along=subtree)) {
+    st <- sapply(tree@lineages,function(x,y)y%in%x[-1],y=st.nm[k])
+    regimes[st] <- as.character(subtree[k])
+  }
+  for (k in seq(along=branch)) {
+    br <- tree@nodes%in%br.nm[k]
+    regimes[br] <- as.character(branch[k])
+  }
+  as.factor(regimes)
+}
+

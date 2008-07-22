@@ -1,0 +1,675 @@
+2008-07-08 11:08  kingaa
+
+	* ouch/tests/: boot.R, boot.Rout.save: use 'bootstrap' method
+
+2008-07-08 10:58  kingaa
+
+	* ouch/: NAMESPACE, R/aaa.R, R/brown.R, man/browntree-class.Rd,
+	  man/hansentree-methods.Rd, R/hansen.R: add 'bootstrap' method for confidence intervals by parametric bootstrap
+
+2008-06-25 13:05  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: improved documentation
+
+2008-06-25 12:46  kingaa
+
+	* ouch/R/: brown.R, hansen.R: fix rownames for simulate output
+
+2008-06-25 12:46  kingaa
+
+	* ouch/tests/simtree.Rout.save: faster
+
+2008-06-25 12:45  kingaa
+
+	* ouch/tests/: boot.R, boot.Rout.save: bootstrap tests
+
+2008-06-24 14:27  kingaa
+
+	* ouch/: R/hansen.R, man/hansen.Rd: bug fix
+
+2008-06-24 13:15  kingaa
+
+	* ouch/R/hansen.R: bug fix
+
+2008-06-24 13:15  kingaa
+
+	* ouch/tests/: exacttree.R, exacttree.Rout.save: add a 3-character test
+
+2008-06-24 10:42  kingaa
+
+	* ouch/: src/covar-matrix.c, src/ouch.h, src/weight-matrix.c,
+	  NAMESPACE, R/hansen.R, DESCRIPTION: .Call interface for weight and covariance matrices
+
+2008-06-24 10:40  kingaa
+
+	* ouch/tests/: bigtree.R, bigtree.Rout.save, exacttree.R,
+	  exacttree.Rout.save, simtree.R, simtree.Rout.save, smalltree.R,
+	  smalltree.Rout.save: change names (and order) of tests
+
+2008-06-24 08:39  kingaa
+
+	* ouch/: R/paint.R, man/paint.Rd: fix paint
+
+2008-06-24 08:06  kingaa
+
+	* ouch/src/covar-matrix.c: put covariance matrix calculation into C
+
+2008-06-24 08:03  kingaa
+
+	* ouch/: NAMESPACE, src/covar-matrix.c: put covariance matrix calculation into C
+
+2008-06-24 07:54  kingaa
+
+	* ouch/R/hansen.R: put covariance matrix calculation into C
+
+2008-06-24 00:10  kingaa
+
+	* ouch/: R/brown.R, R/hansen.R, man/browntree-class.Rd,
+	  man/hansentree-methods.Rd, tests/bigtree.R,
+	  tests/bigtree.Rout.save, tests/smalltree.R,
+	  tests/smalltree.Rout.save, DESCRIPTION: change update method to make it more useful
+
+2008-06-23 11:30  kingaa
+
+	* ouch/tests/: bigtree.R, bigtree.Rout.save, snizard.R,
+	  snizard.Rout.save: add some timing functions
+
+2008-06-23 11:29  kingaa
+
+	* ouch/R/ouchtree.R: improve the recursive lineage building
+
+2008-06-23 11:29  kingaa
+
+	* ouch/R/deprecated.R: pedigree -> pedigree.deprec
+
+2008-06-15 12:28  kingaa
+
+	* ouch/R/ouchtree.R: revert to using 'pedigree' in build.lineages
+
+2008-06-15 12:27  kingaa
+
+	* ouch/R/ape2ouch.R: minor change
+
+2008-06-12 16:24  kingaa
+
+	* ouch/DESCRIPTION: bug fix!
+
+2008-06-12 16:11  kingaa
+
+	* ouch/tests/bigtree.R: test using big artificial tree
+
+2008-06-12 16:06  kingaa
+
+	* ouch/R/hansen.R: remove old code
+
+2008-06-12 14:29  kingaa
+
+	* ouch/R/hansen.R: get rid of 'utimes'
+
+	fix bug in weight matrix
+
+2008-06-12 14:28  kingaa
+
+	* ouch/R/: aaa.R, brown.R, ouchtree.R: get rid of utimes
+
+2008-06-12 14:27  kingaa
+
+	* ouch/tests/: smalltree.R, smalltree.Rout.save: exact test
+
+2008-06-11 11:38  kingaa
+
+	* ouch/R/: brown.R, hansen.R: better error message for missing data
+
+2008-06-11 11:33  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: oops
+
+2008-06-11 11:24  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: minor change
+
+2008-06-11 11:20  kingaa
+
+	* ouch/R/hansen.R: replace 'pedigree' with a new slot, 'lineages', constructed by a more efficient algorithm
+
+	remove 'mvou.quants': no longer needed
+
+2008-06-11 11:20  kingaa
+
+	* ouch/R/: aaa.R, ouchtree.R: replace 'pedigree' with a new slot, 'lineages', constructed by a more efficient algorithm
+
+	pedigree is now only used in the deprecated functions
+
+2008-06-11 11:17  kingaa
+
+	* ouch/R/deprecated.R: pedigree is now only used in the deprecated functions
+
+2008-06-11 10:06  kingaa
+
+	* ouch/: R/hansen.R, DESCRIPTION: use different algorithm for computing weight and covariance matrices:
+	compute eigendecomposition once in 'ou.lik.fn'
+	then compute matrices in such a way that only -lambda t for lambda, t > 0 gets exponentiated
+
+	when given a hansentree object and regimes are not specified, re-use regimes
+
+	use 'is' not 'inherits' for S4
+
+2008-06-11 10:02  kingaa
+
+	* ouch/R/brown.R: use 'is' not 'inherits' for S4 objects
+
+2008-06-11 10:02  kingaa
+
+	* ouch/tests/: bimactest.R, outest.R: test scripts
+
+2008-06-11 10:01  kingaa
+
+	* ouch/tests/outest.R: test script
+
+2008-05-30 09:52  kingaa
+
+	* ouch/R/hansen.R: streamlining
+
+2008-05-30 09:48  kingaa
+
+	* ouch/man/: hansentree-class.Rd, hansentree-methods.Rd: change organization of methods documentation
+
+2008-05-29 12:18  kingaa
+
+	* ouch/R/: aaa.R, methods.R: get rid of alpha.fn and sigma.fn slots altogether
+	replace by sym.par and sym.unpar functions
+
+2008-05-29 12:17  kingaa
+
+	* ouch/: NAMESPACE, R/hansen.R, R/mvouode.R, src/mvouode.c: no longer need mvouode
+
+2008-05-29 10:24  kingaa
+
+	* ouch/R/hansen.R: take canonical branch of parameterization at the outset
+
+2008-05-28 17:34  kingaa
+
+	* ouch/man/: browntree-class.Rd, hansentree-class.Rd: get rid of special methods for deviance, sic, aic, aic.c: replace with one "summary" method
+
+2008-05-28 17:14  kingaa
+
+	* ouch/: ChangeLog, inst/ChangeLog: move ChangeLog
+
+2008-05-28 17:12  kingaa
+
+	* ouch/DESCRIPTION: bug fixes
+	new summary method
+
+2008-05-28 17:12  kingaa
+
+	* ouch/R/methods.R: fix print method
+
+2008-05-28 16:54  kingaa
+
+	* ouch/: NAMESPACE, R/aaa.R, R/methods.R, man/generics.Rd: get rid of special methods for deviance, sic, aic, aic.c: replace with one "summary" method
+
+2008-05-28 16:42  kingaa
+
+	* ouch/man/hansen.Rd: fix broken link
+
+2008-05-28 16:39  kingaa
+
+	* ouch/: man/browntree-class.Rd, man/hansentree-class.Rd,
+	  R/methods.R: add summary methods
+
+2008-05-27 22:06  kingaa
+
+	* ouch/man/: browntree-class.Rd, hansentree-class.Rd: change print method
+	display sigma^2
+
+2008-05-27 22:06  kingaa
+
+	* ouch/R/methods.R: change print method
+	display sigma^2 and aic.c
+
+2008-05-27 21:24  kingaa
+
+	* ouch/DESCRIPTION: bugfix
+
+2008-05-27 21:22  kingaa
+
+	* ouch/R/hansen.R: return beta to its previous shape
+	make sure root regime is included
+
+2008-05-27 21:09  kingaa
+
+	* ouch/: R/aaa.R, R/methods.R, man/browntree-class.Rd,
+	  man/generics.Rd, man/hansentree-class.Rd: add aic.c method (God help us)
+
+2008-05-27 10:50  kingaa
+
+	* ouch/: R/hansen.R, DESCRIPTION: complete reworking of calculations
+	now from root to tips instead of tips to roots
+	no assumption is made about ultrametricity
+
+2008-05-27 10:47  kingaa
+
+	* ouch/man/hansentree-class.Rd: corrections
+
+2008-05-27 10:45  kingaa
+
+	* ouch/: R/mvouode.R, src/mvouode.c: change the quantities computed.
+
+	since the old Z = Id - Y, it isn't necessary to compute it.
+	however, we do need Y^(-1).  Now we compute this.
+
+2008-05-27 09:23  kingaa
+
+	* ouch/R/: brown.R, ouchtree.R, aaa.R: add vector of unique times (utimes) to ouchtree object
+	reformulate branch.times and epochs times as indices in utimes
+
+2008-05-26 12:51  kingaa
+
+	* ouch/R/: hansen.R, ouchtree.R: minor changes
+
+2008-05-23 12:06  kingaa
+
+	* ouch/R/print.R: move print codes to methods.R
+
+2008-05-23 12:06  kingaa
+
+	* ouch/R/methods.R: fix bug in coef
+
+2008-05-23 11:05  kingaa
+
+	* ouch/: R/hansen.R, DESCRIPTION: enforce assumption that alpha is symmetric and positive definite by setting alpha <- alpha%*%t(alpha)
+
+	remove alpha.fn and sigma.fn arguments
+
+	assume that root state is a random variable drawn from the stationary distribution of the process in the regime that the root node occupies
+
+	the latter involves changes to the weight matrix, to the covariance matrix, and to the regime.spec routine
+
+2008-05-23 11:03  kingaa
+
+	* ouch/man/hansen.Rd: remove alpha.fn and sigma.fn arguments
+
+2008-05-23 11:03  kingaa
+
+	* ouch/R/print.R: enforce assumption that alpha is symmetric and positive definite by setting alpha <- alpha%*%t(alpha)
+
+2008-05-23 11:02  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: minor changes
+
+2008-05-23 09:34  kingaa
+
+	* ouch/R/glssoln.R: clean up error handling
+
+2008-02-04 10:36  kingaa
+
+	* ouch/: man/generics.Rd, DESCRIPTION: bug fix
+
+2008-02-04 10:36  kingaa
+
+	* ouch/R/hansen.R: bug fix: det -> determinant
+
+2008-01-15 17:27  kingaa
+
+	* ouch/man/hansen.Rd: fix documentation inaccuracy
+
+2007-10-24 14:01  kingaa
+
+	* ouch/DESCRIPTION: bug fix
+
+2007-10-24 14:01  kingaa
+
+	* ouch/R/: hansen.R, print.R: must accommodate the lack of information in optim.diagn (in hansentree object) when hansen is called with fit=FALSE
+
+2007-10-24 14:00  kingaa
+
+	* ouch/man/bimac.Rd: don't run the subplex example at check time
+
+2007-09-25 08:33  kingaa
+
+	* ouch/: DESCRIPTION, R/hansen.R: bug fix
+
+2007-09-13 13:43  kingaa
+
+	* ouch/: DESCRIPTION, R/hansen.R: by default, both alpha and sigma are full matrices
+
+2007-09-11 11:41  kingaa
+
+	* ouch/: DESCRIPTION, R/hansen.R, man/bimac.Rd, man/hansen.Rd: include support for 'subplex' optimizer
+
+2007-08-29 14:35  kingaa
+
+	* ouch/data/: anolis.ssd.csv, anolis.ssd.rda, bimac.csv, bimac.rda: Move the data to human-readable CSV format
+
+2007-07-23 17:32  kingaa
+
+	* ouch/R/zzz.R: not needed
+
+2007-07-11 12:30  kingaa
+
+	* ouch/R/: ape2ouch.R, paint.R: bug fix
+
+2007-07-11 12:06  kingaa
+
+	* ouch/: DESCRIPTION, NAMESPACE, R/paint.R, man/paint.Rd: add a new facility to 'paint' regimes onto trees
+
+2007-07-11 12:06  kingaa
+
+	* ouch/R/plot.R: if the root has a regime all its own (which would be irrelevant anyway, and not plotted), remove it from the palette of colors before plotting
+
+2007-07-11 12:05  kingaa
+
+	* ouch/R/: brown.R, hansen.R: fix bug with naming data & regimes
+
+2007-07-11 11:42  kingaa
+
+	* ouch/: R/ape2ouch.R, man/ape2ouch.Rd: modify 'scale' option so that it can scale by a specified numerical factor
+
+2007-07-11 11:35  kingaa
+
+	* ouch/: R/methods.R, R/plot.R, man/ouchtree-class.Rd: add rownames to data.frame produced by coercion from ouchtree
+	add node.names option to ouchtree-plot
+	add legend to ouchtree-plot
+
+2007-07-03 08:11  kingaa
+
+	* ouch/: DESCRIPTION, R/aaa.R, R/ape2ouch.R, R/brown.R, R/hansen.R,
+	  man/anolis.ssd.Rd, man/ape2ouch.Rd, man/bimac.Rd,
+	  man/ouchtree-class.Rd, R/methods.R, R/ouchtree.R, R/plot.R: regimes and data must now have names
+	if a data.frame is used, the rownames are taken for this purpose
+	the slot 'nodenames' has been changed to 'nodelabels'
+	ape2ouch now has an option 'scale'
+
+2007-06-26 21:27  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: the data must now have names
+
+2007-06-26 21:26  kingaa
+
+	* ouch/man/: browntree-class.Rd, hansentree-class.Rd,
+	  ouchtree-class.Rd: add method to coerce to a data.frame
+
+2007-06-26 21:26  kingaa
+
+	* ouch/R/: methods.R, plot.R, print.R: add a new method to coerce an ouchtree (or hansentree, or browntree) to a data.frame
+
+2007-06-26 21:25  kingaa
+
+	* ouch/R/: brown.R, hansen.R: the data must now have names corresponding to those of the nodes
+
+2007-06-13 10:21  kingaa
+
+	* ouch/man/ape2ouch.Rd: minor changes
+
+2007-06-12 18:35  kingaa
+
+	* ouch/man/hansen.Rd: corrected, improved
+
+2007-06-12 18:26  kingaa
+
+	* ouch/DESCRIPTION: 2.1-1
+
+2007-06-12 18:23  kingaa
+
+	* ouch/man/generics.Rd: documentation of new generics
+
+2007-06-12 18:21  kingaa
+
+	* ouch/man/: ouchtree-class.Rd, ouchtree.Rd: improved
+	ouchtree.Rd now merged with ouchtree-class.Rd
+
+2007-06-12 18:20  kingaa
+
+	* ouch/man/ouch-package.Rd: improved
+
+2007-06-12 18:20  kingaa
+
+	* ouch/man/: ape2ouch.Rd, brown.Rd, browntree-class.Rd, hansen.Rd,
+	  hansentree-class.Rd: improved documentation
+
+2007-06-12 18:20  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: correct the references
+
+2007-06-12 18:19  kingaa
+
+	* ouch/R/brown.R: add 'evaluate' option to 'update' method
+
+2007-06-12 18:18  kingaa
+
+	* ouch/R/plot.R: dispense with 'tree.layout'
+
+2007-06-12 18:18  kingaa
+
+	* ouch/R/print.R: 'optim' messages are now printed as part of the default print method for 'hansentree' objects
+
+2007-06-12 18:18  kingaa
+
+	* ouch/R/methods.R: generics are now defined in aaa.R
+
+2007-06-12 18:17  kingaa
+
+	* ouch/R/hansen.R: better handling of 'optim' messages
+
+	implement standard functions for alpha.fn and sigma.fn (3 functions are now implemented but are not yet incorporated into 'hansen'.  Some questions remain as to how to do this properly
+
+	improved 'update' method: 'evaluate' option
+
+2007-06-12 18:15  kingaa
+
+	* ouch/R/deprecated.R: dispense with 'tree.layout'
+
+2007-06-12 18:14  kingaa
+
+	* ouch/R/zzz.R: cosmetic
+
+2007-06-12 18:14  kingaa
+
+	* ouch/R/aaa.R: all generics are now defined here
+
+2007-06-12 15:07  kingaa
+
+	* ouch/man/ouchtree-class.Rd: improved documentation
+
+2007-06-12 08:20  kingaa
+
+	* ouch/data/: anolis.ssd.rda, bimac.rda: remove and add in binary format
+
+2007-06-12 06:59  kingaa
+
+	* ouch/R/: brown.R, hansen.R: replace argument 'x' with 'data'
+
+2007-06-12 06:58  kingaa
+
+	* ouch/man/: ouch-deprecated.Rd, ouch-package.Rd, brown.Rd,
+	  hansen.Rd: Improved documentation.
+
+2007-06-11 22:17  kingaa
+
+	* ouch/man/anolis.ssd.Rd: minor change
+
+2007-06-11 21:18  kingaa
+
+	* ouch/NAMESPACE: added deprecated functions from ouch v. 1.X-X
+
+2007-06-11 21:18  kingaa
+
+	* ouch/DESCRIPTION: new version
+
+2007-06-11 21:17  kingaa
+
+	* ouch/CITATION: original Butler & King paper
+
+2007-06-11 21:16  kingaa
+
+	* ouch/man/: brown.Rd, browntree-class.Rd, hansen.Rd,
+	  hansentree-class.Rd, ouch-deprecated.Rd, ouch-package.Rd,
+	  ouchtree-class.Rd: changed the file structure
+	incorporate the deprecated functions from ouch v. 1.X-X
+
+2007-06-11 21:15  kingaa
+
+	* ouch/R/mvouode.R: rename package 'ouch'
+
+2007-06-11 21:15  kingaa
+
+	* ouch/R/plot.R: tree.plot -> tree.plot.internal
+
+2007-06-11 21:14  kingaa
+
+	* ouch/R/deprecated.R: deprecated functions from ouch v 1.X-X
+
+2007-06-11 21:14  kingaa
+
+	* ouch/R/hansen.R: hansen.dev -> hansen.deviate
+
+2007-06-11 21:13  kingaa
+
+	* ouch/R/brown.R: brown.dev -> brown.deviate
+
+2007-05-22 14:11  kingaa
+
+	* ouch/man/hansen.Rd: documentation for the 'hessian' option in 'hansen'
+
+2007-05-22 14:11  kingaa
+
+	* ouch/DESCRIPTION: another version...
+
+2007-05-22 14:07  kingaa
+
+	* ouch/R/hansen.R: Hessian matrix is not computed by default
+
+2007-05-22 13:32  kingaa
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd: better documentation
+	not all examples are run
+
+2007-05-22 13:32  kingaa
+
+	* ouch/R/: aaa.R, hansen.R: diagnostic output from optim is now included in the hansentree object
+	the hessian is also computed and saved
+
+2007-05-22 11:18  kingaa
+
+	* ouch/data/: anolis.ssd.rda, bimac.rda: Initial revision
+
+2007-05-22 10:50  kingaa
+
+	* ouch/: TODO, GPL: Initial revision
+
+2007-05-19 10:23  kingaa
+
+	* ouch/R/: brown.R, hansen.R: bug fix
+
+2007-05-17 12:14  kingaa
+
+	* ouch/: DESCRIPTION, R/methods.R, R/print.R: bug fix
+
+2007-05-17 12:05  kingaa
+
+	* ouch/: DESCRIPTION, NAMESPACE, R/methods.R: use logLik instead of loglik
+
+2007-05-16 16:31  kingaa
+
+	* ouch/R/methods.R: added coef method
+
+2007-05-16 15:03  kingaa
+
+	* ouch/R/ape2ouch.R: bug fix
+
+2007-05-16 14:40  kingaa
+
+	* ouch/R/glssoln.R: small kind changes
+
+2007-05-16 14:39  kingaa
+
+	* ouch/R/hansen.R: all kinds of great improvements
+
+2007-05-16 14:31  kingaa
+
+	* ouch/R/rmvnorm.R: returns the transpose of what it returned before
+
+2007-05-15 13:33  kingaa
+
+	* ouch/man/ape2ouch.Rd: Initial revision
+
+2007-05-15 13:24  kingaa
+
+	* ouch/R/glssoln.R: improved
+
+2007-05-15 13:23  kingaa
+
+	* ouch/R/brown.R: direct computation
+
+2007-05-15 07:13  kingaa
+
+	* ouch/R/ape2ouch.R: Initial revision
+
+2006-11-21 10:42  kingaa
+
+	* ouch/: R/mvouode.R, src/mvouode.c, R/ouchtree.R, man/ouchtree.Rd,
+	  R/plot.R, R/print.R, R/methods.R: Initial revision
+
+2006-07-06 10:07  kingaa
+
+	* ouch/R/: brown.R, hansen.R: check for missing data on terminal nodes
+
+2005-11-29 23:19  kingaa
+
+	* ouch/: R/aaa.R, R/zzz.R, man/anolis.ssd.Rd, man/bimac.Rd,
+	  man/brown.Rd, man/hansen.Rd: updated author addresses
+
+2005-05-19 18:11  king
+
+	* ouch/R/: brown.R, hansen.R: use explicit names for the nodes and ancestry
+	this will make it easier to rearrange, prune, and merge trees
+
+2005-05-19 18:09  king
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd, brown.Rd, hansen.Rd: up to date with ouch 1.1
+
+2005-05-19 07:34  king
+
+	* ouch/R/: brown.R, hansen.R: Initial revision
+
+2004-10-09 15:23  king
+
+	* ouch/R/rmvnorm.R: Initial revision
+
+2004-08-30 21:08  king
+
+	* ouch/: DESCRIPTION, man/anolis.ssd.Rd, man/bimac.Rd,
+	  man/brown.Rd, man/hansen.Rd: improved documentation
+
+2004-08-28 13:14  king
+
+	* ouch/R/zzz.R: with printed warning
+
+2004-08-28 13:05  king
+
+	* ouch/R/aaa.R: Initial revision
+
+2004-08-28 12:52  king
+
+	* ouch/R/zzz.R: Am. Nat. version
+
+2004-08-20 08:22  king
+
+	* ouch/R/zzz.R: with warning message
+
+2004-07-26 16:29  king
+
+	* ouch/R/zzz.R: Initial revision
+
+2004-07-26 16:22  king
+
+	* ouch/R/glssoln.R: Initial revision
+
+2004-07-08 12:03  king
+
+	* ouch/man/: anolis.ssd.Rd, bimac.Rd, brown.Rd, hansen.Rd: Initial revision
+
+2004-07-08 11:58  king
+
+	* ouch/: DESCRIPTION, NAMESPACE: Initial revision
+

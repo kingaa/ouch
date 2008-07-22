@@ -1,0 +1,23 @@
+useDynLib(
+          ouch,
+          ouch_covar,
+          ouch_weights
+          )
+importFrom(graphics,plot)
+importFrom(stats,deviance,simulate,update,coef,logLik)
+exportClasses('ouchtree','browntree','hansentree')
+exportMethods(
+              'plot','logLik','summary','coef','coerce',
+              'print','show',
+              'simulate','update','bootstrap'
+              )
+export(
+       ouchtree,
+       brown,
+       hansen,
+       ape2ouch,
+       paint,
+       brown.fit,brown.dev,
+       hansen.fit,hansen.dev,hansen.prof,
+       tree.plot,is.valid.ouch.tree
+       )
