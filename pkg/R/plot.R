@@ -63,7 +63,7 @@ arrange.tree <- function (root, anc) {
 setMethod(
           'plot',
           'ouchtree',
-          function (x, y, regimes = NULL, node.names = FALSE, ...) {
+          function (x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels) {
             labels <- x@nodelabels
             if (node.names) {
               lbld <- !is.na(labels)
@@ -85,7 +85,7 @@ setMethod(
               names(regimes) <- nm
             }
             if (is.null(regimes)) {
-              invisible(tree.plot.internal(x,regimes=NULL,labels=labels,...))
+              invisible(tree.plot.internal(x,regimes=NULL,labels=labels,legend=legend,...))
             } else {
               oldpar <- par(mfrow=c(1,length(regimes)))
               on.exit(par(oldpar))

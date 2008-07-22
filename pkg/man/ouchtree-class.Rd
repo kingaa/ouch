@@ -42,7 +42,7 @@ ouchtree(nodes, ancestors, times, labels = as.character(nodes))
   It also holds (optionally) names of taxa for display purposes.
 }
 \section{Methods}{
-  \item{\code{plot(tree,regimes=NULL,node.names=FALSE)}}{
+  \item{\code{plot(tree,regimes=NULL,node.names=FALSE,legend=TRUE,...)}}{
     displays the phylogenetic tree graphically.
   }
   \item{\code{print()}}{
