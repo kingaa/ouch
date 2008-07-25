@@ -5,13 +5,13 @@ hansen <- function (data, tree, regimes, alpha, sigma,
                     ...) {
 
   if (!is(tree,'ouchtree'))
-    stop("'tree' must be an object of class 'ouchtree'")
+    stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
 
   if (missing(data)) {
     if (is(tree,"hansentree")) {
       data <- tree@data
     } else {
-      stop("'data' must be specified")
+      stop(sQuote("data")," must be specified")
     }
   }
   if (is.data.frame(data)) {
@@ -23,7 +23,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
         any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
         )
-      stop("each element in 'data' must be a numeric vector with one entry per node of the tree")
+      stop("each element in ",sQuote("data")," must be a numeric vector with one entry per node of the tree")
     for (xx in data) {
       no.dats <- which(is.na(xx[tree@term]))
       if (length(no.dats)>0)
@@ -31,7 +31,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
     }
   } else if (is.numeric(data)) {
     if (length(data)!=tree@nnodes)
-      stop("there must be one entry in 'data' per node of the tree")
+      stop("there must be one entry in ",sQuote("data")," per node of the tree")
     no.dats <- which(is.na(data[tree@term]))
     if (length(no.dats)>0)
       stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
@@ -39,7 +39,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
     data <- list(data)
     names(data) <- nm
   } else
-  stop("'data' must be either a single numeric data set or a list of numeric data sets")
+  stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
 
   nchar <- length(data)
   if (is.null(names(data))) names(data) <- paste('char',1:nchar,sep='')
@@ -54,17 +54,17 @@ hansen <- function (data, tree, regimes, alpha, sigma,
   nsigma <- length(sigma)
 
   if (nalpha!=nsymargs)
-    stop("the length of 'alpha' must be a triangular number")
+    stop("the length of ",sQuote("alpha")," must be a triangular number")
 
   if (nsigma!=nsymargs)
-    stop("the length of 'sigma' must be a triangular number")
+    stop("the length of ",sQuote("sigma")," must be a triangular number")
 
   if (missing(regimes)) {
     if (is(tree,"hansentree")) {
       regimes <- tree@regimes
       beta <- tree@beta
     } else {
-      stop("'regimes' must be specified")
+      stop(sQuote("regimes")," must be specified")
     }
   }
   if (is.data.frame(regimes)) {
@@ -73,17 +73,17 @@ hansen <- function (data, tree, regimes, alpha, sigma,
   }
   if (is.list(regimes)) {
     if (any(sapply(regimes,length)!=tree@nnodes))
-      stop("each element in 'regimes' must be a vector with one entry per node of the tree")
+      stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
   } else {
     if (length(regimes)!=tree@nnodes)
-      stop("there must be one entry in 'regimes' per node of the tree")
+      stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
     nm <- deparse(substitute(regimes))[1]
     regimes <- list(regimes)
     names(regimes) <- nm
   }
   
   if (any(!sapply(regimes,is.factor)))
-    stop("'regimes' must be of class 'factor' or a list of 'factor' objects")
+    stop(sQuote("regimes")," must be of class ",sQuote("factor")," or a list of ",sQuote("factor")," objects")
 
   if (length(regimes)==1)
     regimes <- rep(regimes,nchar)

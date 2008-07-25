@@ -153,9 +153,9 @@ setMethod(
             print(as(x,'data.frame'),...)
             if (length(x@optim.diagn)>0) {
               if (x@optim.diagn$convergence!=0)
-                cat("\n`optim' convergence code: ",x@optim.diagn$convergence)
+                cat("\n",sQuote("optim")," convergence code: ",x@optim.diagn$convergence)
               if (!is.null(x@optim.diagn$message))
-                cat("\n`optim' diagnostic message: ",x@optim.diagn$message)
+                cat("\n",sQuote("optim")," diagnostic message: ",x@optim.diagn$message)
             }
             sm <- summary(x)
             cat('\nalpha:\n')
@@ -195,4 +195,3 @@ setMethod(
             invisible(NULL)
           }
           )
-

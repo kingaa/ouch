@@ -49,7 +49,7 @@ setClass(
          )
 
 bootstrap <- function (object, nboot = 200, seed = NULL, ...) {
-  stop("function 'bootstrap' is undefined for objects of class '",class(object),"'")
+  stop("function ",sQuote("bootstrap")," is undefined for objects of class ",sQuote(class(object)))
 }
 setGeneric('bootstrap')  
 

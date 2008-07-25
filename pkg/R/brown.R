@@ -1,7 +1,7 @@
 brown <- function (data, tree) {
   
   if (!is(tree,'ouchtree'))
-    stop("'tree' must be an object of class 'ouchtree'")
+    stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
   
   if (is.data.frame(data)) {
     nm <- rownames(data)
@@ -12,7 +12,7 @@ brown <- function (data, tree) {
         any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
         )
-      stop("each element in 'data' must be a numeric vector with one entry per node of the tree")
+      stop("each element in ",sQuote("data")," must be a numeric vector with one entry per node of the tree")
     for (xx in data) {
       no.dats <- which(is.na(xx[tree@term]))
       if (length(no.dats)>0)
@@ -20,7 +20,7 @@ brown <- function (data, tree) {
     }
   } else if (is.numeric(data)) {
     if (length(data)!=tree@nnodes)
-      stop("there must be one entry in 'data' per node of the tree")
+      stop("there must be one entry in ",sQuote("data")," per node of the tree")
     no.dats <- which(is.na(data[tree@term]))
     if (length(no.dats)>0)
       stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
@@ -28,7 +28,7 @@ brown <- function (data, tree) {
     data <- list(data)
     names(data) <- nm
   } else
-  stop("'data' must be either a single numeric data set or a list of numeric data sets")
+  stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
 
   nterm <- tree@nterm
   nchar <- length(data)

@@ -7,7 +7,7 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
     regimes <- factor(rep('unspec',length(anc)))
     names(regimes) <- x@nodes
   } else if (length(regimes)!=x@nnodes)
-    stop("'regimes' must be a vector with one entry for each node")
+    stop(sQuote("regimes")," must be a vector with one entry for each node")
   if ((is.null(names(regimes)))||(!setequal(names(regimes),x@nodes)))
     stop("regime specifications must have names corresponding to the node names")
   regimes <- regimes[x@nodes]
@@ -76,10 +76,10 @@ setMethod(
             }
             if (is.list(regimes)) {
               if (any(sapply(regimes,length)!=x@nnodes))
-                stop("each element in 'regimes' must be a vector with one entry per node of the tree")
+                stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
             } else if (!is.null(regimes)) {
               if (length(regimes)!=x@nnodes)
-                stop("there must be one entry in 'regimes' per node of the tree")
+                stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
               nm <- deparse(substitute(regimes))[1]
               regimes <- list(regimes)
               names(regimes) <- nm

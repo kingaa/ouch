@@ -13,7 +13,7 @@
 ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
 
   if (!inherits(tree,'phylo'))
-    stop("'tree' must be of class 'phylo'")
+    stop(sQuote("tree")," must be of class ",sQuote("phylo"))
   
   nnodes <- nrow(tree$edge)+1              # number of nodes
   n.term <- length(tree$tip.label)         # number of terminal nodes
@@ -48,12 +48,12 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   for (n in 1:nnodes)
     times[n] <- branch.height(node,ancestor,bl,n)
   if (is.logical(scale)) {
-    if (is.na(scale)) stop("if 'scale' is logical, it must be either true or false")
+    if (is.na(scale)) stop("if ",sQuote("scale")," is logical, it must be either true or false")
     if (scale) times <- times/max(times)
   } else if (is.numeric(scale)) {
     times <- times/abs(scale)
   } else {
-    stop("'scale' must be either logical or numeric")
+    stop(sQuote("scale")," must be either logical or numeric")
   }
   
   ouchtree(

@@ -1,12 +1,12 @@
 paint <- function (tree, subtree, branch) {
   if (!is(tree,'ouchtree'))
-    stop("'tree' must be of class 'ouchtree'")
+    stop(sQuote("tree")," must be of class ",sQuote("ouchtree"))
   if (!missing(subtree)) {
     st.nm <- names(subtree)
     if (is.null(st.nm))
-      stop("'subtree' must be a named vector")
+      stop(sQuote("subtree")," must be a named vector")
     if (!all(st.nm%in%tree@nodes))
-      stop("all names of 'subtree' must be names of nodes of 'tree'")
+      stop("all names of ",sQuote("subtree")," must be names of nodes of ",sQuote("tree"))
     subtree <- as.character(subtree)
   } else {
     subtree <- character(0)
@@ -16,9 +16,9 @@ paint <- function (tree, subtree, branch) {
     br.nm <- names(branch)
     if (length(br.nm)>0) {
       if(is.null(br.nm))
-        stop("'branch' must be a named vector")
+        stop(sQuote("branch")," must be a named vector")
       if (!all(br.nm%in%tree@nodes))
-        stop("all names of 'branch' must be names of nodes of 'tree'")
+        stop("all names of ",sQuote("branch")," must be names of nodes of ",sQuote("tree"))
       branch <- as.character(branch)
     }
   } else {
