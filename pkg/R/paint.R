@@ -1,6 +1,14 @@
-paint <- function (tree, subtree, branch) {
+paint <- function (tree, subtree, branch, which = 1) {
   if (!is(tree,'ouchtree'))
     stop(sQuote("tree")," must be of class ",sQuote("ouchtree"))
+  if (is(tree,'hansentree')) {
+    regimes <- try(tree@regimes[[which]],silent=FALSE)
+    if (inherits(regimes,'try-error'))
+      stop(sQuote("paint")," error: invalid ",sQuote("which"))
+  } else {
+    regimes <- rep('unspec',length(tree@nodes))
+    names(regimes) <- tree@nodes
+  }
   if (!missing(subtree)) {
     st.nm <- names(subtree)
     if (is.null(st.nm))
@@ -30,8 +38,6 @@ paint <- function (tree, subtree, branch) {
   branch <- tail(tog,length(branch))
   names(subtree) <- st.nm
   names(branch) <- br.nm
-  regimes <- rep('unspec',length(tree@nodes))
-  names(regimes) <- tree@nodes
   for (k in seq(along=subtree)) {
     st <- sapply(tree@lineages,function(x,y)y%in%x[-1],y=st.nm[k])
     regimes[st] <- as.character(subtree[k])
