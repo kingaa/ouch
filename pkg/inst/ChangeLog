@@ -1,5 +1,28 @@
+2008-07-28  kingaa
+
+	* DESCRIPTION:
+	* tests/snizard.R, tests/snizard.Rout.save, tests/snizard_tree.ape,
+	  tests/squamates.csv:
+
+2008-07-25  kingaa
+
+	* R/paint.R, man/paint.Rd: fix bug in paint when 'tree' is a
+	  'hansentree'
+	* DESCRIPTION:
+	* R/aaa.R, R/ape2ouch.R, R/brown.R, R/hansen.R, R/methods.R,
+	  R/ouchtree.R, R/paint.R, R/plot.R, R/rmvnorm.R: improve error
+	  messages
+
+2008-07-23  kingaa
+
+	* DESCRIPTION:
+
 2008-07-22  kingaa
 
+	* inst/ChangeLog:
+	* inst/COPYING, inst/ChangeLog, inst/LICENSE, inst/OCHANGELOG:
+	* R/plot.R, man/ouchtree-class.Rd: fix bug with plot options
+	  add 'legend' option to plot-ouchtree
 	* DESCRIPTION, NAMESPACE, R/aaa.R, R/ape2ouch.R, R/brown.R,
 	  R/deprecated.R, R/glssoln.R, R/hansen.R, R/methods.R,
 	  R/ouchtree.R, R/paint.R, R/plot.R, R/rmvnorm.R, data,
