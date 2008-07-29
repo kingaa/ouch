@@ -1,0 +1,22 @@
+NEW IN VERSION 2
+
+Version 2 of ouch represents a major revision.  
+ouch's capabilities have been substantially extended.
+In particular,
+
+o   support is now provided for multivariate characters.  
+    Inference based on multivariate Ornstein-Uhlenbeck and multivariate Brownian motion models is now provided.
+
+o   nonultrametric trees are supported.
+
+o   the root character state need no longer be estimated.  
+    Instead, the root state is assumed to be distributed according to the stationary distribution of the OU process.
+
+o   convenience functions for parametric bootstrap confidence intervals are provided.
+
+o   the new function 'paint' simplifies the specification of adaptive regimes in complex phylogenies.
+
+o   the new function 'ape2ouch' translates trees in the 'phylo' format of the ape package into 'ouchtree' format (thanks to Dan Ackerly).
+
+The new package is a complete rewrite, using S4 classes.  
+The old functionality from ouch v. 1 remains available, but is now deprecated.
