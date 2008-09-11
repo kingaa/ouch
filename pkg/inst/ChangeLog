@@ -1,29 +1,45 @@
+2008-09-11  kingaa
+
+	* [r16] DESCRIPTION: fix glitch that occurs when 'data' is not in
+	  the same order as the nodes
+	  patch contributed by Jim Regetz and Jonathan Davies
+	* [r15] R/brown.R, R/hansen.R, tests/exacttree.R,
+	  tests/exacttree.Rout.save: fix glitch that occurs when 'data' is
+	  not in the same order as the nodes
+	  patch contributed by Jim Regetz and Jonathan Davies
+	* [r14] R/glssoln.R: cosmetic
+
+2008-07-29  kingaa
+
+	* [r13] inst/NEWS:
+
 2008-07-28  kingaa
 
-	* DESCRIPTION:
-	* tests/snizard.R, tests/snizard.Rout.save, tests/snizard_tree.ape,
-	  tests/squamates.csv:
+	* [r12] inst/ChangeLog:
+	* [r11] DESCRIPTION:
+	* [r10] tests/snizard.R, tests/snizard.Rout.save,
+	  tests/snizard_tree.ape, tests/squamates.csv:
 
 2008-07-25  kingaa
 
-	* R/paint.R, man/paint.Rd: fix bug in paint when 'tree' is a
+	* [r9] R/paint.R, man/paint.Rd: fix bug in paint when 'tree' is a
 	  'hansentree'
-	* DESCRIPTION:
-	* R/aaa.R, R/ape2ouch.R, R/brown.R, R/hansen.R, R/methods.R,
+	* [r8] DESCRIPTION:
+	* [r7] R/aaa.R, R/ape2ouch.R, R/brown.R, R/hansen.R, R/methods.R,
 	  R/ouchtree.R, R/paint.R, R/plot.R, R/rmvnorm.R: improve error
 	  messages
 
 2008-07-23  kingaa
 
-	* DESCRIPTION:
+	* [r6] DESCRIPTION:
 
 2008-07-22  kingaa
 
-	* inst/ChangeLog:
-	* inst/COPYING, inst/ChangeLog, inst/LICENSE, inst/OCHANGELOG:
-	* R/plot.R, man/ouchtree-class.Rd: fix bug with plot options
+	* [r5] inst/ChangeLog:
+	* [r4] inst/COPYING, inst/ChangeLog, inst/LICENSE, inst/OCHANGELOG:
+	* [r3] R/plot.R, man/ouchtree-class.Rd: fix bug with plot options
 	  add 'legend' option to plot-ouchtree
-	* DESCRIPTION, NAMESPACE, R/aaa.R, R/ape2ouch.R, R/brown.R,
+	* [r2] DESCRIPTION, NAMESPACE, R/aaa.R, R/ape2ouch.R, R/brown.R,
 	  R/deprecated.R, R/glssoln.R, R/hansen.R, R/methods.R,
 	  R/ouchtree.R, R/paint.R, R/plot.R, R/rmvnorm.R, data,
 	  data/anolis.ssd.csv, data/bimac.csv, inst, inst/CITATION,
@@ -41,5 +57,6 @@
 
 2007-06-25  stefan7th
 
-	* README, ., R, man, www, www/index.php: Email in Readme changed
+	* [r1] README, ., R, man, www, www/index.php: Email in Readme
+	  changed
 
