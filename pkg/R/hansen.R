@@ -18,26 +18,24 @@ hansen <- function (data, tree, regimes, alpha, sigma,
     nm <- rownames(data)
     data <- lapply(as.list(data),function(x){names(x)<-nm;x})
   }
+  if (is.numeric(data)) {
+    nm <- deparse(substitute(data))[1]
+    data <- list(data)
+    names(data) <- nm
+  }
   if (is.list(data)) {
     if (
         any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
         )
-      stop("each element in ",sQuote("data")," must be a numeric vector with one entry per node of the tree")
+      stop(sQuote("data")," vector(s) must be numeric, with one entry per node of the tree")
+    if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
+      stop(sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"))
     for (xx in data) {
-      no.dats <- which(is.na(xx[tree@term]))
+      no.dats <- which(is.na(xx[tree@nodes[tree@term]]))
       if (length(no.dats)>0)
         stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
     }
-  } else if (is.numeric(data)) {
-    if (length(data)!=tree@nnodes)
-      stop("there must be one entry in ",sQuote("data")," per node of the tree")
-    no.dats <- which(is.na(data[tree@term]))
-    if (length(no.dats)>0)
-      stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
-    nm <- deparse(substitute(data))[1]
-    data <- list(data)
-    names(data) <- nm
   } else
   stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
 

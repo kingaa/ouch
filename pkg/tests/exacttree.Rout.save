@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.7.1 (2008-06-23)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -30,12 +30,36 @@ Loading required package: subplex
 > treedat$data5[c(3,4,6,7)] <- c(2,0,1,-2)
 > 
 > tree <- with(treedat,ouchtree(node,anc,time))
-> htree <- hansen(data=treedat[c("data1","data2")],tree,regimes=treedat["reg"],alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
+> x <- treedat[c(6,4,5,7,3,2,1),c("data1","data2")]
+> btree <- brown(data=x,tree)
+> print(btree)
+
+call:
+brown(data = x, tree = tree)
+  nodes ancestors times labels        data1      data2
+1     1      <NA>     0      1           NA         NA
+2     2         1     1      2           NA         NA
+3     3         2     3      3 -0.001337416 0.01615868
+4     4         2     3      4 -1.013392601 1.01327464
+5     5         1     2      5           NA         NA
+6     6         5     3      6 -0.002245235 0.01253792
+7     7         5     3      7 -1.001403667 0.99154018
+
+sigma squared:
+           [,1]       [,2]
+[1,]  0.1888074 -0.1853472
+[2,] -0.1853472  0.1819546
+
+theta:
+NULL
+   loglik  deviance       aic     aic.c       sic       dof 
+ 13.07838 -26.15675 -16.15675  13.84325 -15.75955   5.00000 
+> htree <- hansen(data=x,tree,regimes=treedat["reg"],alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
 > print(htree)
 
 call:
-hansen(data = treedat[c("data1", "data2")], tree = tree, regimes = treedat["reg"], 
-    alpha = c(1, 0, 1), sigma = c(0.1, 0, 0.1), fit = F)
+hansen(data = x, tree = tree, regimes = treedat["reg"], alpha = c(1, 
+    0, 1), sigma = c(0.1, 0, 0.1), fit = F)
   nodes ancestors times labels reg reg.1        data1      data2
 1     1      <NA>     0      1   a     a           NA         NA
 2     2         1     1      2   a     a           NA         NA
