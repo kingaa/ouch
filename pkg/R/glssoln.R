@@ -6,7 +6,7 @@ glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
             )
   if (inherits(vh,'try-error'))
     stop(
-         "error in Cholesky decomposition of variance-covariance matrix",
+         "error in Choleski decomposition of variance-covariance matrix",
          call.=FALSE
          )
   s <- svd(forwardsolve(vh,a,upper.tri=TRUE,transpose=TRUE))
