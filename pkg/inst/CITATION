@@ -11,8 +11,8 @@ citEntry(
 	 url="http://tsuga.biology.lsa.umich.edu/ouch/",
 	 textVersion=paste(
 	   "Aaron A. King and Marguerite A. Butler,",
-	   "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses,",
-	   "http://tsuga.biology.lsa.umich.edu/ouch/"
+	   "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses (R package),",
+	   "http://r-forge.r-project.org/projects/ouch/"
 	   )	   
          )
 
