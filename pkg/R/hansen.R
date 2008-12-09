@@ -208,16 +208,21 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
               glssoln(w,dat,v),
               silent=FALSE
               )
-  if (inherits(gsol,'try-error'))
-    stop("ou.lik.fn error: GLS solution error",call.=FALSE)
-  e <- gsol$residuals
-  theta <- gsol$coeff
-  q <- e%*%solve(v,e)
-  det.v <- determinant(v,logarithm=TRUE)
-  if (det.v$sign!=1)
-    stop("ou.lik.fn error: non-positive determinant",call.=FALSE)
+  if (inherits(gsol,'try-error')) { # return Inf deviance (so that optimizer can keep trying)
+    e <- rep(NA,n)
+    theta <- rep(NA,ncol(w))
+    dev <- Inf
+  } else {                              # return finite deviance
+    e <- gsol$residuals
+    theta <- gsol$coeff
+    q <- e%*%solve(v,e)
+    det.v <- determinant(v,logarithm=TRUE)
+    if (det.v$sign!=1)
+      stop("ou.lik.fn error: non-positive determinant",call.=FALSE)
+    dev <- n*log(2*pi)+as.numeric(det.v$modulus)+q[1,1]
+  }
   list(
-       deviance=n*log(2*pi)+as.numeric(det.v$modulus)+q[1,1],
+       deviance=dev,
        coeff=theta,
        weight=w,
        vcov=v,
