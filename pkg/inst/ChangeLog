@@ -1,5 +1,21 @@
+2008-12-09  kingaa
+
+	* [r19] DESCRIPTION, R/hansen.R: When the Choleski decomposition
+	  fails (typically when the vcov matrix has a numerically zero
+	  eigenvalue), formerly an error was generated. Under these
+	  circumstances, the stationary distribution of the OU process does
+	  not exist and the likelihood is therefore zero. This fix traps
+	  the error and returns -Inf for the log-likelihood (actually +Inf
+	  for the deviance in the return from ou.lik.fn). Optimizers that
+	  are robust to Inf can therefore proceed.
+
+2008-12-08  kingaa
+
+	* [r18] inst/CITATION: use r-forge URL
+
 2008-09-11  kingaa
 
+	* [r17] inst/ChangeLog:
 	* [r16] DESCRIPTION: fix glitch that occurs when 'data' is not in
 	  the same order as the nodes
 	  patch contributed by Jim Regetz and Jonathan Davies
