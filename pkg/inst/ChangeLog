@@ -1,5 +1,6 @@
 2008-12-09  kingaa
 
+	* [r20] inst/ChangeLog:
 	* [r19] DESCRIPTION, R/hansen.R: When the Choleski decomposition
 	  fails (typically when the vcov matrix has a numerically zero
 	  eigenvalue), formerly an error was generated. Under these
