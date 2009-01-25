@@ -28,29 +28,31 @@
   }
 }
 \details{
-  \item{Body size.}{
-    We use the phenotypic data and phylogeny of Losos (1990), which employed the head lengths (of males) as a proxy for body size.
-    In this group of lizards, head length correlates very strongly with snout-to-vent length and the cube root of mass, which are standard measures of body size.
-    The data are head lengths in mm, note that we use the log of this value in analyses.
-  }
-  \item{Tree topology}{
-    The tree topology is encoded via two vectors: \code{ancestor} and \code{time}.
-    Each node of the phylogenetic tree has a corresponding row in the data frame, numbered from 1 to 45.
-    The columns \code{ancestor} and \code{time} specify the phylogeny. 
-    The \code{ancestor} variable specifies the topology: it is a list indicating the ancestor of each node.
-    The root node has ancestor 0.
-    The variable \code{time} specifies the temporal location of each node, with the root node being at time 0.
-  }
-  \item{Specifications of selective regimes.}{
-    (Columns \code{OU.1}, \code{OU.3}, \code{OU.4}, \code{OU.LP}).
-    These columns are factors, the levels of which correspond to the ``paintings'' of the respective adaptive regime hypotheses onto the phylogeny.
-    Each selective regime is named (small, medium, large, etc.).
-    Put the corresponding name on each branch segment to indicate which selective regime it belongs to.
-    Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
-    In this example, there are 3 alternative models (see Butler & King 2004):
-    \code{OU.4} is 4-regime model,
-    \code{OU.3} is 3-regime model (all ancestors are medium),
-    \code{OU.LP} is linear parsimony model.
+  \describe{
+    \item{Body size.}{
+      We use the phenotypic data and phylogeny of Losos (1990), which employed the head lengths (of males) as a proxy for body size.
+      In this group of lizards, head length correlates very strongly with snout-to-vent length and the cube root of mass, which are standard measures of body size.
+      The data are head lengths in mm, note that we use the log of this value in analyses.
+    }
+    \item{Tree topology}{
+      The tree topology is encoded via two vectors: \code{ancestor} and \code{time}.
+      Each node of the phylogenetic tree has a corresponding row in the data frame, numbered from 1 to 45.
+      The columns \code{ancestor} and \code{time} specify the phylogeny. 
+      The \code{ancestor} variable specifies the topology: it is a list indicating the ancestor of each node.
+      The root node has ancestor 0.
+      The variable \code{time} specifies the temporal location of each node, with the root node being at time 0.
+    }
+    \item{Specifications of selective regimes.}{
+      (Columns \code{OU.1}, \code{OU.3}, \code{OU.4}, \code{OU.LP}).
+      These columns are factors, the levels of which correspond to the ``paintings'' of the respective adaptive regime hypotheses onto the phylogeny.
+      Each selective regime is named (small, medium, large, etc.).
+      Put the corresponding name on each branch segment to indicate which selective regime it belongs to.
+      Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
+      In this example, there are 3 alternative models (see Butler & King 2004):
+      \code{OU.4} is 4-regime model,
+      \code{OU.3} is 3-regime model (all ancestors are medium),
+      \code{OU.LP} is linear parsimony model.
+    }
   }
 }
 \source{

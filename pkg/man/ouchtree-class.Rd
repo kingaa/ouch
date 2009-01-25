@@ -42,17 +42,19 @@ ouchtree(nodes, ancestors, times, labels = as.character(nodes))
   It also holds (optionally) names of taxa for display purposes.
 }
 \section{Methods}{
-  \item{\code{plot(tree,regimes=NULL,node.names=FALSE,legend=TRUE,...)}}{
-    displays the phylogenetic tree graphically.
-  }
-  \item{\code{print()}}{
-    displays the tree in table form.
-  }
-  \item{\code{show()}}{
-    displays the tree.
-  }
-  \item{coerce}{
-    An \code{ouchtree} object can be coerced to a data-frame via \code{as(object,"data.frame")}.
+  \describe{
+    \item{\code{plot(tree,regimes=NULL,node.names=FALSE,legend=TRUE,...)}}{
+      displays the phylogenetic tree graphically.
+    }
+    \item{\code{print()}}{
+      displays the tree in table form.
+    }
+    \item{\code{show()}}{
+      displays the tree.
+    }
+    \item{coerce}{
+      An \code{ouchtree} object can be coerced to a data-frame via \code{as(object,"data.frame")}.
+    }
   }
 }
 \author{Aaron A. King kingaa at umich dot edu}
