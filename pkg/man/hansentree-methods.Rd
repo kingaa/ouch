@@ -35,7 +35,7 @@
 \S4method{update}{hansentree}(object, data, regimes, alpha, sigma, \dots)
 \S4method{bootstrap}{hansentree}(object, nboot = 200, seed = NULL, \dots)
 \S4method{as}{hansentree}(object, class)
-\S4method{coerce}{hansentree,data.frame}(from, to = "data.frame")
+\S4method{coerce}{hansentree,data.frame}(from, to = "data.frame", strict = TRUE)
 }
 \arguments{
   \item{object}{The \code{hansentree} object.}
