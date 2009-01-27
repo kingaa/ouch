@@ -45,7 +45,8 @@ echo $contents; } ?>
 
 <p> No content added. </p>
 
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+<p> You can find <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+<p> The release version of the package is available on <a href="http://cran.at.r-project.org/web/packages/ouch/index.html">CRAN</a>.</p>
 
 </body>
 </html>
