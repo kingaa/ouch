@@ -56,7 +56,9 @@
   }
   \item{seed}{The random seed to use in simulations.}
   \item{regimes, alpha, sigma}{See \code{\link{hansen}}.}
-  \item{strict}{Ignored.}
+  \item{node.names, legend, labels}{plot annotations.  See \link{plot-ouchtree} for details.}
+  \item{data}{see \code{\link{hansen}}.}
+  \item{y, strict}{Ignored.}
   \item{\dots}{
     Further arguments (either ignored or passed to underlying functions).
     In the case of \code{update}, these replace the corresponding arguments in the original call.
