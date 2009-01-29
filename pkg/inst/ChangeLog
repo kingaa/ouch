@@ -1,3 +1,29 @@
+2009-01-29  kingaa
+
+	* [r30] DESCRIPTION:
+	* [r29] man/hansentree-methods.Rd: all arguments are now
+	  (nominally) documented.
+
+2009-01-28  kingaa
+
+	* [r28] man/hansentree-methods.Rd:
+
+2009-01-27  kingaa
+
+	* [r27] DESCRIPTION:
+	* [r26] man/hansentree-methods.Rd:
+	* [r25] man/hansentree-methods.Rd:
+
+2009-01-25  kingaa
+
+	* [r23] DESCRIPTION: minor documentation fixes
+	* [r22] man/bimac.Rd, man/browntree-class.Rd,
+	  man/ouchtree-class.Rd:
+
+2008-12-16  kingaa
+
+	* [r21] DESCRIPTION, inst/ChangeLog:
+
 2008-12-09  kingaa
 
 	* [r20] inst/ChangeLog:
