@@ -86,8 +86,8 @@
       extracts the coefficients of the fitted model.
       This is a list with five elements:
       \describe{
-	\item{\code{alpha}:}{the coefficients of the alpha matrix.}
-	\item{\code{sigma}:}{the coefficients of the sigma matrix.}
+	\item{\code{alpha}:}{the coefficients that parameterize the alpha matrix.}
+	\item{\code{sigma}:}{the coefficients that parameterize the sigma matrix.}
 	\item{\code{theta}:}{
 	  a list of the estimated optima, one per character.
 	  Each element of the list is a vector containing one optimal value per regime.

@@ -25,14 +25,12 @@ hansen(data, tree, regimes, alpha, sigma,
     For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
     If there are \code{nchar} quantitative characters (i.e., if \code{data} is a list with \code{nchar} columns), then \code{regimes} should be a list length 1 or \code{nchar}.
   }
-  \item{alpha}{
-    An initial guess of the selection strength parameters \eqn{alpha}.
-    This is used to initialize the optimization algorithm.
-    This vector will be translated into a symmetric matrix by the function given in \code{alpha.fn}.
-  }
-  \item{sigma}{
-    An initial guess of the random drift parameters \eqn{sigma}, used to initialize the optimization algorithm.
-    This vector is translated into a lower-triangular matrix by the function \code{sigma.fn}.
+  \item{alpha, sigma}{
+    These are used to initialize the optimization algorithm.
+    The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
+    Specifically, these initial guesses are each packed into lower-trinagular matrices (column by column).
+    The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
+    See Details, below.
   }
   \item{fit}{
     If \code{fit=TRUE}, then the likelihood will be maximized.
@@ -53,6 +51,23 @@ hansen(data, tree, regimes, alpha, sigma,
 \value{
   \code{hansen} returns an object of class \code{hansentree}.
   For details on the methods of that class, see \code{\link{hansentree}}.
+}
+\details{
+  The Hansen model for the evolution of a multivariate trait \eqn{X} along a lineage can be written as a stochastic differential equation (Ito diffusion) \deqn{dX=\alpha(\theta(t)-X(t))dt+\sigma dB(t),}{dX = alpha (theta(t)-X(t)) dt + sigma dB(t),} where \eqn{t} is time along the lineage, \eqn{\theta(t)}{theta(t)} is the optimum trait value, \eqn{B(t)} is a standard Wiener process (Brownian motion), and \eqn{\alpha}{alpha} and \eqn{\sigma}{sigma} are matrices quantifying, respectively, the strength of selection and random drift.
+  Without loss of generality, one can assume \eqn{\sigma}{sigma} is lower-triangular.
+  This is because only the infinitesimal variance-covariance matrix \eqn{\sigma^2=\sigma\sigma^T}{sigma^2 = sigma\%*\%transpose(sigma)} is identifiable, and for any admissible variance-covariance matrix, we can choose \eqn{\sigma}{sigma} to be lower-triangular.
+  Moreover, if we view the basic model as describing evolution on a fitness landscape, then \eqn{\alpha}{alpha} will be symmetric and if we further restrict ourselves to the case of stabilizing selection, \eqn{\alpha}{alpha} will be positive definite as well.
+  We make these assumptions and therefore can assume that the matrix \eqn{\alpha}{alpha} has a lower-triangular square root.
+
+  The \code{hansen} code uses numerical optimization to maximize the likelihood.
+  To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma}{sigma} matrices.
+  Each matrix can be parameterized by \code{nchar*(nchar+1)} parameters, where \code{nchar} is the number of quantitative characters.
+  Specifically, the parameters initialized by the \code{alpha} argument of \code{hansen} are used to fill the nonzero entries of a lower-triangular matrix (in column-major order), which is then multiplied by its transpose to give the selection-strength matrix.
+  The parameters specified in \code{sigma} fill the nonzero in the lower triangular \eqn{\sigma}{sigma} matrix.
+  When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.
+  The \code{print}, \code{show}, and \code{summary} methods for the resulting \code{hansentree} object display (among other things) the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices.
+  The \code{coef} method extracts a named list containing not only these matrices (given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements) but also the MLEs returned by the optimizer (as \code{alpha} and \code{sigma}, respectively).
+  The latter elements should not be interpreted, but can be used to restart the algorithm, etc.
 }
 \seealso{\code{\link{ouchtree}}, \code{\link{hansentree}}, \code{\link{optim}}
 }
