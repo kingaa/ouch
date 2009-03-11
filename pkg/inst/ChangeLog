@@ -1,5 +1,16 @@
+2009-03-11  kingaa
+
+	* [r33] man/hansen.Rd, man/hansentree-methods.Rd: fix bug in
+	  documentation of alpha, sigma arguments
+	  
+	  give Details section explaining how the alpha and sigma matrices
+	  are parameterized
+	* [r32] inst/CITATION: use pomp.r-forge.r-project.org as the URL
+	  for the project
+
 2009-01-29  kingaa
 
+	* [r31] inst/ChangeLog:
 	* [r30] DESCRIPTION:
 	* [r29] man/hansentree-methods.Rd: all arguments are now
 	  (nominally) documented.
