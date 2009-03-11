@@ -7,12 +7,12 @@ citEntry(
 	   as.person("Aaron A. King"),
 	   as.person("Marguerite A. Butler")
 	   ),	   
-	 year=2005,
-	 url="http://tsuga.biology.lsa.umich.edu/ouch/",
+	 year=2009,
+	 url="http://pomp.r-forge.r-project.org",
 	 textVersion=paste(
-	   "Aaron A. King and Marguerite A. Butler,",
+	   "Aaron A. King and Marguerite A. Butler (2009),",
 	   "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses (R package),",
-	   "http://r-forge.r-project.org/projects/ouch/"
+	   "http://pomp.r-forge.r-project.org"
 	   )	   
          )
 
