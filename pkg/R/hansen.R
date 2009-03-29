@@ -112,7 +112,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
                                  dat=dat
                                  )$deviance
                      },
-                     hessian=TRUE,
+                     hessian=hessian,
                      control=list(...)
                      )
       if (opt$convergence!=0) {
