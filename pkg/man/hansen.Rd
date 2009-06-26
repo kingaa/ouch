@@ -3,7 +3,7 @@
 \title{Hansen model of evolution along a phylogenetic tree}
 \description{
   Fits the Ornstein-Uhlenbeck-based Hansen model to data.
-  The fitting is done using \code{optim}.
+  The fitting is done using \code{optim} or \code{subplex}.
 }
 \usage{
 hansen(data, tree, regimes, alpha, sigma,
@@ -28,7 +28,7 @@ hansen(data, tree, regimes, alpha, sigma,
   \item{alpha, sigma}{
     These are used to initialize the optimization algorithm.
     The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
-    Specifically, these initial guesses are each packed into lower-trinagular matrices (column by column).
+    Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
     The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
     See Details, below.
   }

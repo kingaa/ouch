@@ -40,7 +40,6 @@
 \arguments{
   \item{object}{The \code{hansentree} object.}
   \item{x}{the \code{hansentree} object.}
-%%  \item{y}{ignored.}
   \item{class}{
     character;
     name of the class to which \code{object} should be coerced.
