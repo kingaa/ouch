@@ -30,7 +30,7 @@
 \S4method{summary}{hansentree}(object, \dots)
 \S4method{show}{hansentree}(object)
 \S4method{print}{hansentree}(x, \dots)
-\S4method{plot}{hansentree}(x, y, regimes = NULL, node.names = FALSE, legend = TRUE, \dots, labels)
+\S4method{plot}{hansentree}(x, y, regimes, \dots)
 \S4method{simulate}{hansentree}(object, nsim = 1, seed = NULL, \dots)
 \S4method{update}{hansentree}(object, data, regimes, alpha, sigma, \dots)
 \S4method{bootstrap}{hansentree}(object, nboot = 200, seed = NULL, \dots)
@@ -55,7 +55,6 @@
   }
   \item{seed}{The random seed to use in simulations.}
   \item{regimes, alpha, sigma}{See \code{\link{hansen}}.}
-  \item{node.names, legend, labels}{plot annotations.  See \link{plot-ouchtree} for details.}
   \item{data}{see \code{\link{hansen}}.}
   \item{y, strict}{Ignored.}
   \item{\dots}{
