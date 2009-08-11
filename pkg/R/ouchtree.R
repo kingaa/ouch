@@ -36,7 +36,25 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   }
   
   anc <- ancestor.numbers(nodes,ancestors)
-  lineages <- build.lineages(anc)
+
+  if (any(anc==seq(along=anc),na.rm=TRUE)) {
+    w <- which(anc==seq(along=anc))
+    stop("this is no tree: node ",nodes[w[1]]," is its own ancestor",call.=FALSE)
+  }
+
+###  lineages <- build.lineages(anc)
+  lineages <- vector(mode='list',length=n)
+  todo <- root
+  k <- 1
+  while (k <= length(todo)) {
+    todo <- c(todo,which(anc==todo[k]))
+    a <- anc[todo[k]]
+    lineages[[todo[k]]] <- c(todo[k],lineages[[a]])
+    if (todo[k] %in% lineages[[a]]) 
+      stop("this is no tree: circularity detected at node ",nodes[todo[k]]," in ",sQuote("ouchtree"),call.=FALSE)
+    k <- k+1
+  }
+
   for (k in 1:n) {
     if (!(root %in% lineages[[k]]))
       stop("node ",nodes[k]," is disconnected",call.=FALSE)
