@@ -63,7 +63,7 @@ hansen(data, tree, regimes, alpha, sigma,
   To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma}{sigma} matrices.
   Each matrix can be parameterized by \code{nchar*(nchar+1)} parameters, where \code{nchar} is the number of quantitative characters.
   Specifically, the parameters initialized by the \code{alpha} argument of \code{hansen} are used to fill the nonzero entries of a lower-triangular matrix (in column-major order), which is then multiplied by its transpose to give the selection-strength matrix.
-  The parameters specified in \code{sigma} fill the nonzero in the lower triangular \eqn{\sigma}{sigma} matrix.
+  The parameters specified in \code{sigma} fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
   When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.
   The \code{print}, \code{show}, and \code{summary} methods for the resulting \code{hansentree} object display (among other things) the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices.
   The \code{coef} method extracts a named list containing not only these matrices (given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements) but also the MLEs returned by the optimizer (as \code{alpha} and \code{sigma}, respectively).
