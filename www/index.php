@@ -19,30 +19,25 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 <body>
 <! --- R-Forge Logo --- >
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-<tr><td>
-<a href="/"><img src="<?php echo $themeroot; ?>/images/logo.png" border="0" alt="R-Forge Logo" /> </a> </td> </tr>
-</table>
 
-
-<!-- get project title  -->
-<!-- own website starts here, the following may be changed as you like -->
-
-<table>
+<table border="0" width="80%" cellspacing="0" cellpadding="0">
 <tr>
 <td>
-<table cellpadding="0" cellspacing="20" border="0">
-<tr>
-<td colspan="0" rowspan="0" align="right">
-<div align="right">
-<h2><font color="#E32644"><i>ouch</i></font>: <font color="#E32644">O</font>rnstein-<font color="#E32644">U</font>hlenbeck models<br> 
-for phylogenetic <font color="#E32644">C</font>omparative hypot<font color="#E32644">H</font>eses</h2>
-</div>
-</td>
+<a href="/"><img src="<?php echo $themeroot; ?>/images/logo.png" border="0" alt="R-Forge Logo" /> </a> 
+</td> 
 </tr>
 </table>
-</td>
+
+<table width="80%" align="left" border="0" cellspacing="0" cellpadding="0">
+<tr>
 <td>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="right" width="60%">
+<h2><font color="#E32644"><i>ouch</i></font>: <font color="#E32644">O</font>rnstein-<font color="#E32644">U</font>hlenbeck models<br> 
+for phylogenetic <font color="#E32644">C</font>omparative hypot<font color="#E32644">H</font>eses</h2>
+</td>
+<td align="left" width="40%">
 <ul>
 <li><a href="./index.php?nav=about">About <i>ouch</i></a></li>
 <li><a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name;?>">Development version of <i>ouch</i> (on r-forge)</a></li>
@@ -55,10 +50,13 @@ for phylogenetic <font color="#E32644">C</font>omparative hypot<font color="#E32
 </td>
 </tr>
 </table>
-<br>
-
-<div align="left" width="80%">
-
+</td>
+</tr>
+<tr>
+<td>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
 <?php
 $nav = $_REQUEST["nav"];
 switch ($nav) {
@@ -77,10 +75,12 @@ switch ($nav) {
 }
 include($dfile);
 ?>
-
-</div>
-<hr width="100%">
-
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
 </body>
 </html>
 
