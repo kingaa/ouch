@@ -10,7 +10,7 @@ a:active { color: #ff0000;}
 a:hover { color: #ff0000;}
 
 tr {vertical-align: top;}
-td {color: #000000;}
+td {color: #000000; vertical-align: top;}
 th {color: #000000;}
 p {color: #000000;}
 caption {color: #000000;}
