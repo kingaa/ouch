@@ -4,6 +4,7 @@ body {
     font-family: Lucida;
 }
 
+a {text-decoration: none }
 a:link { color: #0000ff;}
 a:visited { color: #0000ff;}
 a:active { color: #ff0000;}
