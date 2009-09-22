@@ -61,7 +61,7 @@ for phylogenetic <font color="#E32644">C</font>omparative hypot<font color="#E32
 $nav = $_REQUEST["nav"];
 switch ($nav) {
     case "bib":
-        $dfile = "content/refs.php";
+        $dfile = "content/refs.htm";
         break;
     case "soft":
         $dfile = "content/links.htm";
