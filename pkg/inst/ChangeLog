@@ -1,5 +1,10 @@
+2009-10-07  kingaa
+
+	* [r55] man/hansen.Rd, man/hansentree-methods.Rd: - cosmetology
+
 2009-08-11  kingaa
 
+	* [r45] inst/ChangeLog: version 2.5-7
 	* [r44] DESCRIPTION, R/ouchtree.R: now, we use a non-recursive
 	  algorithm for constructing the lineages.
 	  not sure if this is superior: it does appear to be slightly
