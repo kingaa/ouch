@@ -91,7 +91,7 @@
 	  Each element of the list is a vector containing one optimal value per regime.
 	}
 	\item{\code{alpha.matrix}:}{the alpha matrix itself.}
-	\item{\code{sigma..sq.matrix}:}{the sigma-squared matrix itself.}
+	\item{\code{sigma.sq.matrix}:}{the sigma-squared matrix itself.}
       }
     }
     \item{\code{logLik()}}{

@@ -67,7 +67,7 @@ hansen(data, tree, regimes, alpha, sigma,
   When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.
   The \code{print}, \code{show}, and \code{summary} methods for the resulting \code{hansentree} object display (among other things) the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices.
   The \code{coef} method extracts a named list containing not only these matrices (given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements) but also the MLEs returned by the optimizer (as \code{alpha} and \code{sigma}, respectively).
-  The latter elements should not be interpreted, but can be used to restart the algorithm, etc.
+  \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
 }
 \seealso{\code{\link{ouchtree}}, \code{\link{hansentree}}, \code{\link{optim}}
 }
