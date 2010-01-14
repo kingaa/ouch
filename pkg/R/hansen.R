@@ -124,7 +124,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                                  )$deviance
                      },
                      hessian=hessian,
-                     control=list(...)
+                     control=clist
                      )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `subplex'")
@@ -147,7 +147,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                    gr=NULL,
                    hessian=hessian,
                    method=method,
-                   control=list(...)
+                   control=clist
                    )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `optim'")
