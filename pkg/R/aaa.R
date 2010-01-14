@@ -43,7 +43,7 @@ setClass(
            beta='list',
            theta='list',
            sigma='numeric',
-           alpha='numeric',
+           sqrt.alpha='numeric',
            loglik='numeric'
            )
          )
@@ -52,4 +52,3 @@ bootstrap <- function (object, nboot = 200, seed = NULL, ...) {
   stop("function ",sQuote("bootstrap")," is undefined for objects of class ",sQuote(class(object)))
 }
 setGeneric('bootstrap')  
-

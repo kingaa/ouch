@@ -1,8 +1,19 @@
-hansen <- function (data, tree, regimes, alpha, sigma,
+hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                     fit = TRUE,
                     method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),
                     hessian = FALSE,
                     ...) {
+
+  clist <- list(...)
+  if ("alpha" %in% names(clist)) {
+    warning(
+            "use of argument ",sQuote("alpha")," in ",sQuote("hansen")," is deprecated. ",
+            "This argument has been renamed ",sQuote("sqrt.alpha"),". ",
+            "Please modify your code to take account of this, ",
+            "as use of this argument will become an error in a future release of ",sQuote("ouch"),".")
+    sqrt.alpha <- clist$alpha
+    clist$alpha <- NULL
+  }
 
   if (!is(tree,'ouchtree'))
     stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
@@ -48,11 +59,11 @@ hansen <- function (data, tree, regimes, alpha, sigma,
   dat <- do.call(c,lapply(data,function(y)y[tree@term]))
   
   nsymargs <- nchar*(nchar+1)/2
-  nalpha <- length(alpha)
+  nalpha <- length(sqrt.alpha)
   nsigma <- length(sigma)
 
   if (nalpha!=nsymargs)
-    stop("the length of ",sQuote("alpha")," must be a triangular number")
+    stop("the length of ",sQuote("sqrt.alpha")," must be a triangular number")
 
   if (nsigma!=nsymargs)
     stop("the length of ",sQuote("sigma")," must be a triangular number")
@@ -102,7 +113,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
 
     if (method=='subplex') {
       opt <- subplex(
-                     par=c(alpha,sigma),
+                     par=c(sqrt.alpha,sigma),
                      fn = function (par) {
                        ou.lik.fn(
                                  tree=tree,
@@ -123,7 +134,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
       }
     } else {
       opt <- optim(
-                   par=c(alpha,sigma),
+                   par=c(sqrt.alpha,sigma),
                    fn = function (par) {
                      ou.lik.fn(
                                tree=tree,
@@ -146,7 +157,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
       }
     }
 
-    alpha <- opt$par[seq(nalpha)]
+    sqrt.alpha <- opt$par[seq(nalpha)]
     sigma <- opt$par[nalpha+seq(nsigma)]
     optim.diagn <- list(convergence=opt$convergence,message=opt$message)
 
@@ -165,7 +176,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
 
   sol <- ou.lik.fn(
                    tree=tree,
-                   alpha=sym.par(alpha),
+                   alpha=sym.par(sqrt.alpha),
                    sigma=sym.par(sigma),
                    beta=beta,
                    dat=dat
@@ -193,7 +204,7 @@ hansen <- function (data, tree, regimes, alpha, sigma,
       beta=beta,
       theta=theta,
       sigma=sigma,
-      alpha=alpha,
+      sqrt.alpha=sqrt.alpha,
       loglik=-0.5*sol$deviance
       )
 }
@@ -290,7 +301,7 @@ hansen.deviate <- function (n = 1, object) {
   dat <- do.call(c,lapply(object@data,function(y)y[object@term]))
   sol <- ou.lik.fn(
                    as(object,'ouchtree'),
-                   sym.par(object@alpha),
+                   sym.par(object@sqrt.alpha),
                    sym.par(object@sigma),
                    object@beta,
                    dat
@@ -331,14 +342,14 @@ setMethod(
 setMethod(
           'update',
           'hansentree',
-          function (object, data, regimes, alpha, sigma, ...) {
-            if (missing(alpha)) alpha <- object@alpha
+          function (object, data, regimes, sqrt.alpha, sigma, ...) {
+            if (missing(sqrt.alpha)) sqrt.alpha <- object@sqrt.alpha
             if (missing(sigma)) sigma <- object@sigma
             hansen(
                    data=data,
                    tree=object,
                    regimes=regimes,
-                   alpha=alpha,
+                   sqrt.alpha=sqrt.alpha,
                    sigma=sigma,
                    ...
                    )

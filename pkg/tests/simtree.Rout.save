@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -90,7 +90,7 @@ Loading required package: subplex
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 13.97928 secs
+Time difference of 8.44382 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -130,14 +130,14 @@ $dof
 
 > 
 > tic <- Sys.time()
-> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],alpha=a,sigma=s,fit=F)
+> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.8676858 secs
+Time difference of 0.396554 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
-    alpha = a, sigma = s, fit = F)
+    sqrt.alpha = a, sigma = s, fit = F)
 
 $conv.code
 NULL
@@ -201,7 +201,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 14.32059 secs
+Time difference of 8.317903 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -278,14 +278,14 @@ $dof
 
 > 
 > tic <- Sys.time()
-> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],alpha=a,sigma=s,fit=F)
+> hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.103265 secs
+Time difference of 0.542882 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
-    alpha = a, sigma = s, fit = F)
+    sqrt.alpha = a, sigma = s, fit = F)
 
 $conv.code
 NULL

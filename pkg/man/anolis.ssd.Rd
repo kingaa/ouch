@@ -53,9 +53,9 @@ tree <- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 print(h1 <- brown(anolis.ssd['log.SSD'],tree))
 plot(h1)
-print(h2 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.1'],alpha=1,sigma=1))
+print(h2 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.1'],sqrt.alpha=1,sigma=1))
 plot(h2)
-print(h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],alpha=1,sigma=1))
+print(h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1))
 plot(h3)
 }
 \author{Marguerite A. Butler <mbutler at hawaii dot edu> and Aaron A. King <kingaa at umich dot edu>}

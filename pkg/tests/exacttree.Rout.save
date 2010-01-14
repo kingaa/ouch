@@ -1,6 +1,6 @@
 
-R version 2.7.1 (2008-06-23)
-Copyright (C) 2008 The R Foundation for Statistical Computing
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -54,11 +54,11 @@ theta:
 NULL
    loglik  deviance       aic     aic.c       sic       dof 
  13.07838 -26.15675 -16.15675  13.84325 -15.75955   5.00000 
-> htree <- hansen(data=x,tree,regimes=treedat["reg"],alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
+> htree <- hansen(data=x,tree,regimes=treedat["reg"],sqrt.alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
 > print(htree)
 
 call:
-hansen(data = x, tree = tree, regimes = treedat["reg"], alpha = c(1, 
+hansen(data = x, tree = tree, regimes = treedat["reg"], sqrt.alpha = c(1, 
     0, 1), sigma = c(0.1, 0, 0.1), fit = F)
   nodes ancestors times labels reg reg.1        data1      data2
 1     1      <NA>     0      1   a     a           NA         NA
@@ -90,11 +90,11 @@ $data2
 
     loglik   deviance        aic      aic.c        sic        dof 
  -4.026997   8.053993  28.053993 -45.279340  28.848409  10.000000 
-> htree <- update(htree,alpha=c(1,-0.1,1),sigma=c(0.5,0.5,1),fit=F)
+> htree <- update(htree,sqrt.alpha=c(1,-0.1,1),sigma=c(0.5,0.5,1),fit=F)
 > print(htree)
 
 call:
-hansen(data = data, tree = object, regimes = regimes, alpha = alpha, 
+hansen(data = data, tree = object, regimes = regimes, sqrt.alpha = sqrt.alpha, 
     sigma = sigma, fit = ..1)
   nodes ancestors times labels reg reg.1        data1      data2
 1     1      <NA>     0      1   a     a           NA         NA
@@ -131,7 +131,7 @@ $data2
 +                 tree=tree,
 +                 data=treedat[c('data3','data4','data5')],
 +                 regimes=treedat['reg'],
-+                 alpha=c(1,0.5,0.5,1,0,3),
++                 sqrt.alpha=c(1,0.5,0.5,1,0,3),
 +                 sigma=c(0.5,-0.1,-0.25,1,0.5,1),
 +                 fit=F
 +                 )
@@ -139,8 +139,8 @@ $data2
 
 call:
 hansen(data = treedat[c("data3", "data4", "data5")], tree = tree, 
-    regimes = treedat["reg"], alpha = c(1, 0.5, 0.5, 1, 0, 3), 
-    sigma = c(0.5, -0.1, -0.25, 1, 0.5, 1), fit = F)
+    regimes = treedat["reg"], sqrt.alpha = c(1, 0.5, 0.5, 1, 
+        0, 3), sigma = c(0.5, -0.1, -0.25, 1, 0.5, 1), fit = F)
   nodes ancestors times labels reg reg.1 reg.2 data3 data4 data5
 1     1      <NA>     0      1   a     a     a    NA    NA    NA
 2     2         1     1      2   a     a     a    NA    NA    NA
@@ -177,4 +177,16 @@ $data5
 
    loglik  deviance       aic     aic.c       sic       dof 
 -41.42685  82.85369 118.85369  21.13941 127.58201  18.00000 
+> 
+> htree <- hansen(
++                 tree=tree,
++                 data=treedat[c('data3','data4','data5')],
++                 regimes=treedat['reg'],
++                 alpha=c(1,0.5,0.5,1,0,3),
++                 sigma=c(0.5,-0.1,-0.25,1,0.5,1),
++                 fit=F
++                 )
+Warning message:
+In hansen(tree = tree, data = treedat[c("data3", "data4", "data5")],  :
+  use of argument 'alpha' in 'hansen' is deprecated. This argument has been renamed 'sqrt.alpha'. Please modify your code to take account of this, as use of this argument will become an error in a future release of 'ouch'.
 > 

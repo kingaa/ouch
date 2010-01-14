@@ -1,3 +1,13 @@
+NEW IN VERSION 2.6-1
+
+o   In the 'hansen' function, the use of the argument 'alpha' was confusing.
+    This vector parameterizes the "selection" portion of the OU model, which since version 2 has been assumed to be a positive-definite matrix (corresponding to stabilizing selection).
+    In particular, it contains the entries of the lower-triangular matrix square root of this positive definite matrix.
+    To make the name more mnemonic, this argument has been renamed 'sqrt.alpha'.
+    This is a superficial change meant to improve intelligibility: the algorithm itself has not changed.
+    To prevent loss of backward compatibility, use of argument 'alpha' will continue to work, though it will generate a warning.
+    In some future release, use of 'alpha' as an argument to 'hansen' will no longer generate a warning but will instead be passed through to the control list for 'optim' if method='optim' and will otherwise generate an error.
+
 NEW IN VERSION 2
 
 Version 2 of ouch represents a major revision.  

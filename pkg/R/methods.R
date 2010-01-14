@@ -15,10 +15,10 @@ setMethod(
           'hansentree',
           function (object, ...) {
             list(
-                 alpha=object@alpha,
+                 sqrt.alpha=object@sqrt.alpha,
                  sigma=object@sigma,
                  theta=object@theta,
-                 alpha.matrix=sym.par(object@alpha),
+                 alpha.matrix=sym.par(object@sqrt.alpha),
                  sigma.sq.matrix=sym.par(object@sigma)
                  )
           }
@@ -96,7 +96,9 @@ setMethod(
           "hansentree",
           function (object, ...) {
             cf <- coef(object)
-            dof <- length(object@alpha)+length(object@sigma)+sum(sapply(object@theta,length))
+            if (length(object@hessian)>0)
+              se <- sqrt(diag(solve(0.5*object@hessian)))
+            dof <- length(object@sqrt.alpha)+length(object@sigma)+sum(sapply(object@theta,length))
             deviance=-2*logLik(object)
             aic <- deviance+2*dof
             aic.c <- aic+2*dof*(dof+1)/(object@nterm*object@nchar-dof-1)

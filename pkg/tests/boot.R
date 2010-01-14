@@ -9,7 +9,7 @@ h5 <- hansen(
              data=log(bimac['size']),
              tree=tree,
              regimes=bimac['OU.LP'],
-             alpha=1,
+             sqrt.alpha=1,
              sigma=1,
              reltol=1e-11,
              parscale=c(0.1,0.1),

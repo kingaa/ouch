@@ -32,7 +32,7 @@
 \S4method{print}{hansentree}(x, \dots)
 \S4method{plot}{hansentree}(x, y, regimes, \dots)
 \S4method{simulate}{hansentree}(object, nsim = 1, seed = NULL, \dots)
-\S4method{update}{hansentree}(object, data, regimes, alpha, sigma, \dots)
+\S4method{update}{hansentree}(object, data, regimes, sqrt.alpha, sigma, \dots)
 \S4method{bootstrap}{hansentree}(object, nboot = 200, seed = NULL, \dots)
 \S4method{as}{hansentree}(object, class)
 \S4method{coerce}{hansentree,data.frame}(from, to = "data.frame", strict = TRUE)
@@ -54,7 +54,7 @@
     The number of boostraps to perform.
   }
   \item{seed}{The random seed to use in simulations.}
-  \item{regimes, alpha, sigma}{See \code{\link{hansen}}.}
+  \item{regimes, sqrt.alpha, sigma}{See \code{\link{hansen}}.}
   \item{data}{see \code{\link{hansen}}.}
   \item{y, strict}{Ignored.}
   \item{\dots}{
@@ -84,7 +84,7 @@
       extracts the coefficients of the fitted model.
       This is a list with five elements:
       \describe{
-	\item{\code{alpha}:}{the coefficients that parameterize the alpha matrix.}
+	\item{\code{sqrt.alpha}:}{the coefficients that parameterize the alpha matrix.}
 	\item{\code{sigma}:}{the coefficients that parameterize the sigma matrix.}
 	\item{\code{theta}:}{
 	  a list of the estimated optima, one per character.
