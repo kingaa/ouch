@@ -13,8 +13,11 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
 }
 \arguments{
   \item{data}{
-    Phenotypic data for extant species, i.e., at the terminal twigs of the phylogenetic tree.
-    This can either be a single numeric vector or a list (or data-frame) containing \code{nchar} vectors (columns) of data.
+    Phenotypic data for extant species, i.e., species at the terminal twigs of the phylogenetic tree.
+    This can either be a single named numeric vector, a list of \code{nchar} named vectors, or a data-frame containing \code{nchar} data variables.
+    There must be an entry per variable for every node in the tree; use \code{NA} to represent missing data.
+    If the data are supplied as one or more named vectors, the names attributes are taken to correspond to the node names specified when the \code{ouchtree} was constructed (see \code{\link{ouchtree}}).
+    If the data are supplied as a data-frame, the rownames serve that purpose.
   }
   \item{tree}{
     A phylogenetic tree, specified as an \code{ouchtree} object.
@@ -23,7 +26,7 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
     A vector of codes, one for each node in the tree, specifying the selective regimes hypothesized to have been operative.
     Corresponding to each node, enter the code of the regime hypothesized for the branch segment terminating in that node.
     For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
-    If there are \code{nchar} quantitative characters (i.e., if \code{data} is a list with \code{nchar} columns), then \code{regimes} should be a list length 1 or \code{nchar}.
+    If there are \code{nchar} quantitative characters, then one can specify a single set of \code{regimes} for all characters or a list of \code{nchar} regime specifications, one for each character.
   }
   \item{sqrt.alpha, sigma}{
     These are used to initialize the optimization algorithm.
@@ -70,7 +73,8 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
   The \code{coef} method extracts a named list containing not only these matrices (given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements) but also the MLEs returned by the optimizer (as \code{sqrt.alpha} and \code{sigma}, respectively).
   \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
 }
-\seealso{\code{\link{ouchtree}}, \code{\link{hansentree}}, \code{\link{optim}}
+\seealso{
+  \code{\link{ouchtree}}, \code{\link{hansentree}}, \code{\link{optim}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
 }
 \references{
   Butler, M.A. and A.A. King (2004)
