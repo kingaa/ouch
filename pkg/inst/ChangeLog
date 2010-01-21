@@ -1,5 +1,38 @@
+2010-01-19  kingaa
+
+	* [r59] man/hansen.Rd: - improve the documentation
+
+2010-01-14  kingaa
+
+	* [r58] R/hansen.R: - pass 'clist' to the optimizers to avoid
+	  breaking them
+	* [r57] DESCRIPTION, R/aaa.R, R/hansen.R, R/methods.R, inst/NEWS,
+	  man/anolis.ssd.Rd, man/bimac.Rd, man/hansen.Rd,
+	  man/hansentree-methods.Rd, man/paint.Rd, tests/boot.R,
+	  tests/boot.Rout.save, tests/exacttree.R,
+	  tests/exacttree.Rout.save, tests/simtree.R,
+	  tests/simtree.Rout.save: - In the 'hansen' function, the use of
+	  the argument 'alpha' was confusing.
+	  This vector parameterizes the "selection" portion of the OU
+	  model, which since version 2 has been assumed to be a
+	  positive-definite matrix (corresponding to stabilizing
+	  selection).
+	  In particular, it contains the entries of the lower-triangular
+	  matrix square root of this positive definite matrix.
+	  To make the name more mnemonic, this argument has been renamed
+	  'sqrt.alpha'.
+	  This is a superficial change meant to improve intelligibility:
+	  the algorithm itself has not changed.
+	  To prevent loss of backward compatibility, use of argument
+	  'alpha' will continue to work, though it will generate a warning.
+	  In some future release, use of 'alpha' as an argument to 'hansen'
+	  will no longer generate a warning but will instead be passed
+	  through to the control list for 'optim' if method='optim' and
+	  will otherwise generate an error.
+
 2009-10-07  kingaa
 
+	* [r56] inst/ChangeLog:
 	* [r55] man/hansen.Rd, man/hansentree-methods.Rd: - cosmetology
 
 2009-08-11  kingaa
