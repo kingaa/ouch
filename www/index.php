@@ -40,7 +40,7 @@ for phylogenetic <font color="#E32644">C</font>omparative hypot<font color="#E32
 <td align="left" width="40%">
 <ul>
 <li><a href="./index.php?nav=about">About <i>ouch</i></a></li>
-<li><a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name;?>">Development version (on r-forge)</a></li>
+<li><a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name;?>">Development version (on R-Forge)</a></li>
 <li><a href="http://cran.at.r-project.org/web/packages/ouch/">Release version (on CRAN)</a></li>
 <li><a target="_blank" href="http://cran.at.r-project.org/web/packages/ouch/ouch.pdf"><i>ouch</i> manual (PDF)</a></li>
 <li><a href="./index.php?nav=bib">References to the literature</a></li>
