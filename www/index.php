@@ -80,6 +80,19 @@ include($dfile);
 </table>
 </td>
 </tr>
+<tr>
+<td>
+<table width="100%">
+<tr>
+<td><a href="http://www.nsf.gov"><img src="/graphics/NSF_logo.jpg"
+alt="link to NSF" /></a></td>
+<td>Development and maintenance of <code>ouch</code> made possible
+through the support of the U.S. National Science Foundation (Grants
+DEB-0515390 and DEB-0542360).</td>
+</tr>
+</table>
+</td>
+</tr>
 </table>
 </body>
 </html>
