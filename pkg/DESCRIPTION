@@ -11,3 +11,5 @@ Suggests: ape
 URL: http://ouch.r-forge.r-project.org/
 License: GPL(>= 2)
 LazyLoad: true
+Collate: ouchtree.R ape2ouch.R glssoln.R rmvnorm.R brown.R hansen.R methods.R 
+         paint.R plot.R deprecated.R

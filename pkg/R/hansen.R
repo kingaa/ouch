@@ -1,3 +1,21 @@
+setClass(
+         'hansentree',
+         contains='ouchtree',
+         representation=representation(
+           call='call',
+           nchar='integer',
+           optim.diagn='list',
+           hessian='matrix',
+           data='list',
+           regimes='list',
+           beta='list',
+           theta='list',
+           sigma='numeric',
+           sqrt.alpha='numeric',
+           loglik='numeric'
+           )
+         )
+
 hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                     fit = TRUE,
                     method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),

@@ -1,3 +1,22 @@
+setClass(
+         'ouchtree',
+         representation=representation(
+           nnodes = 'integer',
+           nodes = 'character',
+           ancestors = 'character',
+           nodelabels = 'character',
+           times = 'numeric',
+           root = 'integer',
+           nterm = 'integer',
+           term = 'integer',
+           anc.numbers = 'integer',
+           lineages = 'list',
+           epochs = 'list',
+           branch.times = 'matrix',
+           depth = 'numeric'
+           )
+         )
+
 ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 
   nodes <- as.character(nodes)

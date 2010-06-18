@@ -1,3 +1,16 @@
+setClass(
+         'browntree',
+         contains='ouchtree',
+         representation=representation(
+           call='call',
+           nchar='integer',
+           data='list',
+           theta='list',
+           sigma='numeric',
+           loglik='numeric'
+           )
+         )
+
 brown <- function (data, tree) {
   
   if (!is(tree,'ouchtree'))
@@ -108,6 +121,11 @@ setMethod(
                   )
           }
           )
+
+bootstrap <- function (object, nboot = 200, seed = NULL, ...) {
+  stop("function ",sQuote("bootstrap")," is undefined for objects of class ",sQuote(class(object)))
+}
+setGeneric('bootstrap')  
 
 setMethod(
           "bootstrap",
