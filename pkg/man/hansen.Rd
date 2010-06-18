@@ -73,6 +73,56 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
   The \code{coef} method extracts a named list containing not only these matrices (given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements) but also the MLEs returned by the optimizer (as \code{sqrt.alpha} and \code{sigma}, respectively).
   \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
 }
+\examples{
+if (require(geiger)) {
+
+### an example data set (Darwin's finches)
+data(geospiza)
+str(geospiza)
+sapply(geospiza,class)
+
+### check the correspondence between data and tree tips:
+print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
+### looks like one of the terminal twigs has no data associated
+### drop that tip:
+tree <- with(geospiza,drop.tip(geospiza.tree,nc$Tree.not.data))
+dat <- geospiza$geospiza.data
+
+### make an ouchtree out of the phy-format tree
+ot <- ape2ouch(tree)
+
+### merge data with tree info
+otd <- as(ot,"data.frame")
+### in these data, it so happens that the rownames correspond to node names
+### we will exploit this correspondence in the 'merge' operation:
+dat$labels <- rownames(dat)
+otd <- merge(otd,dat,by="labels",all=TRUE)
+rownames(otd) <- otd$nodes
+print(otd)
+### this data-frame now contains the data as well as the tree geometry
+
+### now remake the ouch tree
+ot <- with(otd,ouchtree(nodes=nodes,ancestors=ancestors,times=times,labels=labels))
+
+b1 <- with(otd,brown(tree=ot,data=otd[c("tarsusL","beakD")]))
+summary(b1)
+
+### evaluate an OU model with a single, global selective regime
+otd$regimes <- as.factor("global")
+h1 <- with(
+           otd,
+           hansen(
+                  tree=ot,
+                  data=otd[c("tarsusL","beakD")],
+                  regimes=otd["regimes"],
+                  sqrt.alpha=c(1,0,1),
+                  sigma=c(1,0,1),
+                  maxit=10000
+                  )
+           )
+summary(h1)
+}
+}
 \seealso{
   \code{\link{ouchtree}}, \code{\link{hansentree}}, \code{\link{optim}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
 }
