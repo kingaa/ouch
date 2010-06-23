@@ -1,3 +1,17 @@
+2010-06-18  kingaa
+
+	* [r66] R/aaa.R: - removed aaa.R: no longer needed
+	* [r65] DESCRIPTION, R/brown.R, R/hansen.R, R/ouchtree.R,
+	  man/hansen.Rd: - minor cleanup of hansen example
+	  - use the Collate field in the DESCRIPTION file
+	  - get rid of 'R/aaa.R'
+	* [r64] DESCRIPTION, man/hansen.Rd: - add multivariate example to
+	  'hansen.Rd'
+
+2010-01-21  kingaa
+
+	* [r60] inst/ChangeLog: - version 2.6-1
+
 2010-01-19  kingaa
 
 	* [r59] man/hansen.Rd: - improve the documentation
