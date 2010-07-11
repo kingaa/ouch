@@ -1,3 +1,7 @@
+2010-06-23  kingaa
+
+	* [r67] inst/ChangeLog: - update the changelog for version 2.6-2
+
 2010-06-18  kingaa
 
 	* [r66] R/aaa.R: - removed aaa.R: no longer needed

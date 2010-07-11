@@ -69,7 +69,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
 
   nchar <- length(data)
-  if (is.null(names(data))) names(data) <- paste('char',1:nchar,sep='')
+  if (is.null(names(data))) names(data) <- paste('char',seq_len(nchar),sep='')
   
   if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
     stop("each data set must have names corresponding to the node names")
@@ -204,7 +204,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   theta <- vector('list',nchar)
   names(theta) <- names(data)
   count <- 1
-  for (n in 1:nchar) {
+  for (n in seq_len(nchar)) {
     theta[[n]] <- theta.x[seq(from=count,length=length(reg[[n]]),by=1)]
     names(theta[[n]]) <- as.character(reg[[n]])
     count <- count+length(reg[[n]])
@@ -284,13 +284,13 @@ regime.spec <- function (object, regimes) {
   reg <- sets.of.regimes(object,regimes)
   nreg <- sapply(reg,length)
   beta <- vector(mode='list',length=nterm)
-  for (i in 1:nterm) {
+  for (i in seq_len(nterm)) {
     p <- object@lineages[[object@term[i]]]
     np <- length(p)
     beta[[i]] <- vector(mode='list',length=nchar)
-    for (n in 1:nchar) {
+    for (n in seq_len(nchar)) {
       beta[[i]][[n]] <- matrix(data=NA,nrow=np,ncol=nreg[n])
-      for (ell in 1:nreg[n]) {
+      for (ell in seq_len(nreg[n])) {
         beta[[i]][[n]][,ell] <- ifelse(regimes[[n]][p]==reg[[n]][ell],1,0)
       }
     }
@@ -304,7 +304,7 @@ regime.spec <- function (object, regimes) {
 sym.solve <- function (a, b) {
   n <- nrow(a)
   d <- array(data=0,dim=c(n,n,n,n))
-  for (k in 1:n) {
+  for (k in seq_len(n)) {
     d[k,,k,] <- d[k,,k,] + a
     d[,k,,k] <- d[,k,,k] + a
   }
@@ -316,14 +316,9 @@ sym.solve <- function (a, b) {
 }
 
 hansen.deviate <- function (n = 1, object) {
-  dat <- do.call(c,lapply(object@data,function(y)y[object@term]))
-  sol <- ou.lik.fn(
-                   as(object,'ouchtree'),
-                   sym.par(object@sqrt.alpha),
-                   sym.par(object@sigma),
-                   object@beta,
-                   dat
-                   )
+  ev <- eigen(sym.par(object@sqrt.alpha),symmetric=TRUE)
+  w <- .Call(ouch_weights,object=object,lambda=ev$values,S=ev$vectors,beta=object@beta)
+  v <- .Call(ouch_covar,object=object,lambda=ev$values,S=ev$vectors,sigma.sq=sym.par(object@sigma))
   X <- array(
              data=NA,
              dim=c(object@nnodes,object@nchar,n),
@@ -333,8 +328,15 @@ hansen.deviate <- function (n = 1, object) {
                paste('rep',seq(n),sep='.')
                )
              )
+
+  theta <- do.call(c,object@theta)
+
   X[object@term,,] <- array(
-                            rmvnorm(n=n,mean=as.numeric(sol$weight%*%sol$coeff),var=sol$vcov),
+                            data=rmvnorm(
+                              n=n,
+                              mean=as.numeric(w%*%theta),
+                              var=v
+                              ),
                             dim=c(object@nterm,object@nchar,n)
                             )
   apply(X,3,as.data.frame)
