@@ -63,9 +63,9 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
   Moreover, if we view the basic model as describing evolution on a fitness landscape, then \eqn{\alpha}{alpha} will be symmetric and if we further restrict ourselves to the case of stabilizing selection, \eqn{\alpha}{alpha} will be positive definite as well.
   We make these assumptions and therefore can assume that the matrix \eqn{\alpha}{alpha} has a lower-triangular square root.
 
-  The \code{hansen} code uses numerical optimization to maximize the likelihood.
-  To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices.
-  Each matrix can be parameterized by \code{nchar*(nchar+1)} parameters, where \code{nchar} is the number of quantitative characters.
+  The \code{hansen} code uses unconstrained numerical optimization to maximize the likelihood.
+  To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices in a special way:
+  each matrix is parameterized by \code{nchar*(nchar+1)/2} parameters, where \code{nchar} is the number of quantitative characters.
   Specifically, the parameters initialized by the \code{sqrt.alpha} argument of \code{hansen} are used to fill the nonzero entries of a lower-triangular matrix (in column-major order), which is then multiplied by its transpose to give the selection-strength matrix.
   The parameters specified in \code{sigma} fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
   When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.

@@ -1,3 +1,13 @@
+2010-07-11  kingaa
+
+	* [r69] DESCRIPTION, R/hansen.R, inst/ChangeLog: - an infelicity in
+	  the 'simulate' method for 'hansentree' objects was discovered by
+	  Philip Bergmann. There was an unwanted (inexplicable) dependence
+	  on the data in that the optima were recomputed from the data for
+	  each simulation rather than simply being taken from the 'theta'
+	  slot. This has been remedied: now the fitted optima are used in
+	  the simulations. Thanks to Philip for bringing this to light.
+
 2010-06-23  kingaa
 
 	* [r67] inst/ChangeLog: - update the changelog for version 2.6-2
