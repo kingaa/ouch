@@ -1,3 +1,11 @@
+2011-07-25  kingaa
+
+	* [r72] DESCRIPTION, inst/ChangeLog, inst/NEWS, man/hansen.Rd: -
+	  fix typo in documentation of 'hansen': sqrt.alpha and sigma
+	  should have 'nchar*(nchar+1)/2' entries. Thanks to Roland Sookias
+	  for bringing this typo to my attention.
+	  - put NEWS file into standard format
+
 2010-07-11  kingaa
 
 	* [r69] DESCRIPTION, R/hansen.R, inst/ChangeLog: - an infelicity in
