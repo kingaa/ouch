@@ -22,17 +22,6 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                     hessian = FALSE,
                     ...) {
 
-  clist <- list(...)
-  if ("alpha" %in% names(clist)) {
-    warning(
-            "use of argument ",sQuote("alpha")," in ",sQuote("hansen")," is deprecated. ",
-            "This argument has been renamed ",sQuote("sqrt.alpha"),". ",
-            "Please modify your code to take account of this, ",
-            "as use of this argument will become an error in a future release of ",sQuote("ouch"),".")
-    sqrt.alpha <- clist$alpha
-    clist$alpha <- NULL
-  }
-
   if (!is(tree,'ouchtree'))
     stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
 
@@ -142,7 +131,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                                  )$deviance
                      },
                      hessian=hessian,
-                     control=clist
+                     control=list(...)
                      )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `subplex'")
@@ -165,7 +154,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
                    gr=NULL,
                    hessian=hessian,
                    method=method,
-                   control=clist
+                   control=list(...)
                    )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `optim'")

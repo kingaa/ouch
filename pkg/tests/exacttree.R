@@ -34,7 +34,7 @@ htree <- hansen(
                 tree=tree,
                 data=treedat[c('data3','data4','data5')],
                 regimes=treedat['reg'],
-                alpha=c(1,0.5,0.5,1,0,3),
+                sqrt.alpha=c(1,0.5,0.5,1,0,3),
                 sigma=c(0.5,-0.1,-0.25,1,0.5,1),
                 fit=F
                 )
