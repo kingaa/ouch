@@ -1,5 +1,13 @@
+2011-08-31  kingaa
+
+	* [r74] DESCRIPTION, NAMESPACE, R/deprecated.R, R/hansen.R,
+	  man/ouch-deprecated.Rd, tests/exacttree.R,
+	  tests/exacttree.Rout.save: - remove deprecated functions and
+	  options, at long last
+
 2011-07-25  kingaa
 
+	* [r73] inst/ChangeLog: - update changelog
 	* [r72] DESCRIPTION, inst/ChangeLog, inst/NEWS, man/hansen.Rd: -
 	  fix typo in documentation of 'hansen': sqrt.alpha and sigma
 	  should have 'nchar*(nchar+1)/2' entries. Thanks to Roland Sookias
