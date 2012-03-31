@@ -74,6 +74,7 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
   \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
 }
 \examples{
+\dontrun{
 if (require(geiger)) {
 
 ### an example data set (Darwin's finches)
@@ -118,6 +119,7 @@ h1 <- hansen(
              maxit=10000
              )
 summary(h1)
+}
 }
 }
 \seealso{
