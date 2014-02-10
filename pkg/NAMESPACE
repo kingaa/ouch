@@ -3,6 +3,8 @@ useDynLib(
           ouch_covar,
           ouch_weights
           )
+import(methods)
+importFrom(subplex,subplex)
 importFrom(graphics,plot)
 importFrom(stats,deviance,simulate,update,coef,logLik)
 exportClasses('ouchtree','browntree','hansentree')

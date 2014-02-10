@@ -29,13 +29,15 @@ setAs(
       from='ouchtree',
       to='data.frame',
       def = function (from) {
-        data.frame(
-                   nodes=from@nodes,
-                   ancestors=from@ancestors,
-                   times=from@times,
-                   labels=from@nodelabels,
-                   row.names=from@nodes
-                   )
+        df <- data.frame(
+                         nodes=from@nodes,
+                         ancestors=from@ancestors,
+                         times=from@times,
+                         labels=from@nodelabels,
+                         row.names=from@nodes
+                         )
+        rownames(df) <- from@nodes
+        df
       }
       )
 

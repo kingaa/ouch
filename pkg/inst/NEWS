@@ -1,4 +1,7 @@
 NEWS
+2.8-3
+    o	'as(tree,"data.frame")' now returns a data-frame with rownames identical to the node-names (tree@nodes).
+
 2.8-1
     o	Functions that have been deprecated since 2.1-1 have been removed.
 	The argument 'alpha' that was deprecated in favor of 'sqrt.alpha' in version 2.6-1 has been removed.
