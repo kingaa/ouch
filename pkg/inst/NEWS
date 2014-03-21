@@ -1,39 +1,66 @@
-NEWS
-2.8-3
-    o	'as(tree,"data.frame")' now returns a data-frame with rownames identical to the node-names (tree@nodes).
+_N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
-2.8-1
-    o	Functions that have been deprecated since 2.1-1 have been removed.
-	The argument 'alpha' that was deprecated in favor of 'sqrt.alpha' in version 2.6-1 has been removed.
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8-_3:
 
-2.7-2
-    o	Fixed typo in the documentation of 'hansen'.  Thanks to Roland Sookias for bringing this to my attention.
+        • 'as(tree,"data.frame")' now returns a data-frame with
+          rownames identical to the node-names (tree@nodes).
 
-2.6-1
-    o   In the 'hansen' function, the use of the argument 'alpha' was confusing.  
-    	This vector parameterizes the "selection" portion of the OU model, which since version 2 has been assumed to be a positive-definite matrix (corresponding to stabilizing selection).
-    	In particular, it contains the entries of the lower-triangular matrix square root of this positive definite matrix.
-	To make the name more mnemonic, this argument has been renamed 'sqrt.alpha'.
-	This is a superficial change meant to improve intelligibility: the algorithm itself has not changed.
-	To prevent loss of backward compatibility, use of argument 'alpha' will continue to work, though it will generate a warning.
-	In some future release, use of 'alpha' as an argument to 'hansen' will no longer generate a warning but will instead be passed through to the control list for 'optim' if method='optim' and will otherwise generate an error.
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8-_1:
 
-2.1-1
-    o	Version 2 of ouch represents a major revision.  
-    	ouch's capabilities have been substantially extended.
-    o   support is now provided for multivariate characters.  
-        Inference based on multivariate Ornstein-Uhlenbeck and multivariate Brownian motion models is now provided.
+        • Functions that have been deprecated since 2.1-1 have been
+          removed.  The argument 'alpha' that was deprecated in favor
+          of 'sqrt.alpha' in version 2.6-1 has been removed.
 
-    o   nonultrametric trees are supported.
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._7-_2:
 
-    o	the root character state need no longer be estimated.  
-        Instead, the root state is assumed to be distributed according to the stationary distribution of the OU process.
+        • Fixed typo in the documentation of 'hansen'.  Thanks to
+          Roland Sookias for bringing this to my attention.
 
-    o	convenience functions for parametric bootstrap confidence intervals are provided.
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._6-_1:
 
-    o   the new function 'paint' simplifies the specification of adaptive regimes in complex phylogenies.
+        • In the 'hansen' function, the use of the argument 'alpha' was
+          confusing.  This vector parameterizes the "selection" portion
+          of the OU model, which since version 2 has been assumed to be
+          a positive-definite matrix (corresponding to stabilizing
+          selection).  In particular, it contains the entries of the
+          lower-triangular matrix square root of this positive definite
+          matrix.  To make the name more mnemonic, this argument has
+          been renamed 'sqrt.alpha'.  This is a superficial change
+          meant to improve intelligibility: the algorithm itself has
+          not changed.  To prevent loss of backward compatibility, use
+          of argument 'alpha' will continue to work, though it will
+          generate a warning.  In some future release, use of 'alpha'
+          as an argument to 'hansen' will no longer generate a warning
+          but will instead be passed through to the control list for
+          'optim' if method='optim' and will otherwise generate an
+          error.
 
-    o   the new function 'ape2ouch' translates trees in the 'phylo' format of the ape package into 'ouchtree' format (thanks to Dan Ackerly).
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1-_1:
 
-    o   The new package is a complete rewrite, using S4 classes.  
-    	The old functionality from ouch v. 1 remains available, but is now deprecated.
+        • Version 2 of ouch represents a major revision.  ouch's
+          capabilities have been substantially extended.
+
+        • support is now provided for multivariate characters.
+          Inference based on multivariate Ornstein-Uhlenbeck and
+          multivariate Brownian motion models is now provided.
+
+        • nonultrametric trees are supported.
+
+        • the root character state need no longer be estimated.
+          Instead, the root state is assumed to be distributed
+          according to the stationary distribution of the OU process.
+
+        • convenience functions for parametric bootstrap confidence
+          intervals are provided.
+
+        • the new function 'paint' simplifies the specification of
+          adaptive regimes in complex phylogenies.
+
+        • the new function 'ape2ouch' translates trees in the 'phylo'
+          format of the ape package into 'ouchtree' format (thanks to
+          Dan Ackerly).
+
+        • The new package is a complete rewrite, using S4 classes.  The
+          old functionality from ouch v. 1 remains available, but is
+          now deprecated.
+
