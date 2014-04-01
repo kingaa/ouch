@@ -1,8 +1,8 @@
 Package: ouch
 Type: Package
 Title: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses
-Version: 2.8-4
-Date: 2014-03-21
+Version: 2.8-5
+Date: 2014-04-01
 Author: Aaron A. King <kingaa@umich.edu> and Marguerite A. Butler <mbutler@hawaii.edu>
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Description: Fit and compare Ornstein-Uhlenbeck models for evolution along a phylogenetic tree.
@@ -12,4 +12,4 @@ URL: http://ouch.r-forge.r-project.org/
 License: GPL(>= 2)
 LazyLoad: true
 Collate: ouchtree.R ape2ouch.R glssoln.R rmvnorm.R brown.R hansen.R methods.R 
-         paint.R plot.R
+         paint.R plot.R version.R
