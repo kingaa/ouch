@@ -86,8 +86,9 @@ sapply(geospiza,class)
 print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
 ### looks like one of the terminal twigs has no data associated
 ### drop that tip:
-tree <- with(geospiza,drop.tip(geospiza.tree,nc$Tree.not.data))
-dat <- geospiza$geospiza.data
+tree <- with(geospiza,drop.tip(geospiza.tree,nc$tree_not_data))
+dat <- as.data.frame(geospiza$dat)
+
 
 ### make an ouchtree out of the phy-format tree
 ot <- ape2ouch(tree)
