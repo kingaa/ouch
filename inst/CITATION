@@ -27,7 +27,7 @@ citEntry(
          year=2004,
          volume=164,
          pages="683--695",
-         url="http://www.journals.uchicago.edu/AN/journal/issues/v164n6/40201/40201.html",
+	 url="http://www.press.uchicago.edu/ucp/journals/journal/an.html",
          textVersion=paste(
            "Butler, M. A. and King, A. A. (2004)",
            "Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
@@ -35,4 +35,4 @@ citEntry(
            )
          )
 
-citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'help(package=ouch)'.")
+citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'packageVersion("ouch")'.")
