@@ -3,9 +3,8 @@
 static void ouch_weight_matrix (int *nchar, int *neps, double *epochs, double *lambda, double *S, double *y) {
   double *elt;
   double t;
-  double tmp;
   int n = *nchar, np = *neps;
-  int i, j, k, r, s;
+  int i, j, k, r;
   elt = Calloc(np*n,double);
   for (i = 0; i < np; i++) {
     t = epochs[0]-epochs[i];
@@ -30,7 +29,7 @@ static void ouch_weight_matrix (int *nchar, int *neps, double *epochs, double *l
 
 SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta) {
   int nprotect = 0;
-  SEXP W, dim, nm, nterm, epochs;
+  SEXP W, nm, nterm, epochs;
   double *wp, *y, *bp;
   int nchar, nt, *nreg, totreg, np, xdim[2], ptr;
   int i, j, k, n, q;

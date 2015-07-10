@@ -98,8 +98,8 @@ setMethod(
           "hansentree",
           function (object, ...) {
             cf <- coef(object)
-            if (length(object@hessian)>0)
-              se <- sqrt(diag(solve(0.5*object@hessian)))
+##            if (length(object@hessian)>0)
+##              se <- sqrt(diag(solve(0.5*object@hessian)))
             dof <- length(object@sqrt.alpha)+length(object@sigma)+sum(sapply(object@theta,length))
             deviance=-2*logLik(object)
             aic <- deviance+2*dof
