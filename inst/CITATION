@@ -35,4 +35,4 @@ citEntry(
            )
          )
 
-citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'packageVersion("ouch")'.")
+citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'packageVersion(\"ouch\")'.")
