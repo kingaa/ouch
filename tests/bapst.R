@@ -1,0 +1,7 @@
+library(ouch)
+x <- read.csv("bapst.csv")
+tic <- Sys.time()
+tr <- with(x,ouchtree(nodes=node,ancestors=ancestor,times=time,labels=species))
+toc <- Sys.time()
+print(toc-tic)
+plot(tr)
