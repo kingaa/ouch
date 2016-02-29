@@ -7,3 +7,15 @@ Ornstein-Uhlenbeck models for Phylogenetic Comparative Hypotheses
 
 See the [package website](http://kingaa.github.io/ouch/).
 
+#### Binary install
+
+```
+install.packages("ouch",repos="http://kingaa.github.io/")
+```
+
+#### Source install
+
+```
+library(devtools)  
+install_github("kingaa/ouch")
+```
