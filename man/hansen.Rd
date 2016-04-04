@@ -75,7 +75,7 @@ hansen(data, tree, regimes, sqrt.alpha, sigma,
 }
 \examples{
 \dontrun{
-if (require(geiger)) {
+if (library(geiger)) {
 
 ### an example data set (Darwin's finches)
 data(geospiza)
