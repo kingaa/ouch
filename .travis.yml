@@ -8,6 +8,7 @@ notifications:
 
 env:
   matrix:
+    - RVERSION=3.0.0
     - RVERSION=oldrel
     - RVERSION=release
     - RVERSION=devel
