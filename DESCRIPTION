@@ -1,8 +1,8 @@
 Package: ouch
 Type: Package
 Title: Ornstein-Uhlenbeck Models for Phylogenetic Comparative Hypotheses
-Version: 2.9-3
-Date: 2016-04-04
+Version: 2.10-1
+Date: 2016-04-07
 Author: Aaron A. King <kingaa@umich.edu> and Marguerite A. Butler <mbutler@hawaii.edu>
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Description: Fit and compare Ornstein-Uhlenbeck models for evolution along a phylogenetic tree.
