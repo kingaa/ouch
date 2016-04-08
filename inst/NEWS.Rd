@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
+\section{Changes in ouch version 2.10-1}{
+  \itemize{
+    \item In \code{glssoln}, when the Choleski decomposition fails, a warning is issued and \code{NA}s are returned.
+    In previous versions, an error was thrown.
+  }
+}
 \section{Changes in ouch version 2.8-3}{
   \itemize{
     \item 'as(tree,"data.frame")' now returns a data-frame with rownames identical to the node-names (tree@nodes).

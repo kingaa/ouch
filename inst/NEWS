@@ -1,5 +1,11 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_0-_1:
+
+        • In ‘glssoln’, when the Choleski decomposition fails, a
+          warning is issued and ‘NA’s are returned.  In previous
+          versions, an error was thrown.
+
 _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8-_3:
 
         • 'as(tree,"data.frame")' now returns a data-frame with
