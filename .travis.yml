@@ -1,11 +1,14 @@
 language: r
 sudo: false
 
+r_github_packages
+  - jimhester/covr
+
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -O http://kingaa.github.io/scripts/mac-fortran.sh; sh mac-fortran.sh; fi
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'covr::codecov()'
 
 notifications:
   email:
