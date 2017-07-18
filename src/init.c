@@ -1,4 +1,5 @@
-#include "ouch.h"
+#include <R.h>
+#include <Rdefines.h>
 #include <R_ext/Rdynload.h>
 
 extern SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta);
