@@ -6,14 +6,14 @@ citEntry(
          author=personList(
 	   as.person("Aaron A. King"),
 	   as.person("Marguerite A. Butler")
-	   ),	   
+	   ),
 	 year=2009,
-	 url="http://ouch.r-forge.r-project.org",
+	 url="https://kingaa.github.io/ouch/",
 	 textVersion=paste(
 	   "Aaron A. King and Marguerite A. Butler (2009),",
 	   "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses (R package),",
-	   "http://ouch.r-forge.r-project.org"
-	   )	   
+	   "https://kingaa.github.io/ouch/"
+	   )
          )
 
 citEntry(

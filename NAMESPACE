@@ -1,8 +1,4 @@
-useDynLib(
-          ouch,
-          ouch_covar,
-          ouch_weights
-          )
+useDynLib(ouch,.registration=TRUE)
 import(methods)
 importFrom(subplex,subplex)
 importFrom(stats,deviance,simulate,update,coef,logLik,optim,rnorm,runif)
