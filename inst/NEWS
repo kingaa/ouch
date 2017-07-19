@@ -1,5 +1,14 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_2-_1:
+
+        • Upgrade the package license to GPL version 3.
+
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_1-_1:
+
+        • Improvements to the underlying C code, which now registers
+          callable functions.
+
 _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_0-_1:
 
         • In ‘glssoln’, when the Choleski decomposition fails, a

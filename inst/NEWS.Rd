@@ -1,5 +1,15 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
+\section{Changes in ouch version 2.12-1}{
+  \itemize{
+    \item Upgrade the package license to GPL version 3.
+  }
+}
+\section{Changes in ouch version 2.11-1}{
+  \itemize{
+    \item Improvements to the underlying C code, which now registers callable functions.
+  }
+}
 \section{Changes in ouch version 2.10-1}{
   \itemize{
     \item In \code{glssoln}, when the Choleski decomposition fails, a warning is issued and \code{NA}s are returned.
