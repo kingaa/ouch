@@ -1,32 +1,49 @@
-language: R
+language: r
 sudo: false
 cache: packages
 file_glob: true
+latex: false
+pandoc: false
 
-os:
-  - linux
-  - osx
-  
-env:
-  - RVERSION=release
-  - RVERSION=devel
-  - RVERSION=oldrel
+addons:
+  apt:
+    packages:
+      - libgit2-dev
+  homebrew:
+    packages:
+      - libgit2
+
+stages:
+  - test
+  - coverage
+  - name: deploy
+    if: tag IS present
 
 jobs:
   include:
-    - stage: test
-      script: 
-        - R CMD build .
-        - R CMD check *.tar.gz
-        - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-    - stage: deploy
+    - r: release
+      os: linux
+    - r: devel
+      os: linux
+    - r: 3.3
+      os: linux
+    - r: release
       os: osx
-      env:
-        - RVERSION=release
+    - stage: coverage
+      r: release
+      os: linux
+      r_packages:
+        - covr
+      script:
+        - travis_wait 30 Rscript -e 'covr::codecov()'
+    - stage: deploy
+      r: release
+      os: osx
       script: 
         - R CMD build .
         - mkdir -p plib
-        - R CMD INSTALL --build -l plib *.tar.gz
+        - TARBALL=$(ls -1t *.tar.gz)
+        - R CMD INSTALL --build -l plib ${TARBALL}
         - rm -rf plib
       deploy:
         provider: releases
@@ -35,7 +52,6 @@ jobs:
         file_glob: true
         file: 
           - ouch_*.tgz
-          - ouch_*.tar.gz
         skip_cleanup: true
         on:
           tags: true
