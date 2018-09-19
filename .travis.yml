@@ -4,54 +4,54 @@ cache: packages
 file_glob: true
 latex: false
 pandoc: false
-
 addons:
   apt:
     packages:
-      - libgit2-dev
+    - libgit2-dev
   homebrew:
     packages:
-      - libgit2
-
+    - libgit2
 stages:
-  - test
-  - coverage
-  - name: deploy
-    if: tag IS present
-
+- test
+- coverage
+- name: deploy
+  if: tag IS present
 jobs:
   include:
-    - r: release
-      os: linux
-    - r: devel
-      os: linux
-    - r: 3.3
-      os: linux
-    - r: release
-      os: osx
-    - stage: coverage
-      r: release
-      os: linux
-      r_packages:
-        - covr
-      script:
-        - travis_wait 30 Rscript -e 'covr::codecov()'
-    - stage: deploy
-      r: release
-      os: osx
-      script: 
-        - R CMD build .
-        - mkdir -p plib
-        - TARBALL=$(ls -1t *.tar.gz)
-        - R CMD INSTALL --build -l plib ${TARBALL}
-        - rm -rf plib
-      deploy:
-        provider: releases
-        api-key:
-          secure: MveD907DUzum57WMInjInWwoeAGD4D1E03yEkAJZU3eTQyTuSAZomLr8b9qFRzawDRmmcx4+5dasgsiR+e9uW8TAIGoP0/s62oeaH8zZEYj+nDwPGJJijBj7qAE5TCJVW6oErW0uvB3knkCV/HXnM2Mde0/U7cfSYOFahFHFvkKo/+nU1GaDWUQ3vdBPMPKxCxjhlxIi6QZtPyzVNFN3shyx88YUuYIknivMiS+A1wEOQwj53JN2L/s8bJc+Upa7/gp6kI1fVTw6bl2cc4MC/It4KTVlTlqG5qIKgjlmcu+0QTf8kKvTdJJhIupZEQh0QL16l9OnB0GFebjb9if+fEvjmFOKXethdFPGVgwek5Kjej0Ts1IbA9xVSrslkZTJetIgRY9tO11e3ool9daONIvFDdUU0QBM5/9srjUZtUAEgIfvlLXmjUd5cpRmPHnmdwkXAQJ/FgQ7GBV27l3lzCVUpxZbqvBMor8wpEoENFgKbPjtZb2WiSobJ5+Y2U2N0bjmnLE6+AN1znubOuFgGuQ9RlIiIt9XlbANEoZvBHC304fcpZFbZUYOGd+A+1d4DdxWPzvGUFOTLbVZY6x1CamemVbxd/oh2oEFBBwLcaOThiDwPf0YuXqAiSaV84G05ktGkZqSNH5ngFpBgoC+BECQjrme4LoqCxUv80nCcxY=
-        file_glob: true
-        file: 
-          - ouch_*.tgz
-        skip_cleanup: true
-        on:
-          tags: true
+  - r: release
+    os: linux
+  - r: devel
+    os: linux
+  - r: 3.3
+    os: linux
+  - r: release
+    os: osx
+  - stage: coverage
+    r: release
+    os: linux
+    r_packages:
+    - covr
+    script:
+    - travis_wait 30 Rscript -e 'covr::codecov()'
+  - stage: deploy
+    r: release
+    os: osx
+    script:
+    - R CMD build .
+    - mkdir -p plib
+    - TARBALL=$(ls -1t *.tar.gz)
+    - R CMD INSTALL --build -l plib ${TARBALL}
+    - rm -rf plib
+    deploy:
+      provider: releases
+      api-key:
+        secure: MveD907DUzum57WMInjInWwoeAGD4D1E03yEkAJZU3eTQyTuSAZomLr8b9qFRzawDRmmcx4+5dasgsiR+e9uW8TAIGoP0/s62oeaH8zZEYj+nDwPGJJijBj7qAE5TCJVW6oErW0uvB3knkCV/HXnM2Mde0/U7cfSYOFahFHFvkKo/+nU1GaDWUQ3vdBPMPKxCxjhlxIi6QZtPyzVNFN3shyx88YUuYIknivMiS+A1wEOQwj53JN2L/s8bJc+Upa7/gp6kI1fVTw6bl2cc4MC/It4KTVlTlqG5qIKgjlmcu+0QTf8kKvTdJJhIupZEQh0QL16l9OnB0GFebjb9if+fEvjmFOKXethdFPGVgwek5Kjej0Ts1IbA9xVSrslkZTJetIgRY9tO11e3ool9daONIvFDdUU0QBM5/9srjUZtUAEgIfvlLXmjUd5cpRmPHnmdwkXAQJ/FgQ7GBV27l3lzCVUpxZbqvBMor8wpEoENFgKbPjtZb2WiSobJ5+Y2U2N0bjmnLE6+AN1znubOuFgGuQ9RlIiIt9XlbANEoZvBHC304fcpZFbZUYOGd+A+1d4DdxWPzvGUFOTLbVZY6x1CamemVbxd/oh2oEFBBwLcaOThiDwPf0YuXqAiSaV84G05ktGkZqSNH5ngFpBgoC+BECQjrme4LoqCxUv80nCcxY=
+      file_glob: true
+      file:
+      - ouch_*.tgz
+      skip_cleanup: true
+      on:
+        tags: true
+deploy:
+  api-key:
+    secure: RWxlkw4t6ejGL3mGU6SgNQdALw7S01OiobEqhzuVCWRbDWZMz3OGn8qAnZyWNxpWQBnSTzIGb20rHFab3/FH0RqlnYw3J0aZrE7dE9dzR210YjHUmGtcZ9TfBr0r1DW3JpNhtrpaqc9dQkAI5YKc5Fcw1ifD8KrQyfsLHNlwv8Ga5d5j/tEgM+UYVxPDjAuMUZc65Lz4NLauwr1dyme5xhNYW3NN8VcpfoDJHl+8BTLVuyVkGHPwdehHCa0RC1rFJklHKakxvnB0t/l1kmmahZMkuTgDqU+8eqvBBbjclbSnQE5JMOTG+fmbp4RwVx0QRyE8Ici2uAAs3AQ9ChzXDOcsxwLBiWdYL1/MNsH9KlcOSP/4gYD0Mb5LHRKJZnXMj9AKssT0pkfZWTTcWWZNjDXG2b6fX9cD+l79ck+Uh+P78FlHCsJDnnUEq49YJ7IVt+trG+hj+j6alfZGXr9XvtLFMzxnxO4ZRRhFQ6DZ5Sf7gL387WxA2HJnl6A756IDYZ4BDHN8GSi7AkDgyXkbXNjskCeKlUwxpUXRvkAX+vIoK73k4q9Sp7iUxjlShfaV4FY9HReXUlFhErWDprSOGCijMTlQN0rSHuA9eWdCp46xVr38FbvLf9KQ1xZhO+Xk5RRd3HmCe7VJ7k51xvlUT6tHexO/YzCZhtBBfelTb6Y=
