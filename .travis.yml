@@ -1,46 +1,41 @@
 language: R
 sudo: false
 cache: packages
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-matrix:
+file_glob: true
+
+os:
+  - linux
+  - osx
+  
+env:
+  - RVERSION=release
+  - RVERSION=devel
+  - RVERSION=oldrel
+
+jobs:
   include:
-  - os: linux
-    env: RVERSION=release
-    r_github_packages:
-    - jimhester/covr
-    after_success:
-    - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-    - travis_wait 30 Rscript -e 'covr::codecov()'
-  - os: linux
-    env: RVERSION=3.0.0
-    after_success:
-    - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-  - os: linux
-    env: RVERSION=devel
-    after_success:
-    - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-  - os: osx
-    env: RVERSION=release
-    after_success:
-    - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-    - mkdir -p pkgbuild
-    - R CMD INSTALL --build -l pkgbuild ouch_*.tar.gz
-    - rm -rf pkgbuild
-  - os: osx
-    env: RVERSION=devel
-    after_success:
-    - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
-deploy:
-  provider: releases
-  api-key:
-    secure: MveD907DUzum57WMInjInWwoeAGD4D1E03yEkAJZU3eTQyTuSAZomLr8b9qFRzawDRmmcx4+5dasgsiR+e9uW8TAIGoP0/s62oeaH8zZEYj+nDwPGJJijBj7qAE5TCJVW6oErW0uvB3knkCV/HXnM2Mde0/U7cfSYOFahFHFvkKo/+nU1GaDWUQ3vdBPMPKxCxjhlxIi6QZtPyzVNFN3shyx88YUuYIknivMiS+A1wEOQwj53JN2L/s8bJc+Upa7/gp6kI1fVTw6bl2cc4MC/It4KTVlTlqG5qIKgjlmcu+0QTf8kKvTdJJhIupZEQh0QL16l9OnB0GFebjb9if+fEvjmFOKXethdFPGVgwek5Kjej0Ts1IbA9xVSrslkZTJetIgRY9tO11e3ool9daONIvFDdUU0QBM5/9srjUZtUAEgIfvlLXmjUd5cpRmPHnmdwkXAQJ/FgQ7GBV27l3lzCVUpxZbqvBMor8wpEoENFgKbPjtZb2WiSobJ5+Y2U2N0bjmnLE6+AN1znubOuFgGuQ9RlIiIt9XlbANEoZvBHC304fcpZFbZUYOGd+A+1d4DdxWPzvGUFOTLbVZY6x1CamemVbxd/oh2oEFBBwLcaOThiDwPf0YuXqAiSaV84G05ktGkZqSNH5ngFpBgoC+BECQjrme4LoqCxUv80nCcxY=
-  file_glob: true
-  file: 
-    - ouch_*.tgz
-    - ouch_*.tar.gz
-  skip_cleanup: true
-  on:
-    tags: true
+    - stage: test
+      script: 
+        - R CMD build .
+        - R CMD check *.tar.gz
+        - grep -q -R "warning" "${RCHECK_DIR}/00install.out"
+    - stage: deploy
+      os: osx
+      env:
+        - RVERSION=release
+      script: 
+        - R CMD build .
+        - mkdir -p plib
+        - R CMD INSTALL --build -l plib *.tar.gz
+        - rm -rf plib
+      deploy:
+        provider: releases
+        api-key:
+          secure: MveD907DUzum57WMInjInWwoeAGD4D1E03yEkAJZU3eTQyTuSAZomLr8b9qFRzawDRmmcx4+5dasgsiR+e9uW8TAIGoP0/s62oeaH8zZEYj+nDwPGJJijBj7qAE5TCJVW6oErW0uvB3knkCV/HXnM2Mde0/U7cfSYOFahFHFvkKo/+nU1GaDWUQ3vdBPMPKxCxjhlxIi6QZtPyzVNFN3shyx88YUuYIknivMiS+A1wEOQwj53JN2L/s8bJc+Upa7/gp6kI1fVTw6bl2cc4MC/It4KTVlTlqG5qIKgjlmcu+0QTf8kKvTdJJhIupZEQh0QL16l9OnB0GFebjb9if+fEvjmFOKXethdFPGVgwek5Kjej0Ts1IbA9xVSrslkZTJetIgRY9tO11e3ool9daONIvFDdUU0QBM5/9srjUZtUAEgIfvlLXmjUd5cpRmPHnmdwkXAQJ/FgQ7GBV27l3lzCVUpxZbqvBMor8wpEoENFgKbPjtZb2WiSobJ5+Y2U2N0bjmnLE6+AN1znubOuFgGuQ9RlIiIt9XlbANEoZvBHC304fcpZFbZUYOGd+A+1d4DdxWPzvGUFOTLbVZY6x1CamemVbxd/oh2oEFBBwLcaOThiDwPf0YuXqAiSaV84G05ktGkZqSNH5ngFpBgoC+BECQjrme4LoqCxUv80nCcxY=
+        file_glob: true
+        file: 
+          - ouch_*.tgz
+          - ouch_*.tar.gz
+        skip_cleanup: true
+        on:
+          tags: true
