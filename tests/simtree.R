@@ -13,12 +13,12 @@ oubranch <- function (x0, t0, t1, alpha, sigma, theta, nstep = 10) {
 
 ex <- function(x) {
   y <- t(chol(x))
-  y[lower.tri(y,diag=T)]
+  y[lower.tri(y,diag=TRUE)]
 }
 
 ox <- function(x) {
   y <- matrix(0,nchar,nchar)
-  y[lower.tri(y,diag=T)] <- x
+  y[lower.tri(y,diag=TRUE)] <- x
   y%*%t(y)
 }
 
@@ -38,7 +38,8 @@ theta <- list(
 
 set.seed(2954189)
 
-x <- matrix(nrow=nnodes,ncol=5,dimnames=list(NULL,c("node","ancestor","time","A","B")))
+x <- matrix(nrow=nnodes,ncol=5,
+  dimnames=list(NULL,c("node","ancestor","time","A","B")))
 x[,1] <- 1:nnodes
 node <- 1
 time <- 0
@@ -55,7 +56,7 @@ while (node < nnodes) {
 }
 x <- as.data.frame(x)
 
-x$reg <- as.factor(sample('ns',size=nnodes,replace=T))
+x$reg <- as.factor(sample('ns',size=nnodes,replace=TRUE))
 
 x$A <- NA
 x$B <- NA
@@ -82,7 +83,7 @@ toc <- Sys.time()
 print(toc-tic)
 print(summary(hfit))
 
-x$reg <- as.factor(sample(c('big','small'),size=nnodes,replace=T))
+x$reg <- as.factor(sample(c('big','small'),size=nnodes,replace=TRUE))
 
 x$A <- NA
 x$B <- NA

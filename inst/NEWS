@@ -1,37 +1,44 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_2-_1:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_4:
+
+        • Depends on R>=3.6.  This change necessitated by modifications
+          to the default RNG with R version 3.6.
+
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_3:
+
+        • Changes to the organization of the package.
+
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_2:
 
         • Upgrade the package license to GPL version 3.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_1-_1:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_1:
 
         • Improvements to the underlying C code, which now registers
           callable functions.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_0-_1:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_0:
 
         • In ‘glssoln’, when the Choleski decomposition fails, a
           warning is issued and ‘NA’s are returned.  In previous
           versions, an error was thrown.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8-_3:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8:
 
         • 'as(tree,"data.frame")' now returns a data-frame with
           rownames identical to the node-names (tree@nodes).
-
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._8-_1:
 
         • Functions that have been deprecated since 2.1-1 have been
           removed.  The argument 'alpha' that was deprecated in favor
           of 'sqrt.alpha' in version 2.6-1 has been removed.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._7-_2:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._7:
 
         • Fixed typo in the documentation of 'hansen'.  Thanks to
           Roland Sookias for bringing this to my attention.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._6-_1:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._6:
 
         • In the 'hansen' function, the use of the argument 'alpha' was
           confusing.  This vector parameterizes the "selection" portion
@@ -50,7 +57,7 @@ _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._6-_1:
           'optim' if method='optim' and will otherwise generate an
           error.
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1-_1:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1:
 
         • Version 2 of ouch represents a major revision.  ouch's
           capabilities have been substantially extended.

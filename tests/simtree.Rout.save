@@ -1,11 +1,13 @@
 
-R version 2.10.1 (2009-12-14)
-Copyright (C) 2009 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
 Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
 
 R is a collaborative project with many contributors.
 Type 'contributors()' for more information and
@@ -31,12 +33,12 @@ Loading required package: subplex
 > 
 > ex <- function(x) {
 +   y <- t(chol(x))
-+   y[lower.tri(y,diag=T)]
++   y[lower.tri(y,diag=TRUE)]
 + }
 > 
 > ox <- function(x) {
 +   y <- matrix(0,nchar,nchar)
-+   y[lower.tri(y,diag=T)] <- x
++   y[lower.tri(y,diag=TRUE)] <- x
 +   y%*%t(y)
 + }
 > 
@@ -56,7 +58,8 @@ Loading required package: subplex
 > 
 > set.seed(2954189)
 > 
-> x <- matrix(nrow=nnodes,ncol=5,dimnames=list(NULL,c("node","ancestor","time","A","B")))
+> x <- matrix(nrow=nnodes,ncol=5,
++   dimnames=list(NULL,c("node","ancestor","time","A","B")))
 > x[,1] <- 1:nnodes
 > node <- 1
 > time <- 0
@@ -73,7 +76,7 @@ Loading required package: subplex
 + }
 > x <- as.data.frame(x)
 > 
-> x$reg <- as.factor(sample('ns',size=nnodes,replace=T))
+> x$reg <- as.factor(sample('ns',size=nnodes,replace=TRUE))
 > 
 > x$A <- NA
 > x$B <- NA
@@ -90,7 +93,7 @@ Loading required package: subplex
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 8.44382 secs
+Time difference of 1.985994 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -133,7 +136,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.396554 secs
+Time difference of 0.1315975 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -184,7 +187,7 @@ $dof
 [1] 8
 
 > 
-> x$reg <- as.factor(sample(c('big','small'),size=nnodes,replace=T))
+> x$reg <- as.factor(sample(c('big','small'),size=nnodes,replace=TRUE))
 > 
 > x$A <- NA
 > x$B <- NA
@@ -201,7 +204,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 8.317903 secs
+Time difference of 1.880172 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -210,31 +213,31 @@ brown(data = x[c("A", "B")], tree = tree)
 
 $sigma.squared
             [,1]        [,2]
-[1,] 0.009197280 0.001424883
-[2,] 0.001424883 0.012807071
+[1,] 0.009988036 0.002198351
+[2,] 0.002198351 0.012343692
 
 $theta
 $theta$A
-[1] -0.005977056
+[1] -0.02066064
 
 $theta$B
-[1] 0.2825566
+[1] 0.2477921
 
 
 $loglik
-[1] 185.4227
+[1] 182.5327
 
 $deviance
-[1] -370.8453
+[1] -365.0655
 
 $aic
-[1] -360.8453
+[1] -355.0655
 
 $aic.c
-[1] -360.7244
+[1] -354.9445
 
 $sic
-[1] -339.7523
+[1] -333.9725
 
 $dof
 [1] 5
@@ -247,31 +250,31 @@ brown(data = data, tree = object)
 
 $sigma.squared
             [,1]        [,2]
-[1,] 0.012807071 0.001424883
-[2,] 0.001424883 0.009197280
+[1,] 0.012343692 0.002198351
+[2,] 0.002198351 0.009988036
 
 $theta
 $theta$B
-[1] 0.2825566
+[1] 0.2477921
 
 $theta$A
-[1] -0.005977056
+[1] -0.02066064
 
 
 $loglik
-[1] 185.4227
+[1] 182.5327
 
 $deviance
-[1] -370.8453
+[1] -365.0655
 
 $aic
-[1] -360.8453
+[1] -355.0655
 
 $aic.c
-[1] -360.7244
+[1] -354.9445
 
 $sic
-[1] -339.7523
+[1] -333.9725
 
 $dof
 [1] 5
@@ -281,7 +284,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.542882 secs
+Time difference of 0.2379658 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -305,28 +308,28 @@ $sigma.squared
 
 $optima
 $optima$A
-       big      small 
--0.3812335  4.3240903 
+      big     small 
+-2.718422  2.390460 
 
 $optima$B
-       big      small 
-0.08638197 3.07276801 
+      big     small 
+0.1872681 2.3082618 
 
 
 $loglik
-[1] 237.8615
+[1] 202.8818
 
 $deviance
-[1] -475.723
+[1] -405.7637
 
 $aic
-[1] -455.723
+[1] -385.7637
 
 $aic.c
-[1] -455.2749
+[1] -385.3156
 
 $sic
-[1] -413.537
+[1] -343.5777
 
 $dof
 [1] 10

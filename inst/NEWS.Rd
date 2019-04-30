@@ -1,38 +1,45 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
-\section{Changes in ouch version 2.12-1}{
+\section{Changes in ouch version 2.14}{
+  \itemize{
+    \item Depends on R>=3.6.
+    This change necessitated by modifications to the default RNG with R version 3.6.
+  }
+}
+\section{Changes in ouch version 2.13}{
+  \itemize{
+    \item Changes to the organization of the package.
+  }
+}
+\section{Changes in ouch version 2.12}{
   \itemize{
     \item Upgrade the package license to GPL version 3.
   }
 }
-\section{Changes in ouch version 2.11-1}{
+\section{Changes in ouch version 2.11}{
   \itemize{
     \item Improvements to the underlying C code, which now registers callable functions.
   }
 }
-\section{Changes in ouch version 2.10-1}{
+\section{Changes in ouch version 2.10}{
   \itemize{
     \item In \code{glssoln}, when the Choleski decomposition fails, a warning is issued and \code{NA}s are returned.
     In previous versions, an error was thrown.
   }
 }
-\section{Changes in ouch version 2.8-3}{
+\section{Changes in ouch version 2.8}{
   \itemize{
     \item 'as(tree,"data.frame")' now returns a data-frame with rownames identical to the node-names (tree@nodes).
-  }
-}
-\section{Changes in ouch version 2.8-1}{
-  \itemize{
     \item Functions that have been deprecated since 2.1-1 have been removed.
       The argument 'alpha' that was deprecated in favor of 'sqrt.alpha' in version 2.6-1 has been removed.
   }
 }
-\section{Changes in ouch version 2.7-2}{
+\section{Changes in ouch version 2.7}{
   \itemize{
     \item Fixed typo in the documentation of 'hansen'.  Thanks to Roland Sookias for bringing this to my attention.
   }
 }
-\section{Changes in ouch version 2.6-1}{
+\section{Changes in ouch version 2.6}{
   \itemize{
     \item In the 'hansen' function, the use of the argument 'alpha' was confusing.  
       	This vector parameterizes the "selection" portion of the OU model, which since version 2 has been assumed to be a positive-definite matrix (corresponding to stabilizing selection).
@@ -43,7 +50,7 @@
       In some future release, use of 'alpha' as an argument to 'hansen' will no longer generate a warning but will instead be passed through to the control list for 'optim' if method='optim' and will otherwise generate an error.
   }
 }
-\section{Changes in ouch version 2.1-1}{
+\section{Changes in ouch version 2.1}{
   \itemize{
     \item Version 2 of ouch represents a major revision.  
       	ouch's capabilities have been substantially extended.
