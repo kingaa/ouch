@@ -22,8 +22,6 @@ jobs:
     os: linux
   - r: devel
     os: linux
-  - r: 3.3
-    os: linux
   - r: release
     os: osx
   - stage: coverage
