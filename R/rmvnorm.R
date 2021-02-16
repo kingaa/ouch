@@ -5,4 +5,3 @@ rmvnorm <- function (n = 1, mean, var) {
   cf <- t(chol(var))
   matrix(mean,p,n)+cf%*%matrix(rnorm(p*n),p,n)
 }
-

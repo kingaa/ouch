@@ -1,26 +1,26 @@
 setClass(
-         'hansentree',
-         contains='ouchtree',
-         representation=representation(
-           call='call',
-           nchar='integer',
-           optim.diagn='list',
-           hessian='matrix',
-           data='list',
-           regimes='list',
-           beta='list',
-           theta='list',
-           sigma='numeric',
-           sqrt.alpha='numeric',
-           loglik='numeric'
-           )
-         )
+  'hansentree',
+  contains='ouchtree',
+  representation=representation(
+    call='call',
+    nchar='integer',
+    optim.diagn='list',
+    hessian='matrix',
+    data='list',
+    regimes='list',
+    beta='list',
+    theta='list',
+    sigma='numeric',
+    sqrt.alpha='numeric',
+    loglik='numeric'
+  )
+)
 
 hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
-                    fit = TRUE,
-                    method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),
-                    hessian = FALSE,
-                    ...) {
+  fit = TRUE,
+  method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),
+  hessian = FALSE,
+  ...) {
 
   if (!is(tree,'ouchtree'))
     stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
@@ -43,9 +43,9 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   }
   if (is.list(data)) {
     if (
-        any(sapply(data,class)!='numeric') ||
+      any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
-        )
+    )
       stop(sQuote("data")," vector(s) must be numeric, with one entry per node of the tree")
     if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
       stop(sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"))
@@ -55,7 +55,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
         stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
     }
   } else
-  stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
+    stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
 
   nchar <- length(data)
   if (is.null(names(data))) names(data) <- paste('char',seq_len(nchar),sep='')
@@ -120,19 +120,19 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
 
     if (method=='subplex') {
       opt <- subplex(
-                     par=c(sqrt.alpha,sigma),
-                     fn = function (par) {
-                       ou.lik.fn(
-                                 tree=tree,
-                                 alpha=sym.par(par[seq(nalpha)]),
-                                 sigma=sym.par(par[nalpha+seq(nsigma)]),
-                                 beta=beta,
-                                 dat=dat
-                                 )$deviance
-                     },
-                     hessian=hessian,
-                     control=list(...)
-                     )
+        par=c(sqrt.alpha,sigma),
+        fn = function (par) {
+          ou.lik.fn(
+            tree=tree,
+            alpha=sym.par(par[seq(nalpha)]),
+            sigma=sym.par(par[nalpha+seq(nsigma)]),
+            beta=beta,
+            dat=dat
+          )$deviance
+        },
+        hessian=hessian,
+        control=list(...)
+      )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `subplex'")
         if (!is.null(opt$message))
@@ -141,21 +141,21 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
       }
     } else {
       opt <- optim(
-                   par=c(sqrt.alpha,sigma),
-                   fn = function (par) {
-                     ou.lik.fn(
-                               tree=tree,
-                               alpha=sym.par(par[seq(nalpha)]),
-                               sigma=sym.par(par[nalpha+seq(nsigma)]),
-                               beta=beta,
-                               dat=dat
-                               )$deviance
-                   },
-                   gr=NULL,
-                   hessian=hessian,
-                   method=method,
-                   control=list(...)
-                   )
+        par=c(sqrt.alpha,sigma),
+        fn = function (par) {
+          ou.lik.fn(
+            tree=tree,
+            alpha=sym.par(par[seq(nalpha)]),
+            sigma=sym.par(par[nalpha+seq(nsigma)]),
+            beta=beta,
+            dat=dat
+          )$deviance
+        },
+        gr=NULL,
+        hessian=hessian,
+        method=method,
+        control=list(...)
+      )
       if (opt$convergence!=0) {
         message("unsuccessful convergence, code ",opt$convergence,", see documentation for `optim'")
         if (!is.null(opt$message))
@@ -172,22 +172,22 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
 
   if (hessian) {
     hs <- opt$hessian
-#     se <- sqrt(diag(solve(0.5*hs)))
-#     se.alpha <- se[seq(nalpha)]
-#     se.sigma <- se[nalpha+seq(nsigma)]
+                                        #     se <- sqrt(diag(solve(0.5*hs)))
+                                        #     se.alpha <- se[seq(nalpha)]
+                                        #     se.sigma <- se[nalpha+seq(nsigma)]
   } else {
     hs <- matrix(NA,0,0)
-#     se.alpha <- rep(NA,nalpha)
-#     se.sigma <- rep(NA,nalpha)
+                                        #     se.alpha <- rep(NA,nalpha)
+                                        #     se.sigma <- rep(NA,nalpha)
   }
 
   sol <- ou.lik.fn(
-                   tree=tree,
-                   alpha=sym.par(sqrt.alpha),
-                   sigma=sym.par(sigma),
-                   beta=beta,
-                   dat=dat
-                   )
+    tree=tree,
+    alpha=sym.par(sqrt.alpha),
+    sigma=sym.par(sigma),
+    beta=beta,
+    dat=dat
+  )
   theta.x <- sol$coeff
   reg <- sets.of.regimes(tree,regimes)
   theta <- vector('list',nchar)
@@ -200,20 +200,20 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   }
   
   new(
-      'hansentree',
-      as(tree,'ouchtree'),
-      call=match.call(),
-      nchar=nchar,
-      optim.diagn=optim.diagn,
-      hessian=hs,
-      data=as.list(data),
-      regimes=as.list(regimes),
-      beta=beta,
-      theta=theta,
-      sigma=sigma,
-      sqrt.alpha=sqrt.alpha,
-      loglik=-0.5*sol$deviance
-      )
+    'hansentree',
+    as(tree,'ouchtree'),
+    call=match.call(),
+    nchar=nchar,
+    optim.diagn=optim.diagn,
+    hessian=hs,
+    data=as.list(data),
+    regimes=as.list(regimes),
+    beta=beta,
+    theta=theta,
+    sigma=sigma,
+    sqrt.alpha=sqrt.alpha,
+    loglik=-0.5*sol$deviance
+  )
 }
 
 ## note that, on input, alpha and sigma are full symmetric matrices
@@ -223,9 +223,9 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
   w <- .Call(ouch_weights,object=tree,lambda=ev$values,S=ev$vectors,beta=beta)
   v <- .Call(ouch_covar,object=tree,lambda=ev$values,S=ev$vectors,sigma.sq=sigma)
   gsol <- try(
-              glssoln(w,dat,v),
-              silent=FALSE
-              )
+    glssoln(w,dat,v),
+    silent=FALSE
+  )
   if (inherits(gsol,'try-error')) { # return Inf deviance (so that optimizer can keep trying)
     e <- rep(NA,n)
     theta <- rep(NA,ncol(w))
@@ -240,12 +240,12 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
     dev <- n*log(2*pi)+as.numeric(det.v$modulus)+q[1,1]
   }
   list(
-       deviance=dev,
-       coeff=theta,
-       weight=w,
-       vcov=v,
-       resids=e
-       )
+    deviance=dev,
+    coeff=theta,
+    weight=w,
+    vcov=v,
+    resids=e
+  )
 }
 
 sym.par <- function (x) {
@@ -309,73 +309,73 @@ hansen.deviate <- function (n = 1, object) {
   w <- .Call(ouch_weights,object=object,lambda=ev$values,S=ev$vectors,beta=object@beta)
   v <- .Call(ouch_covar,object=object,lambda=ev$values,S=ev$vectors,sigma.sq=sym.par(object@sigma))
   X <- array(
-             data=NA,
-             dim=c(object@nnodes,object@nchar,n),
-             dimnames=list(
-               object@nodes,
-               names(object@data),
-               paste('rep',seq(n),sep='.')
-               )
-             )
+    data=NA,
+    dim=c(object@nnodes,object@nchar,n),
+    dimnames=list(
+      object@nodes,
+      names(object@data),
+      paste('rep',seq(n),sep='.')
+    )
+  )
 
   theta <- do.call(c,object@theta)
 
   X[object@term,,] <- array(
-                            data=rmvnorm(
-                              n=n,
-                              mean=as.numeric(w%*%theta),
-                              var=v
-                              ),
-                            dim=c(object@nterm,object@nchar,n)
-                            )
+    data=rmvnorm(
+      n=n,
+      mean=as.numeric(w%*%theta),
+      var=v
+    ),
+    dim=c(object@nterm,object@nchar,n)
+  )
   apply(X,3,as.data.frame)
 }
 
 setMethod(
-          'simulate',
-          'hansentree',
-          function (object, nsim = 1, seed = NULL, ...) {
-            if (!is.null(seed)) {
-              if (!exists('.Random.seed',envir=.GlobalEnv)) runif(1)
-              save.seed <- get('.Random.seed',envir=.GlobalEnv)
-              set.seed(seed)
-            }
-            X <- hansen.deviate(n=nsim,object)
-            if (!is.null(seed)) {
-              assign('.Random.seed',save.seed,envir=.GlobalEnv)
-            }
-            X
-          }
-          )
+  'simulate',
+  'hansentree',
+  function (object, nsim = 1, seed = NULL, ...) {
+    if (!is.null(seed)) {
+      if (!exists('.Random.seed',envir=.GlobalEnv)) runif(1)
+      save.seed <- get('.Random.seed',envir=.GlobalEnv)
+      set.seed(seed)
+    }
+    X <- hansen.deviate(n=nsim,object)
+    if (!is.null(seed)) {
+      assign('.Random.seed',save.seed,envir=.GlobalEnv)
+    }
+    X
+  }
+)
 
 setMethod(
-          'update',
-          'hansentree',
-          function (object, data, regimes, sqrt.alpha, sigma, ...) {
-            if (missing(sqrt.alpha)) sqrt.alpha <- object@sqrt.alpha
-            if (missing(sigma)) sigma <- object@sigma
-            hansen(
-                   data=data,
-                   tree=object,
-                   regimes=regimes,
-                   sqrt.alpha=sqrt.alpha,
-                   sigma=sigma,
-                   ...
-                   )
-          }
-          )
+  'update',
+  'hansentree',
+  function (object, data, regimes, sqrt.alpha, sigma, ...) {
+    if (missing(sqrt.alpha)) sqrt.alpha <- object@sqrt.alpha
+    if (missing(sigma)) sigma <- object@sigma
+    hansen(
+      data=data,
+      tree=object,
+      regimes=regimes,
+      sqrt.alpha=sqrt.alpha,
+      sigma=sigma,
+      ...
+    )
+  }
+)
 
 
 setMethod(
-          "bootstrap",
-          "hansentree",
-          function (object, nboot = 200, seed = NULL, ...) {
-            simdata <- simulate(object,nsim=nboot,seed=seed)
-            results <- vector(mode='list',length=nboot)
-            toshow <- c("alpha","sigma.squared","optima","loglik","aic","aic.c","sic","dof")
-            for (b in seq_len(nboot)) {
-              results[[b]] <- summary(update(object,data=simdata[[b]],...))
-            }
-            as.data.frame(t(sapply(results,function(x)unlist(x[toshow]))))
-          }
-          )
+  "bootstrap",
+  "hansentree",
+  function (object, nboot = 200, seed = NULL, ...) {
+    simdata <- simulate(object,nsim=nboot,seed=seed)
+    results <- vector(mode='list',length=nboot)
+    toshow <- c("alpha","sigma.squared","optima","loglik","aic","aic.c","sic","dof")
+    for (b in seq_len(nboot)) {
+      results[[b]] <- summary(update(object,data=simdata[[b]],...))
+    }
+    as.data.frame(t(sapply(results,function(x)unlist(x[toshow]))))
+  }
+)

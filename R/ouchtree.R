@@ -1,21 +1,21 @@
 setClass(
-         'ouchtree',
-         representation=representation(
-           nnodes = 'integer',
-           nodes = 'character',
-           ancestors = 'character',
-           nodelabels = 'character',
-           times = 'numeric',
-           root = 'integer',
-           nterm = 'integer',
-           term = 'integer',
-           anc.numbers = 'integer',
-           lineages = 'list',
-           epochs = 'list',
-           branch.times = 'matrix',
-           depth = 'numeric'
-           )
-         )
+  'ouchtree',
+  representation=representation(
+    nnodes = 'integer',
+    nodes = 'character',
+    ancestors = 'character',
+    nodelabels = 'character',
+    times = 'numeric',
+    root = 'integer',
+    nterm = 'integer',
+    term = 'integer',
+    anc.numbers = 'integer',
+    lineages = 'list',
+    epochs = 'list',
+    branch.times = 'matrix',
+    depth = 'numeric'
+  )
+)
 
 ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 
@@ -45,11 +45,11 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   if (length(outs) > 0) {
     for (out in outs) {
       warning(
-              sprintf(
-                      "the ancestor of node %s is not in the tree",
-                      nodes[out]
-                      ),
-              call.=FALSE)
+        sprintf(
+          "the ancestor of node %s is not in the tree",
+          nodes[out]
+        ),
+        call.=FALSE)
     }
     stop("invalid tree")
   }
@@ -80,21 +80,21 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   }
 
   new(
-      'ouchtree',
-      nnodes = length(nodes),
-      nodes=nodes,
-      ancestors=ancestors,
-      nodelabels=as.character(labels),
-      times=times,
-      root=root,
-      nterm=length(term),
-      term=term,
-      anc.numbers=anc,
-      lineages=lineages,
-      epochs=epochs(lineages,times,term), # absolute times of epochs
-      branch.times=branch.times(lineages,times,term), # absolute times of branch points
-      depth=max(times)
-      )
+    'ouchtree',
+    nnodes = length(nodes),
+    nodes=nodes,
+    ancestors=ancestors,
+    nodelabels=as.character(labels),
+    times=times,
+    root=root,
+    nterm=length(term),
+    term=term,
+    anc.numbers=anc,
+    lineages=lineages,
+    epochs=epochs(lineages,times,term), # absolute times of epochs
+    branch.times=branch.times(lineages,times,term), # absolute times of branch points
+    depth=max(times)
+  )
 }
 
 ## map ancestor names to row numbers

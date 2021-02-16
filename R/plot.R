@@ -17,18 +17,18 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   if (sum(regimes%in%regimes[root])==1)
     levs <- setdiff(levs,regimes[root])
   palette <- rainbow(length(levs))
-  for (r in 1:length(levs)) {
-    yy <- arrange.tree.even(root,anc, term)
+  for (r in seq_along(levs)) {
+    yy <- arrange.tree(root,anc,term)
     xx <- x@times
-    f <- which(!is.root.node(anc) & regimes == levs[r])
+    f <- which(!is.root.node(anc) & regimes==levs[r])
     pp <- anc[f]
-    X <- array(data=c(xx[f], xx[pp], rep(NA,length(f))),dim=c(length(f),3))
-    Y <- array(data=c(yy[f], yy[pp], rep(NA,length(f))),dim=c(length(f),3))
+    X <- array(data=c(xx[f],xx[pp],rep(NA,length(f))),dim=c(length(f),3))
+    Y <- array(data=c(yy[f],yy[pp],rep(NA,length(f))),dim=c(length(f),3))
     oz <- array(data=1,dim=c(2,1))
     X <- kronecker(t(X),oz)
     Y <- kronecker(t(Y),oz)
-    X <- X[2:length(X)]
-    Y <- Y[1:(length(Y)-1)]
+    X <- X[-1]
+    Y <- Y[-length(Y)]
     C <- rep(palette[r],length(X))
     if (r > 1) par(new=T)
     par(yaxt='n')
@@ -41,77 +41,71 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   invisible(NULL)
 }
 
-arrange.tree.even <- function(root, anc, term){    ## calculate even spacing along y
-  k <- which(anc==root)
-  n <- length(k)   # 1 or 2 (or 3, etc)
-  reltree <- rep(0,length(anc))
-  reltree[term] <- 0:(length(term)-1)*(.95-.05)/(length(term)-1)+.05  ## space terminal taxa
-  y <- vector()
-  p <- list()
-  
-  if (root %in% term) {
-    y <- reltree[root]
-    names(y) <- root
-  	return(y)          # return y of tips
-   }  else {
-      for (j in 1:n) {
-    	p[[j]] <- arrange.tree.even(k[j], anc, term)
-    	y <- c(y, p[[j]]) 
-      }
-
-      x <- mean(unlist(p)[as.character(k)])   # x is mean of descendants 
-      names(x) <- root
-      y <- c(y,x)
-      oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
-      return(y[oo])	
-
+## The following function lays out the tree.
+## Contribution by M. Butler: vertical spacing of terminal leaves is even
+arrange.tree <- function (root, anc, term) {
+  k <- which(anc==root) # nodes immediately descended from 'root'
+  reltree <- numeric(length(anc))
+  reltree[term] <- seq(from=0,to=1,length.out=length(term)) ## space terminal taxa
+  if (root %in% term) { ## terminate recursion
+    setNames(reltree[root],root)
+  } else { ## recurse
+    p <- list()
+    for (j in seq_along(k)) {
+      p[[j]] <- arrange.tree(k[j],anc,term)
+    }
+    y <- unlist(p)
+    yy <- setNames(mean(y[as.character(k)]),root) # x is mean y-coordinate of descendants 
+    y <- c(y,yy)
+    oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
+    y[oo]
   }
 }
 
 setMethod(
-          'plot',
-          'ouchtree',
-          function (x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels) {
-            labels <- x@nodelabels
-            if (node.names) {
-              lbld <- !is.na(labels)
-              labels[lbld] <- paste(x@nodes[lbld],labels[lbld])
-              labels[!lbld] <- x@nodes[!lbld]
-            }
-            if (is.data.frame(regimes)) {
-              nm <- rownames(regimes)
-              regimes <- lapply(as.list(regimes),function(x){names(x)<-nm;x})
-            }
-            if (is.list(regimes)) {
-              if (any(sapply(regimes,length)!=x@nnodes))
-                stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
-            } else if (!is.null(regimes)) {
-              if (length(regimes)!=x@nnodes)
-                stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
-              nm <- deparse(substitute(regimes))[1]
-              regimes <- list(regimes)
-              names(regimes) <- nm
-            }
-            if (is.null(regimes)) {
-              invisible(tree.plot.internal(x,regimes=NULL,labels=labels,legend=legend,...))
-            } else {
-              oldpar <- par(mfrow=c(1,length(regimes)))
-              on.exit(par(oldpar))
-              retval <- lapply(
-                               regimes,
-                               function (r) tree.plot.internal(x,regimes=r,labels=labels,...)
-                               )
-              invisible(retval)
-            }
-          }
-          )
+  'plot',
+  'ouchtree',
+  function (x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels) {
+    labels <- x@nodelabels
+    if (node.names) {
+      lbld <- !is.na(labels)
+      labels[lbld] <- paste(x@nodes[lbld],labels[lbld])
+      labels[!lbld] <- x@nodes[!lbld]
+    }
+    if (is.data.frame(regimes)) {
+      nm <- rownames(regimes)
+      regimes <- lapply(as.list(regimes),function(x){names(x)<-nm;x})
+    }
+    if (is.list(regimes)) {
+      if (any(sapply(regimes,length)!=x@nnodes))
+        stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
+    } else if (!is.null(regimes)) {
+      if (length(regimes)!=x@nnodes)
+        stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
+      nm <- deparse(substitute(regimes))[1]
+      regimes <- list(regimes)
+      names(regimes) <- nm
+    }
+    if (is.null(regimes)) {
+      invisible(tree.plot.internal(x,regimes=NULL,labels=labels,legend=legend,...))
+    } else {
+      oldpar <- par(mfrow=c(1,length(regimes)))
+      on.exit(par(oldpar))
+      retval <- lapply(
+        regimes,
+        function (r) tree.plot.internal(x,regimes=r,labels=labels,...)
+      )
+      invisible(retval)
+    }
+  }
+)
 
 setMethod(
-          'plot',
-          'hansentree',
-          function (x, y, regimes, ...) {
-            if (missing(regimes))
-              regimes <- x@regimes
-            plot(x=as(x,'ouchtree'),y=y,regimes=regimes,...)
-          }
-          )
+  'plot',
+  'hansentree',
+  function (x, y, regimes, ...) {
+    if (missing(regimes)) regimes <- x@regimes
+    f <- getMethod("plot","ouchtree")
+    f(x=x,y=y,regimes=regimes,...)
+  }
+)
