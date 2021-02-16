@@ -1,5 +1,4 @@
 library(ouch)
-data(bimac)
 tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
 h1 <- brown(
              data=log(bimac['size']),

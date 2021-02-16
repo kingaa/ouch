@@ -16,6 +16,7 @@ lib
 library
 check
 www
+examples
 ^(.+?)\.pdf
 ^(.+?)\.tar\.gz
 ^(.+?)\.tgz

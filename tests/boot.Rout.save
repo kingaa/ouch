@@ -1,6 +1,6 @@
 
-R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
-Copyright (C) 2019 The R Foundation for Statistical Computing
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -18,8 +18,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(ouch)
-Loading required package: subplex
-> data(bimac)
 > tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
 > h1 <- brown(
 +              data=log(bimac['size']),
@@ -42,7 +40,7 @@ Loading required package: subplex
 > b5 <- sapply(simdat,function(x)summary(update(h5,data=x))$aic.c)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 6.676345 secs
+Time difference of 7.572737 secs
 > cat("approximate 95% AIC.c cutoff",signif(quantile(b1-b5,0.95),digits=3),"\n")
 approximate 95% AIC.c cutoff 2.58 
 > 

@@ -1,3 +1,5 @@
+#' @importFrom stats rnorm
+
 rmvnorm <- function (n = 1, mean, var) {
   p <- length(mean)
   if (!all(dim(var)==c(p,p)))
@@ -5,3 +7,4 @@ rmvnorm <- function (n = 1, mean, var) {
   cf <- t(chol(var))
   matrix(mean,p,n)+cf%*%matrix(rnorm(p*n),p,n)
 }
+

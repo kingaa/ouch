@@ -1,14 +1,14 @@
 glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
   n <- length(x)
   vh <- try(
-    chol(v),
-    silent=FALSE
-  )
+            chol(v),
+            silent=FALSE
+            )
   if (inherits(vh,'try-error')) {
     warning(
-      "glssoln: Choleski decomposition of variance-covariance matrix fails",
-      call.=FALSE
-    )
+            "glssoln: Choleski decomposition of variance-covariance matrix fails",
+            call.=FALSE
+            )
     y <- rep(NA,ncol(a))
     e <- rep(NA,n)
     dim(y) <- ncol(a)
@@ -20,15 +20,15 @@ glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
     r <- length(svals)
     svals <-  diag(1/svals,nrow=r,ncol=r)
     y <- (s$v[,inds,drop=FALSE]%*%
-            (svals %*%
-               t(s$u[,inds,drop=FALSE])))%*%
-      forwardsolve(vh,x,upper.tri=TRUE,transpose=TRUE)
+          (svals %*%
+           t(s$u[,inds,drop=FALSE])))%*%
+             forwardsolve(vh,x,upper.tri=TRUE,transpose=TRUE)
     e <- a%*%y-x
     dim(y) <- dim(y)[1]
     dim(e) <- n
   }
   list(
-    coeff=y,
-    residuals=e
-  )
+       coeff=y,
+       residuals=e
+       )
 }

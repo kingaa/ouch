@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
+\section{Changes in ouch version 2.15}{
+  \itemize{
+    \item The \code{plot} function now spaces the terminal taxa evenly.
+    \item The documentation has received an overhaul.
+  }
+}
 \section{Changes in ouch version 2.14}{
   \itemize{
     \item Depends on R>=3.6.
