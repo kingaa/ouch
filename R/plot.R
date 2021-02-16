@@ -68,26 +68,6 @@ arrange.tree.even <- function(root=1, anc, term){    ## calculate even spacing a
   }
 }
 
-arrange.tree <- function (root, anc) {
-  k <- which(anc==root)
-  n <- length(k)
-  reltree <- rep(0,length(anc))
-  reltree[root] <- 0.5
-  p <- list()
-  if (n > 0) {
-    m <- rep(0,n)
-    for (j in 1:n) {
-      p[[j]] <- arrange.tree(k[j],anc)
-      m[j] <- length(which(p[[j]] != 0))
-    }
-    cm <- c(0,cumsum(m))
-    for (j in 1:n) {
-      reltree <- reltree + (cm[j]/sum(m))*(p[[j]] != 0) + (m[j]/sum(m))*p[[j]]
-    }
-  }
-  reltree
-}
-
 setMethod(
           'plot',
           'ouchtree',
