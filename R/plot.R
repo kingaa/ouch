@@ -2,6 +2,7 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   rx <- range(x@times,na.rm=T)
   rxd <- 0.1*diff(rx)
   anc <- x@anc.numbers
+  term <- x@term
   root <- which(is.root.node(anc))
   if (is.null(regimes)) {
     regimes <- factor(rep('unspec',length(anc)))
@@ -17,7 +18,7 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
     levs <- setdiff(levs,regimes[root])
   palette <- rainbow(length(levs))
   for (r in 1:length(levs)) {
-    yy <- arrange.tree(root,anc)
+    yy <- arrange.tree.even(root,anc, term)
     xx <- x@times
     f <- which(!is.root.node(anc) & regimes == levs[r])
     pp <- anc[f]
@@ -40,24 +41,31 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   invisible(NULL)
 }
 
-arrange.tree <- function (root, anc) {
+arrange.tree.even <- function(root, anc, term){    ## calculate even spacing along y
   k <- which(anc==root)
-  n <- length(k)
+  n <- length(k)   # 1 or 2 (or 3, etc)
   reltree <- rep(0,length(anc))
-  reltree[root] <- 0.5
+  reltree[term] <- 0:(length(term)-1)*(.95-.05)/(length(term)-1)+.05  ## space terminal taxa
+  y <- vector()
   p <- list()
-  if (n > 0) {
-    m <- rep(0,n)
-    for (j in 1:n) {
-      p[[j]] <- arrange.tree(k[j],anc)
-      m[j] <- length(which(p[[j]] != 0))
-    }
-    cm <- c(0,cumsum(m))
-    for (j in 1:n) {
-      reltree <- reltree + (cm[j]/sum(m))*(p[[j]] != 0) + (m[j]/sum(m))*p[[j]]
-    }
+  
+  if (root %in% term) {
+    y <- reltree[root]
+    names(y) <- root
+  	return(y)          # return y of tips
+   }  else {
+      for (j in 1:n) {
+    	p[[j]] <- arrange.tree.even(k[j], anc, term)
+    	y <- c(y, p[[j]]) 
+      }
+
+      x <- mean(unlist(p)[as.character(k)])   # x is mean of descendants 
+      names(x) <- root
+      y <- c(y,x)
+      oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
+      return(y[oo])	
+
   }
-  reltree
 }
 
 setMethod(
