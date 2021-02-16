@@ -17,8 +17,8 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   if (sum(regimes%in%regimes[root])==1)
     levs <- setdiff(levs,regimes[root])
   palette <- rainbow(length(levs))
-  for (r in 1:length(levs)) {
-    yy <- arrange.tree.even(root,anc, term)
+  for (r in seq_len(levs)) {
+    yy <- arrange.tree(root,anc,term)
     xx <- x@times
     f <- which(!is.root.node(anc) & regimes == levs[r])
     pp <- anc[f]
@@ -27,8 +27,8 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
     oz <- array(data=1,dim=c(2,1))
     X <- kronecker(t(X),oz)
     Y <- kronecker(t(Y),oz)
-    X <- X[2:length(X)]
-    Y <- Y[1:(length(Y)-1)]
+    X <- X[-1L]
+    Y <- Y[-length(Y)]
     C <- rep(palette[r],length(X))
     if (r > 1) par(new=T)
     par(yaxt='n')
@@ -41,30 +41,24 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   invisible(NULL)
 }
 
-arrange.tree.even <- function(root, anc, term){    ## calculate even spacing along y
-  k <- which(anc==root)
-  n <- length(k)   # 1 or 2 (or 3, etc)
-  reltree <- rep(0,length(anc))
-  reltree[term] <- 0:(length(term)-1)*(.95-.05)/(length(term)-1)+.05  ## space terminal taxa
-  y <- vector()
-  p <- list()
-  
-  if (root %in% term) {
-    y <- reltree[root]
-    names(y) <- root
-  	return(y)          # return y of tips
-   }  else {
-      for (j in 1:n) {
-    	p[[j]] <- arrange.tree.even(k[j], anc, term)
-    	y <- c(y, p[[j]]) 
-      }
-
-      x <- mean(unlist(p)[as.character(k)])   # x is mean of descendants 
-      names(x) <- root
-      y <- c(y,x)
-      oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
-      return(y[oo])	
-
+## The following function lays out the tree.
+## Contribution by M. Butler: vertical spacing of terminal leaves is even
+arrange.tree <- function (root, anc, term) {
+  k <- which(anc==root) # nodes immediately descended from 'root'
+  reltree <- numeric(length(anc))
+  reltree[term] <- seq(from=0,to=1,length.out=length(term)) ## space terminal taxa
+  if (root %in% term) { ## terminate recursion
+    setNames(reltree[root],root)
+  } else { ## recurse
+    p <- list()
+    for (j in seq_along(k)) {
+      p[[j]] <- arrange.tree(k[j],anc,term)
+    }
+    y <- unlist(p)
+    yy <- setNames(mean(y[as.character(k)]),root) # x is mean y-coordinate of descendants 
+    y <- c(y,yy)
+    oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
+    y[oo]
   }
 }
 
