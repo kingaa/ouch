@@ -41,7 +41,7 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   invisible(NULL)
 }
 
-arrange.tree.even <- function(root=1, anc, term){    ## calculate even spacing along y
+arrange.tree.even <- function(root, anc, term){    ## calculate even spacing along y
   k <- which(anc==root)
   n <- length(k)   # 1 or 2 (or 3, etc)
   reltree <- rep(0,length(anc))
