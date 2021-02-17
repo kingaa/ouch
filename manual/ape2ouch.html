@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Convert an &quot;ape&quot; tree to an &quot;ouch&quot; tree.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for ape2ouch {ouch}"><tr><td>ape2ouch {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Convert an &quot;ape&quot; tree to an &quot;ouch&quot; tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>ape2ouch</code> translates <span class="pkg">ape</span>'s <code>phylo</code> representation of a phylogenetic tree into <span class="pkg">ouch</span>'s <code>ouchtree</code> representation.
+The user can change the branch lengths while preserving the topology.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ape2ouch(tree, scale = TRUE, branch.lengths = tree$edge.length)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>tree</code></td>
+<td>
+<p>a tree of class <code>phylo</code> created in package <span class="pkg">ape</span>.</p>
+</td></tr>
+<tr valign="top"><td><code>scale</code></td>
+<td>
+<p>if <code>scale=TRUE</code>, the tree's depth will be scaled to 1.
+If <code>scale</code> is a number, then the branch lengths will be scaled by this number.</p>
+</td></tr>
+<tr valign="top"><td><code>branch.lengths</code></td>
+<td>
+<p>optional vector of branch lengths.</p>
+</td></tr>
+</table>
+
+
+<h3>Author(s)</h3>
+
+<p>A. A. King, D. Ackerly
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+</body></html>

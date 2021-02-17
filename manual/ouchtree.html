@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Phylogenetic tree object in 'ouch' format.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for ouchtree {ouch}"><tr><td>ouchtree {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Phylogenetic tree object in 'ouch' format.</h2>
+
+<h3>Description</h3>
+
+<p>An object containing a phylogenetic tree in a form suitable for using <span class="pkg">ouch</span> methods.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+ouchtree(nodes, ancestors, times, labels = as.character(nodes))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>nodes</code></td>
+<td>
+<p>A character vector giving the name of each node.
+These are used internally and must be unique.</p>
+</td></tr>
+<tr valign="top"><td><code>ancestors</code></td>
+<td>
+<p>Specification of the topology of the phylogenetic tree.
+This is in the form of a character vector specifying the name
+(as given in the <code>nodes</code> argument)
+of the immediate ancestor of each node.
+In particular, the i-th name is that of the ancestor of the i-th node.
+The root node is distinguished by having no ancestor (i.e., <code>NA</code>).</p>
+</td></tr>
+<tr valign="top"><td><code>times</code></td>
+<td>
+<p>A vector of nonnegative numbers, one per node in the tree,
+specifying the time at which each node is located.
+Time should be increasing from the root node to the terminal twigs.</p>
+</td></tr>
+<tr valign="top"><td><code>labels</code></td>
+<td>
+<p>Optional vector of node labels.
+These will be used in plots to label nodes.
+It is not necessary that these be unique.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>ouchtree</code> creates an <code>ouchtree</code> object.
+This contains the topology, branch times, and epochs.
+It also (optionally) holds names of taxa for display purposes.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Aaron A. King
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>ouchtree</code>, <code>ape2ouch</code>, <code>brown</code>, <code>hansen</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+tree &lt;- with(
+  bimac,
+  ouchtree(nodes=node,ancestors=ancestor,times=time,labels=species)
+)
+tree
+
+plot(tree)
+plot(tree,node.names=TRUE)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+</body></html>

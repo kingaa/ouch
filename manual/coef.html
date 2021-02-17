@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Model coefficients</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for coef,browntree-method {ouch}"><tr><td>coef,browntree-method {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Model coefficients</h2>
+
+<h3>Description</h3>
+
+<p><code>coef</code> extracts the parameters from a fitted model object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S4 method for signature 'browntree'
+coef(object, ...)
+
+## S4 method for signature 'hansentree'
+coef(object, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>fitted model object.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional arguments, ignored.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p><code>coef</code> applied to a <code>browntree</code> object extracts a list with three elements:
+</p>
+
+<dl>
+<dt><code>sigma</code></dt><dd><p>the coefficients of the sigma matrix.</p>
+</dd>
+<dt><code>theta</code></dt><dd><p>a list of the estimated optima, one per character.</p>
+</dd>
+<dt><code>sigma..sq.matrix</code></dt><dd><p>the sigma-squared matrix itself.</p>
+</dd>
+</dl>
+
+<p><code>coef</code> applied to a <code>hansentree</code> object returns a named list containing the estimated <i>alpha</i> and <i>sigma^2</i> matrices(given as the <code>alpha.matrix</code> and <code>sigma.sq.matrix</code> elements, respectively) but also the MLE returned by the optimizer
+(as <code>sqrt.alpha</code> and <code>sigma</code>, respectively).
+<strong>The latter elements should not be interpreted, but can be used to restart the algorithm, etc.</strong>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Bootstrapping for uncertainty quantification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for bootstrap {ouch}"><tr><td>bootstrap {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Bootstrapping for uncertainty quantification</h2>
+
+<h3>Description</h3>
+
+<p>Generic bootstrapping for <span class="pkg">ouch</span> models.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S4 method for signature 'browntree'
+bootstrap(object, nboot = 200, seed = NULL, ...)
+
+## S4 method for signature 'hansentree'
+bootstrap(object, nboot = 200, seed = NULL, ...)
+
+## S4 method for signature 'missing'
+bootstrap(object, ...)
+
+## S4 method for signature 'ANY'
+bootstrap(object, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>A fitted model object.</p>
+</td></tr>
+<tr valign="top"><td><code>nboot</code></td>
+<td>
+<p>integer; number of bootstrap replicates.</p>
+</td></tr>
+<tr valign="top"><td><code>seed</code></td>
+<td>
+<p>integer; setting <code>seed</code> to a non-<code>NULL</code> value allows one to fix the random seed (see <code><a href="simulate.html">simulate</a></code>).</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Additional arguments are passed to <code><a href="update.html">update</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>bootstrap</code> performs a parametric bootstrap for estimation of confidence intervals.
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+</body></html>

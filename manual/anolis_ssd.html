@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Greater Antillean anolis lizard sexual size dimorphism data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for anolis.ssd {ouch}"><tr><td>anolis.ssd {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Greater Antillean anolis lizard sexual size dimorphism data</h2>
+
+<h3>Description</h3>
+
+<p>The dataset consists of sexual size-dimorphism data for 38 species of anoles from Cuba, Hispaniola, Jamaica, and Puerto Rico (Butler, Schoener, and Losos 2000).
+Each of these species belongs to one of six microhabitat types, or &ldquo;ecomorphs&rdquo; (sensu Williams, 1972):
+trunk-ground, grass-bush, trunk, trunk-crown, twig, and crown-giant.
+The data were used to demonstrate an evolutionary association between habitat type and degree of sexual size dimorphism.
+</p>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 38 observations on the following 6 variables.
+</p>
+
+<dl>
+<dt>node</dt><dd><p>Labels for the nodes.</p>
+</dd>
+<dt>species</dt><dd><p>Names of extant species.</p>
+</dd>
+<dt>log.SSD</dt><dd><p>Log sexual size dimorphism of extant species.</p>
+</dd>
+<dt>ancestor</dt><dd><p>Ancestor node.</p>
+</dd>
+<dt>time</dt><dd><p>Time of node.</p>
+</dd>
+<dt>OU.1</dt><dd><p>a factor with levels <code>ns</code></p>
+</dd>
+<dt>OU.7</dt><dd><p>a factor with levels corresponding to ecomorph
+(<code>tg</code> <code>tc</code> <code>gb</code> <code>cg</code> <code>tw</code> <code>tr</code> <code>anc</code>)</p>
+</dd>
+</dl>
+
+
+
+<h3>Details</h3>
+
+<p>Size dimorphism was calcuated as the log-ratio of male snout-to-vent length to female snout-to-vent length (males are larger).
+</p>
+<p>In this example, we tested three models of evolution:
+Brownian motion, Ornstein-Uhlenbeck with one global optimum, and Ornstein-Uhlenbeck with 7 optima (one for each ecomorph type plus an additional one for an &ldquo;unknown&rdquo; type).
+</p>
+<p>For the 7-optima model, we assigned each terminal branch to an optimum according to the ecomorph type of the extant species.
+Because we had no information to help guide hypotheses about internal branches, we assigned
+internal branches to the &ldquo;unknown&rdquo; selective regime.
+The phylogeny of these species is consistent with and adaptive radiation, with a burst of speciation events early in the evolutionary history of this clade (see phylogeny in Butler &amp; King (2004) or example below).
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Marguerite A. Butler, Aaron A. King
+</p>
+
+
+<h3>Source</h3>
+
+<p>Butler, M.A. and A.A. King. 2004.  Phylogenetic comparative analysis: a modeling approach for adaptive evolution.  Am. Nat. 164:683&ndash;695.
+</p>
+
+
+<h3>References</h3>
+
+<p>Butler, M. A., T. W. Schoener, and J. B. Losos. 2000.  The relationship between sexual size dimorphism and habitat use in Greater Antillean Anolis lizards.  Evolution, 54:259&ndash;272.
+</p>
+<p>Williams, E. E. 1972.  The origin of faunas. Evolution of lizard congeners in a complex island fauna: a trial analysis.  Evol. Biol., 6:47&ndash;89.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+tree &lt;- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
+plot(tree,node.names=TRUE)
+
+h1 &lt;- brown(anolis.ssd['log.SSD'],tree)
+h1
+plot(h1)
+
+h2 &lt;- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.1'],sqrt.alpha=1,sigma=1)
+h2
+plot(h2)
+
+h3 &lt;- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
+h3
+plot(h3)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+</body></html>
