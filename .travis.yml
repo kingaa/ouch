@@ -11,11 +11,15 @@ addons:
   homebrew:
     packages:
     - libgit2
+
 stages:
-- test
-- coverage
+- name: test
+  if: tag IS blank
+- name: coverage
+  if: tag IS blank
 - name: deploy
   if: tag IS present
+
 jobs:
   include:
   - r: release
