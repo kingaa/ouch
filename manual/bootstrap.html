@@ -16,17 +16,17 @@
 <h3>Usage</h3>
 
 <pre>
-## S4 method for signature 'browntree'
-bootstrap(object, nboot = 200, seed = NULL, ...)
-
-## S4 method for signature 'hansentree'
-bootstrap(object, nboot = 200, seed = NULL, ...)
-
 ## S4 method for signature 'missing'
 bootstrap(object, ...)
 
 ## S4 method for signature 'ANY'
 bootstrap(object, ...)
+
+## S4 method for signature 'browntree'
+bootstrap(object, nboot = 200, seed = NULL, ...)
+
+## S4 method for signature 'hansentree'
+bootstrap(object, nboot = 200, seed = NULL, ...)
 </pre>
 
 
@@ -37,6 +37,10 @@ bootstrap(object, ...)
 <td>
 <p>A fitted model object.</p>
 </td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Additional arguments are passed to <code><a href="update.html">update</a></code>.</p>
+</td></tr>
 <tr valign="top"><td><code>nboot</code></td>
 <td>
 <p>integer; number of bootstrap replicates.</p>
@@ -44,10 +48,6 @@ bootstrap(object, ...)
 <tr valign="top"><td><code>seed</code></td>
 <td>
 <p>integer; setting <code>seed</code> to a non-<code>NULL</code> value allows one to fix the random seed (see <code><a href="simulate.html">simulate</a></code>).</p>
-</td></tr>
-<tr valign="top"><td><code>...</code></td>
-<td>
-<p>Additional arguments are passed to <code><a href="update.html">update</a></code>.</p>
 </td></tr>
 </table>
 
@@ -57,5 +57,18 @@ bootstrap(object, ...)
 <p><code>bootstrap</code> performs a parametric bootstrap for estimation of confidence intervals.
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-1 <a href="00Index.html">Index</a>]</div>
+
+<h3>See Also</h3>
+
+<p>Other methods: 
+<code><a href="coef.html">coef</a>()</code>,
+<code><a href="logLik.html">logLik</a></code>,
+<code><a href="plot.html">plot</a>()</code>,
+<code><a href="print.html">print</a>()</code>,
+<code><a href="simulate.html">simulate</a>()</code>,
+<code><a href="summary.html">summary</a>()</code>,
+<code><a href="update.html">update</a>()</code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-2 <a href="00Index.html">Index</a>]</div>
 </body></html>
