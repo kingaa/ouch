@@ -1,7 +1,7 @@
 18,19c
-<li><a href="../NEWS.html">Package NEWS</a>.</li>
+<ul>
+  <li><a href="../NEWS">Package NEWS</a>.</li>
+  <li><a href="../index.html">Back to <strong>ouch</strong> homepage</a>.</li>
 .
-14,15c
-<a href="../index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
-.
+14,15d
 10d
