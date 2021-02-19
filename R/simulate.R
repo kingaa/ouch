@@ -5,7 +5,7 @@
 #' @name simulate
 #' @docType methods
 #' @rdname simulate
-#' @include brown.R hansen.R
+#' @family methods
 #' @importFrom stats simulate
 #'
 #' @return

@@ -4,7 +4,7 @@
 #'
 #' @name coef
 #' @rdname coef
-#' @include brown.R hansen.R
+#' @family methods
 #' @param object fitted model object.
 #' @param ... additional arguments, ignored.
 NULL

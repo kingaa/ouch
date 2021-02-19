@@ -17,6 +17,7 @@
 #' 
 #' @name anolis.ssd
 #' @rdname anolis_ssd
+#' @family examples
 #' @docType data
 #' @format
 #' A data frame with 38 observations on the following 6 variables.

@@ -32,7 +32,9 @@
 #' }
 #' 
 #' @name bimac
+#' @rdname bimac
 #' @docType data
+#' @family examples
 #' @format A data frame with 45 observations on the following 8 variables.
 #' \describe{
 #'   \item{node}{Labels for the nodes.}

@@ -59,7 +59,17 @@ setClass(
   )
 )
 
-NULL
+setAs(
+  from='hansentree',
+  to='data.frame',
+  def = function (from) {
+    cbind(
+      as(as(from,'ouchtree'),'data.frame'),
+      as.data.frame(from@regimes),
+      as.data.frame(from@data)
+    )
+  }
+)
 
 #' @rdname hansen
 #' @include ouchtree.R glssoln.R rmvnorm.R
@@ -82,7 +92,7 @@ NULL
 #' The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
 #' Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
 #' The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
-#' See Details.
+#' See Details for more information.
 #' @param fit If \code{fit=TRUE}, then the likelihood will be maximized.
 #' If \code{fit=FALSE}, the likelihood will be evaluated at the specified values of \code{sqrt.alpha} and \code{sigma};
 #' the optima \code{theta} will be returned as well.
@@ -93,9 +103,7 @@ NULL
 #' See \code{\link{optim}} and \code{\link[subplex:subplex]{subplex}} for information on the available options.
 #' 
 #' @return \code{hansen} returns an object of class \code{hansentree}.
-#' For details on the methods of that class, see \code{\link{hansen}}.
-#' 
-#' @export hansen
+#' @export
 hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   fit = TRUE,
   method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),
@@ -411,49 +419,8 @@ hansen.deviate <- function (n = 1, object) {
   apply(X,3,as.data.frame)
 }
 
-#' @rdname simulate
-#' @include simulate.R
-#' @importFrom stats runif
-#' @export
-setMethod(
-  'simulate',
-  signature=signature(object='hansentree'),
-  function (object, nsim = 1, seed = NULL, ...) {
-    if (!is.null(seed)) {
-      if (!exists('.Random.seed',envir=.GlobalEnv)) runif(1)
-      save.seed <- get('.Random.seed',envir=.GlobalEnv)
-      set.seed(seed)
-    }
-    X <- hansen.deviate(n=nsim,object)
-    if (!is.null(seed)) {
-      assign('.Random.seed',save.seed,envir=.GlobalEnv)
-    }
-    X
-  }
-)
-
-#' @rdname update
-#' @importFrom stats update
-#' @inheritParams hansen
-#' @export
-setMethod(
-  'update',
-  signature=signature(object='hansentree'),
-  function (object, data, regimes, sqrt.alpha, sigma, ...) {
-    if (missing(sqrt.alpha)) sqrt.alpha <- object@sqrt.alpha
-    if (missing(sigma)) sigma <- object@sigma
-    hansen(
-      data=data,
-      tree=object,
-      regimes=regimes,
-      sqrt.alpha=sqrt.alpha,
-      sigma=sigma,
-      ...
-    )
-  }
-)
-
 #' @rdname coef
+#' @include coef.R
 #' @importFrom stats coef
 #' @return \code{coef} applied to a \code{hansentree} object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements, respectively) but also the MLE returned by the optimizer
 #' (as \code{sqrt.alpha} and \code{sigma}, respectively).
@@ -473,7 +440,8 @@ setMethod(
   }
 )
 
-#' @rdname loglik
+#' @rdname logLik
+#' @include logLik.R
 #' @importFrom stats logLik
 #' @export
 setMethod(
@@ -483,6 +451,7 @@ setMethod(
 )
 
 #' @rdname summary
+#' @include summary.R
 #' @return \code{summary} applied to a \code{hansentree} method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
 #' @export
 setMethod(
@@ -515,6 +484,7 @@ setMethod(
 )
 
 #' @rdname print
+#' @include print.R
 #' @return \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
 setMethod(
@@ -543,6 +513,7 @@ setMethod(
 )
 
 #' @rdname print
+#' @include print.R
 #' @export
 setMethod(
   'show',
@@ -553,14 +524,70 @@ setMethod(
   }
 )
 
-setAs(
-  from='hansentree',
-  to='data.frame',
-  def = function (from) {
-    cbind(
-      as(as(from,'ouchtree'),'data.frame'),
-      as.data.frame(from@regimes),
-      as.data.frame(from@data)
+#' @rdname plot
+#' @include plot.R
+#' @export
+setMethod(
+  "plot",
+  signature=signature(x="hansentree"),
+  function (x, y, regimes, ...) {
+    if (!missing(y)) warning(sQuote("y")," is ignored.")
+    if (missing(regimes)) regimes <- x@regimes
+    f <- getMethod("plot","ouchtree")
+    f(x,regimes=regimes,...)
+  }
+)
+
+#' @rdname simulate
+#' @include simulate.R package.R
+#' @importFrom stats runif
+#' @export
+setMethod(
+  'simulate',
+  signature=signature(object='hansentree'),
+  function (object, nsim = 1, seed = NULL, ...) {
+    seed <- freeze(seed)
+    X <- hansen.deviate(n=nsim,object)
+    thaw(seed)
+    X
+  }
+)
+
+#' @rdname update
+#' @include update.R
+#' @importFrom stats update
+#' @inheritParams hansen
+#' @export
+setMethod(
+  'update',
+  signature=signature(object='hansentree'),
+  function (object, data, regimes, sqrt.alpha, sigma, ...) {
+    if (missing(sqrt.alpha)) sqrt.alpha <- object@sqrt.alpha
+    if (missing(sigma)) sigma <- object@sigma
+    hansen(
+      data=data,
+      tree=object,
+      regimes=regimes,
+      sqrt.alpha=sqrt.alpha,
+      sigma=sigma,
+      ...
     )
+  }
+)
+
+#' @rdname bootstrap
+#' @include bootstrap.R
+#' @export
+setMethod(
+  "bootstrap",
+  signature=signature(object="hansentree"),
+  function (object, nboot = 200, seed = NULL, ...) {
+    simdata <- simulate(object,nsim=nboot,seed=seed)
+    results <- vector(mode='list',length=nboot)
+    toshow <- c("alpha","sigma.squared","optima","loglik","aic","aic.c","sic","dof")
+    for (b in seq_len(nboot)) {
+      results[[b]] <- summary(update(object,data=simdata[[b]],...))
+    }
+    as.data.frame(t(sapply(results,function(x)unlist(x[toshow]))))
   }
 )

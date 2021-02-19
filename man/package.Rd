@@ -28,6 +28,7 @@ the results of fitting a Hansen model to data.
   \item{Ornstein-Uhlenbeck models}{\code{\link{hansen}}}
   \item{Simulation of models}{\code{\link[ouch:simulate]{simulate}}}
   \item{Display of data}{\code{\link[ouch:plot]{plot}}}
+  \item{Examples}{\code{\link{anolis.ssd}}, \code{\link{bimac}}}
 }
 }
 

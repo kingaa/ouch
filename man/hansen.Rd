@@ -36,7 +36,7 @@ If there are \code{nchar} quantitative characters, then one can specify a single
 The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
 Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
 The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
-See Details.}
+See Details for more information.}
 
 \item{fit}{If \code{fit=TRUE}, then the likelihood will be maximized.
 If \code{fit=FALSE}, the likelihood will be evaluated at the specified values of \code{sqrt.alpha} and \code{sigma};
@@ -52,7 +52,6 @@ See \code{\link{optim}} and \code{\link[subplex:subplex]{subplex}} for informati
 }
 \value{
 \code{hansen} returns an object of class \code{hansentree}.
-For details on the methods of that class, see \code{\link{hansen}}.
 }
 \description{
 The function \code{hansen} fits an Ornstein-Uhlenbeck model to data.

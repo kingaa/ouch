@@ -88,7 +88,12 @@ summary(bsim)
 
 \Losos1990
 }
+\seealso{
+Other examples: 
+\code{\link{anolis.ssd}}
+}
 \author{
 Marguerite A. Butler and Aaron A. King
 }
+\concept{examples}
 \keyword{models}

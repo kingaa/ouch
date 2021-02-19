@@ -6,7 +6,7 @@
 #' @name update
 #' @docType methods
 #' @rdname update
-#' @include brown.R hansen.R
+#' @family methods
 #' @importFrom stats update
 #'
 #' @return

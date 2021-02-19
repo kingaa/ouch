@@ -59,7 +59,12 @@ plot(h3)
 
 \Williams1972
 }
+\seealso{
+Other examples: 
+\code{\link{bimac}}
+}
 \author{
 Marguerite A. Butler, Aaron A. King
 }
+\concept{examples}
 \keyword{models}

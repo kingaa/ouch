@@ -4,6 +4,7 @@
 #'
 #' @name plot
 #' @rdname plot
+#' @family methods
 #' @param x object to plot.
 #' @param y ignored.
 #' @param regimes factor or character; a vector of regime paintings.
@@ -11,65 +12,7 @@
 #' @param legend logical; display a legend?
 #' @param labels character; taxon labels.
 #' @param ... additional arguments, passed to \code{text}.
-#'
 NULL
-
-#' @rdname plot
-#' @importFrom grDevices rainbow
-#' @importFrom graphics par text
-#' @importFrom stats setNames
-#' @export
-setMethod(
-  "plot",
-  signature=signature(x="ouchtree"),
-  function (x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels) {
-    if (!missing(y)) warning(sQuote("y")," is ignored.")
-    labels <- x@nodelabels
-    if (node.names) {
-      lbld <- !is.na(labels)
-      labels[lbld] <- paste(x@nodes[lbld],labels[lbld])
-      labels[!lbld] <- x@nodes[!lbld]
-    }
-    if (is.data.frame(regimes)) {
-      nm <- rownames(regimes)
-      regimes <- lapply(as.list(regimes),function(x){names(x)<-nm;x})
-    }
-    if (is.list(regimes)) {
-      if (any(sapply(regimes,length)!=x@nnodes))
-        stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
-    } else if (!is.null(regimes)) {
-      if (length(regimes)!=x@nnodes)
-        stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
-      nm <- deparse(substitute(regimes))[1]
-      regimes <- list(regimes)
-      names(regimes) <- nm
-    }
-    if (is.null(regimes)) {
-      invisible(tree.plot.internal(x,regimes=NULL,labels=labels,legend=legend,...))
-    } else {
-      oldpar <- par(mfrow=c(1,length(regimes)))
-      on.exit(par(oldpar))
-      retval <- lapply(
-        regimes,
-        function (r) tree.plot.internal(x,regimes=r,labels=labels,...)
-      )
-      invisible(retval)
-    }
-  }
-)
-
-#' @rdname plot
-#' @export
-setMethod(
-  "plot",
-  signature=signature(x="hansentree"),
-  function (x, y, regimes, ...) {
-    if (!missing(y)) warning(sQuote("y")," is ignored.")
-    if (missing(regimes)) regimes <- x@regimes
-    f <- getMethod("plot","ouchtree")
-    f(x,regimes=regimes,...)
-  }
-)
 
 tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend = TRUE, ...) {
   rx <- range(x@times,na.rm=T)
