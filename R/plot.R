@@ -18,7 +18,6 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   rx <- range(x@times,na.rm=T)
   rxd <- 0.1*diff(rx)
   anc <- x@anc.numbers
-  term <- x@term
   root <- which(is.root.node(anc))
   if (is.null(regimes)) {
     regimes <- factor(rep('unspec',length(anc)))
@@ -33,9 +32,9 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   if (sum(regimes%in%regimes[root])==1)
     levs <- setdiff(levs,regimes[root])
   palette <- rainbow(length(levs))
+  xx <- x@times
+  yy <- arrange_tree(root,anc)/(length(x@term)+1)
   for (r in seq_along(levs)) {
-    yy <- arrange.tree(root,anc,term)
-    xx <- x@times
     f <- which(!is.root.node(anc) & regimes==levs[r])
     pp <- anc[f]
     X <- array(data=c(xx[f],xx[pp],rep(NA,length(f))),dim=c(length(f),3))
@@ -57,23 +56,28 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   invisible(NULL)
 }
 
-## The following function lays out the tree.
-## Contribution by M. Butler: vertical spacing of terminal leaves is even
-arrange.tree <- function (root, anc, term) {
-  k <- which(anc==root) # nodes immediately descended from 'root'
-  reltree <- numeric(length(anc))
-  reltree[term] <- seq(from=0,to=1,length.out=length(term)) ## space terminal taxa
-  if (root %in% term) { ## terminate recursion
-    setNames(reltree[root],root)
-  } else { ## recurse
-    p <- list()
-    for (j in seq_along(k)) {
-      p[[j]] <- arrange.tree(k[j],anc,term)
+clade_size <- function (root, anc, n = integer(length(anc))) {
+  children <- which(anc==root)
+  if (length(children) > 0) {
+    for (child in children) {
+      n <- clade_size(child,anc,n)
     }
-    y <- unlist(p)
-    yy <- setNames(mean(y[as.character(k)]),root) # x is mean y-coordinate of descendants 
-    y <- c(y,yy)
-    oo <- as.character(sort(as.numeric(names(y))))  # sorted in node order
-    y[oo]
+    n[root] <- sum(n[children])
+  } else {
+    n[root]=1
   }
+  n
+}
+
+arrange_tree <- function (root, anc, ypos = numeric(length(anc))) {
+  children <- which(anc==root)
+  if (length(children) > 0) {
+    for (child in children) {
+      ypos <- arrange_tree(child,anc,ypos)
+    }
+    ypos[root] <- mean(ypos[children])
+  } else {
+    ypos[root] <- max(ypos)+1
+  }
+  ypos
 }

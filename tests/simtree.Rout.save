@@ -1,6 +1,6 @@
 
-R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.0.4 (2021-02-15) -- "Lost Library Book"
+Copyright (C) 2021 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -92,7 +92,7 @@ Type 'q()' to quit R.
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.638595 secs
+Time difference of 1.609052 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -135,7 +135,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1367433 secs
+Time difference of 0.135304 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -203,7 +203,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.591859 secs
+Time difference of 1.570607 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -283,7 +283,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1803641 secs
+Time difference of 0.1797285 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 

@@ -22,3 +22,4 @@ examples
 ^(.+?)\.tgz
 ^(.+?)\.zip
 hub_cov\.R
+data/primates.csv

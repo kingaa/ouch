@@ -1,0 +1,37 @@
+
+R version 4.0.4 (2021-02-15) -- "Lost Library Book"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(ouch)
+> set.seed(1106216184L)
+> 
+> png(filename="plot%02d.png")
+> 
+> tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+> plot(tree,node.names=TRUE)
+> 
+> plot(tree,regimes=bimac["OU.3"],node.names=TRUE)
+> 
+> bimac <- bimac[order(runif(n=nrow(bimac))),]
+> tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+> plot(tree,regimes=bimac["OU.3"],node.names=TRUE)
+> 
+> dev.off()
+null device 
+          1 
+> 
