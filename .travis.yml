@@ -28,7 +28,6 @@ jobs:
     os: linux
   - r: release
     os: osx
-    os: osx
     osx_image: xcode12.2
   - stage: coverage
     r: release
