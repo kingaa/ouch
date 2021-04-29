@@ -1,6 +1,6 @@
-#' Plotting functions.
+#' ouch plotting functions
 #'
-#' Plot phylogenies.
+#' Plot phylogenetic trees, with or without regime paintings.
 #'
 #' @name plot
 #' @rdname plot
@@ -9,14 +9,40 @@
 #' @param y ignored.
 #' @param regimes factor or character; a vector of regime paintings.
 #' @param node.names logical; should node names be displayed?
+#' @param ladderize logical; should the tree be ladderized?
 #' @param legend logical; display a legend?
+#' @param palette function; a function that, given an integer, \code{n}, creates a vector of \code{n} contiguous colors.
+#' See, for example \code{\link[grDevices:rainbow]{rainbow}}.
 #' @param labels character; taxon labels.
-#' @param ... additional arguments, passed to \code{text}.
+#' @param margin numeric; width of the left and right margins (as a fraction of the plot width).
+#' Adjust this if labels are clipped.
+#' If different left and right margins are desired, furnish two numbers here.
+#' @param text_opts options for the labels; passed to \code{\link[graphics]{text}}
+#' @param legend_opts options for the the legend; passed to \code{\link[graphics]{legend}}
+#' @param ... additional arguments, passed to \code{\link[base]{plot}}.
+#' 
+#' @inheritParams graphics::plot
+#' @importFrom graphics text legend par
+#' @importFrom grDevices rainbow
 NULL
 
-tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend = TRUE, ...) {
+tree.plot.internal <- function (
+  x, ...,
+  regimes = NULL,
+  ladderize,
+  palette,
+  labels,
+  legend,
+  margin,
+  xlab = "time", ylab = "",
+  text_opts,
+  legend_opts
+) {
+  ladderize <- as.logical(ladderize)
+  legend <- as.logical(legend)
   rx <- range(x@times,na.rm=T)
-  rxd <- 0.1*diff(rx)
+  rxd <- as.numeric(margin)*diff(rx)
+  if (length(rxd) < 2) rxd <- c(rxd,rxd)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))
   if (is.null(regimes)) {
@@ -31,9 +57,16 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
   ## if the root is the only one with a certain regime, toss that regime out
   if (sum(regimes%in%regimes[root])==1)
     levs <- setdiff(levs,regimes[root])
-  palette <- rainbow(length(levs))
+  palette <- palette(length(levs))
+  if (ladderize) {
+    cs <- clade_size(root,anc)
+  } else {
+    cs <- NULL
+  }
   xx <- x@times
-  yy <- arrange_tree(root,anc)/(length(x@term)+1)
+  yy <- arrange_tree(root,anc,cs)/(length(x@term)+1)
+  op <- par(yaxt='n')
+  on.exit(par(op))
   for (r in seq_along(levs)) {
     f <- which(!is.root.node(anc) & regimes==levs[r])
     pp <- anc[f]
@@ -45,14 +78,38 @@ tree.plot.internal <- function (x, regimes = NULL, labels = x@nodelabels, legend
     X <- X[-1]
     Y <- Y[-length(Y)]
     C <- rep(palette[r],length(X))
-    if (r > 1) par(new=T)
-    par(yaxt='n')
-    plot(X,Y,type='l',col=C,xlab='time',ylab='',xlim=rx+c(-rxd,rxd),ylim=c(0,1),...)
-    if (!is.null(labels))
-      text(X[seq(1,length(X),6)],Y[seq(1,length(Y),6)],labels[f],pos=4,...)
+    if (r > 1) par(new=TRUE)
+    base::plot(
+            X,Y,
+            type='l',col=C,
+            xlab=xlab,ylab=ylab,
+            xlim=rx+c(-1,1)*rxd,ylim=c(0,1),
+            ...
+          )
+    if (!is.null(labels)) {
+      do.call(
+        graphics::text,
+        c(
+          list(
+            x=X[seq.int(1,length(X),6)],
+            y=Y[seq.int(1,length(Y),6)],
+            labels=labels[f],
+            pos=4
+            ),
+          text_opts
+        )
+      )
+    }
   }
-  if (legend)
-    legend('topleft',levs,lwd=1,col=palette,bty='n')
+  if (legend) {
+    do.call(
+      graphics::legend,
+      c(
+        list(x="topleft",y=levs,col=palette,lwd=1,bty="n"),
+        legend_opts
+      )
+    )
+  }
   invisible(NULL)
 }
 
@@ -69,11 +126,14 @@ clade_size <- function (root, anc, n = integer(length(anc))) {
   n
 }
 
-arrange_tree <- function (root, anc, ypos = numeric(length(anc))) {
+arrange_tree <- function (root, anc, cs, ypos = numeric(length(anc))) {
   children <- which(anc==root)
   if (length(children) > 0) {
+    if (!is.null(cs)) {
+      children <- children[order(cs[children])]
+    }
     for (child in children) {
-      ypos <- arrange_tree(child,anc,ypos)
+      ypos <- arrange_tree(child,anc,cs,ypos)
     }
     ypos[root] <- mean(ypos[children])
   } else {
@@ -92,7 +152,7 @@ setMethod(
   "plot",
   signature=signature(x="ouchtree"),
   function (
-    x, ..., regimes = NULL, ladderize = TRUE,
+    x, y, ..., regimes = NULL, ladderize = TRUE,
     node.names = FALSE,
     legend = TRUE, labels, frame.plot = FALSE,
     palette = rainbow,

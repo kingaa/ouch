@@ -3,6 +3,8 @@
 \section{Changes in ouch version 2.16}{
   \itemize{
     \item Fixed bug in \code{plot}.
+    \item The arguments to the various \code{plot} methods have changed.
+    It is now possible to pass options separately to the \code{plot}, \code{text}, and \code{legend} commands called by the \pkg{ouch} \code{plot} methods.
   }
 }
 \section{Changes in ouch version 2.15}{

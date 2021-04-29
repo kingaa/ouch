@@ -4,6 +4,11 @@ _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6:
 
         • Fixed bug in ‘plot’.
 
+        • The arguments to the various ‘plot’ methods have changed.  It
+          is now possible to pass options separately to the ‘plot’,
+          ‘text’, and ‘legend’ commands called by the ‘ouch’ ‘plot’
+          methods.
+
 _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_5:
 
         • The ‘plot’ function now spaces the terminal taxa evenly.
