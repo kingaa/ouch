@@ -31,6 +31,24 @@ Type 'q()' to quit R.
 > treedat$data5[c(3,4,6,7)] <- c(2,0,1,-2)
 > 
 > tree <- with(treedat,ouchtree(node,anc,time))
+> print(tree)
+  nodes ancestors times labels
+1     1      <NA>     0      1
+2     2         1     1      2
+3     3         2     3      3
+4     4         2     3      4
+5     5         1     2      5
+6     6         5     3      6
+7     7         5     3      7
+> show(tree)
+  nodes ancestors times labels
+1     1      <NA>     0      1
+2     2         1     1      2
+3     3         2     3      3
+4     4         2     3      4
+5     5         1     2      5
+6     6         5     3      6
+7     7         5     3      7
 > x <- treedat[c(6,4,5,7,3,2,1),c("data1","data2")]
 > btree <- brown(data=x,tree)
 > print(btree)
@@ -55,42 +73,29 @@ theta:
 NULL
    loglik  deviance       aic     aic.c       sic       dof 
  13.07838 -26.15675 -16.15675  13.84325 -15.75955   5.00000 
-> htree <- hansen(data=x,tree,regimes=treedat["reg"],sqrt.alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
-> print(htree)
+> show(btree)
 
 call:
-hansen(data = x, tree = tree, regimes = treedat["reg"], sqrt.alpha = c(1, 
-    0, 1), sigma = c(0.1, 0, 0.1), fit = F)
-  nodes ancestors times labels reg reg.1        data1      data2
-1     1      <NA>     0      1   a     a           NA         NA
-2     2         1     1      2   a     a           NA         NA
-3     3         2     3      3   a     a -0.001337416 0.01615868
-4     4         2     3      4   b     b -1.013392601 1.01327464
-5     5         1     2      5   b     b           NA         NA
-6     6         5     3      6   a     a -0.002245235 0.01253792
-7     7         5     3      7   b     b -1.001403667 0.99154018
-
-alpha:
-     [,1] [,2]
-[1,]    1    0
-[2,]    0    1
+brown(data = x, tree = tree)
+  nodes ancestors times labels        data1      data2
+1     1      <NA>     0      1           NA         NA
+2     2         1     1      2           NA         NA
+3     3         2     3      3 -0.001337416 0.01615868
+4     4         2     3      4 -1.013392601 1.01327464
+5     5         1     2      5           NA         NA
+6     6         5     3      6 -0.002245235 0.01253792
+7     7         5     3      7 -1.001403667 0.99154018
 
 sigma squared:
-     [,1] [,2]
-[1,] 0.01 0.00
-[2,] 0.00 0.01
+           [,1]       [,2]
+[1,]  0.1888074 -0.1853472
+[2,] -0.1853472  0.1819546
 
 theta:
-$data1
-         a          b 
- 0.1529451 -1.0933094 
-
-$data2
-         a          b 
--0.1365499  1.0861752 
-
-    loglik   deviance        aic      aic.c        sic        dof 
- -4.026997   8.053993  28.053993 -45.279340  28.848409  10.000000 
+NULL
+   loglik  deviance       aic     aic.c       sic       dof 
+ 13.07838 -26.15675 -16.15675  13.84325 -15.75955   5.00000 
+> htree <- hansen(data=x,tree,regimes=treedat["reg"],sqrt.alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
 > htree <- update(htree,sqrt.alpha=c(1,-0.1,1),sigma=c(0.5,0.5,1),fit=F)
 > print(htree)
 
@@ -127,15 +132,50 @@ $data2
 
     loglik   deviance        aic      aic.c        sic        dof 
  -2.433922   4.867845  24.867845 -48.465489  25.662260  10.000000 
+> show(htree)
+
+call:
+hansen(data = data, tree = object, regimes = regimes, sqrt.alpha = sqrt.alpha, 
+    sigma = sigma, fit = ..1)
+  nodes ancestors times labels reg reg.1        data1      data2
+1     1      <NA>     0      1   a     a           NA         NA
+2     2         1     1      2   a     a           NA         NA
+3     3         2     3      3   a     a -0.001337416 0.01615868
+4     4         2     3      4   b     b -1.013392601 1.01327464
+5     5         1     2      5   b     b           NA         NA
+6     6         5     3      6   a     a -0.002245235 0.01253792
+7     7         5     3      7   b     b -1.001403667 0.99154018
+
+alpha:
+     [,1]  [,2]
+[1,]  1.0 -0.10
+[2,] -0.1  1.01
+
+sigma squared:
+     [,1] [,2]
+[1,] 0.25 0.25
+[2,] 0.25 1.25
+
+theta:
+$data1
+         a          b 
+ 0.1305478 -1.0640968 
+
+$data2
+         a          b 
+-0.1571595  1.0860827 
+
+    loglik   deviance        aic      aic.c        sic        dof 
+ -2.433922   4.867845  24.867845 -48.465489  25.662260  10.000000 
 > 
 > htree <- hansen(
-+                 tree=tree,
-+                 data=treedat[c('data3','data4','data5')],
-+                 regimes=treedat['reg'],
-+                 sqrt.alpha=c(1,0.5,0.5,1,0,3),
-+                 sigma=c(0.5,-0.1,-0.25,1,0.5,1),
-+                 fit=F
-+                 )
++   tree=tree,
++   data=treedat[c('data3','data4','data5')],
++   regimes=treedat['reg'],
++   sqrt.alpha=c(1,0.5,0.5,1,0,3),
++   sigma=c(0.5,-0.1,-0.25,1,0.5,1),
++   fit=F
++ )
 > print(htree)
 
 call:
@@ -180,11 +220,11 @@ $data5
 -41.42685  82.85369 118.85369  21.13941 127.58201  18.00000 
 > 
 > htree <- hansen(
-+                 tree=tree,
-+                 data=treedat[c('data3','data4','data5')],
-+                 regimes=treedat['reg'],
-+                 sqrt.alpha=c(1,0.5,0.5,1,0,3),
-+                 sigma=c(0.5,-0.1,-0.25,1,0.5,1),
-+                 fit=F
-+                 )
++   tree=tree,
++   data=treedat[c('data3','data4','data5')],
++   regimes=treedat['reg'],
++   sqrt.alpha=c(1,0.5,0.5,1,0,3),
++   sigma=c(0.5,-0.1,-0.25,1,0.5,1),
++   fit=F
++ )
 > 

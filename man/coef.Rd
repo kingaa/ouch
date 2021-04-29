@@ -4,6 +4,7 @@
 \alias{coef}
 \alias{coef,browntree-method}
 \alias{coef,hansentree-method}
+\alias{coef-hansentree,}
 \title{Model coefficients}
 \usage{
 \S4method{coef}{browntree}(object, ...)

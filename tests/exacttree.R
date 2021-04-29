@@ -12,29 +12,32 @@ treedat$data4[c(3,4,6,7)] <- c(0.5,1,-3,1)
 treedat$data5[c(3,4,6,7)] <- c(2,0,1,-2)
 
 tree <- with(treedat,ouchtree(node,anc,time))
+print(tree)
+show(tree)
 x <- treedat[c(6,4,5,7,3,2,1),c("data1","data2")]
 btree <- brown(data=x,tree)
 print(btree)
+show(btree)
 htree <- hansen(data=x,tree,regimes=treedat["reg"],sqrt.alpha=c(1,0,1),sigma=c(0.1,0,0.1),fit=F)
-print(htree)
 htree <- update(htree,sqrt.alpha=c(1,-0.1,1),sigma=c(0.5,0.5,1),fit=F)
 print(htree)
+show(htree)
 
 htree <- hansen(
-                tree=tree,
-                data=treedat[c('data3','data4','data5')],
-                regimes=treedat['reg'],
-                sqrt.alpha=c(1,0.5,0.5,1,0,3),
-                sigma=c(0.5,-0.1,-0.25,1,0.5,1),
-                fit=F
-                )
+  tree=tree,
+  data=treedat[c('data3','data4','data5')],
+  regimes=treedat['reg'],
+  sqrt.alpha=c(1,0.5,0.5,1,0,3),
+  sigma=c(0.5,-0.1,-0.25,1,0.5,1),
+  fit=F
+)
 print(htree)
 
 htree <- hansen(
-                tree=tree,
-                data=treedat[c('data3','data4','data5')],
-                regimes=treedat['reg'],
-                sqrt.alpha=c(1,0.5,0.5,1,0,3),
-                sigma=c(0.5,-0.1,-0.25,1,0.5,1),
-                fit=F
-                )
+  tree=tree,
+  data=treedat[c('data3','data4','data5')],
+  regimes=treedat['reg'],
+  sqrt.alpha=c(1,0.5,0.5,1,0,3),
+  sigma=c(0.5,-0.1,-0.25,1,0.5,1),
+  fit=F
+)

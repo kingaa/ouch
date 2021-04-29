@@ -31,3 +31,5 @@ boots.h5 <- bootstrap(h5,nboot=200,seed=92759587)
 cat("bootstrap 95% confidence intervals for h5:\n")
 print(t(sapply(boots.h5,quantile,probs=c(0.025,0.975))),digits=3)
 
+try(bootstrap())
+try(bootstrap("yes"))

@@ -40,7 +40,7 @@ Type 'q()' to quit R.
 > b5 <- sapply(simdat,function(x)summary(update(h5,data=x))$aic.c)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 7.323079 secs
+Time difference of 2.400367 secs
 > cat("approximate 95% AIC.c cutoff",signif(quantile(b1-b5,0.95),digits=3),"\n")
 approximate 95% AIC.c cutoff 2.58 
 > 
@@ -73,4 +73,8 @@ aic.c              -57.3091 -29.906
 sic                -55.1610 -27.757
 dof                  5.0000   5.000
 > 
+> try(bootstrap())
+Error : in 'bootstrap': 'object' is a required argument.
+> try(bootstrap("yes"))
+Error : 'bootstrap' is undefined for 'object' of class 'character'.
 > 

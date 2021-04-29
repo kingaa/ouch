@@ -98,7 +98,6 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
     stop("this is no tree: node ",nodes[w[1]]," is its own ancestor",call.=FALSE)
   }
 
-###  lineages <- build.lineages(anc)
   lineages <- vector(mode='list',length=n)
   todo <- root
   k <- 1
@@ -142,28 +141,6 @@ ancestor.numbers <- function (nodenames, ancestors) {
 ## nodenames of terminal twigs (terminal nodes are not ancestors)
 terminal.twigs <- function (nodenames, ancestors) {
   which(nodenames %in% setdiff(nodenames,unique(ancestors)))
-}
-
-build.lineages <- function (ancestors) {
-  n <- length(ancestors)
-  lineages <- vector(mode='list',length=n)
-  pedigree <- function (k) {
-    if (is.null(lineages[[k]])) {
-      a <- ancestors[k]
-      if (is.root.node(a)) {
-        lineages[[k]] <<- k
-      } else {
-        if (is.null(lineages[[a]])) Recall(a)
-        if (k %in% lineages[[a]]) 
-          stop('this is no tree: circularity detected at node ',k,call.=FALSE)
-        lineages[[k]] <<- c(k,lineages[[a]])
-      }
-    }
-    NULL
-  }
-  for (k in 1:n)
-    pedigree(k)
-  lineages
 }
 
 branch.times <- function (lineages, times, term) {

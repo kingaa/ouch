@@ -4,6 +4,7 @@
 \alias{summary}
 \alias{summary,browntree-method}
 \alias{summary,hansentree-method}
+\alias{summary-hansentree,}
 \title{Summary methods}
 \usage{
 \S4method{summary}{browntree}(object, ...)

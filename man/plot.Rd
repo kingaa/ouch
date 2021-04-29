@@ -4,11 +4,14 @@
 \alias{plot}
 \alias{plot,ouchtree-method}
 \alias{plot,hansentree-method}
+\alias{plot-hansentree}
 \title{Plotting functions.}
 \usage{
 \S4method{plot}{ouchtree}(x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels)
 
-\S4method{plot}{hansentree}(x, y, regimes, ...)
+\S4method{plot}{ouchtree}(x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels)
+
+\S4method{plot}{hansentree}(x, regimes, ...)
 }
 \arguments{
 \item{x}{object to plot.}

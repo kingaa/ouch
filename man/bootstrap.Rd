@@ -6,6 +6,7 @@
 \alias{bootstrap,ANY-method}
 \alias{bootstrap,browntree-method}
 \alias{bootstrap,hansentree-method}
+\alias{bootstrap-hansentree,}
 \title{Bootstrapping for uncertainty quantification}
 \usage{
 \S4method{bootstrap}{missing}(object, ...)

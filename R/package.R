@@ -45,7 +45,8 @@ reqd_arg <- function (method, object) {
   if (is.null(method) || length(method)==0)
     stop(sQuote(object)," is a required argument.",call.=FALSE)
   else
-    stop(method,sQuote(object)," is a required argument.",call.=FALSE)
+    stop("in ",sQuote(method),": ",sQuote(object),
+      " is a required argument.",call.=FALSE)
 }
 
 #' @importFrom stats runif

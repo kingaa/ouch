@@ -5,6 +5,7 @@
 \alias{simulate}
 \alias{simulate,browntree-method}
 \alias{simulate,hansentree-method}
+\alias{simulate-hansentree,}
 \title{Simulations of a phylogenetic trait model.}
 \usage{
 \S4method{simulate}{browntree}(object, nsim = 1, seed = NULL, ...)

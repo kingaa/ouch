@@ -81,3 +81,62 @@ arrange_tree <- function (root, anc, ypos = numeric(length(anc))) {
   }
   ypos
 }
+
+#' @rdname plot
+#' @aliases plot,ouchtree-method
+#' @importFrom graphics par
+#' @importFrom grDevices rainbow
+#' @importFrom stats setNames
+#' @export
+setMethod(
+  "plot",
+  signature=signature(x="ouchtree"),
+  function (
+    x, ..., regimes = NULL, ladderize = TRUE,
+    node.names = FALSE,
+    legend = TRUE, labels, frame.plot = FALSE,
+    palette = rainbow,
+    margin = 0.1,
+    text_opts = list(),
+    legend_opts = list()
+  ) {
+    if (missing(labels)) labels <- x@nodelabels
+    if (node.names) {
+      lbld <- !is.na(labels)
+      labels[lbld] <- paste(x@nodes[lbld],labels[lbld])
+      labels[!lbld] <- x@nodes[!lbld]
+    }
+    if (is.data.frame(regimes)) {
+      nm <- rownames(regimes)
+      regimes <- lapply(as.list(regimes),function(x){names(x)<-nm;x})
+    }
+    if (is.list(regimes)) {
+      if (any(sapply(regimes,length)!=x@nnodes))
+        stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
+    } else if (!is.null(regimes)) {
+      if (length(regimes)!=x@nnodes)
+        stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
+      nm <- deparse(substitute(regimes))[1]
+      regimes <- list(regimes)
+      names(regimes) <- nm
+    }
+    if (is.null(regimes)) {
+      tree.plot.internal(
+        x,regimes=NULL,ladderize=ladderize,
+        palette=palette,labels=labels,legend=legend,frame.plot=frame.plot,
+        ...,margin=margin,text_opts=text_opts,legend_opts=legend_opts
+      )
+    } else {
+      oldpar <- par(mfrow=c(1,length(regimes)))
+      on.exit(par(oldpar))
+      for (r in regimes) {
+        tree.plot.internal(
+          x,regimes=r,ladderize=ladderize,
+          palette=palette,labels=labels,legend=legend,frame.plot=frame.plot,
+          ...,margin=margin,text_opts=text_opts,legend_opts=legend_opts
+        )
+      }
+    }
+    invisible(NULL)
+  }
+)

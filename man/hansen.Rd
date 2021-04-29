@@ -2,6 +2,7 @@
 % Please edit documentation in R/hansen.R
 \name{hansen}
 \alias{hansen}
+\alias{hansentree-class}
 \title{Ornstein-Uhlenbeck models of trait evolution}
 \usage{
 hansen(
