@@ -1,17 +1,21 @@
 glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
   n <- length(x)
-  vh <- try(
-            chol(v),
-            silent=FALSE
-            )
-  if (inherits(vh,'try-error')) {
-    warning(
-            "glssoln: Choleski decomposition of variance-covariance matrix fails",
-            call.=FALSE
-            )
-    y <- rep(NA,ncol(a))
+  vh <- tryCatch(
+    chol(v),
+    error=function (e) {
+      warning(
+        "in ",sQuote("ouch:::glssoln"),": Choleski decomposition ",
+        "of variance-covariance matrix fails with error: ",
+        dQuote(conditionMessage(e)),
+        call.=FALSE
+      )
+      NULL
+    }
+  )
+  if (is.null(vh)) {
+    y <- rep(NA,NCOL(a))
     e <- rep(NA,n)
-    dim(y) <- ncol(a)
+    dim(y) <- NCOL(a)
     dim(e) <- n
   } else {
     s <- svd(forwardsolve(vh,a,upper.tri=TRUE,transpose=TRUE))

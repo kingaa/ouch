@@ -92,7 +92,7 @@ Type 'q()' to quit R.
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.509267 secs
+Time difference of 1.215634 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -135,7 +135,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1492882 secs
+Time difference of 0.126334 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -203,7 +203,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.599874 secs
+Time difference of 1.203748 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -283,7 +283,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.2021248 secs
+Time difference of 0.1627941 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 

@@ -40,7 +40,7 @@ Type 'q()' to quit R.
 > b5 <- sapply(simdat,function(x)summary(update(h5,data=x))$aic.c)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 2.633867 secs
+Time difference of 2.382562 secs
 > cat("approximate 95% AIC.c cutoff",signif(quantile(b1-b5,0.95),digits=3),"\n")
 approximate 95% AIC.c cutoff 2.58 
 > 
