@@ -54,13 +54,11 @@ paint <- function (tree, subtree, branch, which = 1) {
   }
   if (!missing(branch)) {
     br.nm <- names(branch)
-    if (length(br.nm)>0) {
-      if(is.null(br.nm))
-        stop(sQuote("branch")," must be a named vector")
-      if (!all(br.nm%in%tree@nodes))
-        stop("all names of ",sQuote("branch")," must be names of nodes of ",sQuote("tree"))
-      branch <- as.character(branch)
-    }
+    if(is.null(br.nm))
+      stop(sQuote("branch")," must be a named vector")
+    if (!all(br.nm%in%tree@nodes))
+      stop("all names of ",sQuote("branch")," must be names of nodes of ",sQuote("tree"))
+    branch <- as.character(branch)
   } else {
     branch <- character(0)
     br.nm <- character(0)
