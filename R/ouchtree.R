@@ -60,7 +60,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   ancestors <- as.character(ancestors)
 
   n <- length(nodes)
-  if (length(unique(nodes)) != n) stop("node names must be unique")
+  if (anyDuplicated(nodes)>0) stop("node names must be unique")
   if (length(ancestors) != n)
     stop("invalid tree: ",sQuote("ancestors")," must have the same length as ",sQuote("nodes"))
   if (length(times) != n) 
@@ -140,7 +140,7 @@ ancestor.numbers <- function (nodenames, ancestors) {
 
 ## nodenames of terminal twigs (terminal nodes are not ancestors)
 terminal.twigs <- function (nodenames, ancestors) {
-  which(nodenames %in% setdiff(nodenames,unique(ancestors)))
+  which(nodenames %in% setdiff(nodenames,ancestors))
 }
 
 branch.times <- function (lineages, times, term) {
