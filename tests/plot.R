@@ -25,4 +25,7 @@ plot(tree,margin=0.2,palette=hcl.colors(1))
 try(plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=hcl.colors(1)))
 plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=rainbow(5))
 
+try(plot(tree,regimes=1:3))
+try(plot(tree,regimes=bimac$OU.LP))
+
 dev.off()

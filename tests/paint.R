@@ -9,6 +9,7 @@ with(
 
 h <- hansen(log(bimac['size']),t,bimac['OU.3'],sqrt.alpha=1,sigma=1)
 
+paint(t,subtree=c("1"="medium","9"="large","2"="small"))
 paint(t,subtree=c("1"="medium","9"="large","2"="small"),
   branch=c("38"="large","2"="medium"))
 paint(h,subtree=c("1"="medium","9"="large","2"="small"),

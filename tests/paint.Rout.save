@@ -29,6 +29,18 @@ Error in paint(bimac) : 'tree' must be of class 'ouchtree'
 > 
 > h <- hansen(log(bimac['size']),t,bimac['OU.3'],sqrt.alpha=1,sigma=1)
 > 
+> paint(t,subtree=c("1"="medium","9"="large","2"="small"))
+     1      2      3      4      5      6      7      8      9     10     11 
+unspec medium  small  small  small  small medium medium medium  large  large 
+    12     13     14     15     16     17     18     19     20     21     22 
+ large medium medium medium medium medium medium medium medium medium medium 
+    23     24     25     26     27     28     29     30     31     32     33 
+ small  small  small  small  small  small  large  large  large  large  large 
+    34     35     36     37     38     39     40     41     42     43     44 
+medium medium medium medium medium medium medium medium medium medium medium 
+    45 
+medium 
+Levels: large medium small unspec
 > paint(t,subtree=c("1"="medium","9"="large","2"="small"),
 +   branch=c("38"="large","2"="medium"))
      1      2      3      4      5      6      7      8      9     10     11 

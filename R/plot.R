@@ -31,7 +31,7 @@ NULL
 
 tree.plot.internal <- function (
   x, ...,
-  regimes = NULL,
+  regimes,
   ladderize,
   palette,
   labels,
@@ -47,7 +47,7 @@ tree.plot.internal <- function (
   rx <- range(x@times,na.rm=T)
   margin <- as.numeric(margin)
   if (!(length(margin)==1 && isTRUE(margin>=0 && margin<1)))
-    stop(sQuote("margin")," should be between 0 and 1.")
+    stop(sQuote("margin")," should be between 0 and 1.",call.=FALSE)
   rxd <- margin*diff(rx)/(1-margin)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))
@@ -55,9 +55,9 @@ tree.plot.internal <- function (
     regimes <- factor(rep('unspec',length(anc)))
     names(regimes) <- x@nodes
   } else if (length(regimes)!=x@nnodes)
-    stop(sQuote("regimes")," must be a vector with one entry for each node")
-  if ((is.null(names(regimes)))||(!setequal(names(regimes),x@nodes)))
-    stop("regime specifications must have names corresponding to the node names")
+    stop("there must be one entry in ",sQuote("regimes")," per node of the tree",call.=FALSE)
+  if (is.null(names(regimes)) || !setequal(names(regimes),x@nodes))
+    stop("regime specifications must have names corresponding to the node names",call.=FALSE)
   regimes <- regimes[x@nodes]
   levs <- levels(as.factor(regimes))
   ## if the root is the only one with a certain regime, toss that regime out
@@ -66,7 +66,7 @@ tree.plot.internal <- function (
   if (is.function(palette))
     palette <- palette(length(levs))
   else if (!(is.character(palette) && length(palette)>=length(levs)))
-    stop(sQuote("palette")," must be either a function or a character vector of length >= ",length(levs),".")
+    stop(sQuote("palette")," must be either a function or a character vector of length >= ",length(levs),".",call.=FALSE)
   if (ladderize) {
     cs <- clade_size(root,anc)
   } else {
@@ -179,12 +179,9 @@ setMethod(
       nm <- rownames(regimes)
       regimes <- lapply(as.list(regimes),function(x){names(x)<-nm;x})
     }
-    if (is.list(regimes)) {
-      if (any(sapply(regimes,length)!=x@nnodes))
-        stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
-    } else if (!is.null(regimes)) {
+    if (!(is.list(regimes) || is.null(regimes))) {
       if (length(regimes)!=x@nnodes)
-        stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
+        stop("there must be one entry in ",sQuote("regimes")," per node of the tree",call.=FALSE)
       nm <- deparse(substitute(regimes))[1]
       regimes <- list(regimes)
       names(regimes) <- nm
