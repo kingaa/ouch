@@ -75,20 +75,24 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
     stop("the algorithms assume that the root node is at time=0")
   
   term <- terminal.twigs(nodes,ancestors)
-  if (length(term) <= 0) 
-    stop("invalid tree: there ought to be at least one terminal node, don't you think?")
+  if (length(term) <= 0)
+    stop("invalid tree: there ought to be at least one terminal node, don't you think?") #nocov
 
   outs <- which((!is.root.node(ancestors) & !(ancestors %in% nodes)))
   if (length(outs) > 0) {
-    for (out in outs) {
-      warning(
-        sprintf(
-          "the ancestor of node %s is not in the tree",
-          nodes[out]
-        ),
-        call.=FALSE)
-    }
-    stop("invalid tree")
+    stop(
+      ngettext(
+        length(outs),
+        "invalid tree: the ancestor of node ",
+        "invalid tree: the ancestors of nodes "
+      ),
+      paste(sQuote(nodes[outs]),collapse=", "),
+      ngettext(
+        length(outs),
+        " is not in the tree.",
+        " are not in the tree."
+      )
+    )
   }
   
   anc <- ancestor.numbers(nodes,ancestors)
