@@ -45,10 +45,13 @@
 \item{frame.plot}{a logical indicating whether a box should be drawn
     around the plot.}
 
-\item{palette}{function; a function that, given an integer, \code{n}, creates a vector of \code{n} contiguous colors.
-See, for example \code{\link[grDevices:rainbow]{rainbow}}.}
+\item{palette}{function or character; specifies the colors to be used for the several regimes on the tree.
+Specified as a function, when given an integer, \code{n}, the function should create a vector of \code{n} colors.
+See, for example \code{\link[grDevices:rainbow]{rainbow}}.
+One can also specify the \code{n} colors as a vector of color codes.
+There must be at least as many colors as levels in the \code{regimes}.}
 
-\item{margin}{numeric; width of the left and right margins (as a fraction of the plot width).
+\item{margin}{numeric; width of the right margin (as a fraction of the plot width).
 Adjust this if labels are clipped.
 If different left and right margins are desired, furnish two numbers here.}
 

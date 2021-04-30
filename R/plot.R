@@ -11,10 +11,13 @@
 #' @param node.names logical; should node names be displayed?
 #' @param ladderize logical; should the tree be ladderized?
 #' @param legend logical; display a legend?
-#' @param palette function; a function that, given an integer, \code{n}, creates a vector of \code{n} contiguous colors.
+#' @param palette function or character; specifies the colors to be used for the several regimes on the tree.
+#' Specified as a function, when given an integer, \code{n}, the function should create a vector of \code{n} colors.
 #' See, for example \code{\link[grDevices:rainbow]{rainbow}}.
+#' One can also specify the \code{n} colors as a vector of color codes.
+#' There must be at least as many colors as levels in the \code{regimes}.
 #' @param labels character; taxon labels.
-#' @param margin numeric; width of the left and right margins (as a fraction of the plot width).
+#' @param margin numeric; width of the right margin (as a fraction of the plot width).
 #' Adjust this if labels are clipped.
 #' If different left and right margins are desired, furnish two numbers here.
 #' @param text_opts options for the labels; passed to \code{\link[graphics]{text}}
@@ -34,15 +37,18 @@ tree.plot.internal <- function (
   labels,
   legend,
   margin,
-  xlab = "time", ylab = "",
+  xlab = "", ylab = "",
+  xaxp = NULL,
   text_opts,
   legend_opts
 ) {
   ladderize <- as.logical(ladderize)
   legend <- as.logical(legend)
   rx <- range(x@times,na.rm=T)
-  rxd <- as.numeric(margin)*diff(rx)
-  if (length(rxd) < 2) rxd <- c(rxd,rxd)
+  margin <- as.numeric(margin)
+  if (!(length(margin)==1 && isTRUE(margin>=0 && margin<1)))
+    stop(sQuote("margin")," should be between 0 and 1.")
+  rxd <- margin*diff(rx)/(1-margin)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))
   if (is.null(regimes)) {
@@ -57,7 +63,10 @@ tree.plot.internal <- function (
   ## if the root is the only one with a certain regime, toss that regime out
   if (sum(regimes%in%regimes[root])==1)
     levs <- setdiff(levs,regimes[root])
-  palette <- palette(length(levs))
+  if (is.function(palette))
+    palette <- palette(length(levs))
+  else if (!(is.character(palette) && length(palette)>=length(levs)))
+    stop(sQuote("palette")," must be either a function or a character vector of length >= ",length(levs),".")
   if (ladderize) {
     cs <- clade_size(root,anc)
   } else {
@@ -65,8 +74,6 @@ tree.plot.internal <- function (
   }
   xx <- x@times
   yy <- arrange_tree(root,anc,cs)/(length(x@term)+1)
-  op <- par(yaxt='n')
-  on.exit(par(op))
   for (r in seq_along(levs)) {
     f <- which(!is.root.node(anc) & regimes==levs[r])
     pp <- anc[f]
@@ -82,8 +89,10 @@ tree.plot.internal <- function (
     base::plot(
             X,Y,
             type='l',col=C,
+            xaxp=if (is.null(xaxp)) c(rx,1) else xaxp,
+            yaxt='n',
             xlab=xlab,ylab=ylab,
-            xlim=rx+c(-1,1)*rxd,ylim=c(0,1),
+            xlim=rx+c(0,rxd),ylim=c(0,1),
             ...
           )
     if (!is.null(labels)) {

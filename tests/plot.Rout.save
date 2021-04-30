@@ -34,9 +34,23 @@ Type 'q()' to quit R.
 > plot(tree,regimes=bimac["OU.3"],node.names=TRUE,ladderize=FALSE)
 > 
 > bimac$silly <- ifelse(is.na(bimac$species),NA_character_,"anamagrophilexidicenappendocitemiousness")
-> tree <- with(bimac,ouchtree(node,ancestor,time/max(time),silly))
-> plot(tree)
-> plot(tree,margin=c(0.01,0.8),palette=hcl.colors)
+> tree1 <- with(bimac,ouchtree(node,ancestor,time/max(time),silly))
+> plot(tree1)
+> plot(tree1,regimes=bimac["OU.LP"],margin=0.7)
+> try(plot(tree,margin=c(0.01,0.8),palette=hcl.colors))
+Error in tree.plot.internal(x, regimes = NULL, ladderize = ladderize,  : 
+  'margin' should be between 0 and 1.
+> try(plot(tree,margin=2,palette=hcl.colors))
+Error in tree.plot.internal(x, regimes = NULL, ladderize = ladderize,  : 
+  'margin' should be between 0 and 1.
+> try(plot(tree,margin=-1,palette=hcl.colors))
+Error in tree.plot.internal(x, regimes = NULL, ladderize = ladderize,  : 
+  'margin' should be between 0 and 1.
+> plot(tree,margin=0.2,palette=hcl.colors(1))
+> try(plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=hcl.colors(1)))
+Error in tree.plot.internal(x, regimes = r, ladderize = ladderize, palette = palette,  : 
+  'palette' must be either a function or a character vector of length >= 3.
+> plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=rainbow(5))
 > 
 > dev.off()
 null device 
