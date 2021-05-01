@@ -341,17 +341,17 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
 sym.par <- function (x) {
   nchar <- floor(sqrt(2*length(x)))
   if (nchar*(nchar+1)!=2*length(x)) {
-    stop("a symmetric matrix is parameterized by a triangular number of parameters",call.=FALSE)
+    stop("a symmetric matrix is parameterized by a triangular number of parameters",call.=FALSE) #nocov
   }
   y <- matrix(0,nchar,nchar)
   y[lower.tri(y,diag=TRUE)] <- x
   y%*%t(y)
 }
 
-sym.unpar <- function (x) {
-  y <- t(chol(x))
-  y[lower.tri(y,diag=TRUE)]
-}
+## sym.unpar <- function (x) {
+##   y <- t(chol(x))
+##   y[lower.tri(y,diag=TRUE)]
+## }
 
 sets.of.regimes <- function (object, regimes) {
   lapply(regimes,function(x)sort(unique(x)))

@@ -61,13 +61,13 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   times <- rep(NA,nnodes)
   for (n in 1:nnodes)
     times[n] <- branch.height(node,ancestor,bl,n)
+  if (is.na(scale)) stop(sQuote("scale")," cannot be NA.")
   if (is.logical(scale)) {
-    if (is.na(scale)) stop("if ",sQuote("scale")," is logical, it must be either true or false")
     if (scale) times <- times/max(times)
   } else if (is.numeric(scale)) {
     times <- times/abs(scale)
   } else {
-    stop(sQuote("scale")," must be either logical or numeric")
+    stop(sQuote("scale")," must be either logical or numeric.")
   }
   
   ouchtree(

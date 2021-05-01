@@ -5,3 +5,9 @@ read.tree(text="(((((((((((jr:8.781304,((wy:1.392306,df:1.392306):0.822574,be:2.
 ") -> t
 
 plot(ape2ouch(t),xlab='',xaxt='n',node.names=FALSE)
+
+ape2ouch(t,scale=33) -> tt
+try(ape2ouch("tree"))
+try(ape2ouch(t,scale=NA))
+try(ape2ouch(t,scale=NA_real_))
+try(ape2ouch(t,scale="bob"))

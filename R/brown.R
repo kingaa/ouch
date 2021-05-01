@@ -76,7 +76,8 @@ brown <- function (data, tree) {
     for (xx in data) {
       no.dats <- which(is.na(xx[tree@nodes[tree@term]]))
       if (length(no.dats)>0)
-        stop("missing data on terminal node(s): ",paste(tree@nodes[tree@term[no.dats]],collapse=','))
+        stop("missing data on terminal node(s): ",
+          paste(sQuote(tree@nodes[tree@term[no.dats]]),collapse=', '))
     }
   } else
     stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
