@@ -18,6 +18,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(ouch)
+> set.seed(1277742405L)
 > 
 > tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
 > 
@@ -43,5 +44,152 @@ unsuccessful convergence, code -1, see documentation for `subplex'
 `subplex' message:number of function evaluations exceeds 'maxit'
 Warning message:
 In hansen(data = data, tree = object, regimes = regimes, sqrt.alpha = sqrt.alpha,  :
+  unsuccessful convergence
+> 
+> try(hansen(bimac))
+Error in is(tree, "ouchtree") : 
+  argument "tree" is missing, with no default
+> try(hansen(tree=bimac))
+Error in hansen(tree = bimac) : 
+  'tree' must be an object of class 'ouchtree'
+> try(hansen(tree=tree))
+Error in hansen(tree = tree) : 'data' must be specified
+> try(hansen(tree=tree,data=bimac$size[1:10]))
+Error in hansen(tree = tree, data = bimac$size[1:10]) : 
+  'data' vector(s) must be numeric, with one entry per node of the tree
+> try(hansen(tree=tree,data=bimac$size))
+Error in hansen(tree = tree, data = bimac$size) : 
+  'data' vector names (or data-frame row names) must match node names of 'tree'
+> try(hansen(tree=tree,data=setNames(bimac$size,bimac$node)))
+Error in hansen(tree = tree, data = setNames(bimac$size, bimac$node)) : 
+  argument "sqrt.alpha" is missing, with no default
+> try(hansen(tree=tree,data=setNames(bimac$size,bimac$node),sqrt.alpha=1))
+Error in hansen(tree = tree, data = setNames(bimac$size, bimac$node),  : 
+  argument "sigma" is missing, with no default
+> try(hansen(tree=tree,data=setNames(bimac$size,bimac$node),sqrt.alpha=1,sigma=1))
+Error in hansen(tree = tree, data = setNames(bimac$size, bimac$node),  : 
+  'regimes' must be specified
+> try(hansen(tree=tree,data=setNames(bimac$size,bimac$node),sqrt.alpha=1,sigma=1,
++   regimes=1:5))
+Error in hansen(tree = tree, data = setNames(bimac$size, bimac$node),  : 
+  there must be one entry in 'regimes' per node of the tree
+> try(hansen(tree=tree,data=setNames(bimac$size,bimac$node),sqrt.alpha=1,sigma=1,
++   regimes=bimac$OU.LP))
+Error in hansen(tree = tree, data = setNames(bimac$size, bimac$node),  : 
+  each regime specification must have names corresponding to the node names
+> try(hansen(tree=tree,data="bob",sqrt.alpha=1,sigma=1,
++   regimes=setNames(bimac$OU.LP,bimac$node)))
+Error in hansen(tree = tree, data = "bob", sqrt.alpha = 1, sigma = 1,  : 
+  'data' must be either a single numeric data set or a list of numeric data sets
+> try(hansen(tree=tree,data=setNames(c(bimac$size[-c(44,45)],NA,NA),bimac$node),
++   sqrt.alpha=1,sigma=1,
++   regimes=setNames(bimac$OU.LP,bimac$node)))
+Error in hansen(tree = tree, data = setNames(c(bimac$size[-c(44, 45)],  : 
+  missing data on terminal node(s): '44', '45'
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(runif(n=45),bimac$node)
++     ),
++     sqrt.alpha=1,sigma=1,
++     regimes=setNames(bimac$OU.LP,bimac$node)
++   )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  the length of 'sqrt.alpha' must be a triangular number
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(runif(n=45),bimac$node)
++     ),
++     sqrt.alpha=c(1,1,1),sigma=1,
++     regimes=setNames(bimac$OU.LP,bimac$node)
++   )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  the length of 'sigma' must be a triangular number
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(rnorm(n=45),bimac$node)
++     ),
++     sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++     regimes=setNames(bimac$OU.LP[1:10],bimac$node[1:10])
++   )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  there must be one entry in 'regimes' per node of the tree
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(rnorm(n=45),bimac$node)
++     ),
++     sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++     regimes=list(
++       setNames(bimac$OU.LP[1:10],bimac$node[1:10]),
++       setNames(bimac$OU.1,bimac$node)
++     )
++   )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  each element in 'regimes' must be a vector with one entry per node of the tree
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(rnorm(n=45),bimac$node)
++     ),
++     sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++     regimes=list(
++       as.character(setNames(bimac$OU.LP,bimac$node)),
++       setNames(bimac$OU.1,bimac$node)
++     )
++   )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  'regimes' must be of class 'factor' or a list of 'factor' objects
+> try(
++   hansen(tree=tree,
++     data=list(
++       setNames(bimac$size,bimac$node),
++       setNames(rnorm(n=45),bimac$node)
++     ),
++     sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++     regimes=list(
++       setNames(bimac$OU.LP,bimac$node),
++       setNames(bimac$OU.1,bimac$node),
++       setNames(bimac$OU.3,bimac$node)
++     )
++    )
++ )
+Error in hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  : 
+  you must supply a regime-specification vector for each character
+> hansen(tree=tree,
++   data=list(
++     setNames(bimac$size,bimac$node),
++     setNames(rnorm(n=45),bimac$node)
++   ),
++   sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++   regimes=setNames(bimac$OU.LP,bimac$node)
++ ) -> h
+unsuccessful convergence, code 1, see documentation for `optim'
+Warning message:
+In hansen(tree = tree, data = list(setNames(bimac$size, bimac$node),  :
+  unsuccessful convergence
+> hansen(tree=tree,
++   data=list(
++     A=setNames(bimac$size,bimac$node),
++     B=setNames(rnorm(n=45),bimac$node)
++   ),
++   sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
++   regimes=setNames(bimac$OU.LP,bimac$node)
++ ) -> h
+unsuccessful convergence, code 1, see documentation for `optim'
+Warning message:
+In hansen(tree = tree, data = list(A = setNames(bimac$size, bimac$node),  :
   unsuccessful convergence
 > 
