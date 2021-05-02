@@ -2,9 +2,10 @@
 \title{News for Package 'ouch'}
 \section{Changes in ouch version 2.16}{
   \itemize{
-    \item Fixed bug in \code{plot}.
     \item The arguments to the various \code{plot} methods have changed.
-    It is now possible to pass options separately to the \code{plot}, \code{text}, and \code{legend} commands called by the \pkg{ouch} \code{plot} methods.
+    There is now much finer control over the plotting.
+    In particular, one can specify a different palette of colors, adjust the width of the margin in which taxon labels are printed, and pass options separately to the base-graphics \code{plot}, \code{text}, and \code{legend} commands under0lying the \pkg{ouch} \code{plot} methods.
+    \item A layout bug in \code{plot} has been fixed.
   }
 }
 \section{Changes in ouch version 2.15}{

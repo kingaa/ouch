@@ -2,12 +2,15 @@ _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
 _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6:
 
-        • Fixed bug in ‘plot’.
+        • The arguments to the various ‘plot’ methods have changed.
+          There is now much finer control over the plotting.  In
+          particular, one can specify a different palette of colors,
+          adjust the width of the margin in which taxon labels are
+          printed, and pass options separately to the base-graphics
+          ‘plot’, ‘text’, and ‘legend’ commands under0lying the ‘ouch’
+          ‘plot’ methods.
 
-        • The arguments to the various ‘plot’ methods have changed.  It
-          is now possible to pass options separately to the ‘plot’,
-          ‘text’, and ‘legend’ commands called by the ‘ouch’ ‘plot’
-          methods.
+        • A layout bug in ‘plot’ has been fixed.
 
 _C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_5:
 
