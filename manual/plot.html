@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Plotting functions.</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: ouch plotting functions</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="R.css" />
 </head><body>
 
 <table width="100%" summary="page for plot {ouch}"><tr><td>plot {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Plotting functions.</h2>
+<h2>ouch plotting functions</h2>
 
 <h3>Description</h3>
 
-<p>Plot phylogenies.
+<p>Plot phylogenetic trees, with or without regime paintings.
 </p>
 
 
@@ -17,10 +17,24 @@
 
 <pre>
 ## S4 method for signature 'ouchtree'
-plot(x, y, regimes = NULL, node.names = FALSE, legend = TRUE, ..., labels)
+plot(
+  x,
+  y,
+  ...,
+  regimes = NULL,
+  ladderize = TRUE,
+  node.names = FALSE,
+  legend = TRUE,
+  labels,
+  frame.plot = FALSE,
+  palette = rainbow,
+  margin = 0.1,
+  text_opts = list(),
+  legend_opts = list()
+)
 
 ## S4 method for signature 'hansentree'
-plot(x, y, regimes, ...)
+plot(x, ..., regimes)
 </pre>
 
 
@@ -35,9 +49,17 @@ plot(x, y, regimes, ...)
 <td>
 <p>ignored.</p>
 </td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional arguments, passed to <code><a href="../../graphics/html/plot.html">plot</a></code>.</p>
+</td></tr>
 <tr valign="top"><td><code>regimes</code></td>
 <td>
 <p>factor or character; a vector of regime paintings.</p>
+</td></tr>
+<tr valign="top"><td><code>ladderize</code></td>
+<td>
+<p>logical; should the tree be ladderized?</p>
 </td></tr>
 <tr valign="top"><td><code>node.names</code></td>
 <td>
@@ -47,13 +69,36 @@ plot(x, y, regimes, ...)
 <td>
 <p>logical; display a legend?</p>
 </td></tr>
-<tr valign="top"><td><code>...</code></td>
-<td>
-<p>additional arguments, passed to <code>text</code>.</p>
-</td></tr>
 <tr valign="top"><td><code>labels</code></td>
 <td>
 <p>character; taxon labels.</p>
+</td></tr>
+<tr valign="top"><td><code>frame.plot</code></td>
+<td>
+<p>a logical indicating whether a box should be drawn
+around the plot.</p>
+</td></tr>
+<tr valign="top"><td><code>palette</code></td>
+<td>
+<p>function or character; specifies the colors to be used for the several regimes on the tree.
+Specified as a function, when given an integer, <code>n</code>, the function should create a vector of <code>n</code> colors.
+See, for example <code><a href="../../grDevices/html/rainbow.html">rainbow</a></code>.
+One can also specify the <code>n</code> colors as a vector of color codes.
+There must be at least as many colors as levels in the <code>regimes</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>margin</code></td>
+<td>
+<p>numeric; width of the right margin (as a fraction of the plot width).
+Adjust this if labels are clipped.
+If different left and right margins are desired, furnish two numbers here.</p>
+</td></tr>
+<tr valign="top"><td><code>text_opts</code></td>
+<td>
+<p>options for the labels; passed to <code><a href="../../graphics/html/text.html">text</a></code></p>
+</td></tr>
+<tr valign="top"><td><code>legend_opts</code></td>
+<td>
+<p>options for the the legend; passed to <code><a href="../../graphics/html/legend.html">legend</a></code></p>
 </td></tr>
 </table>
 
@@ -70,5 +115,5 @@ plot(x, y, regimes, ...)
 <code><a href="update.html">update</a>()</code>
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.15-2 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-1 <a href="00Index.html">Index</a>]</div>
 </body></html>
