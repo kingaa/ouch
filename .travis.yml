@@ -1,7 +1,5 @@
 language: r
-sudo: false
 cache: packages
-file_glob: true
 latex: false
 pandoc: false
 addons:
@@ -53,6 +51,6 @@ jobs:
       file_glob: true
       file:
       - ouch_*.tgz
-      skip_cleanup: true
+      cleanup: false
       on:
         tags: true
