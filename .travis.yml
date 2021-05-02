@@ -53,6 +53,6 @@ jobs:
       file_glob: true
       file:
       - ouch_*.tgz
-      cleanup: false
+      skip_cleanup: true
       on:
         tags: true
