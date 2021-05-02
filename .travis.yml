@@ -24,6 +24,8 @@ jobs:
     os: linux
   - r: devel
     os: linux
+  - r: 3.6
+    os: linux
   - r: release
     os: osx
     osx_image: xcode12.2
