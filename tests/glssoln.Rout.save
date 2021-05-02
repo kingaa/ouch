@@ -18,7 +18,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(ouch)
-> options(digits=3)
 > 
 > try(ouch:::glssoln(0,1,0))
 $coeff
@@ -38,11 +37,9 @@ $residuals
 
 Warning message:
 in 'ouch:::glssoln': Choleski decomposition of variance-covariance matrix fails with error: "the leading minor of order 2 is not positive definite" 
-> ouch:::glssoln(matrix(c(1,1,0,1),2,2),c(1,1),matrix(c(2,1,1,2),2,2))
-$coeff
-[1]  1.00e+00 -2.22e-16
-
-$residuals
-[1] -3.33e-16 -5.55e-16
-
+> ouch:::glssoln(matrix(c(1,1,0,1),2,2),c(1,1),matrix(c(2,1,1,2),2,2)) -> x
+> stopifnot(
++   coeff=all.equal(as.numeric(x$coeff),c(1,0)),
++   residuals=all.equal(as.numeric(x$residuals),c(0,0))
++ )
 > 

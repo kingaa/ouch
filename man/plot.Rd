@@ -30,7 +30,7 @@
 
 \item{y}{ignored.}
 
-\item{...}{additional arguments, passed to \code{\link[base]{plot}}.}
+\item{...}{additional arguments, passed to \code{\link[graphics]{plot}}.}
 
 \item{regimes}{factor or character; a vector of regime paintings.}
 

@@ -22,10 +22,10 @@
 #' If different left and right margins are desired, furnish two numbers here.
 #' @param text_opts options for the labels; passed to \code{\link[graphics]{text}}
 #' @param legend_opts options for the the legend; passed to \code{\link[graphics]{legend}}
-#' @param ... additional arguments, passed to \code{\link[base]{plot}}.
+#' @param ... additional arguments, passed to \code{\link[graphics]{plot}}.
 #' 
-#' @inheritParams graphics::plot
-#' @importFrom graphics text legend par
+#' @inheritParams graphics::plot.default
+#' @importFrom graphics plot text legend par
 #' @importFrom grDevices rainbow
 NULL
 
@@ -86,7 +86,7 @@ tree.plot.internal <- function (
     Y <- Y[-length(Y)]
     C <- rep(palette[r],length(X))
     if (r > 1) par(new=TRUE)
-    base::plot(
+    graphics::plot.default(
             X,Y,
             type='l',col=C,
             xaxp=if (is.null(xaxp)) c(rx,1) else xaxp,
