@@ -5,7 +5,6 @@
 \alias{update}
 \alias{update,browntree-method}
 \alias{update,hansentree-method}
-\alias{update-hansentree}
 \title{Update and refit a model.}
 \usage{
 \S4method{update}{browntree}(object, data, ...)

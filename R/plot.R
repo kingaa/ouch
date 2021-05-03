@@ -18,7 +18,6 @@
 #' @param labels character; taxon labels.
 #' @param margin numeric; width of the right margin (as a fraction of the plot width).
 #' Adjust this if labels are clipped.
-#' If different left and right margins are desired, furnish two numbers here.
 #' @param text_opts options for the labels; passed to \code{\link[graphics]{text}}
 #' @param legend_opts options for the the legend; passed to \code{\link[graphics]{legend}}
 #' @param ... additional arguments, passed to \code{\link[graphics]{plot}}.
@@ -163,7 +162,7 @@ setMethod(
   function (
     x, ..., regimes = NULL, ladderize = TRUE,
     node.names = FALSE,
-    legend = TRUE, labels, frame.plot = FALSE,
+    legend = !is.null(regimes), labels, frame.plot = FALSE,
     palette = rainbow,
     margin = 0.1,
     text_opts = list(),

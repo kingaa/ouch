@@ -7,9 +7,7 @@
 \alias{show,browntree-method}
 \alias{print,browntree-method}
 \alias{print,hansentree-method}
-\alias{print-hansentree}
 \alias{show,hansentree-method}
-\alias{show-hansentree}
 \title{Print methods}
 \usage{
 \S4method{print}{ouchtree}(x, ...)

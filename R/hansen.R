@@ -533,10 +533,10 @@ setMethod(
 setMethod(
   "plot",
   signature=signature(x="hansentree"),
-  function (x, ..., regimes) {
+  function (x, ..., regimes, legend = TRUE) {
     if (missing(regimes)) regimes <- x@regimes
     f <- getMethod("plot","ouchtree")
-    f(x=x,regimes=regimes,...)
+    f(x=x,regimes=regimes,legend=legend,...)
   }
 )
 

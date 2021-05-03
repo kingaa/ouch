@@ -4,7 +4,6 @@
 \alias{plot}
 \alias{plot,ouchtree-method}
 \alias{plot,hansentree-method}
-\alias{plot-hansentree}
 \title{ouch plotting functions}
 \usage{
 \S4method{plot}{ouchtree}(
@@ -13,7 +12,7 @@
   regimes = NULL,
   ladderize = TRUE,
   node.names = FALSE,
-  legend = TRUE,
+  legend = !is.null(regimes),
   labels,
   frame.plot = FALSE,
   palette = rainbow,
@@ -22,7 +21,7 @@
   legend_opts = list()
 )
 
-\S4method{plot}{hansentree}(x, ..., regimes)
+\S4method{plot}{hansentree}(x, ..., regimes, legend = TRUE)
 }
 \arguments{
 \item{x}{object to plot.}
@@ -49,8 +48,7 @@ One can also specify the \code{n} colors as a vector of color codes.
 There must be at least as many colors as levels in the \code{regimes}.}
 
 \item{margin}{numeric; width of the right margin (as a fraction of the plot width).
-Adjust this if labels are clipped.
-If different left and right margins are desired, furnish two numbers here.}
+Adjust this if labels are clipped.}
 
 \item{text_opts}{options for the labels; passed to \code{\link[graphics]{text}}}
 
