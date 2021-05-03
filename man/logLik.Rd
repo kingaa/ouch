@@ -4,7 +4,7 @@
 \alias{logLik}
 \alias{logLik,browntree-method}
 \alias{logLik,hansentree-method}
-\alias{logLik-hansentree,}
+\alias{logLik-hansentree}
 \title{Log likelihood of a fitted model}
 \usage{
 \S4method{logLik}{browntree}(object)
