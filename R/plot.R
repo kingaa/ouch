@@ -6,7 +6,6 @@
 #' @rdname plot
 #' @family methods
 #' @param x object to plot.
-#' @param y ignored.
 #' @param regimes factor or character; a vector of regime paintings.
 #' @param node.names logical; should node names be displayed?
 #' @param ladderize logical; should the tree be ladderized?
@@ -28,6 +27,8 @@
 #' @importFrom graphics plot text legend par
 #' @importFrom grDevices rainbow
 NULL
+
+setGeneric("plot")
 
 tree.plot.internal <- function (
   x, ...,
@@ -161,7 +162,7 @@ setMethod(
   "plot",
   signature=signature(x="ouchtree"),
   function (
-    x, y, ..., regimes = NULL, ladderize = TRUE,
+    x, ..., regimes = NULL, ladderize = TRUE,
     node.names = FALSE,
     legend = TRUE, labels, frame.plot = FALSE,
     palette = rainbow,

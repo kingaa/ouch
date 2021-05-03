@@ -9,7 +9,6 @@
 \usage{
 \S4method{plot}{ouchtree}(
   x,
-  y,
   ...,
   regimes = NULL,
   ladderize = TRUE,
@@ -27,8 +26,6 @@
 }
 \arguments{
 \item{x}{object to plot.}
-
-\item{y}{ignored.}
 
 \item{...}{additional arguments, passed to \code{\link[graphics]{plot}}.}
 
