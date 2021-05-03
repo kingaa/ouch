@@ -423,7 +423,6 @@ hansen.deviate <- function (n = 1, object) {
 }
 
 #' @rdname coef
-#' @aliases coef-hansentree coef,hansentree-method
 #' @include coef.R
 #' @importFrom stats coef
 #' @return \code{coef} applied to a \code{hansentree} object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements, respectively) but also the MLE returned by the optimizer
@@ -445,7 +444,6 @@ setMethod(
 )
 
 #' @rdname logLik
-#' @aliases logLik-hansentree logLik,hansentree-method
 #' @include logLik.R
 #' @importFrom stats logLik
 #' @export
@@ -456,7 +454,6 @@ setMethod(
 )
 
 #' @rdname summary
-#' @aliases summary-hansentree summary,hansentree-method
 #' @include summary.R
 #' @return \code{summary} applied to a \code{hansentree} method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
 #' @export
@@ -490,7 +487,6 @@ setMethod(
 )
 
 #' @rdname print
-#' @aliases print-hansentree print,hansentree-method
 #' @include print.R
 #' @return \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
@@ -520,7 +516,6 @@ setMethod(
 )
 
 #' @rdname print
-#' @aliases show-hansentree show,hansentree-method
 #' @include print.R
 #' @export
 setMethod(
@@ -533,7 +528,6 @@ setMethod(
 )
 
 #' @rdname plot
-#' @aliases plot,hansentree-method plot-hansentree
 #' @include plot.R
 #' @export
 setMethod(
@@ -547,7 +541,6 @@ setMethod(
 )
 
 #' @rdname simulate
-#' @aliases simulate-hansentree simulate,hansentree-method
 #' @include simulate.R package.R
 #' @importFrom stats runif
 #' @export
@@ -563,7 +556,6 @@ setMethod(
 )
 
 #' @rdname update
-#' @aliases update-hansentree update,hansentree-method
 #' @include update.R
 #' @importFrom stats update
 #' @inheritParams hansen
@@ -586,7 +578,6 @@ setMethod(
 )
 
 #' @rdname bootstrap
-#' @aliases bootstrap-hansentree bootstrap,hansentree-method
 #' @include bootstrap.R
 #' @export
 setMethod(

@@ -8,7 +8,7 @@
 #' 
 #' @name ouchtree
 #' @rdname ouchtree
-#' @aliases ouchtree ouchtree-class
+#' @aliases ouchtree-class
 #' 
 #' @author Aaron A. King
 #' @seealso \code{ouchtree}, \code{ape2ouch}, \code{brown}, \code{hansen}

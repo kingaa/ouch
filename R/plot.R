@@ -153,7 +153,6 @@ arrange_tree <- function (root, anc, cs, ypos = numeric(length(anc))) {
 }
 
 #' @rdname plot
-#' @aliases plot,ouchtree-method
 #' @importFrom graphics par
 #' @importFrom grDevices rainbow
 #' @importFrom stats setNames
