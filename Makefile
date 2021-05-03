@@ -39,6 +39,7 @@ htmldocs: inst/doc/*.html
 htmlhelp: install
 	rsync -avz library/ouch/html/ www/manual
 	(cd www/manual;	(cat links.ed && echo w ) | ed - 00Index.html)
+	$(CP) www/_includes/pompstyle.css www/manual/R.css
 
 vignettes: manual install
 	$(MAKE)	-C www/vignettes
