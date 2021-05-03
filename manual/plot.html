@@ -19,12 +19,11 @@
 ## S4 method for signature 'ouchtree'
 plot(
   x,
-  y,
   ...,
   regimes = NULL,
   ladderize = TRUE,
   node.names = FALSE,
-  legend = TRUE,
+  legend = !is.null(regimes),
   labels,
   frame.plot = FALSE,
   palette = rainbow,
@@ -34,7 +33,7 @@ plot(
 )
 
 ## S4 method for signature 'hansentree'
-plot(x, ..., regimes)
+plot(x, ..., regimes, legend = TRUE)
 </pre>
 
 
@@ -44,10 +43,6 @@ plot(x, ..., regimes)
 <tr valign="top"><td><code>x</code></td>
 <td>
 <p>object to plot.</p>
-</td></tr>
-<tr valign="top"><td><code>y</code></td>
-<td>
-<p>ignored.</p>
 </td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
@@ -89,8 +84,7 @@ There must be at least as many colors as levels in the <code>regimes</code>.</p>
 <tr valign="top"><td><code>margin</code></td>
 <td>
 <p>numeric; width of the right margin (as a fraction of the plot width).
-Adjust this if labels are clipped.
-If different left and right margins are desired, furnish two numbers here.</p>
+Adjust this if labels are clipped.</p>
 </td></tr>
 <tr valign="top"><td><code>text_opts</code></td>
 <td>
@@ -115,5 +109,5 @@ If different left and right margins are desired, furnish two numbers here.</p>
 <code><a href="update.html">update</a>()</code>
 </p>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-1 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-2 <a href="00Index.html">Index</a>]</div>
 </body></html>
