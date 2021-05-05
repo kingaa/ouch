@@ -29,9 +29,10 @@
 #' @name hansen
 #' @aliases hansentree-class
 #' @rdname hansen
+#' @family phylogenetic comparative models
 #' @author Aaron A. King
 #' @seealso
-#' \code{\link{ouchtree}}, \code{\link{brown}}, \code{\link[stats:optim]{optim}}, \code{\link[subplex:subplex]{subplex}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
+#' \code{\link[stats:optim]{optim}}, \code{\link[subplex:subplex]{subplex}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
 #' @references
 #' \Butler2004
 #'
@@ -112,13 +113,13 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   ...) {
 
   if (!is(tree,'ouchtree'))
-    stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
+    pStop("hansen",sQuote("tree")," must be an object of class ",sQuote("ouchtree"),".")
 
   if (missing(data)) {
     if (is(tree,"hansentree")) {
       data <- tree@data
     } else {
-      stop(sQuote("data")," must be specified")
+      pStop("hansen",sQuote("data")," must be specified.")
     }
   }
   if (is.data.frame(data)) {
@@ -135,23 +136,23 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
       any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
     )
-      stop(sQuote("data")," vector(s) must be numeric, with one entry per node of the tree")
+      pStop("hansen",sQuote("data")," vector(s) must be numeric, with one entry per node of the tree.")
     if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
-      stop(sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"))
+      pStop("hansen",sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"),".")
     for (xx in data) {
       no.dats <- which(is.na(xx[tree@nodes[tree@term]]))
       if (length(no.dats)>0)
-        stop("missing data on terminal node(s): ",
-          paste(sQuote(tree@nodes[tree@term[no.dats]]),collapse=', '))
+        pStop("missing data on terminal node(s): ",
+          paste(sQuote(tree@nodes[tree@term[no.dats]]),collapse=', '),".")
     }
   } else
-    stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
+    pStop("hansen",sQuote("data")," must be either a single numeric data set or a list of numeric data sets.")
 
   nchar <- length(data)
   if (is.null(names(data))) names(data) <- paste('char',seq_len(nchar),sep='')
   
   if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
-    stop("each data set must have names corresponding to the node names")
+    pStop("hansen","each data set must have names corresponding to the node names.")
   data <- lapply(data,function(x)x[tree@nodes])
   dat <- do.call(c,lapply(data,function(y)y[tree@term]))
   
@@ -160,17 +161,17 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   nsigma <- length(sigma)
 
   if (nalpha!=nsymargs)
-    stop("the length of ",sQuote("sqrt.alpha")," must be a triangular number")
+    pStop("hansen","the length of ",sQuote("sqrt.alpha")," must be a triangular number.")
 
   if (nsigma!=nsymargs)
-    stop("the length of ",sQuote("sigma")," must be a triangular number")
+    pStop("hansen","the length of ",sQuote("sigma")," must be a triangular number.")
 
   if (missing(regimes)) {
     if (is(tree,"hansentree")) {
       regimes <- tree@regimes
       beta <- tree@beta
     } else {
-      stop(sQuote("regimes")," must be specified")
+      pStop("hansen",sQuote("regimes")," must be specified.")
     }
   }
   if (is.data.frame(regimes)) {
@@ -179,28 +180,28 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   }
   if (is.list(regimes)) {
     if (any(sapply(regimes,length)!=tree@nnodes))
-      stop("each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree")
+      pStop("hansen","each element in ",sQuote("regimes")," must be a vector with one entry per node of the tree.")
   } else {
     if (length(regimes)!=tree@nnodes)
-      stop("there must be one entry in ",sQuote("regimes")," per node of the tree")
+      pStop("hansen","there must be one entry in ",sQuote("regimes")," per node of the tree.")
     nm <- deparse(substitute(regimes))[1]
     regimes <- list(regimes)
     names(regimes) <- nm
   }
   
   if (any(!sapply(regimes,is.factor)))
-    stop(sQuote("regimes")," must be of class ",sQuote("factor")," or a list of ",sQuote("factor")," objects")
+    pStop("hansen",sQuote("regimes")," must be of class ",sQuote("factor")," or a list of ",sQuote("factor")," objects.")
 
   if (length(regimes)==1)
     regimes <- rep(regimes,nchar)
 
   if (length(regimes) != nchar)
-    stop("you must supply a regime-specification vector for each character")
+    pStop("hansen","you must supply a regime-specification vector for each character.")
 
   if (any(sapply(regimes,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
-    stop("each regime specification must have names corresponding to the node names")
+    pStop("hansen","each regime specification must have names corresponding to the node names.")
   regimes <- lapply(regimes,function(x)x[tree@nodes])
-  beta <- regime.spec(tree,regimes)
+  beta <- regime_spec(tree,regimes)
 
   optim.diagn <- vector(mode='list',length=0)
 
@@ -212,10 +213,10 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
       opt <- subplex(
         par=c(sqrt.alpha,sigma),
         fn = function (par) {
-          ou.lik.fn(
+          ou_lik_fn(
             tree=tree,
-            alpha=sym.par(par[seq(nalpha)]),
-            sigma=sym.par(par[nalpha+seq(nsigma)]),
+            alpha=sym_par(par[seq(nalpha)]),
+            sigma=sym_par(par[nalpha+seq(nsigma)]),
             beta=beta,
             dat=dat
           )$deviance
@@ -224,19 +225,19 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
         control=list(...)
       )
       if (opt$convergence!=0) {
-        message("unsuccessful convergence, code ",opt$convergence,", see documentation for `subplex'")
+        message("unsuccessful convergence, code ",opt$convergence,", see documentation for ",sQuote("subplex"))
         if (!is.null(opt$message))
-          message("`subplex' message:",opt$message)
-        warning("unsuccessful convergence")
+          message(sQuote("subplex")," message: ",opt$message)
+        pWarn("hansen","unsuccessful convergence.")
       }
     } else {
       opt <- optim(
         par=c(sqrt.alpha,sigma),
         fn = function (par) {
-          ou.lik.fn(
+          ou_lik_fn(
             tree=tree,
-            alpha=sym.par(par[seq(nalpha)]),
-            sigma=sym.par(par[nalpha+seq(nsigma)]),
+            alpha=sym_par(par[seq(nalpha)]),
+            sigma=sym_par(par[nalpha+seq(nsigma)]),
             beta=beta,
             dat=dat
           )$deviance
@@ -247,10 +248,10 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
         control=list(...)
       )
       if (opt$convergence!=0) {
-        message("unsuccessful convergence, code ",opt$convergence,", see documentation for `optim'")
+        message("unsuccessful convergence, code ",opt$convergence,", see documentation for ",sQuote("optim"))
         if (!is.null(opt$message))
-          message("`optim' message:",opt$message)
-        warning("unsuccessful convergence")
+          message(sQuote("optim")," message: ",opt$message)
+        pWarn("hansen","unsuccessful convergence.")
       }
     }
 
@@ -271,15 +272,15 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
     ##     se.sigma <- rep(NA,nalpha)
   }
 
-  sol <- ou.lik.fn(
+  sol <- ou_lik_fn(
     tree=tree,
-    alpha=sym.par(sqrt.alpha),
-    sigma=sym.par(sigma),
+    alpha=sym_par(sqrt.alpha),
+    sigma=sym_par(sigma),
     beta=beta,
     dat=dat
   )
   theta.x <- sol$coeff
-  reg <- sets.of.regimes(tree,regimes)
+  reg <- sets_of_regimes(tree,regimes)
   theta <- vector('list',nchar)
   names(theta) <- names(data)
   count <- 1
@@ -307,7 +308,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
 }
 
 ## note that, on input, alpha and sigma are full symmetric matrices
-ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
+ou_lik_fn <- function (tree, alpha, sigma, beta, dat) {
   n <- length(dat)
   ev <- eigen(alpha,symmetric=TRUE)
   w <- .Call(ouch_weights,object=tree,lambda=ev$values,S=ev$vectors,beta=beta)
@@ -326,7 +327,7 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
     q <- e%*%solve(v,e)
     det.v <- determinant(v,logarithm=TRUE)
     if (det.v$sign!=1)
-      stop("ou.lik.fn error: non-positive determinant",call.=FALSE)
+      pStop("ou_lik_fn","non-positive determinant.")
     dev <- n*log(2*pi)+as.numeric(det.v$modulus)+q[1,1]
   }
   list(
@@ -338,10 +339,10 @@ ou.lik.fn <- function (tree, alpha, sigma, beta, dat) {
   )
 }
 
-sym.par <- function (x) {
+sym_par <- function (x) {
   nchar <- floor(sqrt(2*length(x)))
   if (nchar*(nchar+1)!=2*length(x)) {
-    stop("a symmetric matrix is parameterized by a triangular number of parameters",call.=FALSE) #nocov
+    pStop_("a symmetric matrix is parameterized by a triangular number of parameters.") #nocov
   }
   y <- matrix(0,nchar,nchar)
   y[lower.tri(y,diag=TRUE)] <- x
@@ -353,14 +354,14 @@ sym.par <- function (x) {
 ##   y[lower.tri(y,diag=TRUE)]
 ## }
 
-sets.of.regimes <- function (object, regimes) {
+sets_of_regimes <- function (object, regimes) {
   lapply(regimes,function(x)sort(unique(x)))
 }
 
-regime.spec <- function (object, regimes) {
+regime_spec <- function (object, regimes) {
   nterm <- object@nterm
   nchar <- length(regimes)
-  reg <- sets.of.regimes(object,regimes)
+  reg <- sets_of_regimes(object,regimes)
   nreg <- sapply(reg,length)
   beta <- vector(mode='list',length=nterm)
   for (i in seq_len(nterm)) {
@@ -395,10 +396,10 @@ regime.spec <- function (object, regimes) {
 ##   x
 ## }
 
-hansen.deviate <- function (n = 1, object) {
-  ev <- eigen(sym.par(object@sqrt.alpha),symmetric=TRUE)
+hansen_deviate <- function (n = 1, object) {
+  ev <- eigen(sym_par(object@sqrt.alpha),symmetric=TRUE)
   w <- .Call(ouch_weights,object=object,lambda=ev$values,S=ev$vectors,beta=object@beta)
-  v <- .Call(ouch_covar,object=object,lambda=ev$values,S=ev$vectors,sigma.sq=sym.par(object@sigma))
+  v <- .Call(ouch_covar,object=object,lambda=ev$values,S=ev$vectors,sigma.sq=sym_par(object@sigma))
   X <- array(
     data=NA,
     dim=c(object@nnodes,object@nchar,n),
@@ -437,8 +438,8 @@ setMethod(
       sqrt.alpha=object@sqrt.alpha,
       sigma=object@sigma,
       theta=object@theta,
-      alpha.matrix=sym.par(object@sqrt.alpha),
-      sigma.sq.matrix=sym.par(object@sigma)
+      alpha.matrix=sym_par(object@sqrt.alpha),
+      sigma.sq.matrix=sym_par(object@sigma)
     )
   }
 )
@@ -549,7 +550,7 @@ setMethod(
   signature=signature(object='hansentree'),
   function (object, nsim = 1, seed = NULL, ...) {
     seed <- freeze(seed)
-    X <- hansen.deviate(n=nsim,object)
+    X <- hansen_deviate(n=nsim,object)
     thaw(seed)
     X
   }

@@ -47,7 +47,7 @@ tree.plot.internal <- function (
   rx <- range(x@times,na.rm=T)
   margin <- as.numeric(margin)
   if (!(length(margin)==1 && isTRUE(margin>=0 && margin<1)))
-    stop(sQuote("margin")," should be between 0 and 1.",call.=FALSE)
+    pStop("plot",sQuote("margin")," should be between 0 and 1.")
   rxd <- margin*diff(rx)/(1-margin)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))
@@ -55,9 +55,9 @@ tree.plot.internal <- function (
     regimes <- factor(rep('unspec',length(anc)))
     names(regimes) <- x@nodes
   } else if (length(regimes)!=x@nnodes)
-    stop("there must be one entry in ",sQuote("regimes")," per node of the tree",call.=FALSE)
+    pStop("plot","there must be one entry in ",sQuote("regimes")," per node of the tree.")
   if (is.null(names(regimes)) || !setequal(names(regimes),x@nodes))
-    stop("regime specifications must have names corresponding to the node names",call.=FALSE)
+    pStop("plot","regime specifications must have names corresponding to the node names.")
   regimes <- regimes[x@nodes]
   levs <- levels(as.factor(regimes))
   ## if the root is the only one with a certain regime, toss that regime out
@@ -66,7 +66,7 @@ tree.plot.internal <- function (
   if (is.function(palette))
     palette <- palette(length(levs))
   else if (!(is.character(palette) && length(palette)>=length(levs)))
-    stop(sQuote("palette")," must be either a function or a character vector of length >= ",length(levs),".",call.=FALSE)
+    pStop("plot",sQuote("palette")," must be either a function or a character vector of length >= ",length(levs),".")
   if (ladderize) {
     cs <- clade_size(root,anc)
   } else {
@@ -180,7 +180,7 @@ setMethod(
     }
     if (!(is.list(regimes) || is.null(regimes))) {
       if (length(regimes)!=x@nnodes)
-        stop("there must be one entry in ",sQuote("regimes")," per node of the tree",call.=FALSE)
+        pStop("plot","there must be one entry in ",sQuote("regimes")," per node of the tree.")
       nm <- deparse(substitute(regimes))[1]
       regimes <- list(regimes)
       names(regimes) <- nm

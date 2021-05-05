@@ -3,11 +3,10 @@ glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
   vh <- tryCatch(
     chol(v),
     error=function (e) {
-      warning(
-        "in ",sQuote("ouch:::glssoln"),": Choleski decomposition ",
+      pWarn(
+        "ouch:::glssoln","Choleski decomposition ",
         "of variance-covariance matrix fails with error: ",
-        dQuote(conditionMessage(e)),
-        call.=FALSE
+        dQuote(conditionMessage(e)),"."
       )
       NULL
     }

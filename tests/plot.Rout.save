@@ -38,20 +38,20 @@ Type 'q()' to quit R.
 > plot(tree1)
 > plot(tree1,regimes=bimac["OU.LP"],margin=0.7)
 > try(plot(tree,margin=c(0.01,0.8),palette=hcl.colors))
-Error : 'margin' should be between 0 and 1.
+Error : in 'plot': 'margin' should be between 0 and 1.
 > try(plot(tree,margin=2,palette=hcl.colors))
-Error : 'margin' should be between 0 and 1.
+Error : in 'plot': 'margin' should be between 0 and 1.
 > try(plot(tree,margin=-1,palette=hcl.colors))
-Error : 'margin' should be between 0 and 1.
+Error : in 'plot': 'margin' should be between 0 and 1.
 > plot(tree,margin=0.2,palette=hcl.colors(1))
 > try(plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=hcl.colors(1)))
-Error : 'palette' must be either a function or a character vector of length >= 3.
+Error : in 'plot': 'palette' must be either a function or a character vector of length >= 3.
 > plot(tree,margin=0.2,regimes=bimac["OU.3"],palette=rainbow(5))
 > 
 > try(plot(tree,regimes=1:3))
-Error : there must be one entry in 'regimes' per node of the tree
+Error : in 'plot': there must be one entry in 'regimes' per node of the tree.
 > try(plot(tree,regimes=bimac$OU.LP))
-Error : regime specifications must have names corresponding to the node names
+Error : in 'plot': regime specifications must have names corresponding to the node names.
 > 
 > dev.off()
 null device 

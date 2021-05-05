@@ -6,11 +6,11 @@
 #' @name brown
 #' @rdname brown
 #' @author Aaron A. King
-#' @seealso \code{\link{ouchtree}}, \code{\link{hansen}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
+#' @family phylogenetic comparative models
+#' @seealso \code{\link{bimac}}, \code{\link{anolis.ssd}}
 #' @keywords models
 #' @references
 #' \Butler2004
-#' @keywords models
 #'
 NULL
 
@@ -54,7 +54,7 @@ setAs(
 brown <- function (data, tree) {
   
   if (!is(tree,'ouchtree'))
-    stop(sQuote("tree")," must be an object of class ",sQuote("ouchtree"))
+    pStop("brown",sQuote("tree")," must be an object of class ",sQuote("ouchtree"),".")
   
   if (is.data.frame(data)) {
     nm <- rownames(data)
@@ -70,17 +70,17 @@ brown <- function (data, tree) {
       any(sapply(data,class)!='numeric') ||
         any(sapply(data,length)!=tree@nnodes)
     )
-      stop(sQuote("data")," vector(s) must be numeric, with one entry per node of the tree")
+      pStop("brown",sQuote("data")," vector(s) must be numeric, with one entry per node of the tree.")
     if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
-      stop(sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"))
+      pStop("brown",sQuote("data"), " vector names (or data-frame row names) must match node names of ", sQuote("tree"),".")
     for (xx in data) {
       no.dats <- which(is.na(xx[tree@nodes[tree@term]]))
       if (length(no.dats)>0)
-        stop("missing data on terminal node(s): ",
-          paste(sQuote(tree@nodes[tree@term[no.dats]]),collapse=', '))
+        pStop("brown","missing data on terminal node(s): ",
+          paste(sQuote(tree@nodes[tree@term[no.dats]]),collapse=', '),".")
     }
   } else
-    stop(sQuote("data")," must be either a single numeric data set or a list of numeric data sets")
+    pStop("brown",sQuote("data")," must be either a single numeric data set or a list of numeric data sets.")
 
   nterm <- tree@nterm
   nchar <- length(data)
@@ -151,7 +151,7 @@ setMethod(
     list(
       sigma=object@sigma,
       theta=object@theta,
-      sigma.sq.matrix=sym.par(object@sigma)
+      sigma.sq.matrix=sym_par(object@sigma)
     )
   }
 )

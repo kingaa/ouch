@@ -22,50 +22,42 @@ Type 'q()' to quit R.
 > x <- anolis.ssd
 > x$node[15] <- x$node[12]
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error in ouchtree(node, ancestor, time, species) : 
-  node names must be unique
+Error : in 'ouchtree': node names must be unique.
 > 
 > x <- anolis.ssd
 > try(with(x,ouchtree(node,ancestor[1:10],time,species)))
-Error in ouchtree(node, ancestor[1:10], time, species) : 
-  invalid tree: 'ancestors' must have the same length as 'nodes'
+Error : in 'ouchtree': invalid tree: 'ancestors' must have the same length as 'nodes'.
 > try(with(x,ouchtree(node,ancestor,time[1:20],species)))
-Error in ouchtree(node, ancestor, time[1:20], species) : 
-  invalid tree: 'times' must have the same length as 'nodes'
+Error : in 'ouchtree': invalid tree: 'times' must have the same length as 'nodes'.
 > try(with(x,ouchtree(node,ancestor,time,species[1:20])))
-Error in ouchtree(node, ancestor, time, species[1:20]) : 
-  invalid tree: 'labels' must be the same length as 'nodes'
+Error : in 'ouchtree': invalid tree: 'labels' must be the same length as 'nodes'.
 > 
 > x$time[1] <- 10
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error in ouchtree(node, ancestor, time, species) : 
-  the algorithms assume that the root node is at time=0
+Error : in 'ouchtree': the algorithms assume that the root node is at time=0.
 > 
 > x <- anolis.ssd
 > x$ancestor[15] <- 15
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error : this is no tree: node 15 is its own ancestor
+Error : in 'ouchtree': this is no tree: node 15 is its own ancestor.
 > 
 > x <- anolis.ssd
 > x$ancestor[15] <- NA
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error in ouchtree(node, ancestor, time, species) : 
-  invalid tree: there must be a unique root node, designated by its having ancestor = NA
+Error : in 'ouchtree': invalid tree: there must be a unique root node, designated by its having ancestor = NA.
 > 
 > x <- anolis.ssd
 > x$ancestor[3] <- 15
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error : node 3 is disconnected
+Error : in 'ouchtree': node 3 is disconnected.
 > 
 > x <- anolis.ssd
 > x$ancestor[15] <- 888
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error in ouchtree(node, ancestor, time, species) : 
-  invalid tree: the ancestor of node '15' is not in the tree.
+Error : in 'ouchtree': invalid tree: the ancestor of node '15' is not in the tree.
 > 
 > x <- anolis.ssd
 > x$ancestor[15:18] <- 888
 > try(with(x,ouchtree(node,ancestor,time,species)))
-Error in ouchtree(node, ancestor, time, species) : 
-  invalid tree: the ancestors of nodes '15', '16', '17', '18' are not in the tree.
+Error : in 'ouchtree': invalid tree: the ancestors of nodes '15', '16', '17', '18' are not in the tree.
 > 

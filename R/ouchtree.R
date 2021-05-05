@@ -9,9 +9,9 @@
 #' @name ouchtree
 #' @rdname ouchtree
 #' @aliases ouchtree-class
-#' 
+#' @family phylogenetic comparative models
 #' @author Aaron A. King
-#' @seealso \code{ouchtree}, \code{ape2ouch}, \code{brown}, \code{hansen}
+#' @seealso \code{\link{ape2ouch}}
 #' @keywords models
 #' @example examples/bimac1.R
 #' 
@@ -60,27 +60,27 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   ancestors <- as.character(ancestors)
 
   n <- length(nodes)
-  if (anyDuplicated(nodes)>0) stop("node names must be unique")
+  if (anyDuplicated(nodes)>0) pStop("ouchtree","node names must be unique.")
   if (length(ancestors) != n)
-    stop("invalid tree: ",sQuote("ancestors")," must have the same length as ",sQuote("nodes"))
+    pStop("ouchtree","invalid tree: ",sQuote("ancestors")," must have the same length as ",sQuote("nodes"),".")
   if (length(times) != n) 
-    stop("invalid tree: ",sQuote("times")," must have the same length as ",sQuote("nodes"))
+    pStop("ouchtree","invalid tree: ",sQuote("times")," must have the same length as ",sQuote("nodes"),".")
   if (length(labels) != n)
-    stop("invalid tree: ",sQuote("labels")," must be the same length as ",sQuote("nodes"))
+    pStop("ouchtree","invalid tree: ",sQuote("labels")," must be the same length as ",sQuote("nodes"),".")
 
   root <- which(is.root.node(ancestors))
   if (length(root) != 1)
-    stop("invalid tree: there must be a unique root node, designated by its having ancestor = NA")
+    pStop("ouchtree","invalid tree: there must be a unique root node, designated by its having ancestor = NA.")
   if (times[root] != 0)
-    stop("the algorithms assume that the root node is at time=0")
+    pStop("ouchtree","the algorithms assume that the root node is at time=0.")
   
   term <- terminal.twigs(nodes,ancestors)
   if (length(term) <= 0)
-    stop("invalid tree: there ought to be at least one terminal node, don't you think?") #nocov
+    pStop("ouchtree","invalid tree: there ought to be at least one terminal node, don't you think?") #nocov
 
   outs <- which((!is.root.node(ancestors) & !(ancestors %in% nodes)))
   if (length(outs) > 0) {
-    stop(
+    pStop("ouchtree",
       ngettext(
         length(outs),
         "invalid tree: the ancestor of node ",
@@ -99,7 +99,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 
   if (any(anc==seq(along=anc),na.rm=TRUE)) {
     w <- which(anc==seq(along=anc))
-    stop("this is no tree: node ",nodes[w[1]]," is its own ancestor",call.=FALSE)
+    pStop("ouchtree","this is no tree: node ",nodes[w[1]]," is its own ancestor.")
   }
 
   lineages <- vector(mode='list',length=n)
@@ -110,13 +110,13 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
     a <- anc[todo[k]]
     lineages[[todo[k]]] <- c(todo[k],lineages[[a]])
     if (todo[k] %in% lineages[[a]]) 
-      stop("this is no tree: circularity detected at node ",nodes[todo[k]]," in ",sQuote("ouchtree"),call.=FALSE)
+      pStop("ouchtree","this is no tree: circularity detected at node ",nodes[todo[k]]," in ",sQuote("ouchtree"),".")
     k <- k+1
   }
 
   for (k in 1:n) {
     if (!(root %in% lineages[[k]]))
-      stop("node ",nodes[k]," is disconnected",call.=FALSE)
+      pStop("ouchtree","node ",nodes[k]," is disconnected.")
   }
 
   new(

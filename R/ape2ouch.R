@@ -9,7 +9,7 @@
 #' @param branch.lengths optional vector of branch lengths.
 #' @author A. A. King, D. Ackerly
 #' @keywords models
-#' 
+#' @seealso \code{\link{ouchtree}}
 #' @rdname ape2ouch
 #' @include ouchtree.R
 #' @export ape2ouch
@@ -27,7 +27,7 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   ## Modified by A.A. King, 5/15/2007.
 
   if (!inherits(tree,'phylo'))
-    stop(sQuote("tree")," must be of class ",sQuote("phylo"))
+    pStop("ape2ouch",sQuote("tree")," must be of class ",sQuote("phylo"))
   
   nnodes <- nrow(tree$edge)+1              # number of nodes
   n.term <- length(tree$tip.label)         # number of terminal nodes
@@ -46,7 +46,7 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
 
   for (n in 2:nnodes) {
     anc <- which(tmp[,2]==tmp[n,1])
-    if (length(anc)>1) stop("invalid tree")
+    if (length(anc)>1) pStop("ape2ouch","invalid tree")
     if (length(anc)>0) { # the node has a non-root ancestor
       ancestor[n] <- node[anc]
     } else { # the node has the root as an ancestor
@@ -61,13 +61,13 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   times <- rep(NA,nnodes)
   for (n in 1:nnodes)
     times[n] <- branch.height(node,ancestor,bl,n)
-  if (is.na(scale)) stop(sQuote("scale")," cannot be NA.")
+  if (is.na(scale)) pStop("ape2ouch",sQuote("scale")," cannot be NA.")
   if (is.logical(scale)) {
     if (scale) times <- times/max(times)
   } else if (is.numeric(scale)) {
     times <- times/abs(scale)
   } else {
-    stop(sQuote("scale")," must be either logical or numeric.")
+    pStop("ape2ouch",sQuote("scale")," must be either logical or numeric.")
   }
   
   ouchtree(

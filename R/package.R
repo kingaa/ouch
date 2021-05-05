@@ -35,18 +35,41 @@
 #' @keywords models
 NULL
 
+pStop <- function (fn, ...) {
+  fn <- as.character(fn)
+  stop("in ",sQuote(fn[1L]),": ",...,call.=FALSE)
+}
+
+pStop_ <- function (...) {
+  stop(...,call.=FALSE)
+}
+
+pWarn <- function (fn, ...) {
+  fn <- as.character(fn)
+  warning("in ",sQuote(fn[1L]),": ",...,call.=FALSE)
+}
+
+pWarn_ <- function (...) {
+  warning(...,call.=FALSE)
+}
+
 undef_method <- function (method, object) {
   o <- deparse(substitute(object))
-  stop(sQuote(method)," is undefined for ",sQuote(o)," of class ",
-    sQuote(class(object)),".",call.=FALSE)
+  pStop_(sQuote(method)," is undefined for ",sQuote(o)," of class ",
+    sQuote(class(object)),".")
 }
 
 reqd_arg <- function (method, object) {
   if (is.null(method) || length(method)==0)
-    stop(sQuote(object)," is a required argument.",call.=FALSE)
+    pStop_(sQuote(object)," is a required argument.")
   else
-    stop("in ",sQuote(method),": ",sQuote(object),
-      " is a required argument.",call.=FALSE)
+    pStop(method,sQuote(object)," is a required argument.")
+}
+
+undef_method <- function (method, object) {
+  o <- deparse(substitute(object))
+  stop(sQuote(method)," is undefined for ",sQuote(o)," of class ",
+    sQuote(class(object)),".",call.=FALSE)
 }
 
 #' @importFrom stats runif

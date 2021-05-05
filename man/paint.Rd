@@ -55,7 +55,7 @@ r <- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
 plot(x,regimes=r,node.names=TRUE)
 }
 \seealso{
-\code{ouchtree}, \code{hansen}
+\code{\link{ouchtree}}, \code{\link{plot}}, \code{\link{hansen}}
 }
 \author{
 Aaron A. King

@@ -26,9 +26,14 @@ Brownian-motion model to data.
 \Butler2004
 }
 \seealso{
-\code{\link{ouchtree}}, \code{\link{hansen}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
+\code{\link{bimac}}, \code{\link{anolis.ssd}}
+
+Other phylogenetic comparative models: 
+\code{\link{hansen}()},
+\code{\link{ouchtree}}
 }
 \author{
 Aaron A. King
 }
+\concept{phylogenetic comparative models}
 \keyword{models}

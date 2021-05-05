@@ -24,7 +24,7 @@
 #' if \code{tree} is a \code{hansentree}, start not with a blank canvas but with the regime specifications \code{tree} contains for the character indicated by \code{which}.
 #' @return A vector of class \sQuote{factor} with names corresponding to the nodes in \code{tree}, specifying selective regimes.
 #' @author Aaron A. King
-#' @seealso \code{ouchtree}, \code{hansen}
+#' @seealso \code{\link{ouchtree}}, \code{\link{plot}}, \code{\link{hansen}}
 #' @keywords models
 #' @example examples/paint.R
 #' @include ouchtree.R
@@ -32,11 +32,11 @@
 #' @export paint
 paint <- function (tree, subtree, branch, which = 1) {
   if (!is(tree,'ouchtree'))
-    stop(sQuote("tree")," must be of class ",sQuote("ouchtree"))
+    pStop("paint",sQuote("tree")," must be of class ",sQuote("ouchtree"),".")
   if (is(tree,'hansentree')) {
     regimes <- try(tree@regimes[[which]],silent=FALSE)
     if (inherits(regimes,'try-error'))
-      stop(sQuote("paint")," error: invalid ",sQuote("which"))
+      pStop("paint",sQuote("paint")," error: invalid ",sQuote("which"),".")
   } else {
     regimes <- rep('unspec',length(tree@nodes))
     names(regimes) <- tree@nodes
@@ -44,9 +44,9 @@ paint <- function (tree, subtree, branch, which = 1) {
   if (!missing(subtree)) {
     st.nm <- names(subtree)
     if (is.null(st.nm))
-      stop(sQuote("subtree")," must be a named vector")
+      pStop("paint",sQuote("subtree")," must be a named vector.")
     if (!all(st.nm%in%tree@nodes))
-      stop("all names of ",sQuote("subtree")," must be names of nodes of ",sQuote("tree"))
+      pStop("paint","all names of ",sQuote("subtree")," must be names of nodes of ",sQuote("tree"),".")
     subtree <- as.character(subtree)
   } else {
     subtree <- character(0)
@@ -55,9 +55,9 @@ paint <- function (tree, subtree, branch, which = 1) {
   if (!missing(branch)) {
     br.nm <- names(branch)
     if(is.null(br.nm))
-      stop(sQuote("branch")," must be a named vector")
+      pStop("paint",sQuote("branch")," must be a named vector.")
     if (!all(br.nm%in%tree@nodes))
-      stop("all names of ",sQuote("branch")," must be names of nodes of ",sQuote("tree"))
+      pStop("paint","all names of ",sQuote("branch")," must be names of nodes of ",sQuote("tree"),".")
     branch <- as.character(branch)
   } else {
     branch <- character(0)

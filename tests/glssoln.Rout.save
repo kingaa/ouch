@@ -27,7 +27,7 @@ $residuals
 [1] NA
 
 Warning message:
-in 'ouch:::glssoln': Choleski decomposition of variance-covariance matrix fails with error: "the leading minor of order 1 is not positive definite" 
+in 'ouch:::glssoln': Choleski decomposition of variance-covariance matrix fails with error: "the leading minor of order 1 is not positive definite". 
 > try(ouch:::glssoln(matrix(c(1,1,0,1),2,2),c(1,1),matrix(c(1,1,1,1),2,2)))
 $coeff
 [1] NA NA
@@ -36,7 +36,7 @@ $residuals
 [1] NA NA
 
 Warning message:
-in 'ouch:::glssoln': Choleski decomposition of variance-covariance matrix fails with error: "the leading minor of order 2 is not positive definite" 
+in 'ouch:::glssoln': Choleski decomposition of variance-covariance matrix fails with error: "the leading minor of order 2 is not positive definite". 
 > ouch:::glssoln(matrix(c(1,1,0,1),2,2),c(1,1),matrix(c(2,1,1,2),2,2)) -> x
 > stopifnot(
 +   coeff=all.equal(as.numeric(x$coeff),c(1,0)),

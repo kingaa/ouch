@@ -45,9 +45,14 @@ plot(tree)
 plot(tree,node.names=TRUE)
 }
 \seealso{
-\code{ouchtree}, \code{ape2ouch}, \code{brown}, \code{hansen}
+\code{\link{ape2ouch}}
+
+Other phylogenetic comparative models: 
+\code{\link{brown}()},
+\code{\link{hansen}()}
 }
 \author{
 Aaron A. King
 }
+\concept{phylogenetic comparative models}
 \keyword{models}

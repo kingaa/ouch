@@ -18,6 +18,9 @@ If \code{scale} is a number, then the branch lengths will be scaled by this numb
 \code{ape2ouch} translates \pkg{ape}'s \code{phylo} representation of a phylogenetic tree into \pkg{ouch}'s \code{ouchtree} representation.
 The user can change the branch lengths while preserving the topology.
 }
+\seealso{
+\code{\link{ouchtree}}
+}
 \author{
 A. A. King, D. Ackerly
 }

@@ -27,12 +27,11 @@ Type 'q()' to quit R.
 > 
 > ape2ouch(t,scale=33) -> tt
 > try(ape2ouch("tree"))
-Error in ape2ouch("tree") : 'tree' must be of class 'phylo'
+Error : in 'ape2ouch': 'tree' must be of class 'phylo'
 > try(ape2ouch(t,scale=NA))
-Error in ape2ouch(t, scale = NA) : 'scale' cannot be NA.
+Error : in 'ape2ouch': 'scale' cannot be NA.
 > try(ape2ouch(t,scale=NA_real_))
-Error in ape2ouch(t, scale = NA_real_) : 'scale' cannot be NA.
+Error : in 'ape2ouch': 'scale' cannot be NA.
 > try(ape2ouch(t,scale="bob"))
-Error in ape2ouch(t, scale = "bob") : 
-  'scale' must be either logical or numeric.
+Error : in 'ape2ouch': 'scale' must be either logical or numeric.
 > 

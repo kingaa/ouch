@@ -26,28 +26,23 @@ Type 'q()' to quit R.
 Error in is(tree, "ouchtree") : 
   argument "tree" is missing, with no default
 > try(brown(tree=bimac))
-Error in brown(tree = bimac) : 
-  'tree' must be an object of class 'ouchtree'
+Error : in 'brown': 'tree' must be an object of class 'ouchtree'.
 > try(brown(tree=tree))
 Error in is.data.frame(data) : 
   argument "data" is missing, with no default
 > try(brown(tree=tree,data=bimac$size[1:10]))
-Error in brown(tree = tree, data = bimac$size[1:10]) : 
-  'data' vector(s) must be numeric, with one entry per node of the tree
+Error : in 'brown': 'data' vector(s) must be numeric, with one entry per node of the tree.
 > try(brown(tree=tree,data=bimac$size))
-Error in brown(tree = tree, data = bimac$size) : 
-  'data' vector names (or data-frame row names) must match node names of 'tree'
+Error : in 'brown': 'data' vector names (or data-frame row names) must match node names of 'tree'.
 > try(brown(tree=tree,data=setNames(c(bimac$size[-c(44,45)],NA,NA),bimac$node)))
-Error in brown(tree = tree, data = setNames(c(bimac$size[-c(44, 45)],  : 
-  missing data on terminal node(s): '44', '45'
+Error : in 'brown': missing data on terminal node(s): '44', '45'.
 > try(
 +   brown(
 +     tree=tree,
 +     data=as.character(bimac$size)
 +   )
 + )
-Error in brown(tree = tree, data = as.character(bimac$size)) : 
-  'data' must be either a single numeric data set or a list of numeric data sets
+Error : in 'brown': 'data' must be either a single numeric data set or a list of numeric data sets.
 > brown(
 +   tree=tree,
 +   data=list(

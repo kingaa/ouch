@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 > library(ouch)
 > 
 > try(paint(bimac))
-Error in paint(bimac) : 'tree' must be of class 'ouchtree'
+Error : in 'paint': 'tree' must be of class 'ouchtree'.
 > 
 > with(
 +   bimac,
@@ -71,25 +71,21 @@ Levels: large medium small
 +   paint(t,subtree=c("medium","large","small"),
 +     branch=c("38"="large","2"="medium"))
 + )
-Error in paint(t, subtree = c("medium", "large", "small"), branch = c(`38` = "large",  : 
-  'subtree' must be a named vector
+Error : in 'paint': 'subtree' must be a named vector.
 > try(
 +   paint(t,subtree=c(`1`="medium",`9`="large","small"),
 +     branch=c("38"="large","2"="medium"))
 + )
-Error in paint(t, subtree = c(`1` = "medium", `9` = "large", "small"),  : 
-  all names of 'subtree' must be names of nodes of 'tree'
+Error : in 'paint': all names of 'subtree' must be names of nodes of 'tree'.
 > try(
 +   paint(t,subtree=c(`1`="medium",`9`="large",`bob`="small"),
 +     branch=c("38"="large","2"="medium"))
 + )
-Error in paint(t, subtree = c(`1` = "medium", `9` = "large", bob = "small"),  : 
-  all names of 'subtree' must be names of nodes of 'tree'
+Error : in 'paint': all names of 'subtree' must be names of nodes of 'tree'.
 > try(
 +   paint(t,branch=c("large","medium"))
 + )
-Error in paint(t, branch = c("large", "medium")) : 
-  'branch' must be a named vector
+Error : in 'paint': 'branch' must be a named vector.
 > paint(t,branch=c('38'="large",'2'="medium"))
      1      2      3      4      5      6      7      8      9     10     11 
 unspec medium unspec unspec unspec unspec unspec unspec unspec unspec unspec 
@@ -103,15 +99,12 @@ unspec unspec unspec unspec  large unspec unspec unspec unspec unspec unspec
 unspec 
 Levels: large medium unspec
 > try(paint(t,branch=c("large",'2'="medium")))
-Error in paint(t, branch = c("large", `2` = "medium")) : 
-  all names of 'branch' must be names of nodes of 'tree'
+Error : in 'paint': all names of 'branch' must be names of nodes of 'tree'.
 > try(paint(t,branch=c('bob'="large",'2'="medium")))
-Error in paint(t, branch = c(bob = "large", `2` = "medium")) : 
-  all names of 'branch' must be names of nodes of 'tree'
+Error : in 'paint': all names of 'branch' must be names of nodes of 'tree'.
 > try(
 +   paint(h,branch=c("38"="large","2"="medium"),which=3)
 + )
 Error in tree@regimes[[which]] : subscript out of bounds
-Error in paint(h, branch = c(`38` = "large", `2` = "medium"), which = 3) : 
-  'paint' error: invalid 'which'
+Error : in 'paint': 'paint' error: invalid 'which'.
 > 
