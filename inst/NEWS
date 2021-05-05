@@ -1,6 +1,14 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_o_u_c_h'
 
-_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6:
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6-_3:
+
+        • Error messages and examples have been improved somewhat.
+
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6-_2:
+
+        • The manual and help pages have been streamlined.
+
+_C_h_a_n_g_e_s _i_n _o_u_c_h _v_e_r_s_i_o_n _2._1_6-_1:
 
         • The arguments to the various ‘plot’ methods have changed.
           There is now much finer control over the plotting.  In

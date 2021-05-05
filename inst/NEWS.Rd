@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
-\section{Changes in ouch version 2.16}{
+\section{Changes in ouch version 2.16-3}{
+  \itemize{
+    \item Error messages and examples have been improved somewhat.
+  }
+}
+\section{Changes in ouch version 2.16-2}{
+  \itemize{
+    \item The manual and help pages have been streamlined.
+  }
+}
+\section{Changes in ouch version 2.16-1}{
   \itemize{
     \item The arguments to the various \code{plot} methods have changed.
     There is now much finer control over the plotting.
