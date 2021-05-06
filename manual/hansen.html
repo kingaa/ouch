@@ -148,12 +148,24 @@ When <code>hansen</code> is executed, the numerical optimizer maximizes the like
 <h3>Examples</h3>
 
 <pre>
-library(geiger)
+## Analysis of sexual size dimorphism data
+tree &lt;- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
+plot(tree,node.names=TRUE)
 
-### an example data set (Darwin's finches)
+h1 &lt;- brown(anolis.ssd['log.SSD'],tree)
+h1
+plot(h1)
+
+h2 &lt;- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.1'],sqrt.alpha=1,sigma=1)
+h2
+plot(h2)
+
+h3 &lt;- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
+h3
+plot(h3)
+### Darwin's finches
+library(geiger)
 data(geospiza)
-str(geospiza)
-sapply(geospiza,class)
 
 ### check the correspondence between data and tree tips:
 print(nc &lt;- with(geospiza,name.check(geospiza.tree,geospiza.data)))
@@ -161,7 +173,6 @@ print(nc &lt;- with(geospiza,name.check(geospiza.tree,geospiza.data)))
 ### drop that tip:
 tree &lt;- with(geospiza,drop.tip(geospiza.tree,nc$tree_not_data))
 dat &lt;- as.data.frame(geospiza$dat)
-
 
 ### make an ouchtree out of the phy-format tree
 ot &lt;- ape2ouch(tree)
@@ -195,5 +206,5 @@ h1 &lt;- hansen(
 summary(h1)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-4 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-5 <a href="00Index.html">Index</a>]</div>
 </body></html>
