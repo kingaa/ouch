@@ -7,22 +7,20 @@
 #' @rdname package
 #' @docType package
 #' @section Classes:
-#' The basic class, \code{ouchtree}, is provided to encode a
-#' phylogenetic tree.  Plot and print methods are provided.
+#' The basic class, `ouchtree`, is provided to encode a phylogenetic tree.
+#' Plot and print methods are provided.
 #' 
-#' The class \code{browntree} derives from class \code{ouchtree} and encodes
-#' the results of fitting a Brownian Motion model to data.
+#' The class `browntree` derives from class `ouchtree` and encodes the results of fitting a Brownian Motion model to data.
 #' 
-#' The class \code{hansentree} derives from class \code{ouchtree} and encodes
-#' the results of fitting a Hansen model to data.
+#' The class `hansentree` derives from class `ouchtree` and encodes the results of fitting a Hansen model to data.
 #' @section Detailed Documentation:
 #' \describe{
-#'   \item{Phylogenies in \pkg{ouch} format}{\code{\link{ouchtree}}, \code{\link{ape2ouch}}}
-#'   \item{Brownian motion models}{\code{\link{brown}}}
-#'   \item{Ornstein-Uhlenbeck models}{\code{\link{hansen}}}
-#'   \item{Simulation of models}{\code{\link[ouch:simulate]{simulate}}}
-#'   \item{Display of data}{\code{\link[ouch:plot]{plot}}}
-#'   \item{Examples}{\code{\link{anolis.ssd}}, \code{\link{bimac}}}
+#'   \item{Phylogenies in \pkg{ouch} format}{[`ouchtree()`], [`ape2ouch()`]}
+#'   \item{Brownian motion models}{[`brown()`]}
+#'   \item{Ornstein-Uhlenbeck models}{[`hansen()`]}
+#'   \item{Simulation of models}{[`simulate()`]}
+#'   \item{Display of data}{[`plot()`]}
+#'   \item{Examples}{[`anolis.ssd`], [`bimac`]}
 #' }
 #' @author Aaron A. King
 #' @references

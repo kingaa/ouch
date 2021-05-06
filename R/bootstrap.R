@@ -2,7 +2,7 @@
 #'
 #' Generic bootstrapping for \pkg{ouch} models.
 #'
-#' \code{bootstrap} performs a parametric bootstrap for estimation of confidence intervals.
+#' `bootstrap` performs a parametric bootstrap for estimation of confidence intervals.
 #'
 #' @rdname bootstrap
 #' @name bootstrap
@@ -10,8 +10,8 @@
 #'
 #' @param object A fitted model object.
 #' @param nboot integer; number of bootstrap replicates.
-#' @param seed integer; setting \code{seed} to a non-\code{NULL} value allows one to fix the random seed (see \code{\link[ouch:simulate]{simulate}}).
-#' @param ... Additional arguments are passed to \code{\link[ouch:update]{update}}.
+#' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see `\link[ouch:simulate]{simulate`}).
+#' @param ... Additional arguments are passed to `\link[ouch:update]{update`}.
 NULL
 
 setGeneric(

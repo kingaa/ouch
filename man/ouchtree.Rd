@@ -3,7 +3,7 @@
 \name{ouchtree}
 \alias{ouchtree}
 \alias{ouchtree-class}
-\title{Phylogenetic tree object in 'ouch' format.}
+\title{Phylogenetic tree object in \pkg{ouch} format}
 \usage{
 ouchtree(nodes, ancestors, times, labels = as.character(nodes))
 }
@@ -30,7 +30,7 @@ It is not necessary that these be unique.}
 An object containing a phylogenetic tree in a form suitable for using \pkg{ouch} methods.
 }
 \details{
-\code{ouchtree} creates an \code{ouchtree} object.
+\code{ouchtree()} creates an \code{ouchtree} object.
 This contains the topology, branch times, and epochs.
 It also (optionally) holds names of taxa for display purposes.
 }
@@ -45,7 +45,7 @@ plot(tree)
 plot(tree,node.names=TRUE)
 }
 \seealso{
-\code{\link{ape2ouch}}
+\code{\link[=ape2ouch]{ape2ouch()}}
 
 Other phylogenetic comparative models: 
 \code{\link{brown}()},

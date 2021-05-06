@@ -1,4 +1,4 @@
-#' Summary methods
+#' \pkg{ouch} summary methods
 #'
 #' @name summary
 #' @rdname summary

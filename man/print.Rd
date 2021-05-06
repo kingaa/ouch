@@ -2,13 +2,14 @@
 % Please edit documentation in R/print.R, R/ouchtree.R, R/brown.R, R/hansen.R
 \name{print}
 \alias{print}
+\alias{show}
 \alias{print,ouchtree-method}
 \alias{show,ouchtree-method}
 \alias{show,browntree-method}
 \alias{print,browntree-method}
 \alias{print,hansentree-method}
 \alias{show,hansentree-method}
-\title{Print methods}
+\title{Print and show methods}
 \usage{
 \S4method{print}{ouchtree}(x, ...)
 
@@ -28,14 +29,16 @@
 \item{object, x}{object to display.}
 }
 \value{
-\code{print} displays the tree as a table, with (possibly) other information.
+\code{print} returns \code{x}, invisibly.
+
+\code{show} returns \code{NULL}, invisibly.
 
 \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 
 \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 }
 \description{
-Print methods
+Print and show methods
 }
 \seealso{
 Other methods: 

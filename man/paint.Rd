@@ -7,20 +7,19 @@
 paint(tree, subtree, branch, which = 1)
 }
 \arguments{
-\item{tree}{An object of class \code{ouchtree}.}
+\item{tree}{An object of class \code{\link{ouchtree}}.}
 
 \item{subtree}{An optional named vector specifying the root nodes of subtrees.
-Each branch that descends from this node will be painted with the
-specified regime.}
+Each branch that descends from this node will be painted with the specified regime.}
 
 \item{branch}{An optional named vector specifying the end nodes of branches.
 The unique branch that terminates at the named node will be painted with the specified regime.}
 
 \item{which}{integer;
-if \code{tree} is a \code{hansentree}, start not with a blank canvas but with the regime specifications \code{tree} contains for the character indicated by \code{which}.}
+if \code{tree} is a \code{\link[=hansen]{hansentree}}, start not with a blank canvas but with the regime specifications \code{tree} contains for the character indicated by \code{which}.}
 }
 \value{
-A vector of class \sQuote{factor} with names corresponding to the nodes in \code{tree}, specifying selective regimes.
+A vector of class 'factor' with names corresponding to the nodes in \code{tree}, specifying selective regimes.
 }
 \description{
 Function to paint selective regimes on a phylogenetic tree.
@@ -31,9 +30,9 @@ The painting proceeds in a particular order:
 one can overpaint a branch.
 The subtrees indicated by the elements of \code{subtree} are painted first, in order.
 Then the branches indicated by \code{branch} are painted.
-If \code{tree} is a simple \code{ouchtree} object, then \code{paint} begins with a blank canvas,
-i.e., a tree painted with the single regime \dQuote{nonspec}.
-If \code{tree} is of class \code{hansentree}, then \code{paint} begins with the regimes specified in the \code{regimes} slot of \code{tree}.
+If \code{tree} is of class \code{\link[=hansen]{hansentree}}, then \code{paint} begins with the regimes specified in the \code{regimes} slot of \code{tree}.
+Otherwise, \code{paint} begins with a blank canvas,
+i.e., a tree painted with the single regime "nonspec".
 Note that, if \code{tree} is a multivariate \code{hansentree}, then there are multiple regime specifications contained in \code{tree}.
 In this case, the argument \code{which} lets you pick which one you wish to begin with;
 by default, the first is used.

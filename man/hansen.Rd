@@ -44,12 +44,12 @@ If \code{fit=FALSE}, the likelihood will be evaluated at the specified values of
 the optima \code{theta} will be returned as well.}
 
 \item{method}{The method to be used by the optimization algorithm.
-See \code{\link[subplex]{subplex}} and \code{\link{optim}} for information on the available options.}
+See \code{\link[subplex:subplex]{subplex::subplex}} and \code{\link[stats:optim]{stats::optim}} for information on the available options.}
 
 \item{hessian}{If \code{hessian=TRUE}, then the Hessian matrix will be computed by \code{optim}.}
 
 \item{\dots}{Additional arguments will be passed as \code{control} options to \code{optim} or \code{subplex}.
-See \code{\link{optim}} and \code{\link[subplex:subplex]{subplex}} for information on the available options.}
+See \code{\link[stats:optim]{stats::optim()}} and \code{\link[subplex:subplex]{subplex::subplex()}} for information on the available options.}
 }
 \value{
 \code{hansen} returns an object of class \code{hansentree}.
@@ -135,7 +135,7 @@ summary(h1)
 \Cressler2015
 }
 \seealso{
-\code{\link[stats:optim]{optim}}, \code{\link[subplex:subplex]{subplex}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
+\code{\link[stats:optim]{stats::optim}}, \code{\link[subplex:subplex]{subplex::subplex}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
 
 Other phylogenetic comparative models: 
 \code{\link{brown}()},

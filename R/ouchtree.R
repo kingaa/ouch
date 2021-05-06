@@ -1,8 +1,8 @@
-#' Phylogenetic tree object in 'ouch' format.
+#' Phylogenetic tree object in \pkg{ouch} format
 #' 
 #' An object containing a phylogenetic tree in a form suitable for using \pkg{ouch} methods.
 #' 
-#' \code{ouchtree} creates an \code{ouchtree} object.
+#' `ouchtree()` creates an `ouchtree` object.
 #' This contains the topology, branch times, and epochs.
 #' It also (optionally) holds names of taxa for display purposes.
 #' 
@@ -11,7 +11,7 @@
 #' @aliases ouchtree-class
 #' @family phylogenetic comparative models
 #' @author Aaron A. King
-#' @seealso \code{\link{ape2ouch}}
+#' @seealso [`ape2ouch()`]
 #' @keywords models
 #' @example examples/bimac1.R
 #' 
@@ -41,10 +41,10 @@ setClass(
 #' These are used internally and must be unique.
 #' @param ancestors Specification of the topology of the phylogenetic tree.
 #' This is in the form of a character vector specifying the name
-#' (as given in the \code{nodes} argument)
+#' (as given in the `nodes` argument)
 #' of the immediate ancestor of each node.
 #' In particular, the i-th name is that of the ancestor of the i-th node.
-#' The root node is distinguished by having no ancestor (i.e., \code{NA}).
+#' The root node is distinguished by having no ancestor (i.e., `NA`).
 #' @param times A vector of nonnegative numbers, one per node in the tree,
 #' specifying the time at which each node is located.
 #' Time should be increasing from the root node to the terminal twigs.
@@ -53,7 +53,7 @@ setClass(
 #' It is not necessary that these be unique.
 #'
 #' @include package.R
-#' @export ouchtree
+#' @export
 ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 
   nodes <- as.character(nodes)

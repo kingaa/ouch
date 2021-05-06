@@ -2,14 +2,15 @@
 % Please edit documentation in R/ape2ouch.R
 \name{ape2ouch}
 \alias{ape2ouch}
-\title{Convert an "ape" tree to an "ouch" tree.}
+\title{Convert an \pkg{ape} tree to an \pkg{ouch} tree}
 \usage{
 ape2ouch(tree, scale = TRUE, branch.lengths = tree$edge.length)
 }
 \arguments{
-\item{tree}{a tree of class \code{phylo} created in package \pkg{ape}.}
+\item{tree}{a tree of class \link[ape:read.tree]{ape::phylo}.}
 
-\item{scale}{if \code{scale=TRUE}, the tree's depth will be scaled to 1.
+\item{scale}{optional.
+If \code{scale=TRUE}, the tree's depth will be scaled to 1.
 If \code{scale} is a number, then the branch lengths will be scaled by this number.}
 
 \item{branch.lengths}{optional vector of branch lengths.}

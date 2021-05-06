@@ -4,7 +4,7 @@
 \alias{plot}
 \alias{plot,ouchtree-method}
 \alias{plot,hansentree-method}
-\title{ouch plotting functions}
+\title{\pkg{ouch} plotting functions}
 \usage{
 \S4method{plot}{ouchtree}(
   x,
@@ -26,7 +26,7 @@
 \arguments{
 \item{x}{object to plot.}
 
-\item{...}{additional arguments, passed to \code{\link[graphics]{plot}}.}
+\item{...}{additional arguments, passed to \verb{\link[graphics]\{plot}}.}
 
 \item{regimes}{factor or character; a vector of regime paintings.}
 
@@ -43,16 +43,16 @@
 
 \item{palette}{function or character; specifies the colors to be used for the several regimes on the tree.
 Specified as a function, when given an integer, \code{n}, the function should create a vector of \code{n} colors.
-See, for example \code{\link[grDevices:rainbow]{rainbow}}.
+See, for example \verb{\link[grDevices:rainbow]\{rainbow}}.
 One can also specify the \code{n} colors as a vector of color codes.
 There must be at least as many colors as levels in the \code{regimes}.}
 
 \item{margin}{numeric; width of the right margin (as a fraction of the plot width).
 Adjust this if labels are clipped.}
 
-\item{text_opts}{options for the labels; passed to \code{\link[graphics]{text}}}
+\item{text_opts}{options for the labels; passed to \verb{\link[graphics]\{text}}}
 
-\item{legend_opts}{options for the the legend; passed to \code{\link[graphics]{legend}}}
+\item{legend_opts}{options for the the legend; passed to \verb{\link[graphics]\{legend}}}
 }
 \description{
 Plot phylogenetic trees, with or without regime paintings.

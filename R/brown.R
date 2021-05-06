@@ -1,13 +1,14 @@
 #' Phylogenetic Brownian motion models
 #' 
-#' The function \code{brown} creates a \code{browntree} object by fitting a
+#' The function `brown` creates a `browntree` object by fitting a
 #' Brownian-motion model to data.
 #' 
 #' @name brown
 #' @rdname brown
+#' @aliases browntree-class
 #' @author Aaron A. King
 #' @family phylogenetic comparative models
-#' @seealso \code{\link{bimac}}, \code{\link{anolis.ssd}}
+#' @seealso [`bimac`], [`anolis.ssd`], [`hansen`]
 #' @keywords models
 #' @references
 #' \Butler2004
@@ -41,14 +42,14 @@ setAs(
 #' @rdname brown
 #' @include ouchtree.R glssoln.R rmvnorm.R
 #' 
-#' @param data Phenotypic data for extant species, i.e., at the terminal ends
-#' of the phylogenetic tree.  This can either be a numeric vector or a list.
-#' If it is a numeric vector, there must be one entry for every node.  If it is
-#' a list, it must consist entirely of numeric vectors, each of which has one
-#' entry per node.  A data-frame is coerced to a list.
-#' @param tree A phylogenetic tree, specified as an \code{ouchtree} object.
+#' @param data Phenotypic data for extant species, i.e., at the terminal ends of the phylogenetic tree.
+#' This can either be a numeric vector or a list.
+#' If it is a numeric vector, there must be one entry for every node.
+#' If it is a list, it must consist entirely of numeric vectors, each of which has one entry per node.
+#' A data-frame is coerced to a list.
+#' @param tree A phylogenetic tree, specified as an [`ouchtree`] object.
 #'
-#' @return \code{brown} returns an object of class \code{browntree}.
+#' @return `brown` returns an object of class `browntree`.
 #' 
 #' @export
 brown <- function (data, tree) {
@@ -137,11 +138,11 @@ brown.deviate <- function(n = 1, object) {
 #' @rdname coef
 #' @include coef.R
 #' @importFrom stats coef
-#' @return \code{coef} applied to a \code{browntree} object extracts a list with three elements:
+#' @return `coef` applied to a `browntree` object extracts a list with three elements:
 #' \describe{
-#'   \item{\code{sigma}}{the coefficients of the sigma matrix.}
-#'   \item{\code{theta}}{a list of the estimated optima, one per character.}
-#'   \item{\code{sigma..sq.matrix}}{the sigma-squared matrix itself.}
+#'   \item{`sigma`}{the coefficients of the sigma matrix.}
+#'   \item{`theta`}{a list of the estimated optima, one per character.}
+#'   \item{`sigma..sq.matrix`}{the sigma-squared matrix itself.}
 #' }
 #' @export
 setMethod(
@@ -170,7 +171,7 @@ setMethod(
 
 #' @rdname print
 #' @include print.R
-#' @return \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
+#' @return `print` displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
 setMethod(
   'print',
@@ -201,7 +202,7 @@ setMethod(
 
 #' @rdname summary
 #' @include summary.R
-#' @return \code{summary} applied to a \code{browntree} object returns information about the fitted model, including parameter estimates and quantities describing the goodness of fit.
+#' @return `summary` applied to a `browntree` object returns information about the fitted model, including parameter estimates and quantities describing the goodness of fit.
 #' @export
 setMethod(
   "summary",

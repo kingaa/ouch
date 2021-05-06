@@ -2,18 +2,19 @@
 % Please edit documentation in R/brown.R
 \name{brown}
 \alias{brown}
+\alias{browntree-class}
 \title{Phylogenetic Brownian motion models}
 \usage{
 brown(data, tree)
 }
 \arguments{
-\item{data}{Phenotypic data for extant species, i.e., at the terminal ends
-of the phylogenetic tree.  This can either be a numeric vector or a list.
-If it is a numeric vector, there must be one entry for every node.  If it is
-a list, it must consist entirely of numeric vectors, each of which has one
-entry per node.  A data-frame is coerced to a list.}
+\item{data}{Phenotypic data for extant species, i.e., at the terminal ends of the phylogenetic tree.
+This can either be a numeric vector or a list.
+If it is a numeric vector, there must be one entry for every node.
+If it is a list, it must consist entirely of numeric vectors, each of which has one entry per node.
+A data-frame is coerced to a list.}
 
-\item{tree}{A phylogenetic tree, specified as an \code{ouchtree} object.}
+\item{tree}{A phylogenetic tree, specified as an \code{\link{ouchtree}} object.}
 }
 \value{
 \code{brown} returns an object of class \code{browntree}.
@@ -26,7 +27,7 @@ Brownian-motion model to data.
 \Butler2004
 }
 \seealso{
-\code{\link{bimac}}, \code{\link{anolis.ssd}}
+\code{\link{bimac}}, \code{\link{anolis.ssd}}, \code{\link{hansen}}
 
 Other phylogenetic comparative models: 
 \code{\link{hansen}()},

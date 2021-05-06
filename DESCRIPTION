@@ -1,8 +1,8 @@
 Package: ouch
 Type: Package
 Title: Ornstein-Uhlenbeck Models for Phylogenetic Comparative Hypotheses
-Version: 2.16-3
-Date: 2021-05-05
+Version: 2.16-4
+Date: 2021-05-06
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"),
 	  person(given=c("Marguerite","A."),family="Butler",role=c("ctb")))
 Maintainer: Aaron A. King <kingaa@umich.edu>
@@ -14,6 +14,7 @@ URL: https://kingaa.github.io/ouch/
 License: GPL-3
 LazyLoad: true
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9000
 BugReports: https://github.com/kingaa/ouch/issues/
 Encoding: UTF-8

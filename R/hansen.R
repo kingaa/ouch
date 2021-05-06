@@ -1,7 +1,7 @@
 #' Ornstein-Uhlenbeck models of trait evolution
 #' 
-#' The function \code{hansen} fits an Ornstein-Uhlenbeck model to data.
-#' The fitting is done using \code{optim} or \code{subplex}.
+#' The function `hansen` fits an Ornstein-Uhlenbeck model to data.
+#' The fitting is done using `optim` or `subplex`.
 #' 
 #' The Hansen model for the evolution of a multivariate trait \eqn{X} along a lineage can be written as a stochastic differential equation (Ito diffusion)
 #' \deqn{dX=\alpha(\theta(t)-X(t))dt+\sigma dB(t),}{dX = alpha (theta(t)-X(t)) dt + sigma dB(t),}
@@ -17,14 +17,14 @@
 #' If we further restrict ourselves to the case of stabilizing selection, \eqn{\alpha}{alpha} will be positive definite as well.
 #' We make these assumptions and therefore can assume that the matrix \eqn{\alpha}{alpha} has a lower-triangular square root.
 #' 
-#' The \code{hansen} code uses unconstrained numerical optimization to maximize the likelihood.
+#' The `hansen` code uses unconstrained numerical optimization to maximize the likelihood.
 #' To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices in a special way:
-#' each matrix is parameterized by \code{nchar*(nchar+1)/2} parameters, where \code{nchar} is the number of quantitative characters.
-#' Specifically, the parameters initialized by the \code{sqrt.alpha} argument of \code{hansen} are used
+#' each matrix is parameterized by `nchar*(nchar+1)/2` parameters, where `nchar` is the number of quantitative characters.
+#' Specifically, the parameters initialized by the `sqrt.alpha` argument of `hansen` are used
 #' to fill the nonzero entries of a lower-triangular matrix (in column-major order),
 #' which is then multiplied by its transpose to give the selection-strength matrix.
-#' The parameters specified in \code{sigma} fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
-#' When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.
+#' The parameters specified in `sigma` fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
+#' When `hansen` is executed, the numerical optimizer maximizes the likelihood over these parameters.
 #'
 #' @name hansen
 #' @aliases hansentree-class
@@ -32,7 +32,7 @@
 #' @family phylogenetic comparative models
 #' @author Aaron A. King
 #' @seealso
-#' \code{\link[stats:optim]{optim}}, \code{\link[subplex:subplex]{subplex}}, \code{\link{bimac}}, \code{\link{anolis.ssd}}
+#' [`stats::optim`], [`subplex::subplex`], [`bimac`], [`anolis.ssd`]
 #' @references
 #' \Butler2004
 #'
@@ -79,32 +79,32 @@ setAs(
 #' @importFrom subplex subplex
 #'
 #' @param data Phenotypic data for extant species, i.e., species at the terminal twigs of the phylogenetic tree.
-#' This can either be a single named numeric vector, a list of \code{nchar} named vectors, or a data frame containing \code{nchar} data variables.
-#' There must be an entry per variable for every node in the tree; use \code{NA} to represent missing data.
+#' This can either be a single named numeric vector, a list of `nchar` named vectors, or a data frame containing `nchar` data variables.
+#' There must be an entry per variable for every node in the tree; use `NA` to represent missing data.
 #' If the
-#' data are supplied as one or more named vectors, the names attributes are taken to correspond to the node names specified when the \code{ouchtree} was constructed (see \code{\link{ouchtree}}).
+#' data are supplied as one or more named vectors, the names attributes are taken to correspond to the node names specified when the `ouchtree` was constructed (see [`ouchtree`]).
 #' If the data are supplied as a
 #' data-frame, the rownames serve that purpose.
-#' @param tree A phylogenetic tree, specified as an \code{ouchtree} object.
+#' @param tree A phylogenetic tree, specified as an `ouchtree` object.
 #' @param regimes A vector of codes, one for each node in the tree, specifying the selective regimes hypothesized to have been operative.
 #' Corresponding to each node, enter the code of the regime hypothesized for the branch segment terminating in that node.
 #' For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
-#' If there are \code{nchar} quantitative characters, then one can specify a single set of \code{regimes} for all characters or a list of \code{nchar} regime specifications, one for each character.
+#' If there are `nchar` quantitative characters, then one can specify a single set of `regimes` for all characters or a list of `nchar` regime specifications, one for each character.
 #' @param sqrt.alpha,sigma These are used to initialize the optimization algorithm.
 #' The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
 #' Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
 #' The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
 #' See Details for more information.
-#' @param fit If \code{fit=TRUE}, then the likelihood will be maximized.
-#' If \code{fit=FALSE}, the likelihood will be evaluated at the specified values of \code{sqrt.alpha} and \code{sigma};
-#' the optima \code{theta} will be returned as well.
+#' @param fit If `fit=TRUE`, then the likelihood will be maximized.
+#' If `fit=FALSE`, the likelihood will be evaluated at the specified values of `sqrt.alpha` and `sigma`;
+#' the optima `theta` will be returned as well.
 #' @param method The method to be used by the optimization algorithm.
-#' See \code{\link[subplex]{subplex}} and \code{\link{optim}} for information on the available options.
-#' @param hessian If \code{hessian=TRUE}, then the Hessian matrix will be computed by \code{optim}.
-#' @param \dots Additional arguments will be passed as \code{control} options to \code{optim} or \code{subplex}.
-#' See \code{\link{optim}} and \code{\link[subplex:subplex]{subplex}} for information on the available options.
+#' See [`subplex::subplex`] and [`stats::optim`] for information on the available options.
+#' @param hessian If `hessian=TRUE`, then the Hessian matrix will be computed by `optim`.
+#' @param \dots Additional arguments will be passed as `control` options to `optim` or `subplex`.
+#' See [`stats::optim()`] and [`subplex::subplex()`] for information on the available options.
 #' 
-#' @return \code{hansen} returns an object of class \code{hansentree}.
+#' @return `hansen` returns an object of class `hansentree`.
 #' @export
 hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   fit = TRUE,
@@ -426,8 +426,8 @@ hansen_deviate <- function (n = 1, object) {
 #' @rdname coef
 #' @include coef.R
 #' @importFrom stats coef
-#' @return \code{coef} applied to a \code{hansentree} object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements, respectively) but also the MLE returned by the optimizer
-#' (as \code{sqrt.alpha} and \code{sigma}, respectively).
+#' @return `coef` applied to a `hansentree` object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the `alpha.matrix` and `sigma.sq.matrix` elements, respectively) but also the MLE returned by the optimizer
+#' (as `sqrt.alpha` and `sigma`, respectively).
 #' \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
 #' @export
 setMethod(
@@ -456,7 +456,7 @@ setMethod(
 
 #' @rdname summary
 #' @include summary.R
-#' @return \code{summary} applied to a \code{hansentree} method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
+#' @return `summary` applied to a `hansentree` method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
 #' @export
 setMethod(
   "summary",
@@ -489,7 +489,7 @@ setMethod(
 
 #' @rdname print
 #' @include print.R
-#' @return \code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
+#' @return `print` displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
 setMethod(
   'print',

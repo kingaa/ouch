@@ -1,4 +1,4 @@
-#' ouch plotting functions
+#' \pkg{ouch} plotting functions
 #'
 #' Plot phylogenetic trees, with or without regime paintings.
 #'
@@ -11,16 +11,16 @@
 #' @param ladderize logical; should the tree be ladderized?
 #' @param legend logical; display a legend?
 #' @param palette function or character; specifies the colors to be used for the several regimes on the tree.
-#' Specified as a function, when given an integer, \code{n}, the function should create a vector of \code{n} colors.
-#' See, for example \code{\link[grDevices:rainbow]{rainbow}}.
-#' One can also specify the \code{n} colors as a vector of color codes.
-#' There must be at least as many colors as levels in the \code{regimes}.
+#' Specified as a function, when given an integer, `n`, the function should create a vector of `n` colors.
+#' See, for example `\link[grDevices:rainbow]{rainbow`}.
+#' One can also specify the `n` colors as a vector of color codes.
+#' There must be at least as many colors as levels in the `regimes`.
 #' @param labels character; taxon labels.
 #' @param margin numeric; width of the right margin (as a fraction of the plot width).
 #' Adjust this if labels are clipped.
-#' @param text_opts options for the labels; passed to \code{\link[graphics]{text}}
-#' @param legend_opts options for the the legend; passed to \code{\link[graphics]{legend}}
-#' @param ... additional arguments, passed to \code{\link[graphics]{plot}}.
+#' @param text_opts options for the labels; passed to `\link[graphics]{text`}
+#' @param legend_opts options for the the legend; passed to `\link[graphics]{legend`}
+#' @param ... additional arguments, passed to `\link[graphics]{plot`}.
 #' 
 #' @inheritParams graphics::plot.default
 #' @importFrom graphics plot text legend par
