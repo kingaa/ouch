@@ -19,11 +19,11 @@
 \arguments{
 \item{object}{A fitted model object.}
 
-\item{...}{Additional arguments are passed to \verb{\link[ouch:update]\{update}}.}
+\item{...}{Additional arguments are passed to \code{\link{update}}.}
 
 \item{nboot}{integer; number of bootstrap replicates.}
 
-\item{seed}{integer; setting \code{seed} to a non-\code{NULL} value allows one to fix the random seed (see \verb{\link[ouch:simulate]\{simulate}}).}
+\item{seed}{integer; setting \code{seed} to a non-\code{NULL} value allows one to fix the random seed (see \link{simulate}).}
 }
 \description{
 Generic bootstrapping for \pkg{ouch} models.

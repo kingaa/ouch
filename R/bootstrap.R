@@ -10,8 +10,8 @@
 #'
 #' @param object A fitted model object.
 #' @param nboot integer; number of bootstrap replicates.
-#' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see `\link[ouch:simulate]{simulate`}).
-#' @param ... Additional arguments are passed to `\link[ouch:update]{update`}.
+#' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see [simulate]).
+#' @param ... Additional arguments are passed to [`update`].
 NULL
 
 setGeneric(
