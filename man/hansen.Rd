@@ -83,12 +83,24 @@ The parameters specified in \code{sigma} fill the nonzero entries in the lower t
 When \code{hansen} is executed, the numerical optimizer maximizes the likelihood over these parameters.
 }
 \examples{
-library(geiger)
+## Analysis of sexual size dimorphism data
+tree <- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
+plot(tree,node.names=TRUE)
 
-### an example data set (Darwin's finches)
+h1 <- brown(anolis.ssd['log.SSD'],tree)
+h1
+plot(h1)
+
+h2 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.1'],sqrt.alpha=1,sigma=1)
+h2
+plot(h2)
+
+h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
+h3
+plot(h3)
+### Darwin's finches
+library(geiger)
 data(geospiza)
-str(geospiza)
-sapply(geospiza,class)
 
 ### check the correspondence between data and tree tips:
 print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
@@ -96,7 +108,6 @@ print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
 ### drop that tip:
 tree <- with(geospiza,drop.tip(geospiza.tree,nc$tree_not_data))
 dat <- as.data.frame(geospiza$dat)
-
 
 ### make an ouchtree out of the phy-format tree
 ot <- ape2ouch(tree)

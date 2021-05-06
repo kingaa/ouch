@@ -54,6 +54,7 @@ In this example, there are 3 alternative models (see Butler & King 2004): \code{
 }
 }
 \examples{
+## Analysis of Anolis bimaculatus data
 tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 

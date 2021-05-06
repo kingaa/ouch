@@ -107,7 +107,7 @@ xxcheck: install xcheck
 	mkdir -p check
 	$(REXE) -d "valgrind --tool=memcheck --track-origins=yes --leak-check=full" < check/$(PKG).Rcheck/$(PKG)-Ex.R 2>&1 | tee $(PKG)-Ex.Rout
 
-ycheck: dist
+ycheck: dist install
 	mkdir -p check
 	$(RCMD_ALT) check --run-dontrun --run-donttest --as-cran --library=library -o check $(PKGVERS).tar.gz
 

@@ -1,3 +1,4 @@
+## Analysis of Anolis bimaculatus data
 tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 

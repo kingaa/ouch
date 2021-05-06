@@ -1,3 +1,4 @@
+## Analysis of sexual size dimorphism data
 tree <- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 
@@ -12,4 +13,3 @@ plot(h2)
 h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
 h3
 plot(h3)
-

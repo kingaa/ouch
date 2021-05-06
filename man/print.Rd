@@ -32,13 +32,13 @@
 \code{print} returns \code{x}, invisibly.
 
 \code{show} returns \code{NULL}, invisibly.
-
-\code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
-
-\code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 }
 \description{
 Print and show methods
+}
+\details{
+\code{print} displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
+\code{show} provides a similar display.
 }
 \seealso{
 Other methods: 

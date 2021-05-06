@@ -9,6 +9,7 @@
 #' @author Aaron A. King
 #' @family phylogenetic comparative models
 #' @seealso [`bimac`], [`anolis.ssd`], [`hansen`]
+#' @example examples/bimac.R
 #' @keywords models
 #' @references
 #' \Butler2004
@@ -171,7 +172,6 @@ setMethod(
 
 #' @rdname print
 #' @include print.R
-#' @return `print` displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
 setMethod(
   'print',

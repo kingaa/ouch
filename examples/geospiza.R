@@ -1,9 +1,6 @@
-library(ouch)
+### Darwin's finches
 library(geiger)
-
 data(geospiza)
-str(geospiza)
-sapply(geospiza,class)
 
 ### check the correspondence between data and tree tips:
 print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
@@ -11,7 +8,6 @@ print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
 ### drop that tip:
 tree <- with(geospiza,drop.tip(geospiza.tree,nc$tree_not_data))
 dat <- as.data.frame(geospiza$dat)
-
 
 ### make an ouchtree out of the phy-format tree
 ot <- ape2ouch(tree)
@@ -31,18 +27,15 @@ ot <- with(otd,ouchtree(nodes=nodes,ancestors=ancestors,times=times,labels=label
 
 b1 <- brown(tree=ot,data=otd[c("tarsusL","beakD")])
 summary(b1)
-plot(b1)
 
 ### evaluate an OU model with a single, global selective regime
 otd$regimes <- as.factor("global")
 h1 <- hansen(
-             tree=ot,
-             data=otd[c("tarsusL","beakD")],
-             regimes=otd["regimes"],
-             sqrt.alpha=c(1,0,1),
-             sigma=c(1,0,1),
-             maxit=10000
-             )
+  tree=ot,
+  data=otd[c("tarsusL","beakD")],
+  regimes=otd["regimes"],
+  sqrt.alpha=c(1,0,1),
+  sigma=c(1,0,1),
+  maxit=10000
+)
 summary(h1)
-plot(h1)
-

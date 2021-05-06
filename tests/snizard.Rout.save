@@ -26,7 +26,7 @@ Loading required package: ape
 > tree.1 <- ape2ouch(tree)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1005759 secs
+Time difference of 0.1143496 secs
 > tree.data <- merge(
 +                    as(tree.1,"data.frame"),
 +                    squam.data,
@@ -53,7 +53,7 @@ Time difference of 0.1005759 secs
 > h4 <- hansen(data=tree.data['log.SVL.SE'],tree.2,tree.data['OU2'],sqrt.alpha=0.5,sigma=1,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1542661 secs
+Time difference of 0.1595383 secs
 > model.fits <- c(h1,h2,h3,h4)
 > names(model.fits) <- c("BM.1","BM.2","OU2.1","OU2.2")
 > sapply(model.fits,function(x)c(unlist(coef(x)),summary(x)$aic.c))

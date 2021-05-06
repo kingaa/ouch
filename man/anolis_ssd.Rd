@@ -37,6 +37,7 @@ internal branches to the "unknown" selective regime.
 The phylogeny of these species is consistent with and adaptive radiation, with a burst of speciation events early in the evolutionary history of this clade (see phylogeny in Butler & King (2004) or example below).
 }
 \examples{
+## Analysis of sexual size dimorphism data
 tree <- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 
@@ -51,7 +52,6 @@ plot(h2)
 h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
 h3
 plot(h3)
-
 }
 \references{
 \Butler2000

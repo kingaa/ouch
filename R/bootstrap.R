@@ -7,7 +7,7 @@
 #' @rdname bootstrap
 #' @name bootstrap
 #' @family methods
-#'
+#' @example examples/bootstrap.R
 #' @param object A fitted model object.
 #' @param nboot integer; number of bootstrap replicates.
 #' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see [simulate]).

@@ -39,7 +39,9 @@
 #' \Cressler2015
 #' 
 #' @keywords models
-#' @example examples/hansen.R
+#' @example examples/anolis.R
+#' 
+#' @example examples/geospiza.R
 #' 
 NULL
 
@@ -476,7 +478,7 @@ setMethod(
       optimizer.message=object@optim.diagn$message,
       alpha=cf$alpha.matrix,
       sigma.squared=cf$sigma.sq.matrix,
-      optima=cf$theta,
+      optimum=cf$theta,
       loglik=logLik(object),
       deviance=deviance,
       aic=aic,
@@ -489,7 +491,6 @@ setMethod(
 
 #' @rdname print
 #' @include print.R
-#' @return `print` displays the tree as a table, along with the coefficients of the fitted model and diagnostic information.
 #' @export
 setMethod(
   'print',
