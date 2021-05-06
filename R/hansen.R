@@ -478,7 +478,7 @@ setMethod(
       optimizer.message=object@optim.diagn$message,
       alpha=cf$alpha.matrix,
       sigma.squared=cf$sigma.sq.matrix,
-      optimum=cf$theta,
+      optima=cf$theta,
       loglik=logLik(object),
       deviance=deviance,
       aic=aic,
