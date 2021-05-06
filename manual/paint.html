@@ -25,13 +25,12 @@ paint(tree, subtree, branch, which = 1)
 <table summary="R argblock">
 <tr valign="top"><td><code>tree</code></td>
 <td>
-<p>An object of class <code>ouchtree</code>.</p>
+<p>An object of class <code><a href="ouchtree.html">ouchtree</a></code>.</p>
 </td></tr>
 <tr valign="top"><td><code>subtree</code></td>
 <td>
 <p>An optional named vector specifying the root nodes of subtrees.
-Each branch that descends from this node will be painted with the
-specified regime.</p>
+Each branch that descends from this node will be painted with the specified regime.</p>
 </td></tr>
 <tr valign="top"><td><code>branch</code></td>
 <td>
@@ -41,7 +40,7 @@ The unique branch that terminates at the named node will be painted with the spe
 <tr valign="top"><td><code>which</code></td>
 <td>
 <p>integer;
-if <code>tree</code> is a <code>hansentree</code>, start not with a blank canvas but with the regime specifications <code>tree</code> contains for the character indicated by <code>which</code>.</p>
+if <code>tree</code> is a <code><a href="hansen.html">hansentree</a></code>, start not with a blank canvas but with the regime specifications <code>tree</code> contains for the character indicated by <code>which</code>.</p>
 </td></tr>
 </table>
 
@@ -53,9 +52,9 @@ The painting proceeds in a particular order:
 one can overpaint a branch.
 The subtrees indicated by the elements of <code>subtree</code> are painted first, in order.
 Then the branches indicated by <code>branch</code> are painted.
-If <code>tree</code> is a simple <code>ouchtree</code> object, then <code>paint</code> begins with a blank canvas,
-i.e., a tree painted with the single regime &ldquo;nonspec&rdquo;.
-If <code>tree</code> is of class <code>hansentree</code>, then <code>paint</code> begins with the regimes specified in the <code>regimes</code> slot of <code>tree</code>.
+If <code>tree</code> is of class <code><a href="hansen.html">hansentree</a></code>, then <code>paint</code> begins with the regimes specified in the <code>regimes</code> slot of <code>tree</code>.
+Otherwise, <code>paint</code> begins with a blank canvas,
+i.e., a tree painted with the single regime &quot;nonspec&quot;.
 Note that, if <code>tree</code> is a multivariate <code>hansentree</code>, then there are multiple regime specifications contained in <code>tree</code>.
 In this case, the argument <code>which</code> lets you pick which one you wish to begin with;
 by default, the first is used.
@@ -64,7 +63,7 @@ by default, the first is used.
 
 <h3>Value</h3>
 
-<p>A vector of class &lsquo;factor&rsquo; with names corresponding to the nodes in <code>tree</code>, specifying selective regimes.
+<p>A vector of class 'factor' with names corresponding to the nodes in <code>tree</code>, specifying selective regimes.
 </p>
 
 
@@ -99,5 +98,5 @@ r &lt;- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
 plot(x,regimes=r,node.names=TRUE)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-3 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-4 <a href="00Index.html">Index</a>]</div>
 </body></html>
