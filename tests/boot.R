@@ -1,3 +1,5 @@
 library(ouch)
+set.seed(747717604)
+example(bootstrap,run.dontrun=TRUE)
 try(bootstrap())
 try(bootstrap("yes"))
