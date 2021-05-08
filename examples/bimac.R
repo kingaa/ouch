@@ -1,5 +1,5 @@
 ## Analysis of Anolis bimaculatus data
-tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+tree <- with(bimac,ouchtree(node,ancestor,time/max(time),spcode))
 plot(tree,node.names=TRUE)
 
 h1 <- brown(log(bimac['size']),tree)
@@ -21,6 +21,7 @@ plot(h4)
 h5 <- hansen(log(bimac['size']),tree,bimac['OU.LP'],sqrt.alpha=1,sigma=1,reltol=1e-5)
 h5 <- update(h5,method='subplex',reltol=1e-11,parscale=c(0.1,0.1),hessian=TRUE)
 h5
+plot(h5)
 
 simdat <- simulate(h5,nsim=10)
 hsim <- update(h5,data=simdat[[1]])

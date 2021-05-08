@@ -17,7 +17,7 @@
 #' There must be at least as many colors as levels in the `regimes`.
 #' @param labels character; taxon labels.
 #' @param margin numeric; width of the right margin (as a fraction of the plot width).
-#' Adjust this if labels are clipped.
+#' Adjust this if labels are clipped (see Examples below).
 #' @param text_opts options for the labels; passed to [`text`][graphics::text()].
 #' @param legend_opts options for the the legend; passed to [`legend`][graphics::legend()].
 #' @param ... additional arguments, passed to [`plot`][graphics::plot()].
@@ -47,7 +47,7 @@ tree.plot.internal <- function (
   rx <- range(x@times,na.rm=T)
   margin <- as.numeric(margin)
   if (!(length(margin)==1 && isTRUE(margin>=0 && margin<1)))
-    pStop("plot",sQuote("margin")," should be between 0 and 1.")
+    pStop("plot",sQuote("margin")," should be one number between 0 and 1.")
   rxd <- margin*diff(rx)/(1-margin)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))

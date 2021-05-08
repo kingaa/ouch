@@ -52,7 +52,7 @@ btstrp> b5 <- sapply(simdat,function(x)summary(update(h5,data=x))$aic.c)
 btstrp> toc <- Sys.time()
 
 btstrp> print(toc-tic)
-Time difference of 2.480107 secs
+Time difference of 2.477404 secs
 
 btstrp> cat("approximate 95% AIC.c cutoff",signif(quantile(b1-b5,0.95),digits=3),"\n")
 approximate 95% AIC.c cutoff 2.58 

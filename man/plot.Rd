@@ -48,7 +48,7 @@ One can also specify the \code{n} colors as a vector of color codes.
 There must be at least as many colors as levels in the \code{regimes}.}
 
 \item{margin}{numeric; width of the right margin (as a fraction of the plot width).
-Adjust this if labels are clipped.}
+Adjust this if labels are clipped (see Examples below).}
 
 \item{text_opts}{options for the labels; passed to \code{\link[graphics:text]{text}}.}
 

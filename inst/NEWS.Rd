@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
+\section{Changes in ouch version 2.16-6}{
+  \itemize{
+    \item There is now an example showing how to plot a tree with long taxon names.
+  }
+}
 \section{Changes in ouch version 2.16-3}{
   \itemize{
     \item Error messages and examples have been improved somewhat.

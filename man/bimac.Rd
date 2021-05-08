@@ -5,10 +5,12 @@
 \alias{bimac}
 \title{Anolis bimaculatus lizard size data}
 \format{
-A data frame with 45 observations on the following 8 variables.
+A data frame with 45 observations on the following 11 variables.
 \describe{
 \item{node}{Labels for the nodes.}
+\item{spcode}{Two-letter code for each taxon.}
 \item{species}{Species names for extant species.}
+\item{island}{Name of the island on which the population is found.}
 \item{size}{Body size (head length in mm) of extant species.}
 \item{ancestor}{Ancestral node.}
 \item{time}{Time of node.}
@@ -27,7 +29,7 @@ It is used to test a hypothesis of character displacement using an interspecific
 The data frame has the following columns:
 \code{species} which are species names,
 \code{size} which is the phenotypic data,
-and the variables \code{ancestor} and \code{time} which specify the topology of the phylogeny and the location of the nodes in time, respectively.
+and the variables \code{node}, \code{ancestor}, and \code{time} which specify the topology of the phylogeny and the location of the nodes in time, respectively.
 The columns \code{OU.1}, \code{OU.3}, \code{OU.4}, and \code{OU.LP} specify four hypothetical arrangements of selective regimes.
 Explanations of the data follow:
 \describe{
@@ -36,26 +38,29 @@ We use the phenotypic data and phylogeny of Losos (1990), which employed the hea
 In this group of lizards, head length correlates very strongly with snout-to-vent length and the cube root of mass, which are standard measures of body size.
 The data are head lengths in mm; note that we use the log of this value in analyses.
 }
-\item{Tree topology}{
-The tree topology is encoded via two vectors: \code{ancestor} and \code{time}.
-Each node of the' phylogenetic tree has a corresponding row in the data frame, numbered from 1 to 45.
-The columns \code{ancestor} and \code{time} specify the phylogeny.
-The \code{ancestor} variable specifies the topology: it is a list indicating the ancestor of each node.
-The root node has ancestor 0.
-The variable \code{time} specifies the temporal location of each node, with the root node being at time 0.
+\item{Tree structure}{
+The phylogenetic tree is encoded via three variables:
+\code{node}, \code{ancestor}, and \code{time}.
+The \code{node} variable gives a name to each node.
+The \code{ancestor} variable names the ancestor of each node.
+The root node has no ancestor (i.e., \code{ancestor=NA}).
+The variable \code{time} specifies the temporal location of each node, the root node being at time 0.
 }
 \item{Specifications of selective regimes.}{
 (Columns \code{OU.1}, \code{OU.3}, \code{OU.4}, \code{OU.LP}).
-These columns are factors, the levels of which correspond to the "paintings" of the respective adaptive regime hypotheses onto the phylogeny (see \code{\link[=paint]{paint()}}).
+These columns are factors, the levels of which correspond to the \dQuote{paintings} of the respective adaptive regime hypotheses onto the phylogeny (see \code{\link[=paint]{paint()}}).
 Each selective regime is named (small, medium, large, etc.).
 Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
 In this example, there are 3 alternative models (see Butler & King 2004): \code{OU.4} is 4-regime model, \code{OU.3} is 3-regime model (all ancestors are medium), \code{OU.LP} is the linear parsimony model.
+}
+\item{Other variables}{
+In addition to the above, there is a two-letter code for each taxon (\code{spcode}) and the name of the island on which the taxon is found (\code{island}).
 }
 }
 }
 \examples{
 ## Analysis of Anolis bimaculatus data
-tree <- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+tree <- with(bimac,ouchtree(node,ancestor,time/max(time),spcode))
 plot(tree,node.names=TRUE)
 
 h1 <- brown(log(bimac['size']),tree)
@@ -77,6 +82,7 @@ plot(h4)
 h5 <- hansen(log(bimac['size']),tree,bimac['OU.LP'],sqrt.alpha=1,sigma=1,reltol=1e-5)
 h5 <- update(h5,method='subplex',reltol=1e-11,parscale=c(0.1,0.1),hessian=TRUE)
 h5
+plot(h5)
 
 simdat <- simulate(h5,nsim=10)
 hsim <- update(h5,data=simdat[[1]])

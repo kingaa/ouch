@@ -10,7 +10,7 @@ A data frame with 38 observations on the following 6 variables.
 \item \code{node}: Labels for the nodes.
 \item \code{species}: Names of extant species.
 \item \code{log.SSD}: Log sexual size dimorphism of extant species.
-\item \code{ancestor}: Ancestor node.
+\item \code{ancestor}: Name of ancestor node.
 \item \code{time}: Time of node.
 \item \code{OU.1}: a factor with one level, \code{ns}.
 \item \code{OU.7}: a factor with levels corresponding to ecomorph (\code{tg}, \code{tc}, \code{gb}, \code{cg}, \code{tw}, \code{tr}, \code{anc}).
@@ -29,9 +29,9 @@ The data were used to demonstrate an evolutionary association between habitat ty
 Size dimorphism was calcuated as the log-ratio of male snout-to-vent length to female snout-to-vent length (males are larger).
 
 In this example, we tested three models of evolution:
-Brownian motion, Ornstein-Uhlenbeck with one global optimum, and Ornstein-Uhlenbeck with 7 optima (one for each ecomorph type plus an additional one for an "unknown" type).
+Brownian motion, Ornstein-Uhlenbeck with one global optimum, and Ornstein-Uhlenbeck with seven optima (one for each ecomorph type plus an additional one for an "unknown" type).
 
-For the 7-optima model, we assigned each terminal branch to an optimum according to the ecomorph type of the extant species.
+For the seven-optima model, we assigned each terminal branch to an optimum according to the ecomorph type of the extant species.
 Because we had no information to help guide hypotheses about internal branches, we assigned
 internal branches to the "unknown" selective regime.
 The phylogeny of these species is consistent with and adaptive radiation, with a burst of speciation events early in the evolutionary history of this clade (see phylogeny in Butler & King (2004) or example below).

@@ -23,6 +23,6 @@ Type 'q()' to quit R.
 > tr <- with(x,ouchtree(nodes=node,ancestors=ancestor,times=time,labels=species))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.003015041 secs
+Time difference of 0.002750397 secs
 > plot(tr)
 > 

@@ -92,7 +92,7 @@ Type 'q()' to quit R.
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.393314 secs
+Time difference of 1.262304 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -135,7 +135,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1388385 secs
+Time difference of 0.131125 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -157,12 +157,12 @@ $sigma.squared
 [1,] 0.01 0.00
 [2,] 0.00 0.01
 
-$optimum
-$optimum$A
+$optima
+$optima$A
          ns 
 -0.06150747 
 
-$optimum$B
+$optima$B
         ns 
 -0.0677411 
 
@@ -203,7 +203,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.381932 secs
+Time difference of 1.25045 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -283,7 +283,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.1810303 secs
+Time difference of 0.1719985 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -305,12 +305,12 @@ $sigma.squared
 [1,] 0.01 0.00
 [2,] 0.00 0.01
 
-$optimum
-$optimum$A
+$optima
+$optima$A
       big     small 
 -2.718422  2.390460 
 
-$optimum$B
+$optima$B
       big     small 
 0.1872681 2.3082618 
 
