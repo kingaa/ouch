@@ -14,7 +14,7 @@ It is used to test a hypothesis of character displacement using an interspecific
 The data frame has the following columns:
 <code>species</code> which are species names,
 <code>size</code> which is the phenotypic data,
-and the variables <code>ancestor</code> and <code>time</code> which specify the topology of the phylogeny and the location of the nodes in time, respectively.
+and the variables <code>node</code>, <code>ancestor</code>, and <code>time</code> which specify the topology of the phylogeny and the location of the nodes in time, respectively.
 The columns <code>OU.1</code>, <code>OU.3</code>, <code>OU.4</code>, and <code>OU.LP</code> specify four hypothetical arrangements of selective regimes.
 Explanations of the data follow:
 </p>
@@ -26,21 +26,25 @@ In this group of lizards, head length correlates very strongly with snout-to-ven
 The data are head lengths in mm; note that we use the log of this value in analyses.
 </p>
 </dd>
-<dt>Tree topology</dt><dd>
-<p>The tree topology is encoded via two vectors: <code>ancestor</code> and <code>time</code>.
-Each node of the' phylogenetic tree has a corresponding row in the data frame, numbered from 1 to 45.
-The columns <code>ancestor</code> and <code>time</code> specify the phylogeny.
-The <code>ancestor</code> variable specifies the topology: it is a list indicating the ancestor of each node.
-The root node has ancestor 0.
-The variable <code>time</code> specifies the temporal location of each node, with the root node being at time 0.
+<dt>Tree structure</dt><dd>
+<p>The phylogenetic tree is encoded via three variables:
+<code>node</code>, <code>ancestor</code>, and <code>time</code>.
+The <code>node</code> variable gives a name to each node.
+The <code>ancestor</code> variable names the ancestor of each node.
+The root node has no ancestor (i.e., <code>ancestor=NA</code>).
+The variable <code>time</code> specifies the temporal location of each node, the root node being at time 0.
 </p>
 </dd>
 <dt>Specifications of selective regimes.</dt><dd>
 <p>(Columns <code>OU.1</code>, <code>OU.3</code>, <code>OU.4</code>, <code>OU.LP</code>).
-These columns are factors, the levels of which correspond to the &quot;paintings&quot; of the respective adaptive regime hypotheses onto the phylogeny (see <code><a href="paint.html">paint()</a></code>).
+These columns are factors, the levels of which correspond to the &ldquo;paintings&rdquo; of the respective adaptive regime hypotheses onto the phylogeny (see <code><a href="paint.html">paint()</a></code>).
 Each selective regime is named (small, medium, large, etc.).
 Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
 In this example, there are 3 alternative models (see Butler &amp; King 2004): <code>OU.4</code> is 4-regime model, <code>OU.3</code> is 3-regime model (all ancestors are medium), <code>OU.LP</code> is the linear parsimony model.
+</p>
+</dd>
+<dt>Other variables</dt><dd>
+<p>In addition to the above, there is a two-letter code for each taxon (<code>spcode</code>) and the name of the island on which the taxon is found (<code>island</code>).
 </p>
 </dd>
 </dl>
@@ -49,13 +53,17 @@ In this example, there are 3 alternative models (see Butler &amp; King 2004): <c
 
 <h3>Format</h3>
 
-<p>A data frame with 45 observations on the following 8 variables.
+<p>A data frame with 45 observations on the following 11 variables.
 </p>
 
 <dl>
 <dt>node</dt><dd><p>Labels for the nodes.</p>
 </dd>
+<dt>spcode</dt><dd><p>Two-letter code for each taxon.</p>
+</dd>
 <dt>species</dt><dd><p>Species names for extant species.</p>
+</dd>
+<dt>island</dt><dd><p>Name of the island on which the population is found.</p>
 </dd>
 <dt>size</dt><dd><p>Body size (head length in mm) of extant species.</p>
 </dd>
@@ -106,7 +114,7 @@ In this example, there are 3 alternative models (see Butler &amp; King 2004): <c
 
 <pre>
 ## Analysis of Anolis bimaculatus data
-tree &lt;- with(bimac,ouchtree(node,ancestor,time/max(time),species))
+tree &lt;- with(bimac,ouchtree(node,ancestor,time/max(time),spcode))
 plot(tree,node.names=TRUE)
 
 h1 &lt;- brown(log(bimac['size']),tree)
@@ -128,6 +136,7 @@ plot(h4)
 h5 &lt;- hansen(log(bimac['size']),tree,bimac['OU.LP'],sqrt.alpha=1,sigma=1,reltol=1e-5)
 h5 &lt;- update(h5,method='subplex',reltol=1e-11,parscale=c(0.1,0.1),hessian=TRUE)
 h5
+plot(h5)
 
 simdat &lt;- simulate(h5,nsim=10)
 hsim &lt;- update(h5,data=simdat[[1]])
@@ -136,5 +145,5 @@ bsim &lt;- update(h1,data=simdat[[1]])
 summary(bsim)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-5 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-7 <a href="00Index.html">Index</a>]</div>
 </body></html>
