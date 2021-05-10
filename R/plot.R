@@ -155,6 +155,7 @@ arrange_tree <- function (root, anc, cs, ypos = numeric(length(anc))) {
 #' @importFrom graphics par
 #' @importFrom grDevices rainbow
 #' @importFrom stats setNames
+#' @example examples/bimac2.R
 #' @export
 setMethod(
   "plot",
