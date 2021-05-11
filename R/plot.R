@@ -18,6 +18,9 @@
 #' @param labels character; taxon labels.
 #' @param margin numeric; width of the right margin (as a fraction of the plot width).
 #' Adjust this if labels are clipped (see Examples below).
+#' One can also adjust the width of the left margin (for example to aid in the formatting of the figure legend).
+#' To do this, furnish `margin=c(L, R)`, where `L` and `R` are the widths of the right and left margins, respectively, as fractions of the plot width.
+#' Obviously, in this case, we must have `L+R<1`.
 #' @param text_opts options for the labels; passed to [`text`][graphics::text()].
 #' @param legend_opts options for the the legend; passed to [`legend`][graphics::legend()].
 #' @param ... additional arguments, passed to [`plot`][graphics::plot()].
@@ -46,9 +49,20 @@ tree.plot.internal <- function (
   legend <- as.logical(legend)
   rx <- range(x@times,na.rm=T)
   margin <- as.numeric(margin)
-  if (!(length(margin)==1 && isTRUE(margin>=0 && margin<1)))
-    pStop("plot",sQuote("margin")," should be one number between 0 and 1.")
+  if (length(margin)>2L||length(margin)<1L)
+    pStop("plot",sQuote("margin")," should be one or two numbers.")
+  if (!isTRUE(all(margin>=0 & margin<1)))
+    pStop("plot",sQuote("margin")," should be between 0 and 1.")
+  if (!isTRUE(sum(margin)<1))
+    pStop("plot",sQuote("margin")," sum >= 1!")
+  if (length(margin)>1L) {
+    lmargin <- margin[1L]
+    margin <- margin[2L]
+  } else {
+    lmargin <- 0
+  }
   rxd <- margin*diff(rx)/(1-margin)
+  lxd <- lmargin*diff(rx)/(1-lmargin)
   anc <- x@anc.numbers
   root <- which(is.root.node(anc))
   if (is.null(regimes)) {
@@ -92,7 +106,7 @@ tree.plot.internal <- function (
             xaxp=if (is.null(xaxp)) c(rx,1) else xaxp,
             yaxt='n',
             xlab=xlab,ylab=ylab,
-            xlim=rx+c(0,rxd),ylim=c(0,1),
+            xlim=rx+c(-lxd,rxd),ylim=c(0,1),
             ...
           )
     if (!is.null(labels)) {

@@ -3,6 +3,7 @@
 \docType{package}
 \name{ouch-package}
 \alias{ouch-package}
+\alias{ouch}
 \title{Ornstein-Uhlenbeck methods for comparative phylogenetic hypotheses}
 \description{
 The \pkg{ouch} package provides facilities for phylogenetic comparative analysis based on Ornstein-Uhlenbeck models of trait evolution along a phylogeny.

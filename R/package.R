@@ -4,6 +4,7 @@
 #' Multivariate data and complex adaptive hypotheses are supported.
 #' 
 #' @name ouch-package
+#' @aliases ouch
 #' @rdname package
 #' @docType package
 #' @section Classes:

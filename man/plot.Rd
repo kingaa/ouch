@@ -48,7 +48,10 @@ One can also specify the \code{n} colors as a vector of color codes.
 There must be at least as many colors as levels in the \code{regimes}.}
 
 \item{margin}{numeric; width of the right margin (as a fraction of the plot width).
-Adjust this if labels are clipped (see Examples below).}
+Adjust this if labels are clipped (see Examples below).
+One can also adjust the width of the left margin (for example to aid in the formatting of the figure legend).
+To do this, furnish \code{margin=c(L, R)}, where \code{L} and \code{R} are the widths of the right and left margins, respectively, as fractions of the plot width.
+Obviously, in this case, we must have \code{L+R<1}.}
 
 \item{text_opts}{options for the labels; passed to \code{\link[graphics:text]{text}}.}
 
