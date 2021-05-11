@@ -4,9 +4,9 @@
 #'
 #' @name logLik
 #' @rdname logLik
-#' @family methods
+#' @family methods for \pkg{ouch} trees
 #' @importFrom stats logLik
-#' @param object fitted model object
+#' @inheritParams stats::logLik
 #' @return `logLik` returns a numeric value.
 #' 
 NULL

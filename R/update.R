@@ -6,7 +6,7 @@
 #' @name update
 #' @docType methods
 #' @rdname update
-#' @family methods
+#' @family methods for \pkg{ouch} trees
 #' @importFrom stats update
 #'
 #' @return

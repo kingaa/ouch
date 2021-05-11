@@ -150,7 +150,9 @@ summary(h1)
 
 Other phylogenetic comparative models: 
 \code{\link{brown}()},
-\code{\link{ouchtree}}
+\code{\link{ouch-package}},
+\code{\link{ouchtree}},
+\code{\link{paint}()}
 }
 \author{
 Aaron A. King

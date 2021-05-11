@@ -31,13 +31,15 @@
 \code{coef} extracts the parameters from a fitted model object.
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{bootstrap}()},
 \code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{plot}()},
 \code{\link{print}()},
 \code{\link{simulate}()},
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

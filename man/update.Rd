@@ -45,13 +45,15 @@ See Details for more information.}
 This allows one to change the data and/or parameters.
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{plot}()},
 \code{\link{print}()},
 \code{\link{simulate}()},
 \code{\link{summary}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

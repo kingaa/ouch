@@ -1,17 +1,15 @@
 #' Phylogenetic tree object in \pkg{ouch} format
 #' 
-#' An object containing a phylogenetic tree in a form suitable for using \pkg{ouch} methods.
+#' `ouchtree` constructs a representation of a phylogenetic tree.
 #' 
-#' `ouchtree()` creates an `ouchtree` object.
-#' This contains the topology, branch times, and epochs.
-#' It also (optionally) holds names of taxa for display purposes.
+#' `ouchtree()` creates an `ouchtree` object given information on the phylogeny's topology and node times.
+#' An `ouchtree` object also (optionally) holds names of taxa for display purposes.
 #' 
 #' @name ouchtree
 #' @rdname ouchtree
 #' @aliases ouchtree-class
 #' @family phylogenetic comparative models
 #' @author Aaron A. King
-#' @seealso [`ape2ouch()`]
 #' @keywords models
 #' @example examples/bimac1.R
 #' 

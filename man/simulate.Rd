@@ -28,13 +28,15 @@ The RNG will be reset to its pre-existing state when \code{simulate} returns.}
 \code{simulate} generates random deviates from a fitted model.
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{plot}()},
 \code{\link{print}()},
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

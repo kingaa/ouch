@@ -72,13 +72,15 @@ print(t(sapply(boots.h5,quantile,probs=c(0.025,0.975))),digits=3)
 }
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{coef}()},
 \code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{plot}()},
 \code{\link{print}()},
 \code{\link{simulate}()},
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

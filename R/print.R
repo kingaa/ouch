@@ -5,8 +5,9 @@
 #' `show` provides a similar display.
 #' @name print
 #' @rdname print
+#' @keywords internal
 #' @aliases show
-#' @family methods
+#' @family methods for \pkg{ouch} trees
 #' @param object,x object to display.
 #' @param ... additional arguments, ignored.
 #' @return

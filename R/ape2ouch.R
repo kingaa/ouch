@@ -1,7 +1,7 @@
 #' Convert an \pkg{ape} tree to an \pkg{ouch} tree
 #' 
 #' `ape2ouch` translates \pkg{ape}'s `phylo` representation of a phylogenetic tree into \pkg{ouch}'s `ouchtree` representation.
-#' The user can change the branch lengths while preserving the topology.
+#' Optionally, the user can adjust the branch lengths while preserving the topology.
 #' 
 #' @param tree a tree of class [ape::phylo].
 #' @param scale optional.
@@ -10,8 +10,7 @@
 #' @param branch.lengths optional vector of branch lengths.
 #' @author A. A. King, D. Ackerly
 #' @keywords models
-#' @seealso [`ouchtree`]
-#' @rdname ape2ouch
+#' @rdname ouchtree
 #' @include ouchtree.R
 #' @export
 ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {

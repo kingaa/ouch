@@ -83,13 +83,15 @@ plot(tree2) # long species names are cut off
 plot(tree2,margin=0.35,text_opts=list(cex=0.7))
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{print}()},
 \code{\link{simulate}()},
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

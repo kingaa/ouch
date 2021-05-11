@@ -4,7 +4,7 @@
 #'
 #' @name coef
 #' @rdname coef
-#' @family methods
+#' @family methods for \pkg{ouch} trees
 #' @param object fitted model object.
 #' @param ... additional arguments, ignored.
 NULL

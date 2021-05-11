@@ -11,7 +11,8 @@
 \S4method{logLik}{hansentree}(object)
 }
 \arguments{
-\item{object}{fitted model object}
+\item{object}{any object from which a log-likelihood value, or a
+   contribution to a log-likelihood value, can be extracted.}
 }
 \value{
 \code{logLik} returns a numeric value.
@@ -20,13 +21,15 @@
 \code{logLik} extracts the log likelihood from a fitted model object.
 }
 \seealso{
-Other methods: 
+Other methods for \pkg{ouch} trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
+\code{\link{ouch-package}},
+\code{\link{paint}()},
 \code{\link{plot}()},
 \code{\link{print}()},
 \code{\link{simulate}()},
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods}
+\concept{methods for \pkg{ouch} trees}

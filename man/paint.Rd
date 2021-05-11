@@ -54,9 +54,26 @@ r <- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
 plot(x,regimes=r,node.names=TRUE)
 }
 \seealso{
-\code{\link{ouchtree}}, \code{\link{plot}}, \code{\link{hansen}}
+Other methods for \pkg{ouch} trees: 
+\code{\link{bootstrap}()},
+\code{\link{coef}()},
+\code{\link{logLik}},
+\code{\link{ouch-package}},
+\code{\link{plot}()},
+\code{\link{print}()},
+\code{\link{simulate}()},
+\code{\link{summary}()},
+\code{\link{update}()}
+
+Other phylogenetic comparative models: 
+\code{\link{brown}()},
+\code{\link{hansen}()},
+\code{\link{ouch-package}},
+\code{\link{ouchtree}}
 }
 \author{
 Aaron A. King
 }
+\concept{methods for \pkg{ouch} trees}
+\concept{phylogenetic comparative models}
 \keyword{models}

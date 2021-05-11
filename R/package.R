@@ -7,6 +7,9 @@
 #' @aliases ouch
 #' @rdname package
 #' @docType package
+#' @family phylogenetic comparative models
+#' @family methods for \pkg{ouch} trees
+#' @family examples
 #' @section Classes:
 #' The basic class, `ouchtree`, is provided to encode a phylogenetic tree.
 #' Plot and print methods are provided.
@@ -15,14 +18,14 @@
 #' 
 #' The class `hansentree` derives from class `ouchtree` and encodes the results of fitting a Hansen model to data.
 #' @section Detailed Documentation:
-#' \describe{
-#'   \item{Phylogenies in \pkg{ouch} format}{[`ouchtree()`], [`ape2ouch()`]}
-#'   \item{Brownian motion models}{[`brown()`]}
-#'   \item{Ornstein-Uhlenbeck models}{[`hansen()`]}
-#'   \item{Simulation of models}{[`simulate()`]}
-#'   \item{Display of data}{[`plot()`]}
-#'   \item{Examples}{[`anolis.ssd`], [`bimac`]}
-#' }
+#'   - Phylogenies in \pkg{ouch} format: [`ouchtree()`], [`ape2ouch()`]
+#'   - Brownian motion models: [`brown()`]
+#'   - Ornstein-Uhlenbeck models: [`hansen()`], [`paint()`]
+#'   - Simulation of models: [`simulate()`]
+#'   - Display of data: [`plot()`]
+#'   - Extraction of information from fitted models: [`summary()`], [`logLik()`], [`coef()`]
+#'   - Example datasets: [`anolis.ssd`], [`bimac`]
+#' 
 #' @author Aaron A. King
 #' @references
 #' \Butler2004

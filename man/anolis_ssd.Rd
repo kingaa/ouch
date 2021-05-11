@@ -60,7 +60,8 @@ plot(h3)
 }
 \seealso{
 Other examples: 
-\code{\link{bimac}}
+\code{\link{bimac}},
+\code{\link{ouch-package}}
 }
 \author{
 Marguerite A. Butler, Aaron A. King

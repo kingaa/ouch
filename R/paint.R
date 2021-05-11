@@ -14,6 +14,11 @@
 #' In this case, the argument `which` lets you pick which one you wish to begin with;
 #' by default, the first is used.
 #' 
+#' @keywords models
+#' @family methods for \pkg{ouch} trees
+#' @family phylogenetic comparative models
+#' @include ouchtree.R
+#' 
 #' @param tree An object of class [`ouchtree`].
 #' @param subtree An optional named vector specifying the root nodes of subtrees.
 #' Each branch that descends from this node will be painted with the specified regime.
@@ -23,10 +28,7 @@
 #' if `tree` is a [`hansentree`][hansen], start not with a blank canvas but with the regime specifications `tree` contains for the character indicated by `which`.
 #' @return A vector of class 'factor' with names corresponding to the nodes in `tree`, specifying selective regimes.
 #' @author Aaron A. King
-#' @seealso [`ouchtree`], [`plot`], [`hansen`]
-#' @keywords models
 #' @example examples/paint.R
-#' @include ouchtree.R
 #' @importFrom utils head tail
 #' @export
 paint <- function (tree, subtree, branch, which = 1) {
