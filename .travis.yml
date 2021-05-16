@@ -1,7 +1,12 @@
 language: r
-cache: packages
 latex: false
 pandoc: false
+warnings_are_errors: true
+
+r_packages:
+  - roxygen2
+  - nloptr
+
 addons:
   apt:
     packages:
@@ -22,30 +27,44 @@ jobs:
   include:
   - r: release
     os: linux
+    cache: packages
   - r: devel
     os: linux
+    cache: packages
   - r: 3.6
     os: linux
+    cache: packages
   - r: release
     os: osx
     osx_image: xcode12.2
+    cache:
+      - directories: 
+        - externalobjects
+        - $HOME/Library/Caches/Homebrew
+        - /usr/local/Cellar
+        - /usr/local/gfortran
+        - $HOME/R
   - stage: coverage
     r: release
     os: linux
     r_packages:
     - covr
     script:
-    - travis_wait 30 Rscript -e 'covr::codecov(type="all")'
+    - travis_wait 30 Rscript -e 'covr::codecov(type=c("tests","examples"))'
+    cache: packages
   - stage: deploy
     r: release
     os: osx
     osx_image: xcode12.2
+    cache:
+      - directories: 
+        - externalobjects
+        - $HOME/Library/Caches/Homebrew
+        - /usr/local/Cellar
+        - /usr/local/gfortran
+        - $HOME/R
     script:
-    - R CMD build .
-    - mkdir -p plib
-    - TARBALL=$(ls -1t *.tar.gz)
-    - R CMD INSTALL --build -l plib ${TARBALL}
-    - rm -rf plib
+    - make binary
     deploy:
       provider: releases
       token:
