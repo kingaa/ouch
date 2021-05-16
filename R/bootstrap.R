@@ -1,6 +1,6 @@
 #' Bootstrapping for uncertainty quantification
 #'
-#' Generic bootstrapping for \pkg{ouch} models.
+#' Parametric bootstrapping for \pkg{ouch} models.
 #'
 #' `bootstrap` performs a parametric bootstrap for estimation of confidence intervals.
 #'

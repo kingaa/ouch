@@ -26,7 +26,7 @@
 \item{seed}{integer; setting \code{seed} to a non-\code{NULL} value allows one to fix the random seed (see \link{simulate}).}
 }
 \description{
-Generic bootstrapping for \pkg{ouch} models.
+Parametric bootstrapping for \pkg{ouch} models.
 }
 \details{
 \code{bootstrap} performs a parametric bootstrap for estimation of confidence intervals.
