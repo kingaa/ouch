@@ -44,7 +44,7 @@ Other phylogenetic comparative models:
 \code{\link{ouchtree}},
 \code{\link{paint}()}
 
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
@@ -63,6 +63,6 @@ Other examples:
 Aaron A. King
 }
 \concept{examples}
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}
 \concept{phylogenetic comparative models}
 \keyword{models}

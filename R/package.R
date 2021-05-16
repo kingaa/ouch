@@ -8,7 +8,7 @@
 #' @rdname package
 #' @docType package
 #' @family phylogenetic comparative models
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @family examples
 #' @section Classes:
 #' The basic class, `ouchtree`, is provided to encode a phylogenetic tree.

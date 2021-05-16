@@ -7,7 +7,7 @@
 #' @rdname print
 #' @keywords internal
 #' @aliases show
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @param object,x object to display.
 #' @param ... additional arguments, ignored.
 #' @return

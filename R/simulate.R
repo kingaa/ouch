@@ -5,7 +5,7 @@
 #' @name simulate
 #' @docType methods
 #' @rdname simulate
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @importFrom stats simulate
 #'
 #' @return

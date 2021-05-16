@@ -15,7 +15,7 @@
 #' by default, the first is used.
 #' 
 #' @keywords models
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @family phylogenetic comparative models
 #' @include ouchtree.R
 #' 

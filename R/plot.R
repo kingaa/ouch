@@ -4,7 +4,7 @@
 #'
 #' @name plot
 #' @rdname plot
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @param x object to plot.
 #' @param regimes factor or character; a vector of regime paintings.
 #' @param node.names logical; should node names be displayed?

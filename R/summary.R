@@ -2,7 +2,7 @@
 #'
 #' @name summary
 #' @rdname summary
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @param object fitted model object.
 #' @param ... additional arguments, ignored.
 #'

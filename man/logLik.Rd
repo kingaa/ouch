@@ -21,7 +21,7 @@
 \code{logLik} extracts the log likelihood from a fitted model object.
 }
 \seealso{
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{ouch-package}},
@@ -32,4 +32,4 @@ Other methods for \pkg{ouch} trees:
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}

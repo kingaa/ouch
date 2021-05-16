@@ -54,7 +54,7 @@ r <- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
 plot(x,regimes=r,node.names=TRUE)
 }
 \seealso{
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
@@ -74,6 +74,6 @@ Other phylogenetic comparative models:
 \author{
 Aaron A. King
 }
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}
 \concept{phylogenetic comparative models}
 \keyword{models}

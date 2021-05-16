@@ -41,7 +41,7 @@ Print and show methods
 \code{show} provides a similar display.
 }
 \seealso{
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
@@ -52,5 +52,5 @@ Other methods for \pkg{ouch} trees:
 \code{\link{summary}()},
 \code{\link{update}()}
 }
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}
 \keyword{internal}

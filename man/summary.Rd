@@ -24,7 +24,7 @@
 \pkg{ouch} summary methods
 }
 \seealso{
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
@@ -35,4 +35,4 @@ Other methods for \pkg{ouch} trees:
 \code{\link{simulate}()},
 \code{\link{update}()}
 }
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}

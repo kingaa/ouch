@@ -45,7 +45,7 @@ See Details for more information.}
 This allows one to change the data and/or parameters.
 }
 \seealso{
-Other methods for \pkg{ouch} trees: 
+Other methods for ouch trees: 
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
@@ -56,4 +56,4 @@ Other methods for \pkg{ouch} trees:
 \code{\link{simulate}()},
 \code{\link{summary}()}
 }
-\concept{methods for \pkg{ouch} trees}
+\concept{methods for ouch trees}

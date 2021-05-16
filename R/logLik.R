@@ -4,7 +4,7 @@
 #'
 #' @name logLik
 #' @rdname logLik
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @importFrom stats logLik
 #' @inheritParams stats::logLik
 #' @return `logLik` returns a numeric value.

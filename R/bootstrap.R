@@ -6,7 +6,7 @@
 #'
 #' @rdname bootstrap
 #' @name bootstrap
-#' @family methods for \pkg{ouch} trees
+#' @family methods for ouch trees
 #' @example examples/bootstrap.R
 #' @param object A fitted model object.
 #' @param nboot integer; number of bootstrap replicates.
