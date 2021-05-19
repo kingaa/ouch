@@ -46,7 +46,7 @@ plot(x, ..., regimes, legend = TRUE)
 </td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
-<p>additional arguments, passed to <code><a href="../../graphics/html/plot.default.html">plot</a></code>.</p>
+<p>additional arguments, passed to <code><a href="../../graphics/help/plot.default.html">plot</a></code>.</p>
 </td></tr>
 <tr valign="top"><td><code>regimes</code></td>
 <td>
@@ -77,36 +77,41 @@ around the plot.</p>
 <td>
 <p>function or character; specifies the colors to be used for the several regimes on the tree.
 Specified as a function, when given an integer, <code>n</code>, the function should create a vector of <code>n</code> colors.
-See, for example <code><a href="../../grDevices/html/palettes.html">rainbow</a></code>.
+See, for example <code><a href="../../grDevices/help/palettes.html">rainbow</a></code>.
 One can also specify the <code>n</code> colors as a vector of color codes.
 There must be at least as many colors as levels in the <code>regimes</code>.</p>
 </td></tr>
 <tr valign="top"><td><code>margin</code></td>
 <td>
 <p>numeric; width of the right margin (as a fraction of the plot width).
-Adjust this if labels are clipped (see Examples below).</p>
+Adjust this if labels are clipped (see Examples below).
+One can also adjust the width of the left margin (for example to aid in the formatting of the figure legend).
+To do this, furnish <code>margin=c(L, R)</code>, where <code>L</code> and <code>R</code> are the widths of the right and left margins, respectively, as fractions of the plot width.
+Obviously, in this case, we must have <code>L+R&lt;1</code>.</p>
 </td></tr>
 <tr valign="top"><td><code>text_opts</code></td>
 <td>
-<p>options for the labels; passed to <code><a href="../../graphics/html/text.html">text</a></code>.</p>
+<p>options for the labels; passed to <code><a href="../../graphics/help/text.html">text</a></code>.</p>
 </td></tr>
 <tr valign="top"><td><code>legend_opts</code></td>
 <td>
-<p>options for the the legend; passed to <code><a href="../../graphics/html/legend.html">legend</a></code>.</p>
+<p>options for the the legend; passed to <code><a href="../../graphics/help/legend.html">legend</a></code>.</p>
 </td></tr>
 </table>
 
 
 <h3>See Also</h3>
 
-<p>Other methods: 
-<code><a href="bootstrap.html">bootstrap</a>()</code>,
-<code><a href="coef.html">coef</a>()</code>,
-<code><a href="logLik.html">logLik</a></code>,
-<code><a href="print.html">print</a>()</code>,
-<code><a href="simulate.html">simulate</a>()</code>,
-<code><a href="summary.html">summary</a>()</code>,
-<code><a href="update.html">update</a>()</code>
+<p>Other methods for ouch trees: 
+<code><a href="../../ouch/help/bootstrap.html">bootstrap</a>()</code>,
+<code><a href="../../ouch/help/coef.html">coef</a>()</code>,
+<code><a href="../../ouch/help/logLik.html">logLik</a></code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/paint.html">paint</a>()</code>,
+<code><a href="../../ouch/help/print.html">print</a>()</code>,
+<code><a href="../../ouch/help/simulate.html">simulate</a>()</code>,
+<code><a href="../../ouch/help/summary.html">summary</a>()</code>,
+<code><a href="../../ouch/help/update.html">update</a>()</code>
 </p>
 
 
@@ -135,5 +140,5 @@ plot(tree2) # long species names are cut off
 plot(tree2,margin=0.35,text_opts=list(cex=0.7))
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.17 <a href="00Index.html">Index</a>]</div>
 </body></html>

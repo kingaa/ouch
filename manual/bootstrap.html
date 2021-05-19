@@ -9,7 +9,7 @@
 
 <h3>Description</h3>
 
-<p>Generic bootstrapping for <span class="pkg">ouch</span> models.
+<p>Parametric bootstrapping for <span class="pkg">ouch</span> models.
 </p>
 
 
@@ -39,7 +39,7 @@ bootstrap(object, nboot = 200, seed = NULL, ...)
 </td></tr>
 <tr valign="top"><td><code>...</code></td>
 <td>
-<p>Additional arguments are passed to <code><a href="update.html">update</a></code>.</p>
+<p>Additional arguments are passed to <code><a href="../../ouch/help/update.html">update</a></code>.</p>
 </td></tr>
 <tr valign="top"><td><code>nboot</code></td>
 <td>
@@ -47,7 +47,7 @@ bootstrap(object, nboot = 200, seed = NULL, ...)
 </td></tr>
 <tr valign="top"><td><code>seed</code></td>
 <td>
-<p>integer; setting <code>seed</code> to a non-<code>NULL</code> value allows one to fix the random seed (see <a href="simulate.html">simulate</a>).</p>
+<p>integer; setting <code>seed</code> to a non-<code>NULL</code> value allows one to fix the random seed (see <a href="../../ouch/help/simulate.html">simulate</a>).</p>
 </td></tr>
 </table>
 
@@ -60,14 +60,16 @@ bootstrap(object, nboot = 200, seed = NULL, ...)
 
 <h3>See Also</h3>
 
-<p>Other methods: 
-<code><a href="coef.html">coef</a>()</code>,
-<code><a href="logLik.html">logLik</a></code>,
-<code><a href="plot.html">plot</a>()</code>,
-<code><a href="print.html">print</a>()</code>,
-<code><a href="simulate.html">simulate</a>()</code>,
-<code><a href="summary.html">summary</a>()</code>,
-<code><a href="update.html">update</a>()</code>
+<p>Other methods for ouch trees: 
+<code><a href="../../ouch/help/coef.html">coef</a>()</code>,
+<code><a href="../../ouch/help/logLik.html">logLik</a></code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/paint.html">paint</a>()</code>,
+<code><a href="../../ouch/help/plot.html">plot</a>()</code>,
+<code><a href="../../ouch/help/print.html">print</a>()</code>,
+<code><a href="../../ouch/help/simulate.html">simulate</a>()</code>,
+<code><a href="../../ouch/help/summary.html">summary</a>()</code>,
+<code><a href="../../ouch/help/update.html">update</a>()</code>
 </p>
 
 
@@ -115,5 +117,5 @@ print(t(sapply(boots.h5,quantile,probs=c(0.025,0.975))),digits=3)
 ## End(Not run)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.17 <a href="00Index.html">Index</a>]</div>
 </body></html>

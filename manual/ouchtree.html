@@ -9,7 +9,10 @@
 
 <h3>Description</h3>
 
-<p>An object containing a phylogenetic tree in a form suitable for using <span class="pkg">ouch</span> methods.
+<p><code>ouchtree</code> constructs a representation of a phylogenetic tree.
+</p>
+<p><code>ape2ouch</code> translates <span class="pkg">ape</span>'s <code>phylo</code> representation of a phylogenetic tree into <span class="pkg">ouch</span>'s <code>ouchtree</code> representation.
+Optionally, the user can adjust the branch lengths while preserving the topology.
 </p>
 
 
@@ -17,6 +20,8 @@
 
 <pre>
 ouchtree(nodes, ancestors, times, labels = as.character(nodes))
+
+ape2ouch(tree, scale = TRUE, branch.lengths = tree$edge.length)
 </pre>
 
 
@@ -49,14 +54,27 @@ Time should be increasing from the root node to the terminal twigs.</p>
 These will be used in plots to label nodes.
 It is not necessary that these be unique.</p>
 </td></tr>
+<tr valign="top"><td><code>tree</code></td>
+<td>
+<p>a tree of class <a href="../../ape/help/read.tree.html">ape::phylo</a>.</p>
+</td></tr>
+<tr valign="top"><td><code>scale</code></td>
+<td>
+<p>optional.
+If <code>scale=TRUE</code>, the tree's depth will be scaled to 1.
+If <code>scale</code> is a number, then the branch lengths will be scaled by this number.</p>
+</td></tr>
+<tr valign="top"><td><code>branch.lengths</code></td>
+<td>
+<p>optional vector of branch lengths.</p>
+</td></tr>
 </table>
 
 
 <h3>Details</h3>
 
-<p><code>ouchtree()</code> creates an <code>ouchtree</code> object.
-This contains the topology, branch times, and epochs.
-It also (optionally) holds names of taxa for display purposes.
+<p><code>ouchtree()</code> creates an <code>ouchtree</code> object given information on the phylogeny's topology and node times.
+An <code>ouchtree</code> object also (optionally) holds names of taxa for display purposes.
 </p>
 
 
@@ -64,15 +82,17 @@ It also (optionally) holds names of taxa for display purposes.
 
 <p>Aaron A. King
 </p>
+<p>A. A. King, D. Ackerly
+</p>
 
 
 <h3>See Also</h3>
 
-<p><code><a href="ape2ouch.html">ape2ouch()</a></code>
-</p>
 <p>Other phylogenetic comparative models: 
-<code><a href="brown.html">brown</a>()</code>,
-<code><a href="hansen.html">hansen</a>()</code>
+<code><a href="../../ouch/help/brown.html">brown</a>()</code>,
+<code><a href="../../ouch/help/hansen.html">hansen</a>()</code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/paint.html">paint</a>()</code>
 </p>
 
 
@@ -89,5 +109,5 @@ plot(tree)
 plot(tree, node.names=TRUE)    # display node names
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.17 <a href="00Index.html">Index</a>]</div>
 </body></html>

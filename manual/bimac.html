@@ -11,44 +11,7 @@
 
 <p>This is the <em>Anolis bimaculatus</em> dataset used in Butler &amp; King (2004).
 It is used to test a hypothesis of character displacement using an interspecific dataset of body sizes and current data on sympatry/allopatry.
-The data frame has the following columns:
-<code>species</code> which are species names,
-<code>size</code> which is the phenotypic data,
-and the variables <code>node</code>, <code>ancestor</code>, and <code>time</code> which specify the topology of the phylogeny and the location of the nodes in time, respectively.
-The columns <code>OU.1</code>, <code>OU.3</code>, <code>OU.4</code>, and <code>OU.LP</code> specify four hypothetical arrangements of selective regimes.
-Explanations of the data follow:
 </p>
-
-<dl>
-<dt>Body size.</dt><dd>
-<p>We use the phenotypic data and phylogeny of Losos (1990), which employed the head lengths (of males) as a proxy for body size.
-In this group of lizards, head length correlates very strongly with snout-to-vent length and the cube root of mass, which are standard measures of body size.
-The data are head lengths in mm; note that we use the log of this value in analyses.
-</p>
-</dd>
-<dt>Tree structure</dt><dd>
-<p>The phylogenetic tree is encoded via three variables:
-<code>node</code>, <code>ancestor</code>, and <code>time</code>.
-The <code>node</code> variable gives a name to each node.
-The <code>ancestor</code> variable names the ancestor of each node.
-The root node has no ancestor (i.e., <code>ancestor=NA</code>).
-The variable <code>time</code> specifies the temporal location of each node, the root node being at time 0.
-</p>
-</dd>
-<dt>Specifications of selective regimes.</dt><dd>
-<p>(Columns <code>OU.1</code>, <code>OU.3</code>, <code>OU.4</code>, <code>OU.LP</code>).
-These columns are factors, the levels of which correspond to the &ldquo;paintings&rdquo; of the respective adaptive regime hypotheses onto the phylogeny (see <code><a href="paint.html">paint()</a></code>).
-Each selective regime is named (small, medium, large, etc.).
-Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
-In this example, there are 3 alternative models (see Butler &amp; King 2004): <code>OU.4</code> is 4-regime model, <code>OU.3</code> is 3-regime model (all ancestors are medium), <code>OU.LP</code> is the linear parsimony model.
-</p>
-</dd>
-<dt>Other variables</dt><dd>
-<p>In addition to the above, there is a two-letter code for each taxon (<code>spcode</code>) and the name of the island on which the taxon is found (<code>island</code>).
-</p>
-</dd>
-</dl>
-
 
 
 <h3>Format</h3>
@@ -56,30 +19,76 @@ In this example, there are 3 alternative models (see Butler &amp; King 2004): <c
 <p>A data frame with 45 observations on the following 11 variables.
 </p>
 
-<dl>
-<dt>node</dt><dd><p>Labels for the nodes.</p>
-</dd>
-<dt>spcode</dt><dd><p>Two-letter code for each taxon.</p>
-</dd>
-<dt>species</dt><dd><p>Species names for extant species.</p>
-</dd>
-<dt>island</dt><dd><p>Name of the island on which the population is found.</p>
-</dd>
-<dt>size</dt><dd><p>Body size (head length in mm) of extant species.</p>
-</dd>
-<dt>ancestor</dt><dd><p>Ancestral node.</p>
-</dd>
-<dt>time</dt><dd><p>Time of node.</p>
-</dd>
-<dt>OU.1</dt><dd><p>a factor with levels <code>ns</code></p>
-</dd>
-<dt>OU.3</dt><dd><p>a factor with levels <code>small</code>, <code>medium</code>, <code>large</code></p>
-</dd>
-<dt>OU.4</dt><dd><p>a factor with levels <code>small</code>, <code>medium</code>, <code>large</code>, <code>anc</code></p>
-</dd>
-<dt>OU.LP</dt><dd><p>a factor with levels <code>small</code>, <code>medium</code>, <code>large</code></p>
-</dd>
-</dl>
+<ul>
+<li> <p><code>node</code>: Labels for the nodes.
+</p>
+</li>
+<li> <p><code>spcode</code>: Two-letter code for each taxon.
+</p>
+</li>
+<li> <p><code>species</code>: Species names for extant species.
+</p>
+</li>
+<li> <p><code>island</code>: Name of the island on which the population is found.
+</p>
+</li>
+<li> <p><code>size</code>: Body size (head length in mm) of extant species.
+</p>
+</li>
+<li> <p><code>ancestor</code>: Ancestral node.
+</p>
+</li>
+<li> <p><code>time</code>: Time of node.
+</p>
+</li>
+<li> <p><code>OU.1</code>: a factor with levels <code>ns</code>
+</p>
+</li>
+<li> <p><code>OU.3</code>: a factor with levels <code>small</code>, <code>medium</code>, <code>large</code>
+</p>
+</li>
+<li> <p><code>OU.4</code>: a factor with levels <code>small</code>, <code>medium</code>, <code>large</code>, <code>anc</code>
+</p>
+</li>
+<li> <p><code>OU.LP</code>: a factor with levels <code>small</code>, <code>medium</code>, <code>large</code>
+</p>
+</li></ul>
+
+
+
+<h3>Details</h3>
+
+<p>Explanations of the data follow:
+</p>
+
+<ul>
+<li> <p><strong>Body size.</strong>
+We use the phenotypic data and phylogeny of Losos (1990), which employed the head lengths (of males) as a proxy for body size.
+In this group of lizards, head length correlates very strongly with snout-to-vent length and the cube root of mass, which are standard measures of body size.
+The data are head lengths in mm; note that we use the log of this value in analyses.
+</p>
+</li>
+<li> <p><strong>Tree structure.</strong>
+The phylogenetic tree is encoded via three variables:
+<code>node</code>, <code>ancestor</code>, and <code>time</code>.
+The <code>node</code> variable gives a name to each node.
+The <code>ancestor</code> variable names the ancestor of each node.
+The root node has no ancestor (i.e., <code>ancestor=NA</code>).
+The variable <code>time</code> specifies the temporal location of each node, the root node being at time 0.
+</p>
+</li>
+<li> <p><strong>Specifications of selective regimes.</strong>
+(Columns <code>OU.1</code>, <code>OU.3</code>, <code>OU.4</code>, <code>OU.LP</code>).
+These columns are factors, the levels of which correspond to the &ldquo;paintings&rdquo; of the respective adaptive regime hypotheses onto the phylogeny (see <code><a href="../../ouch/help/paint.html">paint()</a></code>).
+Each selective regime is named (small, medium, large, etc.).
+Each column corresponds to a different painting of the selective regimes, and thus to a different hypothesis.
+In this example, there are 3 alternative models (see Butler &amp; King 2004): <code>OU.4</code> is 4-regime model, <code>OU.3</code> is 3-regime model (all ancestors are medium), <code>OU.LP</code> is the linear parsimony model.
+</p>
+</li>
+<li> <p><strong>Other variables.</strong>
+In addition to the above, there is a two-letter code for each taxon (<code>spcode</code>) and the name of the island on which the taxon is found (<code>island</code>).
+</p>
+</li></ul>
 
 
 
@@ -106,7 +115,8 @@ In this example, there are 3 alternative models (see Butler &amp; King 2004): <c
 <h3>See Also</h3>
 
 <p>Other examples: 
-<code><a href="anolis_ssd.html">anolis.ssd</a></code>
+<code><a href="../../ouch/help/anolis.ssd.html">anolis.ssd</a></code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>
 </p>
 
 
@@ -145,5 +155,5 @@ bsim &lt;- update(h1,data=simdat[[1]])
 summary(bsim)
 </pre>
 
-<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-7 <a href="00Index.html">Index</a>]</div>
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.17 <a href="00Index.html">Index</a>]</div>
 </body></html>
