@@ -37,9 +37,10 @@ session: export R_DEFAULT_PACKAGES=datasets,utils,grDevices,graphics,stats,metho
 htmldocs: inst/doc/*.html
 
 htmlhelp: install
-	rsync -avz library/ouch/html/ www/manual
-	(cd www/manual;	(cat links.ed && echo w ) | ed - 00Index.html)
-	$(CP) www/_includes/pompstyle.css www/manual/R.css
+	rsync --delete -a library/ouch/html/ www/manual/ouch/html
+	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=ouch.rdb --exclude=ouch.rdx --exclude=macros -a library/ouch/help/ www/manual/ouch/help
+	(cd www/manual/ouch/html; (cat ../links.ed && echo w ) | ed - 00Index.html)
+	$(CP) www/_includes/pompstyle.css www/manual/ouch/html/R.css
 
 vignettes: manual install
 	$(MAKE)	-C www/vignettes
@@ -82,7 +83,7 @@ publish: dist manual news htmlhelp
 	$(CP) $(PKG).pdf ../www/manuals
 
 rhub:
-	$(REXE) -e 'library(rhub); check_with_sanitizers(); check_on_windows(); check_on_macos();'
+	$(REXE) -e 'library(rhub); check_with_sanitizers(); check_on_windows(); check(platform="macos-highsierra-release-cran");'
 
 covr:
 	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE);'
