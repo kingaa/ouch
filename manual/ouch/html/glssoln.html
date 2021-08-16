@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Generalized least-squares solver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for glssoln {ouch}"><tr><td>glssoln {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Generalized least-squares solver</h2>
+
+<h3>Description</h3>
+
+<p>Solves the generalized least squares problem.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+glssoln(a, x, v, tol = sqrt(.Machine$double.eps))
+</pre>
+
+
+<h3>Details</h3>
+
+<p>Given matrices <i>a</i>, <i>x</i>, <i>v</i>, <code>glssoln</code> computes <i>y</i> such that
+</p>
+<p style="text-align: center;"><i>(x-ay)^T v^{-1} (x-ay)</i></p>
+
+<p>is minimized.
+This is accomplished by first computing the Choleski decomposition of <i>v</i>:
+</p>
+<p style="text-align: center;"><i>v=LL^T.</i></p>
+
+<p>One then solves for <i>y</i> in the equation
+</p>
+<p style="text-align: center;"><i>L^{-1}ay=L^{-1}x.</i></p>
+
+<p>This is accomplished by means of a singular-value decomposition of <i>L^{-1} a</i>.
+</p>
+<p>The resulting <i>y</i> then satisfies
+</p>
+<p style="text-align: center;"><i>x=ay+e,</i></p>
+
+<p>where the entries of <i>e</i> are the residuals.
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>glssoln</code> returns a list of two named components:
+</p>
+
+<ul>
+<li> <p><code>coeff</code> is <i>y</i> as above.
+</p>
+</li>
+<li> <p><code>residuals</code> is <i>e</i> as above.
+</p>
+</li></ul>
+
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-9 <a href="00Index.html">Index</a>]</div>
+</body></html>

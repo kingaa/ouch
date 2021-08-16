@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Phylogenetic Brownian motion models</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for brown {ouch}"><tr><td>brown {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Phylogenetic Brownian motion models</h2>
+
+<h3>Description</h3>
+
+<p>The function <code>brown</code> creates a <code>browntree</code> object by fitting a
+Brownian-motion model to data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+brown(data, tree)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>Phenotypic data for extant species, i.e., at the terminal ends of the phylogenetic tree.
+This can either be a numeric vector or a list.
+If it is a numeric vector, there must be one entry for every node.
+If it is a list, it must consist entirely of numeric vectors, each of which has one entry per node.
+A data-frame is coerced to a list.</p>
+</td></tr>
+<tr valign="top"><td><code>tree</code></td>
+<td>
+<p>A phylogenetic tree, specified as an <code><a href="../../ouch/help/ouchtree.html">ouchtree</a></code> object.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p><code>brown</code> returns an object of class <code>browntree</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Aaron A. King
+</p>
+
+
+<h3>References</h3>
+
+<p>Butler, M.A. and A.A. King. 2004.  Phylogenetic comparative analysis: a modeling approach for adaptive evolution.  Am. Nat. 164:683&ndash;695.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../ouch/help/bimac.html">bimac</a></code>, <code><a href="../../ouch/help/anolis.ssd.html">anolis.ssd</a></code>, <code><a href="../../ouch/help/hansen.html">hansen</a></code>
+</p>
+<p>Other phylogenetic comparative models: 
+<code><a href="../../ouch/help/hansen.html">hansen</a>()</code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/ouchtree.html">ouchtree</a></code>,
+<code><a href="../../ouch/help/paint.html">paint</a>()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Analysis of Anolis bimaculatus data
+tree &lt;- with(bimac,ouchtree(node,ancestor,time/max(time),spcode))
+plot(tree,node.names=TRUE)
+
+h1 &lt;- brown(log(bimac['size']),tree)
+h1
+plot(h1)
+
+h2 &lt;- hansen(log(bimac['size']),tree,bimac['OU.1'],sqrt.alpha=1,sigma=1)
+h2
+plot(h2)
+
+h3 &lt;- hansen(log(bimac['size']),tree,bimac['OU.3'],sqrt.alpha=1,sigma=1)
+h3
+plot(h3)
+
+h4 &lt;- hansen(log(bimac['size']),tree,bimac['OU.4'],sqrt.alpha=1,sigma=1)
+h4
+plot(h4)
+
+h5 &lt;- hansen(log(bimac['size']),tree,bimac['OU.LP'],sqrt.alpha=1,sigma=1,reltol=1e-5)
+h5 &lt;- update(h5,method='subplex',reltol=1e-11,parscale=c(0.1,0.1),hessian=TRUE)
+h5
+plot(h5)
+
+simdat &lt;- simulate(h5,nsim=10)
+hsim &lt;- update(h5,data=simdat[[1]])
+summary(hsim)
+bsim &lt;- update(h1,data=simdat[[1]])
+summary(bsim)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-9 <a href="00Index.html">Index</a>]</div>
+</body></html>

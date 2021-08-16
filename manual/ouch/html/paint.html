@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Painting regimes on a phylogenetic tree</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for paint {ouch}"><tr><td>paint {ouch}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Painting regimes on a phylogenetic tree</h2>
+
+<h3>Description</h3>
+
+<p>Function to paint selective regimes on a phylogenetic tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+paint(tree, subtree, branch, which = 1)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>tree</code></td>
+<td>
+<p>An object of class <code><a href="../../ouch/help/ouchtree.html">ouchtree</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>subtree</code></td>
+<td>
+<p>An optional named vector specifying the root nodes of subtrees.
+Each branch that descends from this node will be painted with the specified regime.</p>
+</td></tr>
+<tr valign="top"><td><code>branch</code></td>
+<td>
+<p>An optional named vector specifying the end nodes of branches.
+The unique branch that terminates at the named node will be painted with the specified regime.</p>
+</td></tr>
+<tr valign="top"><td><code>which</code></td>
+<td>
+<p>integer;
+if <code>tree</code> is a <code><a href="../../ouch/help/hansen.html">hansentree</a></code>, start not with a blank canvas but with the regime specifications <code>tree</code> contains for the character indicated by <code>which</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The names of <code>subtree</code> and <code>branch</code> must be the names of nodes of <code>tree</code>.
+The painting proceeds in a particular order:
+one can overpaint a branch.
+The subtrees indicated by the elements of <code>subtree</code> are painted first, in order.
+Then the branches indicated by <code>branch</code> are painted.
+If <code>tree</code> is of class <code><a href="../../ouch/help/hansen.html">hansentree</a></code>, then <code>paint</code> begins with the regimes specified in the <code>regimes</code> slot of <code>tree</code>.
+Otherwise, <code>paint</code> begins with a blank canvas,
+i.e., a tree painted with the single regime &quot;nonspec&quot;.
+Note that, if <code>tree</code> is a multivariate <code>hansentree</code>, then there are multiple regime specifications contained in <code>tree</code>.
+In this case, the argument <code>which</code> lets you pick which one you wish to begin with;
+by default, the first is used.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector of class 'factor' with names corresponding to the nodes in <code>tree</code>, specifying selective regimes.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Aaron A. King
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other methods for ouch trees: 
+<code><a href="../../ouch/help/bootstrap.html">bootstrap</a>()</code>,
+<code><a href="../../ouch/help/coef.html">coef</a>()</code>,
+<code><a href="../../ouch/help/logLik.html">logLik</a></code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/plot.html">plot</a>()</code>,
+<code><a href="../../ouch/help/print.html">print</a>()</code>,
+<code><a href="../../ouch/help/simulate.html">simulate</a>()</code>,
+<code><a href="../../ouch/help/summary.html">summary</a>()</code>,
+<code><a href="../../ouch/help/update.html">update</a>()</code>
+</p>
+<p>Other phylogenetic comparative models: 
+<code><a href="../../ouch/help/brown.html">brown</a>()</code>,
+<code><a href="../../ouch/help/hansen.html">hansen</a>()</code>,
+<code><a href="../../ouch/help/ouch-package.html">ouch-package</a></code>,
+<code><a href="../../ouch/help/ouchtree.html">ouchtree</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+x &lt;- with(
+  bimac,
+  ouchtree(nodes=node,times=time/max(time),ancestors=ancestor,labels=species)
+)
+
+r &lt;- paint(x,subtree=c("1"="medium","9"="large","2"="small"),
+  branch=c("38"="large","2"="medium"))
+plot(x,regimes=r,node.names=TRUE)
+
+## compare to bimac['OU.LP']
+h5 &lt;- hansen(data=log(bimac['size']),tree=x,regimes=bimac['OU.LP'],
+  sqrt.alpha=1,sigma=1,reltol=1e-5)
+r &lt;- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
+plot(x,regimes=r,node.names=TRUE)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ouch</em> version 2.16-9 <a href="00Index.html">Index</a>]</div>
+</body></html>
