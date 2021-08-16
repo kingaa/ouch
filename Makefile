@@ -3,6 +3,7 @@ RCMD = $(REXE) CMD
 RCMD_ALT = R --no-save --no-restore CMD
 RSCRIPT = Rscript --vanilla
 REPODIR = ../www
+MANUALDIR = ../www/manuals/ouch
 
 PDFLATEX = pdflatex
 BIBTEX = bibtex
@@ -37,10 +38,10 @@ session: export R_DEFAULT_PACKAGES=datasets,utils,grDevices,graphics,stats,metho
 htmldocs: inst/doc/*.html
 
 htmlhelp: install
-	rsync --delete -a library/ouch/html/ www/manual/ouch/html
-	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=ouch.rdb --exclude=ouch.rdx --exclude=macros -a library/ouch/help/ www/manual/ouch/help
-	(cd www/manual/ouch/html; (cat ../links.ed && echo w ) | ed - 00Index.html)
-	$(CP) www/_includes/pompstyle.css www/manual/ouch/html/R.css
+	rsync --delete -a library/ouch/html/ $(MANUALDIR)/html
+	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=ouch.rdb --exclude=ouch.rdx --exclude=macros -a library/ouch/help/ $(MANUALDIR)/help
+	(cd $(MANUALDIR)/html; (cat ../links.ed && echo w ) | ed - 00Index.html)
+	$(CP) ../www/_includes/pompstyle.css $(MANUALDIR)/html/R.css
 
 vignettes: manual install
 	$(MAKE)	-C www/vignettes
@@ -80,13 +81,18 @@ publish: dist manual news htmlhelp
 	$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tar.gz",repodir="$(REPODIR)",action="prune")'
 	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tgz",repodir="$(REPODIR)",action="prune")'
 	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).zip",repodir="$(REPODIR)",action="prune")'
-	$(CP) $(PKG).pdf ../www/manuals
+	$(CP) $(PKG).pdf $(MANUALDIR)
 
 rhub:
-	$(REXE) -e 'library(rhub); check_with_sanitizers(); check_on_windows(); check(platform="macos-highsierra-release-cran");'
+	$(REXE) -e 'library(rhub); check_for_cran(); check(platform="macos-highsierra-release-cran");'
 
-covr:
-	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE);'
+covr: covr.rds
+
+covr.rds: DESCRIPTION
+	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE); saveRDS(cov,file="covr.rds")'
+
+xcovr: covr
+	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,token="cbbc302d-fff3-4530-8474-0f3f48db6776",quiet=FALSE)'
 
 win: dist
 	curl -T $(PKGVERS).tar.gz ftp://win-builder.r-project.org/R-release/
@@ -181,5 +187,6 @@ clean:
 	$(RM) -r check
 	$(RM) src/*.o src/*.so src/symbols.rds www/vignettes/Rplots.*
 	$(RM) -r inst/doc/figure inst/doc/cache
+	$(RM) -r libs
 	$(RM) -r *-Ex.Rout *-Ex.timings *-Ex.pdf
 	$(RM) *.tar.gz $(PKGVERS).zip $(PKGVERS).tgz $(PKG).pdf
