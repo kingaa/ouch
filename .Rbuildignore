@@ -23,3 +23,5 @@ examples
 ^(.+?)\.zip
 hub_cov\.R
 data/primates.csv
+covr.rds
+covr.html
