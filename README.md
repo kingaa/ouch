@@ -25,4 +25,5 @@ install_github("kingaa/ouch")
 
 #### Package manual
 
-[Download it here.](https://kingaa.github.io/manuals/ouch.pdf)
+[HTML](https://kingaa.github.io/manuals/ouch/html/00Index.html)  
+[PDF](https://kingaa.github.io/manuals/ouch/ouch.pdf)
