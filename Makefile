@@ -3,7 +3,7 @@ RCMD = $(REXE) CMD
 RCMD_ALT = R --no-save --no-restore CMD
 RSCRIPT = Rscript --vanilla
 REPODIR = ../www
-MANUALDIR = ../www/manuals/ouch
+MANUALDIR = ../www/manuals/$(PKG)
 
 PDFLATEX = pdflatex
 BIBTEX = bibtex
@@ -28,18 +28,26 @@ default:
 .PHONY: clean win wind tests check
 
 dist manual vignettes: export R_QPDF=qpdf
-roxy dist manual vignettes: export R_HOME=$(shell $(REXE) RHOME)
+headers: export LC_COLLATE=C
+roxy headers dist manual vignettes: export R_HOME=$(shell $(REXE) RHOME)
 check xcheck xxcheck: export FULL_TESTS=yes
 dist revdeps session tests check xcheck xxcheck: export R_KEEP_PKG_SOURCE=yes
 revdeps xcheck tests: export R_PROFILE_USER=$(CURDIR)/.Rprofile
 revdeps session xxcheck htmldocs vignettes data tests manual: export R_LIBS=$(CURDIR)/library
-session: export R_DEFAULT_PACKAGES=datasets,utils,grDevices,graphics,stats,methods,tidyverse,subplex,ouch
+session: export R_DEFAULT_PACKAGES=datasets,utils,grDevices,graphics,stats,methods,tidyverse,subplex,$(PKG)
+
+includes:
+
+headers:
+
+inst/include/%.h: src/%.h
+	$(CP) $^ $@
 
 htmldocs: inst/doc/*.html
 
 htmlhelp: install
-	rsync --delete -a library/ouch/html/ $(MANUALDIR)/html
-	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=ouch.rdb --exclude=ouch.rdx --exclude=macros -a library/ouch/help/ $(MANUALDIR)/help
+	rsync --delete -a library/$(PKG)/html/ $(MANUALDIR)/html
+	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=$(PKG).rdb --exclude=$(PKG).rdx --exclude=macros -a library/$(PKG)/help/ $(MANUALDIR)/help
 	(cd $(MANUALDIR)/html; (cat ../links.ed && echo w ) | ed - 00Index.html)
 	$(CP) ../www/_includes/pompstyle.css $(MANUALDIR)/html/R.css
 
@@ -64,12 +72,12 @@ revdeps: install
 	$(REXE) -e "pkgs <- strsplit('$(REVDEPS)',' ')[[1]]; download.packages(pkgs,destdir='library',repos='https://mirrors.nics.utk.edu/cran/')"
 	$(RCMD) check --library=library -o check library/*.tar.gz
 
-roxy: $(SOURCE)
+roxy: $(SOURCE) headers
 	$(REXE) -e "pkgbuild::compile_dll(); devtools::document(roclets=c('rd','collate','namespace'))"
 
 dist: NEWS $(PKGVERS).tar.gz
 
-$(PKGVERS).tar.gz: $(SOURCE) $(TESTS)
+$(PKGVERS).tar.gz: $(SOURCE) $(TESTS) includes headers
 	$(RCMD) build --force --no-manual --resave-data --compact-vignettes=both --md5 .
 
 binary: dist
@@ -127,7 +135,7 @@ ycheck: dist install
 manual: install $(PKG).pdf
 
 $(PKG).pdf: $(SOURCE)
-	$(RCMD) Rd2pdf --no-preview --pdf --force -o $(PKG).pdf .
+	$(RCMD) Rd2pdf --internals --no-description --no-preview --pdf --force -o $(PKG).pdf .
 	$(RSCRIPT) -e "tools::compactPDF(\"$(PKG).pdf\")";
 
 tests: install $(TESTS)
