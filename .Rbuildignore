@@ -12,6 +12,7 @@ TODO\.md$
 ^\.Rproj\.user$
 \.Rprofile
 Makefile
+rules.mk
 lib
 library
 check
