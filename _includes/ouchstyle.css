@@ -92,40 +92,46 @@ dt {
 #main {
     position: absolute;
     top: 20px;
-    left: 10px;
 }
 
 #content {
     text-align: left;
-    left: 80px;
-    position: relative;
-    padding-top: 10px;
-    padding-bottom: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-#header {
-    text-align: right;
-    position: relative;
     top: 0px;
-    left: 80px;
+    left: 0px;
+    position: relative;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#header h1 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-right: 30px;
+#header {
+    text-align: left;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 40px;
+    font-family: "DejaVu Sans", "Arial Sans", Arial, sans;
+    font-weight: bold;
+    font-variant: normal;
+    font-size: 1.5em;
 }
 
 #toplink {
     text-align: right;
     padding-right: 40px;
     display: none;
+}
+
+#content {
+    width: 100%;
+}
+
+#header {
+    width: min(90%, 22em);
 }
 
 .header-section-number:after, .toc-section-number:after {
@@ -135,6 +141,10 @@ dt {
 @media print {
     #nav, #menu-icon, #menu {
 	display: none;
+    }
+    #main {
+	left: 100px;
+	width: calc(90% - 100px)
     }
 }
 
@@ -148,6 +158,11 @@ dt {
 	display: none;
     }
 
+    #main {
+	left: 100px;
+	width: min(50em, calc(80% - 100px));
+    }
+    
     #menu {
 	position: fixed;
 	top: 30px;
@@ -168,18 +183,9 @@ dt {
 	margin: 0px;
 	padding: 0px;
     }
-
-    #header {
-	width: calc(80% - 50px);
-    }
-
-    #content {
-	width: calc(80% - 50px);
-    }
-
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 400px) {
 
     #menu-icon {
 	display: block;
@@ -197,6 +203,10 @@ dt {
         border-color: #cc3333;
     }
 
+    #main {
+	left: 60px;
+	width: calc(90% - 60px);
+    }
 }
 
 .emph {
