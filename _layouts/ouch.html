@@ -1,54 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <head id="{{ page.id }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="phylogenetic comparative analysis, Ornstein-Uhlenbeck, phylogeny, ouch, R" />
     <link rel="shortcut icon" href="bluefish.ico" type="image/ico">
     <title>{{ page.title }}</title>
     <style type="text/css">
-      {% include whitestyle.css %}
+      {% include ouchstyle.css %}
     </style>
   </head>
   <body>
-    <table width="80%" align="left" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-	<td>
-	  <table border="0" cellspacing="0" cellpadding="5">
-	    <tr>
-	      <td width="70%" align="right">
-		<h2><span class="emph"><i>ouch</i></span>: 
-		  <span class="emph">O</span>rnstein-<span class="emph">U</span>hlenbeck models<br />
-		  for phylogenetic <span class="emph">C</span>omparative hypot<span class="emph">H</span>eses</h2>
-	      </td>
-	      <td style="width: 30%; align: left; vertical-align: middle;">
-		<ul class="menu">
-		  <li><a href="https://github.com/kingaa/ouch/">Source code</a></li>
-		  <li><a href="https://cran.r-project.org/package=ouch"><i>ouch</i> on CRAN</a></li>
-		  <li><a href="NEWS/">Package NEWS</a></li>
-		  <li><a href="manual/">Manual&nbsp;(HTML)</a>&nbsp;<a href="manual/pdf/">(PDF)</a></li>
-		</ul>
-	      </td>
-	    </tr>
-	  </table>
-	</td>
-      </tr>
-      <tr>
-	<td>
-	  <table border="0" cellspacing="0" cellpadding="0">
-	    <tr>
-	      <td>{{ content }}</td>
-	    </tr>
-	  </table>
-	</td>
-      </tr>
-      <tr>
-	<td>
-          <hr />
-	  <a href="https://www.nsf.gov"><img style="height: 48px; float: right;" src="https://kingaa.github.io/images/NSF_logo.jpg" alt="link to NSF" /></a>
-	  <p>Development and maintenance of <i>ouch</i> made possible through the support of the U.S.&nbsp;National&nbsp;Science&nbsp;Foundation (Grants DEB-0515390 and DEB-0542360).</p>
-	</td>
-      </tr>
-    </table>
+
+    <div id="nav">
+      <div id="menu-icon">
+	<img src="https://kingaa.github.io/images/hamburger_icon.png" />
+      </div>
+      <div id="menu">
+	{% include menu.html %}
+      </div>    
+    </div>    
+    
+    <div id="main">
+      <div id="header">
+	<h1>{% include header.html %}</h1>
+      </div>
+      
+      <div id="content">
+	
+	{{ content }}
+	
+	<div id="thanks">
+	  {% include thanks.html %}
+	</div>
+	
+	<div id="toplink">
+	  <a href="#top">Top</a>
+	</div>
+	
+      </div>
+
+    </div>
+
+    <script>
+      var d = document.querySelectorAll("#menu a");
+      const h = document.head.id;
+      for (var i = 0; i < d.length; i++) {
+        if (d[i].id == h) {
+          d[i].classList.add("activated");
+        }
+      }
+    </script>
+
   </body>
 </html>
