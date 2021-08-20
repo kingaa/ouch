@@ -25,9 +25,17 @@
 #'   - Display of data: [`plot()`]
 #'   - Extraction of information from fitted models: [`summary()`], [`logLik()`], [`coef()`]
 #'   - Example datasets: [`anolis.ssd`], [`bimac`]
+#'
+#' @section Citing \pkg{ouch}:
+#' \Sexpr[stage=build,echo=FALSE,eval=TRUE,results=verbatim]{print(citation("ouch"),bibtex=FALSE)}
+#' 
+#' LaTeX users can obtain BibTeX entries for the above by executing
+#' `toBibtex(citation("ouch"))`.
 #' 
 #' @author Aaron A. King
 #' @references
+#' \Hansen1997
+#' 
 #' \Butler2004
 #'
 #' \Cressler2015

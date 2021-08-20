@@ -141,6 +141,8 @@ h1 <- hansen(
 summary(h1)
 }
 \references{
+\Hansen1997
+
 \Butler2004
 
 \Cressler2015

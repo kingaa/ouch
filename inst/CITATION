@@ -4,7 +4,7 @@ note2 <- sprintf("(R package, version %s)", meta$Version)
 
 c(
   bibentry(
-    header="To cite the ouch package in publications, use:",
+    header=paste("To cite the",sQuote("ouch"),"package in publications, use:"),
     bibtype="Article",
     author=personList(
       as.person("Marguerite A. Butler"),

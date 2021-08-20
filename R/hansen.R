@@ -34,6 +34,8 @@
 #' @seealso
 #' [`stats::optim`], [`subplex::subplex`], [`bimac`], [`anolis.ssd`]
 #' @references
+#' \Hansen1997
+#' 
 #' \Butler2004
 #'
 #' \Cressler2015
