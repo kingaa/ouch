@@ -1,38 +1,41 @@
-citHeader("To cite the ouch package in publications use:")
+year <- sub("-.*", "", meta$Date)
+note1 <- sprintf("R~package, version~%s", meta$Version)
+note2 <- sprintf("(R package, version %s)", meta$Version)
 
-citEntry(
-  entry="Manual",
-  title="ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses",
-  author=personList(
-    as.person("Aaron A. King"),
-    as.person("Marguerite A. Butler")
+c(
+  bibentry(
+    header="To cite the ouch package in publications, use:",
+    bibtype="Article",
+    author=personList(
+      as.person("Marguerite A. Butler"),
+      as.person("Aaron A. King")
+    ),
+    title="Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
+    journal="American Naturalist",
+    year="2004",
+    volume="164",
+    pages="683--695",
+    doi="10.1086/426002",
+    textVersion=paste(
+      "M. A. Butler and A. A. King (2004).",
+      "Phylogenetic comparative analysis: a modeling approach for adaptive evolution.",
+      "American Naturalist 164:683–695.",
+      "DOI:10.1086/426002."
+    )
   ),
-  year=2009,
-  url="https://kingaa.github.io/ouch/",
-  textVersion=paste(
-    "Aaron A. King and Marguerite A. Butler (2009),",
-    "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses (R package),",
-    "https://kingaa.github.io/ouch/"
+  bibentry(
+    bibtype="Manual",
+    title="ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses",
+    author=personList(
+      as.person("Aaron A. King"),
+      as.person("Marguerite A. Butler")
+    ),
+    year=year,
+    note=note1,
+    url=meta$URL,
+    textVersion=paste0(
+      "Aaron A. King and Marguerite A. Butler (",year,"). ",
+      "ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses. ",note2,". ",meta$URL
+    )
   )
 )
-
-citEntry(
-  entry="Article",
-  author=personList(
-    as.person("Marguerite A. Butler"),
-    as.person("Aaron A. King")
-  ),
-  title="Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
-  journal="American Naturalist",
-  year=2004,
-  volume=164,
-  pages="683--695",
-  doi="10.1086/426002",
-  textVersion=paste(
-    "Butler, M. A. and King, A. A. (2004)",
-    "Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
-    "Am. Nat. 164:683--695"
-  )
-)
-
-citFooter("As ouch is continually evolving, you may want to cite its version number. Find it with 'packageVersion(\"ouch\")'.")
