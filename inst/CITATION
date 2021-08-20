@@ -24,6 +24,7 @@ c(
     )
   ),
   bibentry(
+    header="Additionally, consider citing the package itself:",
     bibtype="Manual",
     title="ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses",
     author=personList(
