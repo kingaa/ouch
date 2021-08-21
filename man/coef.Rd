@@ -20,7 +20,7 @@
 \describe{
 \item{\code{sigma}}{the coefficients of the sigma matrix.}
 \item{\code{theta}}{a list of the estimated optima, one per character.}
-\item{\code{sigma..sq.matrix}}{the sigma-squared matrix itself.}
+\item{\code{sigma.sq.matrix}}{the sigma-squared matrix itself.}
 }
 
 \code{coef} applied to a \code{hansentree} object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the \code{alpha.matrix} and \code{sigma.sq.matrix} elements, respectively) but also the MLE returned by the optimizer

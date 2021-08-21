@@ -143,7 +143,7 @@ brown.deviate <- function(n = 1, object) {
 #' \describe{
 #'   \item{`sigma`}{the coefficients of the sigma matrix.}
 #'   \item{`theta`}{a list of the estimated optima, one per character.}
-#'   \item{`sigma..sq.matrix`}{the sigma-squared matrix itself.}
+#'   \item{`sigma.sq.matrix`}{the sigma-squared matrix itself.}
 #' }
 #' @export
 setMethod(
