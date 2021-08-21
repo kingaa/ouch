@@ -1,6 +1,5 @@
 # ouch
 
-[![Build Status](https://travis-ci.org/kingaa/ouch.svg?branch=master)](https://travis-ci.org/kingaa/ouch)
 [![Development Release](https://img.shields.io/github/release/kingaa/ouch.svg)](https://github.com/kingaa/ouch/)
 [![CRAN Status](https://www.r-pkg.org/badges/version/ouch)](http://cran.r-project.org/package=ouch)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/ouch)](http://www.r-pkg.org/pkg/ouch)
