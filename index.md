@@ -31,3 +31,5 @@ Detecting adaptive evolution in phylogenetic comparative analysis using the Orns
 Installation instructions are given on the package [GitHub repository](https://github.com/kingaa/ouch/).
 
 The package manual is available in [HTML](manual/) and [PDF](manual/pdf/) formats.
+
+Report bugs on [the Issues page](https://github.com/kingaa/ouch/issues/).
