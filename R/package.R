@@ -27,10 +27,7 @@
 #'   - Example datasets: [`anolis.ssd`], [`bimac`]
 #'
 #' @section Citing \pkg{ouch}:
-#' \Sexpr[stage=build,echo=FALSE,eval=TRUE,results=verbatim]{print(citation("ouch"),bibtex=FALSE)}
-#' 
-#' LaTeX users can obtain BibTeX entries for the above by executing
-#' `toBibtex(citation("ouch"))`.
+#' Execute \code{citation("ouch")} to view the correct citation for publications.
 #' 
 #' @author Aaron A. King
 #' @references
