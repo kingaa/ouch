@@ -17,14 +17,17 @@ INSTALL = install
 PKG = $(shell perl -ne 'print $$1 if /Package:\s+((\w+[-\.]?)+)/;' DESCRIPTION)
 VERSION = $(shell perl -ne 'print $$1 if /Version:\s+((\d+[-\.]?)+)/;' DESCRIPTION)
 PKGVERS = $(PKG)_$(VERSION)
-SOURCE=$(shell ls R/*R src/*.c src/*.h data/*)
-CSOURCE=$(shell ls src/*.c)
-TESTS=$(shell ls tests/*R)
+SOURCE=$(wildcard R/*R src/*.c src/*.h data/*)
+CSOURCE=$(wildcard src/*.c)
+TESTS=$(wildcard tests/*R)
 
 default:
 	@echo $(PKGVERS)
 
-.PHONY: clean win wind tests check
+.PHONY: binary check clean covr default dist fresh headers htmldocs \
+htmlhelp includes install manual news NEWS publish qcheck qqcheck \
+remove revdeps rhub roxy session tests vignettes win wind xcheck \
+xcovr xxcheck ycheck
 
 dist manual vignettes: export R_QPDF=qpdf
 headers: export LC_COLLATE=C
