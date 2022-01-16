@@ -5,7 +5,7 @@ static void ouch_weight_matrix (int *nchar, int *neps, double *epochs, double *l
   double t;
   int n = *nchar, np = *neps;
   int i, j, k, r;
-  elt = Calloc(np*n,double);
+  elt = R_Calloc(np*n,double);
   for (i = 0; i < np; i++) {
     t = epochs[0]-epochs[i];
     for (j = 0; j < n; j++) 
@@ -24,7 +24,7 @@ static void ouch_weight_matrix (int *nchar, int *neps, double *epochs, double *l
       }
     }
   }
-  Free(elt);
+  R_Free(elt);
 }
 
 SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta) {
@@ -40,7 +40,7 @@ SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta) {
   nt = INTEGER(nterm)[0];
   SET_STRING_ELT(nm,0,mkChar("epochs"));
   PROTECT(epochs = GET_SLOT(object,nm)); nprotect++;
-  nreg = Calloc(nchar,int);
+  nreg = R_Calloc(nchar,int);
   totreg = 0;
   for (i = 0; i < nchar; i++) {
     nreg[i] = INTEGER(GET_DIM(VECTOR_ELT(VECTOR_ELT(beta,0),i)))[1];
@@ -50,7 +50,7 @@ SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta) {
   PROTECT(W = makearray(2,xdim)); nprotect++;
   for (i = 0; i < nt; i++) {
     np = GET_LENGTH(VECTOR_ELT(epochs,i));
-    y = Calloc(nchar*nchar*np,double);
+    y = R_Calloc(nchar*nchar*np,double);
     ouch_weight_matrix(&nchar,&np,REAL(VECTOR_ELT(epochs,i)),REAL(lambda),REAL(S),y);
     for (n = 0, ptr = 0; n < nchar; ptr += nt*nchar*nreg[n++]) {
       wp = &(REAL(W))[ptr];
@@ -64,9 +64,9 @@ SEXP ouch_weights (SEXP object, SEXP lambda, SEXP S, SEXP beta) {
 	}
       }
     }
-    Free(y);
+    R_Free(y);
   }
-  Free(nreg);
+  R_Free(nreg);
   UNPROTECT(nprotect);
   return W;
 }

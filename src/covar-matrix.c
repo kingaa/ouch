@@ -13,10 +13,10 @@ static void ouch_covar_matrix (int *nchar,
   double tmp;
   int n = *nchar, nt = *nterm;
   int i, j, k, l, r, s;
-  U = Calloc(n*n,double);
-  W = Calloc(n*n,double);
-  elti = Calloc(n,double);
-  eltj = Calloc(n,double);
+  U = R_Calloc(n*n,double);
+  W = R_Calloc(n*n,double);
+  elti = R_Calloc(n,double);
+  eltj = R_Calloc(n,double);
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       U[i+j*n] = 0;
@@ -57,10 +57,10 @@ static void ouch_covar_matrix (int *nchar,
       }
     }
   }
-  Free(U);
-  Free(W);
-  Free(elti);
-  Free(eltj);
+  R_Free(U);
+  R_Free(W);
+  R_Free(elti);
+  R_Free(eltj);
 }
 
 SEXP ouch_covar (SEXP object, SEXP lambda, SEXP S, SEXP sigmasq) {
