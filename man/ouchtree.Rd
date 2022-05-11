@@ -56,6 +56,7 @@ tree
 
 plot(tree)
 plot(tree, node.names=TRUE)    # display node names
+
 }
 \seealso{
 Other phylogenetic comparative models: 

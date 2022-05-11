@@ -52,6 +52,7 @@ plot(h2)
 h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
 h3
 plot(h3)
+
 }
 \references{
 \Butler2000
@@ -61,6 +62,7 @@ plot(h3)
 \seealso{
 Other examples: 
 \code{\link{bimac}},
+\code{\link{geospiza}},
 \code{\link{ouch-package}}
 }
 \author{

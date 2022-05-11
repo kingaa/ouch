@@ -98,32 +98,28 @@ plot(h2)
 h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
 h3
 plot(h3)
-### Darwin's finches
-library(geiger)
-data(geospiza)
 
-### check the correspondence between data and tree tips:
-print(nc <- with(geospiza,name.check(geospiza.tree,geospiza.data)))
-### looks like one of the terminal twigs has no data associated
-### drop that tip:
-tree <- with(geospiza,drop.tip(geospiza.tree,nc$tree_not_data))
-dat <- as.data.frame(geospiza$dat)
+### Darwin's finches.
+### The data were taken from package 'geiger' due to the latter being orphaned.
+library(ape)
+data(geospiza)
+plot(geospiza$phy)
+print(geospiza$dat)
 
 ### make an ouchtree out of the phy-format tree
-ot <- ape2ouch(tree)
+ot <- ape2ouch(geospiza$phy)
 
 ### merge data with tree info
 otd <- as(ot,"data.frame")
-### in these data, it so happens that the rownames correspond to node names
-### we will exploit this correspondence in the 'merge' operation:
-dat$labels <- rownames(dat)
-otd <- merge(otd,dat,by="labels",all=TRUE)
+otd <- merge(otd,geospiza$dat,by.x="labels",by.y="row.names",all=TRUE)
+### row-names are used by 'hansen'
 rownames(otd) <- otd$nodes
 print(otd)
 ### this data-frame now contains the data as well as the tree geometry
 
 ### now remake the ouch tree
 ot <- with(otd,ouchtree(nodes=nodes,ancestors=ancestors,times=times,labels=labels))
+plot(ot)
 
 b1 <- brown(tree=ot,data=otd[c("tarsusL","beakD")])
 summary(b1)
@@ -139,6 +135,8 @@ h1 <- hansen(
   maxit=10000
 )
 summary(h1)
+plot(h1)
+
 }
 \references{
 \Hansen1997

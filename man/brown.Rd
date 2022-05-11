@@ -54,6 +54,7 @@ hsim <- update(h5,data=simdat[[1]])
 summary(hsim)
 bsim <- update(h1,data=simdat[[1]])
 summary(bsim)
+
 }
 \references{
 \Butler2004

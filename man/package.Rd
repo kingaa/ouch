@@ -64,7 +64,8 @@ Other methods for ouch trees:
 
 Other examples: 
 \code{\link{anolis.ssd}},
-\code{\link{bimac}}
+\code{\link{bimac}},
+\code{\link{geospiza}}
 }
 \author{
 Aaron A. King

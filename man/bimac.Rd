@@ -82,6 +82,7 @@ hsim <- update(h5,data=simdat[[1]])
 summary(hsim)
 bsim <- update(h1,data=simdat[[1]])
 summary(bsim)
+
 }
 \references{
 \Lazell1972
@@ -91,6 +92,7 @@ summary(bsim)
 \seealso{
 Other examples: 
 \code{\link{anolis.ssd}},
+\code{\link{geospiza}},
 \code{\link{ouch-package}}
 }
 \author{

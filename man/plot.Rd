@@ -81,6 +81,7 @@ tree2 <- with(
 plot(tree2) # long species names are cut off
 ## This is fixed by increasing right margin and font size:
 plot(tree2,margin=0.35,text_opts=list(cex=0.7))
+
 }
 \seealso{
 Other methods for ouch trees: 

@@ -6,3 +6,4 @@ tree
 
 plot(tree)
 plot(tree, node.names=TRUE)    # display node names
+

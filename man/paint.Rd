@@ -52,6 +52,7 @@ h5 <- hansen(data=log(bimac['size']),tree=x,regimes=bimac['OU.LP'],
   sqrt.alpha=1,sigma=1,reltol=1e-5)
 r <- paint(h5,branch=c("18"="large"),subtree=c("9"="small"))
 plot(x,regimes=r,node.names=TRUE)
+
 }
 \seealso{
 Other methods for ouch trees: 
