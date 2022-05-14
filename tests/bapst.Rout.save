@@ -1,6 +1,6 @@
 
-R version 4.0.4 (2021-02-15) -- "Lost Library Book"
-Copyright (C) 2021 The R Foundation for Statistical Computing
+R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics"
+Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -23,6 +23,6 @@ Type 'q()' to quit R.
 > tr <- with(x,ouchtree(nodes=node,ancestors=ancestor,times=time,labels=species))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 0.002750397 secs
+Time difference of 0.002815723 secs
 > plot(tr)
 > 
