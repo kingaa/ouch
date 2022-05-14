@@ -5,6 +5,7 @@ tests/(.+?)\.Rout$
 LICENSE\.md$
 README\.md$
 TODO\.md$
+\.github
 ^\.gitignore$
 ^\.travis\.yml$
 ^codecov\.yml$
