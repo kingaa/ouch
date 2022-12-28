@@ -9,7 +9,6 @@
 #' @family methods for ouch trees
 #' @importFrom stats update
 #'
-#' @return
 #' @return `update` returns a new fitted-model object of the same class as  `object`.
 #' @param object fitted model object.
 #' @param data data that replace those used in the original fit.

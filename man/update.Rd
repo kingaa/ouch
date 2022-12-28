@@ -23,21 +23,13 @@ Corresponding to each node, enter the code of the regime hypothesized for the br
 For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
 If there are \code{nchar} quantitative characters, then one can specify a single set of \code{regimes} for all characters or a list of \code{nchar} regime specifications, one for each character.}
 
-\item{sqrt.alpha}{These are used to initialize the optimization algorithm.
-The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
-Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
-The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
-See Details for more information.}
-
-\item{sigma}{These are used to initialize the optimization algorithm.
+\item{sqrt.alpha, sigma}{These are used to initialize the optimization algorithm.
 The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
 Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
 The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
 See Details for more information.}
 }
 \value{
-
-
 \code{update} returns a new fitted-model object of the same class as  \code{object}.
 }
 \description{
