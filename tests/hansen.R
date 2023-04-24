@@ -120,3 +120,5 @@ hansen(tree=tree,
   sqrt.alpha=c(1,1,1),sigma=c(1,1,1),
   regimes=setNames(bimac$OU.LP,bimac$node)
 ) -> h
+
+names(as.data.frame(h))

@@ -52,6 +52,7 @@ Other phylogenetic comparative models:
 \code{\link{paint}()}
 
 Other methods for ouch trees: 
+\code{\link{as_data_frame}},
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},

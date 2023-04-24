@@ -1,6 +1,6 @@
 
-R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics"
-Copyright (C) 2022 The R Foundation for Statistical Computing
+R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -58,8 +58,8 @@ Type 'q()' to quit R.
 + 
 + }
 Loading required package: ape
-Time difference of 0.1002851 secs
-Time difference of 0.2464342 secs
+Time difference of 0.3740759 secs
+Time difference of 5.521165 secs
 $BM.1
            sigma theta.log.SVL.SE  sigma.sq.matrix                  
         1.306906         2.528162         1.708003       437.546555 

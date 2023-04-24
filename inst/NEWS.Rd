@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'ouch'}
+\section{Changes in ouch version 2.19-1}{
+  \itemize{
+    \item There is a new \code{as.data.frame} method.
+  }
+}
 \section{Changes in ouch version 2.16-8}{
   \itemize{
     \item Both left and right plot margins can be adjusted to allow, for example, for long taxon names or long legend labels.

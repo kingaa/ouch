@@ -56,6 +56,7 @@ plot(x,regimes=r,node.names=TRUE)
 }
 \seealso{
 Other methods for ouch trees: 
+\code{\link{as_data_frame}},
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},

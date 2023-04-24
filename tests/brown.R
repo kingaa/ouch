@@ -30,3 +30,5 @@ brown(
   )
 ) -> m
 update(m,data=setNames(2*bimac$size,bimac$node)) -> m
+
+names(as.data.frame(m))

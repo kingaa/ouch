@@ -31,3 +31,7 @@ try(with(x,ouchtree(node,ancestor,time,species)))
 x <- anolis.ssd
 x$ancestor[15:18] <- 888
 try(with(x,ouchtree(node,ancestor,time,species)))
+
+x <- anolis.ssd
+with(x,ouchtree(node,ancestor,time,species)) -> tree
+names(as.data.frame(tree))

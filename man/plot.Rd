@@ -85,6 +85,7 @@ plot(tree2,margin=0.35,text_opts=list(cex=0.7))
 }
 \seealso{
 Other methods for ouch trees: 
+\code{\link{as_data_frame}},
 \code{\link{bootstrap}()},
 \code{\link{coef}()},
 \code{\link{logLik}},
