@@ -1,0 +1,27 @@
+  Running ‘ape2ouch.R’
+  Running ‘bapst.R’
+  Comparing ‘bapst.Rout’ to ‘bapst.Rout.save’ ... OK
+  Running ‘bergmann.R’
+  Comparing ‘bergmann.Rout’ to ‘bergmann.Rout.save’ ... OK
+  Running ‘boot.R’ [385s/31s]
+  Comparing ‘boot.Rout’ to ‘boot.Rout.save’ ... OK
+  Running ‘brown.R’
+  Comparing ‘brown.Rout’ to ‘brown.Rout.save’ ... OK
+  Running ‘exacttree.R’
+  Comparing ‘exacttree.Rout’ to ‘exacttree.Rout.save’ ... OK
+  Running ‘glssoln.R’
+  Comparing ‘glssoln.Rout’ to ‘glssoln.Rout.save’ ... OK
+  Running ‘hansen.R’ [385s/47s]
+  Comparing ‘hansen.Rout’ to ‘hansen.Rout.save’ ... OK
+  Running ‘ouchtree.R’
+  Comparing ‘ouchtree.Rout’ to ‘ouchtree.Rout.save’ ... OK
+  Running ‘paint.R’
+  Comparing ‘paint.Rout’ to ‘paint.Rout.save’ ... OK
+  Running ‘plot.R’
+  Comparing ‘plot.Rout’ to ‘plot.Rout.save’ ... OK
+  Running ‘simtree.R’ [115s/36s]
+  Comparing ‘simtree.Rout’ to ‘simtree.Rout.save’ ... OK
+  Running ‘snizard.R’ [54s/12s]
+  Comparing ‘snizard.Rout’ to ‘snizard.Rout.save’ ... OK
+
+

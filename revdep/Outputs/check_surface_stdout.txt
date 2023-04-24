@@ -1,0 +1,101 @@
+* using log directory '/home/kingaa/projects/Rpkg/ouch/revdep/surface.Rcheck'
+* using R version 4.3.0 (2023-04-21)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* using option '--as-cran'
+* checking for file 'surface/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'surface' version '0.5'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
+* checking whether package 'surface' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking 'build' directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... [26s/19s] NOTE
+surfaceBackward: local variable ‘n’ assigned but may not be used
+surfaceBackward: local variable ‘nt’ assigned but may not be used
+surfaceForward: local variable ‘n’ assigned but may not be used
+surfaceForward: local variable ‘nt’ assigned but may not be used
+surfaceSimulate : phytransform: no visible global function definition
+  for ‘rescale’
+surfaceTraitPlot: local variable ‘nnode’ assigned but may not be used
+surfaceTreePlot: local variable ‘nnode’ assigned but may not be used
+Undefined global functions or variables:
+  rescale
+
+Found if() conditions comparing class() to string:
+File ‘surface/R/addRegime.R’: if (class(oldfit) != "list") ...
+File ‘surface/R/addRegime.R’: if (class(te) == "try-error") ...
+File ‘surface/R/collapseRegimes.R’: if (class(te) == "try-error") ...
+File ‘surface/R/propRegMatch.R’: if (class(fit1) == "list") ...
+File ‘surface/R/propRegMatch.R’: if (class(fit2) == "list") ...
+File ‘surface/R/propRegMatch.R’: if (class(fit1) == "hansentree") ...
+File ‘surface/R/propRegMatch.R’: if (class(fit2) == "hansentree") ...
+File ‘surface/R/runSurface.R’: if (class(tree) != "phylo") ...
+File ‘surface/R/surfaceSimulate.R’: if (class(hansenfit) == "hansentree") ...
+File ‘surface/R/surfaceSimulate.R’: if (class(hansenfit[[1]]) == "hansentree") ...
+File ‘surface/R/surfaceSimulate.R’: if (class(phy) == "phylo") ...
+File ‘surface/R/surfaceSimulate.R’: if (class(phy) == "phylo") ...
+File ‘surface/R/surfaceTraitPlot.R’: if (length(fit) > 1 | class(fit) == "list") ...
+Use inherits() (or maybe is()) instead.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of 'data' directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking sizes of PDF files under 'inst/doc' ... OK
+* checking installed files from 'inst/doc' ... OK
+* checking files in 'vignettes' ... OK
+* checking examples ... [43s/13s] OK
+Examples with CPU (user + system) or elapsed time > 5s
+               user system elapsed
+propRegMatch  2.975 12.143   2.325
+startingModel 1.232  5.042   1.095
+getAIC        1.172  4.470   0.873
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in 'inst/doc' ... OK
+* checking re-building of vignette outputs ... [1645s/170s] OK
+* checking PDF version of manual ... OK
+* checking HTML version of manual ... OK
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 1 NOTE

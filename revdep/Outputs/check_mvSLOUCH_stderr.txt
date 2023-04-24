@@ -1,0 +1,7 @@
+  Running ‘testthat.R’ [16s/14s]
+
+See
+  '/home/kingaa/projects/Rpkg/ouch/revdep/mvSLOUCH.Rcheck/00check.log'
+for details.
+
+

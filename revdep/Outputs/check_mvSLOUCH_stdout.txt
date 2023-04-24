@@ -1,0 +1,159 @@
+* using log directory '/home/kingaa/projects/Rpkg/ouch/revdep/mvSLOUCH.Rcheck'
+* using R version 4.3.0 (2023-04-21)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* using option '--as-cran'
+* checking for file 'mvSLOUCH/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'mvSLOUCH' version '2.7.5'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package 'mvSLOUCH' can be installed ... [24s/18s] OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking 'build' directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... [65s/112s] NOTE
+.EvaluatePoint: local variable ‘kX’ assigned but may not be used
+.EvaluatePoint: local variable ‘mPsi’ assigned but may not be used
+.EvaluatePoint: local variable ‘mPsi0’ assigned but may not be used
+.EvaluatePoint: local variable ‘tmpvY0’ assigned but may not be used
+.EvaluatePoint: local variable ‘vX0’ assigned but may not be used
+.EvaluatePoint: local variable ‘y0OnlyFixed’ assigned but may not be
+  used
+.InitialRegimeSetup: local variable ‘inumedgesinlineage’ assigned but
+  may not be used
+.InitialRegimeSetup: local variable ‘nullRegimes’ assigned but may not
+  be used
+.OU_phylreg_internal: local variable ‘glsmodel’ assigned but may not be
+  used
+.OU_phylreg_internal: local variable ‘mY_orig’ assigned but may not be
+  used
+.ape2slouch.mvsl: local variable ‘ancestor’ assigned but may not be
+  used
+.ape2slouch.mvsl: local variable ‘slouch_node’ assigned but may not be
+  used
+.boot.extract.model.components: local variable ‘Syytypetype’ assigned
+  but may not be used
+.calc.cov.ouch.mv: local variable ‘invA’ assigned but may not be used
+.calc.cov.slouch.mv: local variable ‘exptA’ assigned but may not be
+  used
+.calc.cov.slouch.mv: local variable ‘kX’ assigned but may not be used
+.calcESSanalytical: local variable ‘ESS.factor.model.selection’
+  assigned but may not be used
+.calcESSanalytical: local variable ‘ESS.model.selection’ assigned but
+  may not be used
+.calcESSanalytical: local variable ‘nV’ assigned but may not be used
+.calcESSanalytical: local variable ‘regimes.types.orig’ assigned but
+  may not be used
+.calcESSanalytical: local variable ‘rhoabsV’ assigned but may not be
+  used
+.calcESSanalytical: local variable ‘root.regime’ assigned but may not
+  be used
+.calcESSanalytical: local variable ‘sumV’ assigned but may not be used
+.calcESSanalytical: local variable ‘sumabsV’ assigned but may not be
+  used
+.calcESSanalytical: local variable ‘sumdiagV’ assigned but may not be
+  used
+.calcESSanalytical: local variable ‘sumoffdiagV’ assigned but may not
+  be used
+.calcESSanalytical: local variable ‘sumoffdiagabsV’ assigned but may
+  not be used
+.calcESSanalytical: local variable ‘sumoffdiagabscorrV’ assigned but
+  may not be used
+.callPCMBase_mvlik: local variable ‘numtips’ assigned but may not be
+  used
+.createStartPointsASyyB: local variable ‘vY’ assigned but may not be
+  used
+.decompEigenA.S: local variable ‘kappacalc’ assigned but may not be
+  used
+.design_matrix_mvslouch: local variable ‘A’ assigned but may not be
+  used
+.design_matrix_mvslouch: local variable ‘mCovTX’ assigned but may not
+  be used
+.extract_from_signs: local variable ‘CurrPos’ assigned but may not be
+  used
+.get_phyl_mean: local variable ‘pcmbase_model_box’ assigned but may not
+  be used
+.glsgc.estim: local variable ‘tree.height’ assigned but may not be used
+.ouch2slouch.mvsl: local variable ‘ancestor’ assigned but may not be
+  used
+.ouch2slouch.mvsl: local variable ‘slouch_node’ assigned but may not be
+  used
+.par.inv.transform: local variable ‘SingleValueDiagonal’ assigned but
+  may not be used
+.par.inv.transform.decomp.real.matrix : <anonymous>: local variable ‘k’
+  assigned but may not be used
+.par.transform.decomp.real.matrix : <anonymous>: local variable ‘k’
+  assigned but may not be used
+.pcmbaseDphylOU_GLS: local variable ‘mD_org’ assigned but may not be
+  used
+.simulVasicekProcPhylTree: local variable ‘inumber_internal_nodes’
+  assigned but may not be used
+.simulVasicekProcPhylTree: local variable ‘inumber_species’ assigned
+  but may not be used
+.simulVasicekProcPhylTree: local variable ‘orgEvolModel’ assigned but
+  may not be used
+.simulVasicekProcPhylTree: local variable ‘regimes.types.orig’ assigned
+  but may not be used
+.simulVasicekProcPhylTree: local variable ‘root.regime’ assigned but
+  may not be used
+OU_RSS: local variable ‘mY_orig’ assigned but may not be used
+OU_RSS: local variable ‘pcmbase_model_box_mean0’ assigned but may not
+  be used
+drawPhylProcess: local variable ‘kX’ assigned but may not be used
+estimate.evolutionary.model: local variable ‘kX’ assigned but may not
+  be used
+fitch.mvsl: local variable ‘obs.char’ assigned but may not be used
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking installed files from 'inst/doc' ... OK
+* checking files in 'vignettes' ... OK
+* checking examples ... [28s/25s] OK
+* checking for unstated dependencies in 'tests' ... OK
+* checking tests ...
+ [17s/15s] OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in 'inst/doc' ... OK
+* checking re-building of vignette outputs ... [12s/16s] OK
+* checking PDF version of manual ... OK
+* checking HTML version of manual ... OK
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 1 NOTE
