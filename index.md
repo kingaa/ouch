@@ -12,24 +12,38 @@ It is fully explained in
 Phylogenetic comparative analysis:
 a modeling approach for adaptive evolution.
 *American Naturalist*, **164**:683&ndash;695.
-[DOI: 10.1086/426002](http://doi.org/10.1086/426002)
+[DOI:&nbsp;10.1086/426002](http://doi.org/10.1086/426002)
 
 and is based on ideas described in
 
 > T.F.&nbsp;Hansen (1997).
 Stabilizing selection and the comparative analysis of adaptation.
 *Evolution*, **51**:1341&ndash;1351.
-[DOI: 10.1111/j.1558-5646.1997.tb01457.x](http://doi.org/10.1111/j.1558-5646.1997.tb01457.x)
+[DOI:&nbsp;10.1111/j.1558-5646.1997.tb01457.x](http://doi.org/10.1111/j.1558-5646.1997.tb01457.x)
 
 New results describing the statistical properties of OUCH models, and more complex models based on them, are described in
 
 > C. E. Cressler, M. A. Butler, and A. A. King (2015).
 Detecting adaptive evolution in phylogenetic comparative analysis using the Ornstein-Uhlenbeck model.
 *Systematic Biology* **64**:953&ndash;968.
-[DOI: 10.1093/sysbio/syv043](http://doi.org/10.1093/sysbio/syv043)
+[DOI:&nbsp;10.1093/sysbio/syv043](http://doi.org/10.1093/sysbio/syv043)
 
-Installation instructions are given on the package [GitHub repository](https://github.com/kingaa/ouch/).
+#### Installation
+
+Install the latest release from Github by executing the following in an **R** session:
+```
+install.packages("ouch",repos="https://kingaa.github.io")
+```
+
+Install from CRAN by executing
+```
+install.packages("ouch")
+```
+
+#### Manual 
 
 The package manual is available in [HTML](manual/) and [PDF](manual/pdf/) formats.
 
-Report bugs on [the Issues page](https://github.com/kingaa/ouch/issues/).
+#### Bugs
+
+Report bugs on the [Issues page](https://github.com/kingaa/ouch/issues/).
