@@ -84,6 +84,7 @@ When \code{hansen} is executed, the numerical optimizer maximizes the likelihood
 }
 \examples{
 ## Analysis of sexual size dimorphism data
+\donttest{ ## Save time for CRAN
 tree <- with(anolis.ssd,ouchtree(node,ancestor,time/max(time),species))
 plot(tree,node.names=TRUE)
 
@@ -98,8 +99,9 @@ plot(h2)
 h3 <- hansen(anolis.ssd['log.SSD'],tree,anolis.ssd['OU.7'],sqrt.alpha=1,sigma=1)
 h3
 plot(h3)
-
+}
 ### Darwin's finches.
+\donttest{ ## Save time for CRAN
 ### The data were taken from package 'geiger' due to the latter being orphaned.
 if (requireNamespace("ape")) {
 
@@ -138,6 +140,7 @@ if (requireNamespace("ape")) {
   summary(h1)
   plot(h1)
 
+}
 }
 }
 \references{

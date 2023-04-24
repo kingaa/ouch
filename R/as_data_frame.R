@@ -14,7 +14,7 @@ as.data.frame.ouchtree <- function (x, ...) as(x,"data.frame")
 
 #' @rdname as_data_frame
 #' @export
-as.data.frame.brown <- function (x, ...) as(x,"data.frame")
+as.data.frame.browntree <- function (x, ...) as(x,"data.frame")
 
 #' @rdname as_data_frame
 #' @export

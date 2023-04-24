@@ -3,13 +3,13 @@
 \name{as_data_frame}
 \alias{as_data_frame}
 \alias{as.data.frame.ouchtree}
-\alias{as.data.frame.brown}
+\alias{as.data.frame.browntree}
 \alias{as.data.frame.hansentree}
 \title{Coerce an \pkg{ouch} object to a data frame}
 \usage{
 \method{as.data.frame}{ouchtree}(x, ...)
 
-\method{as.data.frame}{brown}(x, ...)
+\method{as.data.frame}{browntree}(x, ...)
 
 \method{as.data.frame}{hansentree}(x, ...)
 }

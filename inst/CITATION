@@ -6,9 +6,9 @@ c(
   bibentry(
     header=paste("To cite the",sQuote("ouch"),"package in publications, use:"),
     bibtype="Article",
-    author=personList(
-      as.person("Marguerite A. Butler"),
-      as.person("Aaron A. King")
+    author=c(
+      person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu",comment=c(ORCID="0000-0001-6159-3207")),
+      person(given=c("Marguerite","A."),family="Butler",role=c("ctb"))
     ),
     title="Phylogenetic comparative analysis: a modeling approach for adaptive evolution",
     journal="American Naturalist",
@@ -27,9 +27,9 @@ c(
     header="Additionally, consider citing the package itself:",
     bibtype="Manual",
     title="ouch: Ornstein-Uhlenbeck models for phylogenetic comparative hypotheses",
-    author=personList(
-      as.person("Aaron A. King"),
-      as.person("Marguerite A. Butler")
+    author=c(
+      person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu",comment=c(ORCID="0000-0001-6159-3207")),
+      person(given=c("Marguerite","A."),family="Butler",role=c("ctb"))
     ),
     year=year,
     note=note1,

@@ -20,6 +20,7 @@ Morphological measurements of Darwin's finches, together with a phylogeny.
 }
 \examples{
 ### Darwin's finches.
+\donttest{ ## Save time for CRAN
 ### The data were taken from package 'geiger' due to the latter being orphaned.
 if (requireNamespace("ape")) {
 
@@ -58,6 +59,7 @@ if (requireNamespace("ape")) {
   summary(h1)
   plot(h1)
 
+}
 }
 }
 \seealso{

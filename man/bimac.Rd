@@ -53,6 +53,7 @@ In addition to the above, there is a two-letter code for each taxon (\code{spcod
 }
 \examples{
 ## Analysis of Anolis bimaculatus data
+\donttest{ ## save time for CRAN
 tree <- with(bimac,ouchtree(node,ancestor,time/max(time),spcode))
 plot(tree,node.names=TRUE)
 
@@ -82,7 +83,7 @@ hsim <- update(h5,data=simdat[[1]])
 summary(hsim)
 bsim <- update(h1,data=simdat[[1]])
 summary(bsim)
-
+}
 }
 \references{
 \Lazell1972

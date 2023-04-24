@@ -1,3 +1,4 @@
+REPODIR = ../www
 INCLUDES=
 HEADERS=
 

@@ -34,6 +34,7 @@ Makefile
 rules.mk
 scripts
 lib
+tools
 library
 check
 www
