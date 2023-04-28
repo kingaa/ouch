@@ -12,7 +12,14 @@
 
 Ornstein-Uhlenbeck models for Phylogenetic Comparative Hypotheses
 
-See the [package website](https://kingaa.github.io/ouch/).
+See the [package website](https://kingaa.github.io/ouch/) for more information.
+Based on ideas described in the following papers:
+
+- [“Phylogenetic comparative analysis: a modeling approach for adaptive evolution” (*American Naturalist* **164**:683–695)](https://doi.org/10.1086/426002)  
+[![](https://img.shields.io/badge/doi-10.1086/426002-yellow.svg)](https://doi.org/10.1086/426002)
+- [“Detecting adaptive evolution in phylogenetic comparative analysis using the Ornstein-Uhlenbeck model” (*Systematic Biology* **64**:953–968)](https://doi.org/10.1086/426002)  
+[![](https://img.shields.io/badge/doi-10.1093/sysbio/syv043-yellow.svg)](https://doi.org/10.1093/sysbio/syv043)
+
 
 #### Binary install
 
