@@ -2,8 +2,9 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{ouch-package}
-\alias{ouch-package}
 \alias{ouch}
+\alias{ouch-package}
+\alias{ouch,package}
 \title{Ornstein-Uhlenbeck methods for comparative phylogenetic hypotheses}
 \description{
 The \pkg{ouch} package provides facilities for phylogenetic comparative analysis based on Ornstein-Uhlenbeck models of trait evolution along a phylogeny.
@@ -45,6 +46,13 @@ Execute \code{citation("ouch")} to view the correct citation for publications.
 \Cressler2015
 }
 \seealso{
+Useful links:
+\itemize{
+  \item \url{https://kingaa.github.io/ouch/}
+  \item Report bugs at \url{https://github.com/kingaa/ouch/issues/}
+}
+
+
 Other phylogenetic comparative models: 
 \code{\link{brown}()},
 \code{\link{hansen}()},

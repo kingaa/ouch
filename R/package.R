@@ -4,9 +4,8 @@
 #' Multivariate data and complex adaptive hypotheses are supported.
 #' 
 #' @name ouch-package
-#' @aliases ouch
+#' @aliases ouch,package ouch-package
 #' @rdname package
-#' @docType package
 #' @family phylogenetic comparative models
 #' @family methods for ouch trees
 #' @family examples
@@ -40,7 +39,7 @@
 #' @useDynLib ouch, .registration = TRUE
 #' @import methods
 #' @keywords models
-NULL
+"_PACKAGE"
 
 pStop <- function (fn, ...) {
   fn <- as.character(fn)

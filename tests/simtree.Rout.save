@@ -1,5 +1,5 @@
 
-R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
 Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -92,7 +92,7 @@ Type 'q()' to quit R.
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 3.478733 secs
+Time difference of 2.687218 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -135,7 +135,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 5.732939 secs
+Time difference of 6.222583 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
@@ -203,7 +203,7 @@ $dof
 > tree <- with(x,ouchtree(node,ancestor,time))
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 1.490282 secs
+Time difference of 1.404474 secs
 > 
 > bfit <- brown(data=x[c("A","B")],tree)
 > print(summary(bfit))
@@ -283,7 +283,7 @@ $dof
 > hfit <- hansen(data=x[c("A","B")],tree=tree,regimes=x['reg'],sqrt.alpha=a,sigma=s,fit=F)
 > toc <- Sys.time()
 > print(toc-tic)
-Time difference of 3.648121 secs
+Time difference of 3.714571 secs
 > print(summary(hfit))
 $call
 hansen(data = x[c("A", "B")], tree = tree, regimes = x["reg"], 
