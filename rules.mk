@@ -22,9 +22,8 @@ INSTDOCS = $(sort $(wildcard inst/doc/*))
 SESSION_PKGS = datasets,utils,grDevices,graphics,stats,methods,tidyverse,$(PKG)
 
 .PHONY: .check check clean covr debug default fresh \
-htmlhelp manual publish qcheck qqcheck \
-revdeps rhub rsession session www win wind xcheck \
-xcovr vcheck ycheck
+htmlhelp manual publish qcheck qqcheck rchk revdeps \
+rhub rsession session www win wind xcheck xcovr vcheck ycheck
 
 .dist manual www: export R_QPDF=qpdf
 .headers: export LC_COLLATE=C
@@ -39,6 +38,9 @@ debug: RSESSION = R -d gdb
 rsession: RSESSION = R
 
 default: .roxy .NEWS .instdocs .source .includes .headers
+	@echo $(PKGVERS)
+
+version:
 	@echo $(PKGVERS)
 
 roxy: .roxy
@@ -65,9 +67,9 @@ INSTALLCMD = devtools::install(args=c("--preclean","--html","--library=library")
 
 check xcheck ycheck qcheck qqcheck: .check
 
-vcheck: check/$(PKG).Rcheck/$(PKG)-Ex.R
+vcheck: check 
 	$(REXE) -d "valgrind -s --tool=memcheck --track-origins=yes --leak-check=full"\
-	< $^ 2>&1 | tee $(PKG)-Ex.Rout
+	< check/$(PKG).Rcheck/$(PKG)-Ex.R 2>&1 | tee $(PKG)-Ex.Rout
 
 NEWS: .NEWS
 
@@ -126,6 +128,12 @@ www: install
 
 session debug rsession: .session
 
+rchk: .rchk
+
+.rchk: .dist
+	$(CP) $(TARBALL) rchk
+	make -C rchk
+
 revdeps: .dist
 	mkdir -p revdep
 	$(CP) $(TARBALL) revdep
@@ -142,10 +150,13 @@ rhub:
 covr: covr.rds
 
 covr.rds: DESCRIPTION
-	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE); saveRDS(cov,file="covr.rds")'
+	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; saveRDS(cov,file="covr.rds")'
 
 xcovr: covr
 	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,quiet=FALSE)'
+
+vcovr: covr
+	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; report(cov,file="covr.html",browse=TRUE)'
 
 win: dist
 	curl -T $(TARBALL) ftp://win-builder.r-project.org/R-release/
@@ -211,6 +222,7 @@ clean:
 	$(MAKE) -C inst/doc clean
 	$(MAKE) -C tests clean
 	$(MAKE) -C revdep clean
+	$(MAKE) -C rchk clean
 	$(RM) .dist
 
 fresh: clean
