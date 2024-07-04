@@ -1,33 +1,33 @@
-#' \pkg{ouch} plotting functions
-#'
-#' Plot phylogenetic trees, with or without regime paintings.
-#'
-#' @name plot
-#' @rdname plot
-#' @family methods for ouch trees
-#' @param x object to plot.
-#' @param regimes factor or character; a vector of regime paintings.
-#' @param node.names logical; should node names be displayed?
-#' @param ladderize logical; should the tree be ladderized?
-#' @param legend logical; display a legend?
-#' @param palette function or character; specifies the colors to be used for the several regimes on the tree.
-#' Specified as a function, when given an integer, `n`, the function should create a vector of `n` colors.
-#' See, for example [`rainbow`][grDevices::rainbow()].
-#' One can also specify the `n` colors as a vector of color codes.
-#' There must be at least as many colors as levels in the `regimes`.
-#' @param labels character; taxon labels.
-#' @param margin numeric; width of the right margin (as a fraction of the plot width).
-#' Adjust this if labels are clipped (see Examples below).
-#' One can also adjust the width of the left margin (for example to aid in the formatting of the figure legend).
-#' To do this, furnish `margin=c(L, R)`, where `L` and `R` are the widths of the right and left margins, respectively, as fractions of the plot width.
-#' Obviously, in this case, we must have `L+R<1`.
-#' @param text_opts options for the labels; passed to [`text`][graphics::text()].
-#' @param legend_opts options for the the legend; passed to [`legend`][graphics::legend()].
-#' @param ... additional arguments, passed to [`plot`][graphics::plot()].
-#' 
-#' @inheritParams graphics::plot.default
-#' @importFrom graphics plot text legend par
-#' @importFrom grDevices rainbow
+##' \pkg{ouch} plotting functions
+##'
+##' Plot phylogenetic trees, with or without regime paintings.
+##'
+##' @name plot
+##' @rdname plot
+##' @family methods for ouch trees
+##' @param x object to plot.
+##' @param regimes factor or character; a vector of regime paintings.
+##' @param node.names logical; should node names be displayed?
+##' @param ladderize logical; should the tree be ladderized?
+##' @param legend logical; display a legend?
+##' @param palette function or character; specifies the colors to be used for the several regimes on the tree.
+##' Specified as a function, when given an integer, `n`, the function should create a vector of `n` colors.
+##' See, for example [`rainbow`][grDevices::rainbow()].
+##' One can also specify the `n` colors as a vector of color codes.
+##' There must be at least as many colors as levels in the `regimes`.
+##' @param labels character; taxon labels.
+##' @param margin numeric; width of the right margin (as a fraction of the plot width).
+##' Adjust this if labels are clipped (see Examples below).
+##' One can also adjust the width of the left margin (for example to aid in the formatting of the figure legend).
+##' To do this, furnish `margin=c(L, R)`, where `L` and `R` are the widths of the right and left margins, respectively, as fractions of the plot width.
+##' Obviously, in this case, we must have `L+R<1`.
+##' @param text_opts options for the labels; passed to [`text`][graphics::text()].
+##' @param legend_opts options for the the legend; passed to [`legend`][graphics::legend()].
+##' @param ... additional arguments, passed to [`plot`][graphics::plot()].
+##' 
+##' @inheritParams graphics::plot.default
+##' @importFrom graphics plot text legend par
+##' @importFrom grDevices rainbow
 NULL
 
 setGeneric("plot")
@@ -165,12 +165,12 @@ arrange_tree <- function (root, anc, cs, ypos = numeric(length(anc))) {
   ypos
 }
 
-#' @rdname plot
-#' @importFrom graphics par
-#' @importFrom grDevices rainbow
-#' @importFrom stats setNames
-#' @example examples/bimac2.R
-#' @export
+##' @rdname plot
+##' @importFrom graphics par
+##' @importFrom grDevices rainbow
+##' @importFrom stats setNames
+##' @example examples/bimac2.R
+##' @export
 setMethod(
   "plot",
   signature=signature(x="ouchtree"),

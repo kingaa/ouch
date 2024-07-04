@@ -1,17 +1,17 @@
-#' Bootstrapping for uncertainty quantification
-#'
-#' Parametric bootstrapping for \pkg{ouch} models.
-#'
-#' `bootstrap` performs a parametric bootstrap for estimation of confidence intervals.
-#'
-#' @rdname bootstrap
-#' @name bootstrap
-#' @family methods for ouch trees
-#' @example examples/bootstrap.R
-#' @param object A fitted model object.
-#' @param nboot integer; number of bootstrap replicates.
-#' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see [simulate]).
-#' @param ... Additional arguments are passed to [`update`].
+##' Bootstrapping for uncertainty quantification
+##'
+##' Parametric bootstrapping for \pkg{ouch} models.
+##'
+##' `bootstrap` performs a parametric bootstrap for estimation of confidence intervals.
+##'
+##' @rdname bootstrap
+##' @name bootstrap
+##' @family methods for ouch trees
+##' @example examples/bootstrap.R
+##' @param object A fitted model object.
+##' @param nboot integer; number of bootstrap replicates.
+##' @param seed integer; setting `seed` to a non-`NULL` value allows one to fix the random seed (see [simulate]).
+##' @param ... Additional arguments are passed to [`update`].
 NULL
 
 setGeneric(
@@ -21,8 +21,8 @@ setGeneric(
   }
 )
 
-#' @rdname bootstrap
-#' @export
+##' @rdname bootstrap
+##' @export
 setMethod(
   "bootstrap",
   signature=signature(object="missing"),
@@ -31,8 +31,8 @@ setMethod(
   }
 )
 
-#' @rdname bootstrap
-#' @export
+##' @rdname bootstrap
+##' @export
 setMethod(
   "bootstrap",
   signature=signature(object="ANY"),

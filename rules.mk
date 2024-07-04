@@ -15,11 +15,10 @@ PKG = $(shell perl -ne 'print $$1 if /Package:\s+((\w+[-\.]?)+)/;' DESCRIPTION)
 VERSION = $(shell perl -ne 'print $$1 if /Version:\s+((\d+[-\.]?)+)/;' DESCRIPTION)
 PKGVERS = $(PKG)_$(VERSION)
 TARBALL = $(PKGVERS).tar.gz
-SOURCE = $(sort $(wildcard R/*R src/*.c src/*.h data/* examples/*))
+SOURCE = $(sort $(wildcard R/*R src/*.c src/*.cc src/*.h data/* examples/*))
 CSOURCE = $(sort $(wildcard src/*.c))
 TESTS = $(sort $(wildcard tests/*R))
 INSTDOCS = $(sort $(wildcard inst/doc/*))
-SESSION_PKGS = datasets,utils,grDevices,graphics,stats,methods,tidyverse,$(PKG)
 
 .PHONY: .check check clean covr debug default fresh \
 htmlhelp manual publish qcheck qqcheck rchk revdeps \
@@ -32,6 +31,7 @@ rhub rsession session www win wind xcheck xcovr vcheck ycheck
 .dist .tests .session .check: export R_KEEP_PKG_SOURCE=yes
 revdeps .session .tests .check: export R_PROFILE_USER=$(CURDIR)/.Rprofile
 .tests .session vcheck www manual: export R_LIBS=$(CURDIR)/library
+debug .check: export PKG_CPPFLAGS=-UNDEBUG
 .check: export R_CHECK_ENVIRON=$(CURDIR)/tools/check.env
 session: RSESSION = emacs -f R
 debug: RSESSION = R -d gdb
@@ -58,8 +58,7 @@ qcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=FALSE,\
 args=c("--no-tests"))
 qqcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=FALSE,\
 args=c("--no-tests","--no-codoc","--no-examples"))
-xcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=TRUE,\
-env_vars=c("_R_CHECK_DEPENDS_ONLY_"="TRUE"))
+xcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=TRUE)
 ycheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=TRUE,\
 args=c("--run-dontrun","--run-donttest"))
 
@@ -180,7 +179,7 @@ tests: .tests
 install: .install
 
 inst/include/%.h: src/%.h
-	$(CP) $^ $@
+	perl -ne 'print if not /^\/\/\!/' $^ > $@
 
 %.tex: %.Rnw
 	$(REXE) -e "library(knitr); knit(\"$*.Rnw\")"

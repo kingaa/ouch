@@ -1,19 +1,19 @@
-#' Phylogenetic Brownian motion models
-#' 
-#' The function `brown` creates a `browntree` object by fitting a
-#' Brownian-motion model to data.
-#' 
-#' @name brown
-#' @rdname brown
-#' @aliases browntree-class
-#' @author Aaron A. King
-#' @family phylogenetic comparative models
-#' @seealso [`bimac`], [`anolis.ssd`], [`hansen`]
-#' @example examples/bimac.R
-#' @keywords models
-#' @references
-#' \Butler2004
-#'
+##' Phylogenetic Brownian motion models
+##'
+##' The function `brown` creates a `browntree` object by fitting a
+##' Brownian-motion model to data.
+##'
+##' @name brown
+##' @rdname brown
+##' @aliases browntree-class
+##' @author Aaron A. King
+##' @family phylogenetic comparative models
+##' @seealso [`bimac`], [`anolis.ssd`], [`hansen`]
+##' @example examples/bimac.R
+##' @keywords models
+##' @references
+##' \Butler2004
+##'
 NULL
 
 setClass(
@@ -40,24 +40,24 @@ setAs(
   }
 )
 
-#' @rdname brown
-#' @include ouchtree.R glssoln.R rmvnorm.R
-#' 
-#' @param data Phenotypic data for extant species, i.e., at the terminal ends of the phylogenetic tree.
-#' This can either be a numeric vector or a list.
-#' If it is a numeric vector, there must be one entry for every node.
-#' If it is a list, it must consist entirely of numeric vectors, each of which has one entry per node.
-#' A data-frame is coerced to a list.
-#' @param tree A phylogenetic tree, specified as an [`ouchtree`] object.
-#'
-#' @return `brown` returns an object of class `browntree`.
-#' 
-#' @export
+##' @rdname brown
+##' @include ouchtree.R glssoln.R rmvnorm.R
+##'
+##' @param data Phenotypic data for extant species, i.e., at the terminal ends of the phylogenetic tree.
+##' This can either be a numeric vector or a list.
+##' If it is a numeric vector, there must be one entry for every node.
+##' If it is a list, it must consist entirely of numeric vectors, each of which has one entry per node.
+##' A data-frame is coerced to a list.
+##' @param tree A phylogenetic tree, specified as an [`ouchtree`] object.
+##'
+##' @return `brown` returns an object of class `browntree`.
+##'
+##' @export
 brown <- function (data, tree) {
-  
+
   if (!is(tree,'ouchtree'))
     pStop("brown",sQuote("tree")," must be an object of class ",sQuote("ouchtree"),".")
-  
+
   if (is.data.frame(data)) {
     nm <- rownames(data)
     data <- lapply(as.list(data),function(x){names(x)<-nm;x})
@@ -89,12 +89,12 @@ brown <- function (data, tree) {
   if (is.null(names(data))) names(data) <- paste('char',1:nchar,sep='')
 
   data <- lapply(data,function(x)x[tree@nodes])
-  
+
   dat <- lapply(data,function(y)y[tree@term])
 
   w <- matrix(data=1,nrow=nterm,ncol=1)
   b <- tree@branch.times
-  
+
   sols <- lapply(dat,function(x)glssoln(w,x,b))
   theta <- lapply(sols,function(x)x$coeff) # optima
   e <- sapply(sols,function(x)x$residuals) # residuals
@@ -102,7 +102,7 @@ brown <- function (data, tree) {
   v <- q/nterm
   dev <- nchar*nterm*(1+log(2*pi))+nchar*log(det(b))+nterm*log(det(v))
   sigma <- t(chol(v))
-  
+
   new(
     'browntree',
     as(tree,'ouchtree'),
@@ -136,16 +136,16 @@ brown.deviate <- function(n = 1, object) {
   apply(X,3,as.data.frame)
 }
 
-#' @rdname coef
-#' @include coef.R
-#' @importFrom stats coef
-#' @return `coef` applied to a `browntree` object extracts a list with three elements:
-#' \describe{
-#'   \item{`sigma`}{the coefficients of the sigma matrix.}
-#'   \item{`theta`}{a list of the estimated optima, one per character.}
-#'   \item{`sigma.sq.matrix`}{the sigma-squared matrix itself.}
-#' }
-#' @export
+##' @rdname coef
+##' @include coef.R
+##' @importFrom stats coef
+##' @return `coef` applied to a `browntree` object extracts a list with three elements:
+##' \describe{
+##'   \item{`sigma`}{the coefficients of the sigma matrix.}
+##'   \item{`theta`}{a list of the estimated optima, one per character.}
+##'   \item{`sigma.sq.matrix`}{the sigma-squared matrix itself.}
+##' }
+##' @export
 setMethod(
   'coef',
   signature=signature(object="browntree"),
@@ -158,9 +158,9 @@ setMethod(
   }
 )
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'show',
   signature=signature(object="browntree"),
@@ -170,9 +170,9 @@ setMethod(
   }
 )
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'print',
   signature=signature(x='browntree'),
@@ -190,20 +190,20 @@ setMethod(
   }
 )
 
-#' @rdname logLik
-#' @include logLik.R
-#' @importFrom stats logLik
-#' @export
+##' @rdname logLik
+##' @include logLik.R
+##' @importFrom stats logLik
+##' @export
 setMethod(
   "logLik",
   signature=signature(object="browntree"),
   function(object)object@loglik
 )
 
-#' @rdname summary
-#' @include summary.R
-#' @return `summary` applied to a `browntree` object returns information about the fitted model, including parameter estimates and quantities describing the goodness of fit.
-#' @export
+##' @rdname summary
+##' @include summary.R
+##' @return `summary` applied to a `browntree` object returns information about the fitted model, including parameter estimates and quantities describing the goodness of fit.
+##' @export
 setMethod(
   "summary",
   signature=signature(object="browntree"),
@@ -228,11 +228,11 @@ setMethod(
   }
 )
 
-#' @rdname simulate
-#' @include simulate.R package.R
-#' @importFrom stats runif
-#' @param object fitted model object
-#' @export
+##' @rdname simulate
+##' @include simulate.R package.R
+##' @importFrom stats runif
+##' @param object fitted model object
+##' @export
 setMethod(
   'simulate',
   signature=signature(object='browntree'),
@@ -244,10 +244,10 @@ setMethod(
   }
 )
 
-#' @rdname update
-#' @include update.R
-#' @importFrom stats update
-#' @export
+##' @rdname update
+##' @include update.R
+##' @importFrom stats update
+##' @export
 setMethod(
   'update',
   signature=signature(object='browntree'),
@@ -261,9 +261,9 @@ setMethod(
   }
 )
 
-#' @rdname bootstrap
-#' @include bootstrap.R
-#' @export
+##' @rdname bootstrap
+##' @include bootstrap.R
+##' @export
 setMethod(
   "bootstrap",
   signature=signature(object="browntree"),

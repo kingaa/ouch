@@ -1,27 +1,27 @@
-#' Generalized least-squares solver
-#'
-#' Solves the generalized least squares problem.
-#'
-#' Given matrices \eqn{a}, \eqn{x}, \eqn{v}, `glssoln` computes \eqn{y} such that
-#' \deqn{(x-ay)^T v^{-1} (x-ay)}
-#' is minimized.
-#' This is accomplished by first computing the Choleski decomposition of \eqn{v}:
-#' \deqn{v=LL^T.}
-#' One then solves for \eqn{y} in the equation
-#' \deqn{L^{-1}ay=L^{-1}x.}
-#' This is accomplished by means of a singular-value decomposition of \eqn{L^{-1} a}.
-#'
-#' The resulting \eqn{y} then satisfies
-#' \deqn{x=ay+e,}
-#' where the entries of \eqn{e} are the residuals.
-#'
-#' @keywords internal
-#' @name glssoln
-#' @rdname glssoln
-#' @return
-#' `glssoln` returns a list of two named components:
-#' - `coeff` is \eqn{y} as above.
-#' - `residuals` is \eqn{e} as above.
+##' Generalized least-squares solver
+##'
+##' Solves the generalized least squares problem.
+##'
+##' Given matrices \eqn{a}, \eqn{x}, \eqn{v}, `glssoln` computes \eqn{y} such that
+##' \deqn{(x-ay)^T v^{-1} (x-ay)}
+##' is minimized.
+##' This is accomplished by first computing the Choleski decomposition of \eqn{v}:
+##' \deqn{v=LL^T.}
+##' One then solves for \eqn{y} in the equation
+##' \deqn{L^{-1}ay=L^{-1}x.}
+##' This is accomplished by means of a singular-value decomposition of \eqn{L^{-1} a}.
+##'
+##' The resulting \eqn{y} then satisfies
+##' \deqn{x=ay+e,}
+##' where the entries of \eqn{e} are the residuals.
+##'
+##' @keywords internal
+##' @name glssoln
+##' @rdname glssoln
+##' @return
+##' `glssoln` returns a list of two named components:
+##' - `coeff` is \eqn{y} as above.
+##' - `residuals` is \eqn{e} as above.
 glssoln <- function (a, x, v, tol = sqrt(.Machine$double.eps)) {
   n <- length(x)
   vh <- tryCatch(

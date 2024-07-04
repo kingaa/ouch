@@ -1,18 +1,18 @@
-#' Convert an \pkg{ape} tree to an \pkg{ouch} tree
-#' 
-#' `ape2ouch` translates \pkg{ape}'s `phylo` representation of a phylogenetic tree into \pkg{ouch}'s `ouchtree` representation.
-#' Optionally, the user can adjust the branch lengths while preserving the topology.
-#' 
-#' @param tree a tree of class [ape::phylo].
-#' @param scale optional.
-#' If `scale=TRUE`, the tree's depth will be scaled to 1.
-#' If `scale` is a number, then the branch lengths will be scaled by this number.
-#' @param branch.lengths optional vector of branch lengths.
-#' @author A. A. King, D. Ackerly
-#' @keywords models
-#' @rdname ouchtree
-#' @include ouchtree.R
-#' @export
+##' Convert an \pkg{ape} tree to an \pkg{ouch} tree
+##'
+##' `ape2ouch` translates \pkg{ape}'s `phylo` representation of a phylogenetic tree into \pkg{ouch}'s `ouchtree` representation.
+##' Optionally, the user can adjust the branch lengths while preserving the topology.
+##'
+##' @param tree a tree of class [ape::phylo].
+##' @param scale optional.
+##' If `scale=TRUE`, the tree's depth will be scaled to 1.
+##' If `scale` is a number, then the branch lengths will be scaled by this number.
+##' @param branch.lengths optional vector of branch lengths.
+##' @author A. A. King, D. Ackerly
+##' @keywords models
+##' @rdname ouchtree
+##' @include ouchtree.R
+##' @export
 ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   ## This function takes a tree file in the phylo format (from
   ## ape/read.tree) and creates an ouchtree object.
@@ -22,13 +22,13 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   ##  t = object of type `phylo`, as returned by ape::read.tree
   ##  branch.lengths = optional branch length vector in same
   ##  order as `t$edge.length`; default is to use `t$edge.length`
-  ## 
+  ##
   ## D. Ackerly, July 18, 2006.
   ## Modified by A.A. King, 15 July 2007.
 
   if (!inherits(tree,'phylo'))
     pStop("ape2ouch",sQuote("tree")," must be of class ",sQuote("phylo"))
-  
+
   nnodes <- nrow(tree$edge)+1              # number of nodes
   n.term <- length(tree$tip.label)         # number of terminal nodes
   n.int <- nnodes-n.term                   # internal nodes
@@ -53,7 +53,7 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
       ancestor[n] <- node[1]
     }
   }
-  
+
   if (is.null(tree$node.label))
     tree$node.label <- rep('',n.int)
   species <- rev(c(tree$tip.label,tree$node.label[-1],tree$node.label[1]))
@@ -69,7 +69,7 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
   } else {
     pStop("ape2ouch",sQuote("scale")," must be either logical or numeric.")
   }
-  
+
   ouchtree(
     nodes=node,
     ancestors=ancestor,
@@ -80,7 +80,7 @@ ape2ouch <- function (tree, scale = TRUE, branch.lengths = tree$edge.length) {
 
 branch_height <- function (node, anc, bl, k) {
   ## this recursion might prove expensive for large trees
-  ## there should be a direct method 
+  ## there should be a direct method
   if (is.na(anc[k])) {
     0
   } else {

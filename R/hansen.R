@@ -1,50 +1,50 @@
-#' Ornstein-Uhlenbeck models of trait evolution
-#' 
-#' The function `hansen` fits an Ornstein-Uhlenbeck model to data.
-#' The fitting is done using `optim` or `subplex`.
-#' 
-#' The Hansen model for the evolution of a multivariate trait \eqn{X} along a lineage can be written as a stochastic differential equation (Ito diffusion)
-#' \deqn{dX=\alpha(\theta(t)-X(t))dt+\sigma dB(t),}{dX = alpha (theta(t)-X(t)) dt + sigma dB(t),}
-#' where \eqn{t} is time along the lineage,
-#' \eqn{\theta(t)}{theta(t)} is the optimum trait value, \eqn{B(t)} is a standard Wiener process (Brownian motion),
-#' and \eqn{\alpha}{alpha} and \eqn{\sigma}{sigma} are matrices
-#' quantifying, respectively, the strength of selection and random drift.
-#' Without loss of generality, one can assume \eqn{\sigma}{sigma} is lower-triangular.
-#' This is because only the infinitesimal variance-covariance matrix
-#' \eqn{\sigma^2=\sigma\sigma^T}{sigma^2 = sigma\%*\%transpose(sigma)}
-#' is identifiable, and for any admissible variance-covariance matrix, we can choose \eqn{\sigma}{sigma} to be lower-triangular.
-#' Moreover, if we view the basic model as describing evolution on a fitness landscape, then \eqn{\alpha}{alpha} will be symmetric.
-#' If we further restrict ourselves to the case of stabilizing selection, \eqn{\alpha}{alpha} will be positive definite as well.
-#' We make these assumptions and therefore can assume that the matrix \eqn{\alpha}{alpha} has a lower-triangular square root.
-#' 
-#' The `hansen` code uses unconstrained numerical optimization to maximize the likelihood.
-#' To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices in a special way:
-#' each matrix is parameterized by `nchar*(nchar+1)/2` parameters, where `nchar` is the number of quantitative characters.
-#' Specifically, the parameters initialized by the `sqrt.alpha` argument of `hansen` are used
-#' to fill the nonzero entries of a lower-triangular matrix (in column-major order),
-#' which is then multiplied by its transpose to give the selection-strength matrix.
-#' The parameters specified in `sigma` fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
-#' When `hansen` is executed, the numerical optimizer maximizes the likelihood over these parameters.
-#'
-#' @name hansen
-#' @aliases hansentree-class
-#' @rdname hansen
-#' @family phylogenetic comparative models
-#' @author Aaron A. King
-#' @seealso
-#' [`stats::optim`], [`subplex::subplex`], [`bimac`], [`anolis.ssd`]
-#' @references
-#' \Hansen1997
-#' 
-#' \Butler2004
-#'
-#' \Cressler2015
-#' 
-#' @keywords models
-#' @example examples/anolis.R
-#' 
-#' @example examples/geospiza.R
-#' 
+##' Ornstein-Uhlenbeck models of trait evolution
+##'
+##' The function `hansen` fits an Ornstein-Uhlenbeck model to data.
+##' The fitting is done using `optim` or `subplex`.
+##'
+##' The Hansen model for the evolution of a multivariate trait \eqn{X} along a lineage can be written as a stochastic differential equation (Ito diffusion)
+##' \deqn{dX=\alpha(\theta(t)-X(t))dt+\sigma dB(t),}{dX = alpha (theta(t)-X(t)) dt + sigma dB(t),}
+##' where \eqn{t} is time along the lineage,
+##' \eqn{\theta(t)}{theta(t)} is the optimum trait value, \eqn{B(t)} is a standard Wiener process (Brownian motion),
+##' and \eqn{\alpha}{alpha} and \eqn{\sigma}{sigma} are matrices
+##' quantifying, respectively, the strength of selection and random drift.
+##' Without loss of generality, one can assume \eqn{\sigma}{sigma} is lower-triangular.
+##' This is because only the infinitesimal variance-covariance matrix
+##' \eqn{\sigma^2=\sigma\sigma^T}{sigma^2 = sigma\%*\%transpose(sigma)}
+##' is identifiable, and for any admissible variance-covariance matrix, we can choose \eqn{\sigma}{sigma} to be lower-triangular.
+##' Moreover, if we view the basic model as describing evolution on a fitness landscape, then \eqn{\alpha}{alpha} will be symmetric.
+##' If we further restrict ourselves to the case of stabilizing selection, \eqn{\alpha}{alpha} will be positive definite as well.
+##' We make these assumptions and therefore can assume that the matrix \eqn{\alpha}{alpha} has a lower-triangular square root.
+##'
+##' The `hansen` code uses unconstrained numerical optimization to maximize the likelihood.
+##' To do this, it parameterizes the \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices in a special way:
+##' each matrix is parameterized by `nchar*(nchar+1)/2` parameters, where `nchar` is the number of quantitative characters.
+##' Specifically, the parameters initialized by the `sqrt.alpha` argument of `hansen` are used
+##' to fill the nonzero entries of a lower-triangular matrix (in column-major order),
+##' which is then multiplied by its transpose to give the selection-strength matrix.
+##' The parameters specified in `sigma` fill the nonzero entries in the lower triangular \eqn{\sigma}{sigma} matrix.
+##' When `hansen` is executed, the numerical optimizer maximizes the likelihood over these parameters.
+##'
+##' @name hansen
+##' @aliases hansentree-class
+##' @rdname hansen
+##' @family phylogenetic comparative models
+##' @author Aaron A. King
+##' @seealso
+##' [`stats::optim`], [`subplex::subplex`], [`bimac`], [`anolis.ssd`]
+##' @references
+##' \Hansen1997
+##'
+##' \Butler2004
+##'
+##' \Cressler2015
+##'
+##' @keywords models
+##' @example examples/anolis.R
+##'
+##' @example examples/geospiza.R
+##'
 NULL
 
 setClass(
@@ -77,39 +77,39 @@ setAs(
   }
 )
 
-#' @rdname hansen
-#' @include ouchtree.R glssoln.R rmvnorm.R
-#' @importFrom stats optim
-#' @importFrom subplex subplex
-#'
-#' @param data Phenotypic data for extant species, i.e., species at the terminal twigs of the phylogenetic tree.
-#' This can either be a single named numeric vector, a list of `nchar` named vectors, or a data frame containing `nchar` data variables.
-#' There must be an entry per variable for every node in the tree; use `NA` to represent missing data.
-#' If the
-#' data are supplied as one or more named vectors, the names attributes are taken to correspond to the node names specified when the `ouchtree` was constructed (see [`ouchtree`]).
-#' If the data are supplied as a
-#' data-frame, the rownames serve that purpose.
-#' @param tree A phylogenetic tree, specified as an `ouchtree` object.
-#' @param regimes A vector of codes, one for each node in the tree, specifying the selective regimes hypothesized to have been operative.
-#' Corresponding to each node, enter the code of the regime hypothesized for the branch segment terminating in that node.
-#' For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
-#' If there are `nchar` quantitative characters, then one can specify a single set of `regimes` for all characters or a list of `nchar` regime specifications, one for each character.
-#' @param sqrt.alpha,sigma These are used to initialize the optimization algorithm.
-#' The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
-#' Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
-#' The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
-#' See Details for more information.
-#' @param fit If `fit=TRUE`, then the likelihood will be maximized.
-#' If `fit=FALSE`, the likelihood will be evaluated at the specified values of `sqrt.alpha` and `sigma`;
-#' the optima `theta` will be returned as well.
-#' @param method The method to be used by the optimization algorithm.
-#' See [`subplex::subplex`] and [`stats::optim`] for information on the available options.
-#' @param hessian If `hessian=TRUE`, then the Hessian matrix will be computed by `optim`.
-#' @param \dots Additional arguments will be passed as `control` options to `optim` or `subplex`.
-#' See [`stats::optim()`] and [`subplex::subplex()`] for information on the available options.
-#' 
-#' @return `hansen` returns an object of class `hansentree`.
-#' @export
+##' @rdname hansen
+##' @include ouchtree.R glssoln.R rmvnorm.R
+##' @importFrom stats optim
+##' @importFrom subplex subplex
+##'
+##' @param data Phenotypic data for extant species, i.e., species at the terminal twigs of the phylogenetic tree.
+##' This can either be a single named numeric vector, a list of `nchar` named vectors, or a data frame containing `nchar` data variables.
+##' There must be an entry per variable for every node in the tree; use `NA` to represent missing data.
+##' If the
+##' data are supplied as one or more named vectors, the names attributes are taken to correspond to the node names specified when the `ouchtree` was constructed (see [`ouchtree`]).
+##' If the data are supplied as a
+##' data-frame, the rownames serve that purpose.
+##' @param tree A phylogenetic tree, specified as an `ouchtree` object.
+##' @param regimes A vector of codes, one for each node in the tree, specifying the selective regimes hypothesized to have been operative.
+##' Corresponding to each node, enter the code of the regime hypothesized for the branch segment terminating in that node.
+##' For the root node, because it has no branch segment terminating on it, the regime specification is irrelevant.
+##' If there are `nchar` quantitative characters, then one can specify a single set of `regimes` for all characters or a list of `nchar` regime specifications, one for each character.
+##' @param sqrt.alpha,sigma These are used to initialize the optimization algorithm.
+##' The selection strength matrix \eqn{\alpha}{alpha} and the random drift variance-covariance matrix \eqn{\sigma^2}{sigma^2} are parameterized by their matrix square roots.
+##' Specifically, these initial guesses are each packed into lower-triangular matrices (column by column).
+##' The product of this matrix with its transpose is the \eqn{\alpha}{alpha} or \eqn{\sigma^2}{sigma^2} matrix.
+##' See Details for more information.
+##' @param fit If `fit=TRUE`, then the likelihood will be maximized.
+##' If `fit=FALSE`, the likelihood will be evaluated at the specified values of `sqrt.alpha` and `sigma`;
+##' the optima `theta` will be returned as well.
+##' @param method The method to be used by the optimization algorithm.
+##' See [`subplex::subplex`] and [`stats::optim`] for information on the available options.
+##' @param hessian If `hessian=TRUE`, then the Hessian matrix will be computed by `optim`.
+##' @param \dots Additional arguments will be passed as `control` options to `optim` or `subplex`.
+##' See [`stats::optim()`] and [`subplex::subplex()`] for information on the available options.
+##'
+##' @return `hansen` returns an object of class `hansentree`.
+##' @export
 hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
   fit = TRUE,
   method = c("Nelder-Mead","subplex","BFGS","L-BFGS-B"),
@@ -154,12 +154,12 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
 
   nchar <- length(data)
   if (is.null(names(data))) names(data) <- paste('char',seq_len(nchar),sep='')
-  
+
   if (any(sapply(data,function(x)(is.null(names(x)))||(!setequal(names(x),tree@nodes)))))
     pStop("hansen","each data set must have names corresponding to the node names.")
   data <- lapply(data,function(x)x[tree@nodes])
   dat <- do.call(c,lapply(data,function(y)y[tree@term]))
-  
+
   nsymargs <- nchar*(nchar+1)/2
   nalpha <- length(sqrt.alpha)
   nsigma <- length(sigma)
@@ -192,7 +192,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
     regimes <- list(regimes)
     names(regimes) <- nm
   }
-  
+
   if (any(!sapply(regimes,is.factor)))
     pStop("hansen",sQuote("regimes")," must be of class ",sQuote("factor")," or a list of ",sQuote("factor")," objects.")
 
@@ -293,7 +293,7 @@ hansen <- function (data, tree, regimes, sqrt.alpha, sigma,
     names(theta[[n]]) <- as.character(reg[[n]])
     count <- count+length(reg[[n]])
   }
-  
+
   new(
     'hansentree',
     as(tree,'ouchtree'),
@@ -385,7 +385,7 @@ regime_spec <- function (object, regimes) {
 ## Solve the matrix equation
 ##   A . X + X . A = B
 ## for X, where we have assumed A = A'.
-## 
+##
 ## sym.solve <- function (a, b) {
 ##   n <- nrow(a)
 ##   d <- array(data=0,dim=c(n,n,n,n))
@@ -427,13 +427,13 @@ hansen_deviate <- function (n = 1, object) {
   apply(X,3,as.data.frame)
 }
 
-#' @rdname coef
-#' @include coef.R
-#' @importFrom stats coef
-#' @return `coef` applied to a `hansentree` object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the `alpha.matrix` and `sigma.sq.matrix` elements, respectively) but also the MLE returned by the optimizer
-#' (as `sqrt.alpha` and `sigma`, respectively).
-#' \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
-#' @export
+##' @rdname coef
+##' @include coef.R
+##' @importFrom stats coef
+##' @return `coef` applied to a `hansentree` object returns a named list containing the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices(given as the `alpha.matrix` and `sigma.sq.matrix` elements, respectively) but also the MLE returned by the optimizer
+##' (as `sqrt.alpha` and `sigma`, respectively).
+##' \strong{The latter elements should not be interpreted, but can be used to restart the algorithm, etc.}
+##' @export
 setMethod(
   'coef',
   signature=signature(object='hansentree'),
@@ -448,20 +448,20 @@ setMethod(
   }
 )
 
-#' @rdname logLik
-#' @include logLik.R
-#' @importFrom stats logLik
-#' @export
+##' @rdname logLik
+##' @include logLik.R
+##' @importFrom stats logLik
+##' @export
 setMethod(
   "logLik",
   signature=signature(object='hansentree'),
   function (object) object@loglik
 )
 
-#' @rdname summary
-#' @include summary.R
-#' @return `summary` applied to a `hansentree` method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
-#' @export
+##' @rdname summary
+##' @include summary.R
+##' @return `summary` applied to a `hansentree` method displays the estimated \eqn{\alpha}{alpha} and \eqn{\sigma^2}{sigma^2} matrices as well as various quantities describing the goodness of model fit.
+##' @export
 setMethod(
   "summary",
   signature=signature(object='hansentree'),
@@ -491,9 +491,9 @@ setMethod(
   }
 )
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'print',
   signature=signature(x='hansentree'),
@@ -519,9 +519,9 @@ setMethod(
   }
 )
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'show',
   signature=signature(object='hansentree'),
@@ -531,9 +531,9 @@ setMethod(
   }
 )
 
-#' @rdname plot
-#' @include plot.R
-#' @export
+##' @rdname plot
+##' @include plot.R
+##' @export
 setMethod(
   "plot",
   signature=signature(x="hansentree"),
@@ -544,10 +544,10 @@ setMethod(
   }
 )
 
-#' @rdname simulate
-#' @include simulate.R package.R
-#' @importFrom stats runif
-#' @export
+##' @rdname simulate
+##' @include simulate.R package.R
+##' @importFrom stats runif
+##' @export
 setMethod(
   'simulate',
   signature=signature(object='hansentree'),
@@ -559,11 +559,11 @@ setMethod(
   }
 )
 
-#' @rdname update
-#' @include update.R
-#' @importFrom stats update
-#' @inheritParams hansen
-#' @export
+##' @rdname update
+##' @include update.R
+##' @importFrom stats update
+##' @inheritParams hansen
+##' @export
 setMethod(
   'update',
   signature=signature(object='hansentree'),
@@ -581,9 +581,9 @@ setMethod(
   }
 )
 
-#' @rdname bootstrap
-#' @include bootstrap.R
-#' @export
+##' @rdname bootstrap
+##' @include bootstrap.R
+##' @export
 setMethod(
   "bootstrap",
   signature=signature(object="hansentree"),

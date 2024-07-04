@@ -1,18 +1,18 @@
-#' Phylogenetic tree object in \pkg{ouch} format
-#' 
-#' `ouchtree` constructs a representation of a phylogenetic tree.
-#' 
-#' `ouchtree()` creates an `ouchtree` object given information on the phylogeny's topology and node times.
-#' An `ouchtree` object also (optionally) holds names of taxa for display purposes.
-#' 
-#' @name ouchtree
-#' @rdname ouchtree
-#' @aliases ouchtree-class
-#' @family phylogenetic comparative models
-#' @author Aaron A. King
-#' @keywords models
-#' @example examples/bimac1.R
-#' 
+##' Phylogenetic tree object in \pkg{ouch} format
+##'
+##' `ouchtree` constructs a representation of a phylogenetic tree.
+##'
+##' `ouchtree()` creates an `ouchtree` object given information on the phylogeny's topology and node times.
+##' An `ouchtree` object also (optionally) holds names of taxa for display purposes.
+##'
+##' @name ouchtree
+##' @rdname ouchtree
+##' @aliases ouchtree-class
+##' @family phylogenetic comparative models
+##' @author Aaron A. King
+##' @keywords models
+##' @example examples/bimac1.R
+##'
 NULL
 
 setClass(
@@ -34,24 +34,24 @@ setClass(
   )
 )
 
-#' @rdname ouchtree
-#' @param nodes A character vector giving the name of each node.
-#' These are used internally and must be unique.
-#' @param ancestors Specification of the topology of the phylogenetic tree.
-#' This is in the form of a character vector specifying the name
-#' (as given in the `nodes` argument)
-#' of the immediate ancestor of each node.
-#' In particular, the i-th name is that of the ancestor of the i-th node.
-#' The root node is distinguished by having no ancestor (i.e., `NA`).
-#' @param times A vector of nonnegative numbers, one per node in the tree,
-#' specifying the time at which each node is located.
-#' Time should be increasing from the root node to the terminal twigs.
-#' @param labels Optional vector of node labels.
-#' These will be used in plots to label nodes.
-#' It is not necessary that these be unique.
-#'
-#' @include package.R
-#' @export
+##' @rdname ouchtree
+##' @param nodes A character vector giving the name of each node.
+##' These are used internally and must be unique.
+##' @param ancestors Specification of the topology of the phylogenetic tree.
+##' This is in the form of a character vector specifying the name
+##' (as given in the `nodes` argument)
+##' of the immediate ancestor of each node.
+##' In particular, the i-th name is that of the ancestor of the i-th node.
+##' The root node is distinguished by having no ancestor (i.e., `NA`).
+##' @param times A vector of nonnegative numbers, one per node in the tree,
+##' specifying the time at which each node is located.
+##' Time should be increasing from the root node to the terminal twigs.
+##' @param labels Optional vector of node labels.
+##' These will be used in plots to label nodes.
+##' It is not necessary that these be unique.
+##'
+##' @include package.R
+##' @export
 ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 
   nodes <- as.character(nodes)
@@ -61,7 +61,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
   if (anyDuplicated(nodes)>0) pStop("ouchtree","node names must be unique.")
   if (length(ancestors) != n)
     pStop("ouchtree","invalid tree: ",sQuote("ancestors")," must have the same length as ",sQuote("nodes"),".")
-  if (length(times) != n) 
+  if (length(times) != n)
     pStop("ouchtree","invalid tree: ",sQuote("times")," must have the same length as ",sQuote("nodes"),".")
   if (length(labels) != n)
     pStop("ouchtree","invalid tree: ",sQuote("labels")," must be the same length as ",sQuote("nodes"),".")
@@ -71,7 +71,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
     pStop("ouchtree","invalid tree: there must be a unique root node, designated by its having ancestor = NA.")
   if (times[root] != 0)
     pStop("ouchtree","the algorithms assume that the root node is at time=0.")
-  
+
   term <- terminal.twigs(nodes,ancestors)
   if (length(term) <= 0)
     pStop("ouchtree","invalid tree: there ought to be at least one terminal node, don't you think?") #nocov
@@ -92,7 +92,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
       )
     )
   }
-  
+
   anc <- ancestor.numbers(nodes,ancestors)
 
   if (any(anc==seq(along=anc),na.rm=TRUE)) {
@@ -107,7 +107,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
     todo <- c(todo,which(anc==todo[k]))
     a <- anc[todo[k]]
     lineages[[todo[k]]] <- c(todo[k],lineages[[a]])
-    if (todo[k] %in% lineages[[a]]) 
+    if (todo[k] %in% lineages[[a]])
       pStop("ouchtree","this is no tree: circularity detected at node ",nodes[todo[k]]," in ",sQuote("ouchtree"),".")
     k <- k+1
   }
@@ -136,7 +136,7 @@ ouchtree <- function (nodes, ancestors, times, labels = as.character(nodes)) {
 }
 
 ## map ancestor names to row numbers
-ancestor.numbers <- function (nodenames, ancestors) { 
+ancestor.numbers <- function (nodenames, ancestors) {
   sapply(ancestors,function(x)charmatch(x,nodenames),USE.NAMES=FALSE)
 }
 
@@ -176,9 +176,9 @@ is.root.node <- function (anc) {
   is.na(anc)
 }
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'print',
   signature=signature(x='ouchtree'),
@@ -188,9 +188,9 @@ setMethod(
   }
 )
 
-#' @rdname print
-#' @include print.R
-#' @export
+##' @rdname print
+##' @include print.R
+##' @export
 setMethod(
   'show',
   signature=signature(object='ouchtree'),

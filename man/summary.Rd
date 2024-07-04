@@ -4,7 +4,7 @@
 \alias{summary}
 \alias{summary,hansentree-method}
 \alias{summary,browntree-method}
-\title{\pkg{ouch} summary methods}
+\title{Summary methods}
 \usage{
 \S4method{summary}{hansentree}(object, ...)
 
@@ -21,7 +21,7 @@
 \code{summary} applied to a \code{browntree} object returns information about the fitted model, including parameter estimates and quantities describing the goodness of fit.
 }
 \description{
-\pkg{ouch} summary methods
+Summary methods
 }
 \seealso{
 Other methods for ouch trees: 
