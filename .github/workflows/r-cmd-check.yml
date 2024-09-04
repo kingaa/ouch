@@ -4,8 +4,24 @@ on:
   push:
     branches:
       - '*'
+    paths:
+      - DESCRIPTION
+      - NAMESPACE
+      - R/**
+      - src/**
+      - tests/**
+      - man/**
+      - data/**
   pull_request:
     branches: [master]
+    paths:
+      - DESCRIPTION
+      - NAMESPACE
+      - R/**
+      - src/**
+      - tests/**
+      - man/**
+      - data/**
   workflow_dispatch:
     branches:
       - '*'
@@ -50,4 +66,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.config.os }}-${{ matrix.config.r }}-results
-          path: check/${{ vars.repo_name }}.Rcheck
+          path: check/${{ vars.repo_name }}.Rcheck/00check.log
